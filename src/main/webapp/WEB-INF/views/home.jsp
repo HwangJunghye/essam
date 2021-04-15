@@ -9,6 +9,7 @@
 <body>
 <h1>
 	Hello world!  한글 테스트2
+	<img src="../resources/images/cherky.png">
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
