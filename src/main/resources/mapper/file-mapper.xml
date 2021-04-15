@@ -7,4 +7,11 @@
 	<select id="getFileData" resultType="filebean">
 		SELECT * FROM TB_FILE WHERE FILENO=#{fileNo} AND ROWNUM=1
 	</select>
+	
+	<insert id="saveFile" useGeneratedKeys="true" keyProperty="fileNo">
+		<selectKey keyProperty="fileNo" resultType="String" order="BEFORE">
+			SELECT TB_FILE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO TB_FILE(FILENO,FILETYPENO,ORIGFILENAME,SYSFILENAME,CONTENTTYPE) VALUES(#{fileNo},#{fileTypeNo},#{origFileName},#{sysFileName},#{contentType});
+	</insert>
 </mapper>

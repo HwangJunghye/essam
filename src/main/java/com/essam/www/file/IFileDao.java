@@ -6,4 +6,6 @@ public interface IFileDao {
 
 	FileBean getFileData(String fileNo);
 	// file-mapper.xml 사용
+
+	boolean saveFile(FileBean fileBean);
 }
