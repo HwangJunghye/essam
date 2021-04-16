@@ -1,5 +1,7 @@
 package com.essam.www.member;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,10 +16,8 @@ import com.essam.www.bean.MemberBean;
 public class MemberController {
 	@Autowired
 	private MemberMM mm;
-//	로그인	
 //	이메일 중복체크(ajax)	
 //	로그아웃	
-//	로그인 실행	
 
 //	수강신청 실행	
 //	비밀번호 변경 실행(ajax)	
@@ -32,15 +32,14 @@ public class MemberController {
 //	클래스관리이동	
 //	마이클래스이동	
 //	내 클래스 목록 가져오기
-	
-	
+
 	// 회원가입 이동
 	@RequestMapping(value = "/join")
 	String goJoin() {
 		return "member/join"; // .jsp
 	}
-	
-	//	회원가입 실행	
+
+	// 회원가입 실행
 	@PostMapping(value = "/memberjoin")
 	ModelAndView memberJoin(MemberBean mb, RedirectAttributes rattr) {
 		// System.out.println(mb.getMbId());
@@ -48,5 +47,17 @@ public class MemberController {
 		// System.out.println(mb.getMbBirth());
 		ModelAndView mav = mm.memberJoin(mb, rattr);
 		return mav;
+	}
+
+	// 로그인 이동
+	@RequestMapping(value = "/login")
+	String goLogin() {
+		return "member/login"; // .jsp
+	}
+
+	// 로그인 실행
+	@PostMapping(value = "/access")
+	ModelAndView access(MemberBean mb,HttpServletRequest request, RedirectAttributes rattr) {
+		return mm.access(mb, request, rattr);
 	}
 }
