@@ -8,6 +8,7 @@
 </head>
 <body>
 	인덱스 페이지(/)<br/>
-	${msg}
+	${msg}<br>
+	${fMsg}
 </body>
 </html>
