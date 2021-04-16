@@ -1,8 +1,11 @@
 package com.essam.www.common;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CommonController {
@@ -10,8 +13,8 @@ public class CommonController {
 	private CommonMM comm;
 //	메인페이지로 이동
 	@RequestMapping(value = "/")
-	String goIndex() {
-		return "home"; // .jsp
+	ModelAndView goIndex(HttpServletRequest request) {
+		return comm.goIndex(request); // .jsp
 	}
 //	new/hot 클래스목록 가져오기	
 //	검색페이지 이동	

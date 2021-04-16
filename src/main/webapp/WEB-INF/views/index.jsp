@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	인덱스 페이지(/)<br/>
+	${msg}
 </body>
 </html>
