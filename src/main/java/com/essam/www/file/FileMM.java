@@ -66,11 +66,11 @@ public class FileMM {
 	 * 3.other<br>
 	 * null:저장실패 fileNo:저장된 파일 번호
 	 */
-	String saveFile(MultipartHttpServletRequest mReq, MultipartFile mFile, int fileTypeNo) {
+	public String saveFile(MultipartHttpServletRequest mReq, MultipartFile mFile, int fileTypeNo) {
 		
 		String upPath = mReq.getSession().getServletContext().getRealPath("/") + "upload/";
 		String origFileName = mFile.getOriginalFilename();
-		String sysFileName = UUID.randomUUID().toString() + origFileName;
+		String sysFileName = System.currentTimeMillis() + origFileName;
 		String contentType = mFile.getContentType();
 		
 		// 디렉토리가 없다면 생성

@@ -16,5 +16,10 @@
 	<a href="../test/1">DB 연결 테스트</a><br/>
 	<a href="../test/2">이미지 업로드 및 크기변경 테스트</a><br/>
 	<a href="../test/3">암호화 테스트</a><br/>
+	
+	<form action="uploadtest" method="post" enctype="multipart/form-data">
+		파일 업로드 <input type="file" name="file" accept="image/*"/><br>
+		<input type="submit" value="파일전송"/>
+	</form>
 </body>
 </html>

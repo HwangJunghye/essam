@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.exception.TestException;
+import com.essam.www.file.FileMM;
 
 import net.coobird.thumbnailator.Thumbnailator;
 
@@ -26,6 +28,9 @@ public class TestController {
 	@Autowired
 	ITestDao tDao;
 
+	@Autowired
+	FileMM fm;
+	
 	// 테스트 메인 페이지(../test/)
 	@RequestMapping(value = "/")
 	String testMain() {
@@ -89,5 +94,18 @@ public class TestController {
 		// 예외처리 테스트. 
 		// 예외 발생시 @ControllerAdvice의 @ExceptionHandler 메소드로 이동.
 		throw new TestException("TestException 예외 발생");
+	}
+	
+	
+	// 파일 업로드 테스트
+	@PostMapping(value = "/uploadtest")
+	String uploadTest(MultipartHttpServletRequest mReq) {
+		// <input type="file" name="속성"> --> mReq.getFile("속성")
+		MultipartFile mFile = mReq.getFile("file");
+		// image : 1
+		// 파라미터 가져오기 : mReq.getParameter(name)
+		String fileNo = fm.saveFile(mReq,mFile,1);
+		
+		return "redirect:/download?fileNo=" + fileNo;
 	}
 }
