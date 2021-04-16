@@ -70,7 +70,7 @@ public class FileMM {
 		
 		String upPath = mReq.getSession().getServletContext().getRealPath("/") + "upload/";
 		String origFileName = mFile.getOriginalFilename();
-		String sysFileName = UUID.randomUUID().toString() + System.currentTimeMillis();
+		String sysFileName = UUID.randomUUID().toString() + origFileName;
 		String contentType = mFile.getContentType();
 		
 		// 디렉토리가 없다면 생성
