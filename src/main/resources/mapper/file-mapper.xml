@@ -8,10 +8,24 @@
 		SELECT * FROM TB_FILE WHERE FILENO=#{fileNo} AND ROWNUM=1
 	</select>
 	
-	<insert id="saveFile" parameterType="filebean" useGeneratedKeys="true" keyProperty="fileNo">
-		<selectKey keyProperty="fileNo" resultType="string" order="BEFORE">
-			SELECT TB_FILE_SEQ.NEXTVAL FROM DUAL
+	<insert id="saveFile">
+		<selectKey keyProperty="fileNo" resultType="String" order="BEFORE">
+			SELECT TO_CHAR(TB_FILE_SEQ.NEXTVAL) FROM DUAL
 		</selectKey>
-		INSERT INTO TB_FILE(FILENO,FILETYPENO,ORIGFILENAME,SYSFILENAME,CONTENTTYPE) VALUES(#{fileNo},#{fileTypeNo},#{origFileName},#{sysFileName},#{contentType});
+		INSERT INTO 
+		TB_FILE(
+			FILENO,
+			FILETYPENO,
+			ORIGFILENAME,
+			SYSFILENAME,
+			CONTENTTYPE
+			) 
+		VALUES(
+			#{fileNo},
+			#{fileTypeNo},
+			#{origFileName},
+			#{sysFileName},
+			#{contentType}
+			)
 	</insert>
 </mapper>
