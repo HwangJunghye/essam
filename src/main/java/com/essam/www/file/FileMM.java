@@ -18,6 +18,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.essam.www.bean.FileBean;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
 public class FileMM {
 	@Autowired
@@ -72,7 +75,7 @@ public class FileMM {
 		String origFileName = mFile.getOriginalFilename();
 		String sysFileName = System.currentTimeMillis() + origFileName;
 		String contentType = mFile.getContentType();
-		
+		log.info("upPath : " + upPath);
 		// 디렉토리가 없다면 생성
 		File directory = new File(upPath);
 		if(!directory.exists()) {
