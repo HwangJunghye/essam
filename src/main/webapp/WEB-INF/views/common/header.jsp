@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	let fMsg = '${fMsg}';
+	if(fMsg !=''){
+		alert(fMsg);
+	}
+</script>
 </head>
 <body>
 	<header>
