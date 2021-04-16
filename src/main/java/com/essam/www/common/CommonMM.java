@@ -35,7 +35,7 @@ public class CommonMM {
 		mav.addObject("msg","메세지 담기");
 		
 		// index.jsp로 이동하기 위해 viewname 지정
-		mav.setViewName("index"); // .jsp
+		mav.setViewName("common/index"); // .jsp
 		
 		return mav;
 	}

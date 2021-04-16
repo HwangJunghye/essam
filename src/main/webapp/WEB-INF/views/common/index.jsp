@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="common/header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 	인덱스 페이지(/)<br/>
 	${msg}<br>
 	${fMsg}
-	<%@ include file="common/footer.jsp" %>
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
