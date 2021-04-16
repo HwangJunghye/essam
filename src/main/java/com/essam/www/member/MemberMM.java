@@ -1,5 +1,8 @@
 package com.essam.www.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +82,17 @@ public class MemberMM {
 			rattr.addFlashAttribute("fMsg","로그인 실패");
 		}
 		return mav;
+	}
+
+	// 이메일 중복체크
+	public Map<String, String> checkEmail(String mbId) {
+		Map<String,String> hMap = new HashMap<>();
+		boolean isExist = mDao.checkEmail(mbId);
+		if(isExist) {
+			hMap.put("msg", "존재하는 이메일입니다.");
+		}else {
+			hMap.put("msg", "사용가능한 이메일입니다.");
+		}
+		return hMap;
 	}
 }

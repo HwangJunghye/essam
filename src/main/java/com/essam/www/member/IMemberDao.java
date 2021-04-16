@@ -7,5 +7,7 @@ public interface IMemberDao {
 	boolean memberJoin(MemberBean mb);
 
 	MemberBean getMemberInfo(String mbId);
+
+	boolean checkEmail(String mbId);
 	
 }

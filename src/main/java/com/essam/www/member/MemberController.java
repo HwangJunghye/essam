@@ -1,5 +1,7 @@
 package com.essam.www.member;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -16,7 +19,7 @@ import com.essam.www.bean.MemberBean;
 public class MemberController {
 	@Autowired
 	private MemberMM mm;
-//	이메일 중복체크(ajax)	
+
 //	로그아웃	
 
 //	수강신청 실행	
@@ -59,5 +62,11 @@ public class MemberController {
 	@PostMapping(value = "/access")
 	ModelAndView access(MemberBean mb,HttpServletRequest request, RedirectAttributes rattr) {
 		return mm.access(mb, request, rattr);
+	}
+	
+	// 이메일 중복체크(JSON 사용시 @ResponseBody 추가 해야 함)
+	@RequestMapping(value = "/checkemail")
+	@ResponseBody Map<String,String> checkEmail(String mbId){
+		return mm.checkEmail(mbId);
 	}
 }
