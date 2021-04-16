@@ -46,7 +46,7 @@ public class MemberController {
 		// System.out.println(mb.getMbId());
 		// System.out.println(mb.getMbPwd());
 		// System.out.println(mb.getMbBirth());
-		
-		return mm.memberJoin(mb, rattr);
+		ModelAndView mav = mm.memberJoin(mb, rattr);
+		return mav;
 	}
 }
