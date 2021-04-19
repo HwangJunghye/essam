@@ -18,7 +18,7 @@
 		<h3>header.jsp</h3>
 		<c:if test="${empty sessionScope.loginData}">
 			<!-- 로그아웃 상태 -->
-			<a href="login">로그인</a>
+			<a href="login">로그인</a>  <a href="join">회원가입</a>
 		</c:if>
 		<c:if test="${!empty sessionScope.loginData}">
 			<!-- 로그인 상태 -->

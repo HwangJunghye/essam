@@ -55,7 +55,6 @@ public class MemberMM {
 			rattr.addFlashAttribute("fMsg", "회원가입 실패");
 			mav.setViewName("redirect:/join");
 		}
-		// 관심카테고리도 등록하는 경우 dao 작업 추가
 		return mav;
 	}
 

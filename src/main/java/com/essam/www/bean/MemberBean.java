@@ -31,4 +31,6 @@ public class MemberBean {
 	private String mbBirth;
 	private String mbJoinDate;
 	private String mbGender;
+	private int[] cate1No;		
+	private int[] cate2No;
 }
