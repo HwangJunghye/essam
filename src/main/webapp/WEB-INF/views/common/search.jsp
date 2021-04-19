@@ -5,9 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>검색 페이지</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
