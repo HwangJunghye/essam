@@ -5,4 +5,11 @@
 
 <mapper namespace="com.essam.www.b.IBDao">
 
+	<select id="getClassListNew" resultType="classbean">
+	<![CDATA[
+		SELECT /*+INDEX_DESC(CLASS PK_CLASS)*/ ROWNUM RN, CLASS.*
+		FROM CLASS
+		WHERE ROWNUM<=5
+	]]>
+	</select>
 </mapper>

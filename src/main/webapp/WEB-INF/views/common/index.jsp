@@ -9,9 +9,26 @@
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
+	<section>
 	인덱스 페이지(/)<br/>
 	${msg}<br>
 	${fMsg}
+	<li>New 클래스 
+	<table>
+	<c:if test="${empty cList}">
+		<tr><td>등록된 클래스 정보가 없습니다.</td></tr>
+	</c:if>
+	<c:if test="${!empty cList}">
+		<c:forEach var="class" items="${cList}">
+			<tr>
+				<td>번호:${class.clsNo}</td>
+				<td>클래스명:<a href="">${class.clsName}</a></td>
+				<td>${class.mbId}</td>
+			</tr>
+		</c:forEach>
+	</c:if>
+	</table>
+	</section>
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
