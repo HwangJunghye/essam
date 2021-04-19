@@ -25,27 +25,22 @@
 		생년월일 <input type="date" name="mbBirth" required /><br> 
 		연락처 <input type="text" name="mbTel" required /><br> 
 		주소 <input type="text" name="mbAddr" required /><br> 
-		<label>관심카테고리</label> 
-		<select name="cate1">
-			<option value="">대분류선택</option>
-			<option value="1">유아</option>
-			<option value="2">초등</option>
-			<option value="3">중등</option>
-			<option value="4">고등</option>
-			<option value="5">특목</option>
-			<option value="6">기타</option>
-		</select> 
-		<select name="cate2">
-			<option value="">중분류선택</option>
-			<option value="1">국어</option>
-			<option value="2">영어</option>
-			<option value="3">수학</option>
-			<option value="4">과학</option>
-			<option value="5">논술</option>
-			<option value="6">독서</option>
-			<option value="7">입시컨설팅</option>
-			<option value="8">기타</option>
-		</select><br> 
+		관심카테고리 1
+		<input type="checkbox" name="유아" value="1"/>
+		<input type="checkbox" name="초등" value="2"/>
+		<input type="checkbox" name="중등" value="3"/>
+		<input type="checkbox" name="고등" value="4"/>
+		<input type="checkbox" name="특목" value="5"/>
+		<input type="checkbox" name="기타" value="6"/><br>
+		관심카테고리 2
+		<input type="checkbox" name="국어" value="1"/>
+		<input type="checkbox" name="영어" value="2"/>
+		<input type="checkbox" name="수학" value="3"/>
+		<input type="checkbox" name="과학" value="4"/>
+		<input type="checkbox" name="논술" value="5"/>
+		<input type="checkbox" name="독서" value="6"/>
+		<input type="checkbox" name="입시컨설팅" value="7"/>
+		<input type="checkbox" name="기타" value="8"/><br>
 		<input type="submit" value="회원가입">
 </form>
 
