@@ -38,5 +38,6 @@ public class ClassBean {
 	private String clsKeyword;
 	private String zoomLink;
 	private String zoomPwd;
+	private String teacherNick;
 	
 }
