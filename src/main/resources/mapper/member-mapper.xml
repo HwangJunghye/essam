@@ -39,4 +39,8 @@
 	<select id="checkEmail" resultType="boolean">
 		SELECT COUNT(*) FROM MEMBER WHERE MBID=#{mbId} AND ROWNUM=1
 	</select>
+	
+	<select id="getMyClassList" resultType="classbean">
+		SELECT * FROM CLASS WHERE MBID=#{mbId}
+	</select>
 </mapper>

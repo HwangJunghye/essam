@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 
 @Service
@@ -35,10 +36,8 @@ public class MemberMM {
 //	교사프로필 동록, 수정 이동하기	
 //	교사프로필 등록,수정	
 //	교사프로필 삭제하기	
-//	클래스관리이동	
-//	마이클래스이동	
-//	내 클래스 목록 가져오기
 
+	
 	// 회원가입 실행
 	public ModelAndView memberJoin(MemberBean mb, RedirectAttributes rattr) {
 		ModelAndView mav = new ModelAndView();
@@ -98,35 +97,49 @@ public class MemberMM {
 		return hMap;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * 클래스관리 페이지로 이동<br>
 	 * 클래스목록 가져오기 getMyClassList()
 	 */
 	public ModelAndView goMyclass_t(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
-		
+		List<ClassBean> clsInfo = null;
+		String mbId= session.getAttribute("mbId").toString();
 		// 세션에서 mbId,mbType을 가져옴
 		// 강사회원(mbType==2)인지 확인하기
-		//getMyClassList()에 mbId, mbType을 넘겨 클래스목록 가져오기 dao에 요청
-		//= mDao.getMyClassList(mbId, mbType);
+		if(session.getAttribute("mbType").toString().equals("2")){ //회원타입이 강사라면
+			//getMyClassList()에 mbId, mbType을 넘겨 클래스목록 가져오기 dao에 요청
+			clsInfo = mDao.getMyClassList(mbId);
+		}
 		// 가져온 정보를 mav에 넣기
-		mav.addObject("msg","메세지 담기");
-		
+		mav.addObject("clsInfo",clsInfo);	
 		// myclass_t.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("member/myclass_t"); // .jsp
 		return mav;
 	}
+
+	/**
+	 * 마이클래스 페이지로 이동<br>
+	 * 클래스목록 가져오기 getMyClassList()
+	 */
+	public ModelAndView goMyclass_s(HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+		List<ClassBean> clsInfo = null;
+		String mbId= session.getAttribute("mbId").toString();
+		// 세션에서 mbId,mbType을 가져옴
+		// 강사회원(mbType==2)인지 확인하기
+		if(session.getAttribute("mbType").toString().equals("1")){ //회원타입이 학생이라면
+			//getMyClassList()에 mbId, mbType을 넘겨 클래스목록 가져오기 dao에 요청
+			clsInfo = mDao.getMyClassList(mbId);
+		}
+		// 가져온 정보를 mav에 넣기
+		mav.addObject("clsInfo",clsInfo);
+		// myclass_t.jsp로 이동하기 위해 viewname 지정
+		mav.setViewName("member/myclass_t"); // .jsp
+		return mav;
+	}
+
+	
+	
 }
