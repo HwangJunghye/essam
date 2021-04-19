@@ -5,7 +5,8 @@
 
 <mapper namespace="com.essam.www.file.IFileDao">
 	<select id="getFileData" resultType="filebean">
-		SELECT * FROM TB_FILE WHERE FILENO=#{fileNo} AND ROWNUM=1
+		SELECT * FROM TB_FILE
+		WHERE FILENO=#{fileNo} AND ROWNUM=1
 	</select>
 	
 	<insert id="saveFile">
@@ -28,4 +29,9 @@
 			#{contentType}
 			)
 	</insert>
+	
+	<delete id="deleteFile">
+		DELETE FROM TB_FILE
+		WHERE FILENO = #{fileNo}
+	</delete>
 </mapper>
