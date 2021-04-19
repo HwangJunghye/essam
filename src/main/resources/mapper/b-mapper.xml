@@ -12,4 +12,7 @@
 		WHERE ROWNUM<=5
 	]]>
 	</select>
+	<select id="getClassListMy" resultType="classbean" parameterType="string">
+		SELECT C.clsNo,C.clsName,C.mbId FROM CLASS C JOIN STUDENT S ON C.clsNo=S.clsNo WHERE S.MBID=#{mbId}
+	</select>
 </mapper>

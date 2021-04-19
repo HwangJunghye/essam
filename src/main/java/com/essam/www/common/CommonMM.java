@@ -38,9 +38,23 @@ public class CommonMM {
 		// 학생회원인지 확인하기
 		// 학생회원인 경우 마이클래스 목록 dao에 요청
 		// new,hot 클래스 정보 가져오기
-		// 가져온 정보를 mav에 넣기
 		// mav.addObject("newClass",클래스정보);
-		cList = bm.getClassList("new");
+
+		// My 클래스 정보 가져오기 (학생 로그인인 경우)
+		if (request.getSession().getAttribute("mbType") != null) {
+
+			String mbType = request.getSession().getAttribute("mbType").toString();
+			System.out.println("mbType === "+ mbType);
+			if(mbType=="1") {
+				cList = bm.getClassList("my", request.getSession().getAttribute("mbId").toString());
+				// 가져온 정보를 mav "myList" 에 넣기
+				mav.addObject("myList", cList);			
+			}
+		}
+		
+		// new 클래스 정보 가져오기
+		cList = bm.getClassList("new","");
+		// 가져온 정보를 mav "nList" 에 넣기
 		mav.addObject("nList", cList);
 		
 		mav.addObject("msg","메세지 담기");

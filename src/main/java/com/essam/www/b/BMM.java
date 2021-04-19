@@ -20,15 +20,17 @@ public class BMM {
 	ModelAndView mav;
 	String view = null;
 	
-	public List<ClassBean> getClassList(String str) {
+	public List<ClassBean> getClassList(String str, String mbId) {
 		List<ClassBean> cList = null;
 		switch(str) {
 		case "new":
 			cList = bDao.getClassListNew();
 			break;
+		case "my":
+			cList = bDao.getClassListMy(mbId);
+			break;
 		}
 		return cList;
 	}
-	
 	
 }

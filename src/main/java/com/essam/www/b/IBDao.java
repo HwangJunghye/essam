@@ -8,4 +8,6 @@ public interface IBDao {
 
 	List<ClassBean> getClassListNew();
 
+	List<ClassBean> getClassListMy(String mbId);
+
 }
