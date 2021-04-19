@@ -19,11 +19,11 @@
 		<tr><td>등록된 클래스 정보가 없습니다.</td></tr>
 	</c:if>
 	<c:if test="${!empty cList}">
-		<c:forEach var="class" items="${cList}">
+		<c:forEach var="eclass" items="${cList}">
 			<tr>
-				<td>번호:${class.clsNo}</td>
-				<td>클래스명:<a href="">${class.clsName}</a></td>
-				<td>${class.mbId}</td>
+				<td>번호:${eclass.clsNo}</td>
+				<td>클래스명:<a href="">${eclass.clsName}</a></td>
+				<td>${eclass.mbId}</td>
 			</tr>
 		</c:forEach>
 	</c:if>

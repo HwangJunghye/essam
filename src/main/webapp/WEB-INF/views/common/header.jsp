@@ -15,7 +15,7 @@
 </head>
 <body>
 	<header>
-		<h3>header.jsp - <a href="/">home</a></h3>
+		<h3>header.jsp - <a href="./">home</a></h3>
 		<c:if test="${empty sessionScope.loginData}">
 			<!-- 로그아웃 상태 -->
 			<a href="login">로그인</a>  <a href="join">회원가입</a>
