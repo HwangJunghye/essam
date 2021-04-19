@@ -1,7 +1,11 @@
 package com.essam.www.eclass;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ClassController {
@@ -22,7 +26,6 @@ public class ClassController {
 //	과제 삭제	
 //	출석 현황 이동	
 //	출석현황 가져오기	
-//	클래스 등록, 수정하기	
 //	공지사항 수정, 등록	
 //	공지사항 삭제	
 //	학생목록 이동하기	
@@ -33,4 +36,20 @@ public class ClassController {
 //	공지사항 목록 가져오기	
 //	공지사항 상세 페이지 이동	
 //	공지사항 상세 가져오기	
+	
+	
+	// 클래스 등록, 수정 페이지 이동
+	@RequestMapping(value = "/class/classinfo/write")
+	ModelAndView goClassInfoWrite(String clsNo) {
+		ModelAndView mav = cm.goClassInfoWrite(clsNo);
+		return mav;
+		}
+	
+//	// 클래스 등록, 수정하기	
+//	@RequestMapping(value = "/class/classinfo/update")
+//	ModelAndView classClassinfoUpdate(HttpSession session) {
+//		ModelAndView mav = cm.classClassinfoUpdate(session);
+//		return mav;
+//		}
+	
 }
