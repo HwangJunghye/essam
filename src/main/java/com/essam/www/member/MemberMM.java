@@ -1,9 +1,12 @@
 package com.essam.www.member;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -94,5 +97,37 @@ public class MemberMM {
 			hMap.put("msg", "사용가능한 이메일입니다.");
 		}
 		return hMap;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 클래스관리 페이지로 이동<br>
+	 * 클래스목록 가져오기 getMyClassList()
+	 */
+	public ModelAndView goMyclass_t(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		
+		
+		// 세션에서 mbId,mbType을 가져옴
+		// 강사회원(mbType==2)인지 확인하기
+		//getMyClassList()에 mbId, mbType을 넘겨 클래스목록 가져오기 dao에 요청
+		//= mDao.getMyClassList(mbId, mbType);
+		// 가져온 정보를 mav에 넣기
+		mav.addObject("msg","메세지 담기");
+		
+		// myclass_t.jsp로 이동하기 위해 viewname 지정
+		mav.setViewName("member/myclass_t"); // .jsp
+		return mav;
 	}
 }

@@ -3,6 +3,7 @@ package com.essam.www.member;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,7 +33,7 @@ public class MemberController {
 //	교사프로필 동록, 수정 이동하기	
 //	교사프로필 등록,수정	
 //	교사프로필 삭제하기	
-//	클래스관리이동	
+	
 //	마이클래스이동	
 //	내 클래스 목록 가져오기
 
@@ -69,4 +70,11 @@ public class MemberController {
 	@ResponseBody Map<String,String> checkEmail(String mbId){
 		return mm.checkEmail(mbId);
 	}
+	
+	// 클래스관리이동 + 내 클래스 목록 가져오기
+	@RequestMapping(value = "/myclass_t")
+	ModelAndView goMyclass_t(HttpSession session) {
+		return mm.goMyclass_t(session);
+	}
+
 }
