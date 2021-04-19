@@ -4,5 +4,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.essam.www.e.IEDao">
+	<select id="getSearchList" resultType="classbean">
+		SELECT *
+		FROM (SELECT ROWNUM RN, C.*
+			  FROM (SELECT * 
+			        FROM CLASS
+			        WHERE 1=1
+			        <if test="{cate1No != 0}">
+			  	    AND CATE1NO = #{cate1No}
+			        </if>
+			  		<if test="{cate2No != 0}">
+			  		AND CATE2NO = #{cate2No}
+			  		</if>
+			  		<if test="{keyword != ''}">
+			  		AND CLSKEYWORD LIKE '%' || #{keyword} || '%'
+			  		</if>
+			  		ORDER BY CLSOPENDATE DESC
+			  		) C
+			 )
+		WHERE RN BETWEEN #{pageNo}*10-9 AND #{pageNo}*10
 
+	</select>
 </mapper>
