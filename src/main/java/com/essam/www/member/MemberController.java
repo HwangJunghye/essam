@@ -44,9 +44,9 @@ public class MemberController {
 	@PostMapping(value = "/memberjoin")
 	ModelAndView memberJoin(MemberBean mb, RedirectAttributes rattr) {
 		// System.out.println(mb.getMbId());
-		System.out.println("회원타이ㅃ ====" + mb.getMbType());
+		//System.out.println("회원타이ㅃ ====" + mb.getMbType());
 		int[] cate1 = mb.getCate1No();
-		System.out.println("관심카테고리1 ===> "+  cate1[0]);
+		//System.out.println("관심카테고리1 ===> "+  cate1[0]);
 		
 		ModelAndView mav = mm.memberJoin(mb, rattr);
 		return mav;
