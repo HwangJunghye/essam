@@ -2,18 +2,31 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>검색 페이지</title>
+<style type="text/css">
+#searchnav {
+	height: 75px;
+	background-color: #3566A2;
+	line-height: 75px;
+	font-family: Comfortaa;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 40px;
+	color: #FFFFFF;
+}
+</style>
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
-	<h1>search.jsp</h1>
-	<nav>${searchInfo!=null?searchInfo:""}</nav>
-	<div id="searchResult">
-		<!-- 검색 결과 표시 -->
-	</div>
-
+	<div id="searchnav">${searchInfo!=null?searchInfo:"클래스 검색"}</div>
+	<section>
+		<article id="searchresult">
+			<!-- 검색 결과 표시 -->
+		</article>
+	</section>
 	<%@ include file="../common/footer.jsp"%>
 
 	<script>
@@ -58,19 +71,20 @@
 				type : 'get',
 				data : param,
 				dataType : 'json'
-			}).done(function(data) {
-				if (data.pageSize < 10) {
-					searchFlag = false;
-				}
-				let word = '카테고리1 : ' + cate1No + '<br>' 
-				         + '카테고리2 : ' + cate2No + '<br>'
-				         + '키워드 : ' + keyword + '<br>'
-				         + '페이지 : ' + pageNo + '<br>'
-				         + '결과수 : ' + data.pageSize + '<br>';
-				
-				$('#searchResult').append(word);
-				console.log(data.cList);
-			}); // ajax End
+			}).done(
+					function(data) {
+						if (data.pageSize < 10) {
+							// searchFlag = false;
+						}
+						let word = '카테고리1 : ' + cate1No + '<br>' + '카테고리2 : '
+								+ cate2No + '<br>' + '키워드 : ' + keyword
+								+ '<br>' + '페이지 : ' + pageNo + '<br>'
+								+ '결과수 : ' + data.pageSize + '<br>';
+
+						$('#searchresult').append(
+								$('<div>').addClass('classinfo').append(word));
+						console.log(data.cList);
+					}); // ajax End
 		} // getSearchList End
 	</script>
 </body>
