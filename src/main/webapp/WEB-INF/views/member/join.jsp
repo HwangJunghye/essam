@@ -86,5 +86,7 @@ function checkemail(){
 		
 	}); // ready End
 </script>
+</section>
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
