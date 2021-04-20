@@ -1,7 +1,5 @@
 package com.essam.www.etc;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,7 @@ public class EtcMM {
 		// 세션에서 mbType을 가져옴 --> 관리자 회원(mbType==3)인지 확인하기
 		if(session.getAttribute("mbType").toString().equals("3")){ //관리자라면
 			mav.setViewName("etc/admin"); // .jsp
-		}else { //관리자가 아니라면 홈화면으로
+		}else { //관리자가 아니라면 index.jsp로
 			mav.setViewName("./"); // .jsp
 		}
 		return mav;
