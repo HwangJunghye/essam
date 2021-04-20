@@ -45,7 +45,11 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 	<div id="nav">
 		<div id="nav_area1"><h3>header1.jsp - <a href="${ctxPath}/">home</a></h3></div>
 		<div id="nav_area2"><span id="#nav_cate1">유아 초등 중등 고등 특목 입시 기타</span></div>
-		<div id="nav_area3">search form</div>
+		<div id="nav_area3">
+			<form action="${ctxPath}/search" method="get">
+				<input type="search" name="keyword" /><input type="submit" value="검색"/>
+			</form>
+		</div>
 		<div id="nav_area4">
 			<c:if test="${empty sessionScope.loginData}">
 				<!-- 로그아웃 상태 -->
