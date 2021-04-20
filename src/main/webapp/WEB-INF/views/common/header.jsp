@@ -37,7 +37,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 		<div id="nav_area4">
 			<c:if test="${empty sessionScope.loginData}">
 				<!-- 로그아웃 상태 -->
-				<a href="${ctxPath}/login">로그인</a>  <a href="${ctxPath}/join">회원가입</a>
+				<a href="${ctxPath}/login">로그인</a>   <a href="${ctxPath}/join">회원가입</a>
 			</c:if>
 			<c:if test="${!empty sessionScope.loginData}">
 				<!-- 로그인 상태 -->
