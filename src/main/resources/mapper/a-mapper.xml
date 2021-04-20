@@ -6,12 +6,6 @@
 <mapper namespace="com.essam.www.a.IADao">
 
 
-	<select id="getStudentList" resultType="">
-		SELECT * FROM CLASS WHERE MBID=#{mbId}
-	</select>
 	
-	<select id="getStudentInfo" resultType="">
-		SELECT * FROM MEMBER WHERE MBID=#{mbId}
-	</select>
 
 </mapper>

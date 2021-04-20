@@ -9,5 +9,13 @@
 	<select id="getMyClassList" resultType="classbean">
 		SELECT * FROM CLASS WHERE CLSNO=#{clsNo}
 	</select>
-
+	
+	<select id="getStudentList" resultType="studentbean">
+		SELECT * FROM STUDENT WHERE CLSNO = #{clsNo}
+	</select>
+	
+	<select id="getStudentInfo" resultType="memberbean">
+		SELECT * FROM MEMBER WHERE MBID=#{mbId}
+	</select>
+	
 </mapper>

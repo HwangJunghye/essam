@@ -1,10 +1,14 @@
 package com.essam.www.eclass;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.bean.ClassBean;
+import com.essam.www.bean.MemberBean;
+import com.essam.www.bean.StudentBean;
 
 @Service
 public class ClassMM {
@@ -35,7 +39,7 @@ public class ClassMM {
 //	공지사항 상세 페이지 이동	
 //	공지사항 상세 가져오기	
 	
-	// 클래스 등록, 수정하기 페이지 이동(황정혜)
+		// 클래스 등록, 수정하기 페이지 이동
 		public ModelAndView goClassInfoWrite(String clsNo) {
 			ModelAndView mav = new ModelAndView();
 			ClassBean cb = new ClassBean();
@@ -46,6 +50,37 @@ public class ClassMM {
 			mav.setViewName("class/class_write"); // .jsp
 			return mav;
 		}
-	// 클래스 등록, 수정하기(황정혜)		
+		// 클래스 등록, 수정하기
 		
+		
+		/**
+		 * 학생목록 페이지로 이동<br>
+		 * 학생목록 가져오기 getStudentList()
+		 */
+		public ModelAndView goStudentList(String clsNo) {
+			ModelAndView mav = new ModelAndView();
+			List<StudentBean> sList = null;
+			sList = cDao.getStudentList(clsNo);
+			// 가져온 정보를 mav에 넣기
+			mav.addObject("sList",sList);	
+			// myclass_t.jsp로 이동하기 위해 viewname 지정
+			mav.setViewName("class/class_studentinfo"); // .jsp
+			return mav;
+		}
+		
+		/**
+		 * 학생정보보기 페이지로 이동<br>
+		 * 학생정보 가져오기 getStudentInfo()
+		 */
+		public ModelAndView goStudentInfo(String mbId) {
+			ModelAndView mav = new ModelAndView();
+			MemberBean mInfo = new MemberBean();
+			mInfo = cDao.getStudentInfo(mbId);
+			// 가져온 정보를 mav에 넣기
+			mav.addObject("mInfo",mInfo);	
+			// myclass_t.jsp로 이동하기 위해 viewname 지정
+			mav.setViewName("class/class_studentinfo_read"); // .jsp
+			return mav;
+		}
+
 }
