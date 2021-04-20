@@ -48,6 +48,18 @@ public class MemberMM {
 		mb.setMbPwd(encPwd);
 
 		if (mDao.memberJoin(mb)) { // 회원등록 성공시
+			// 관심카테고리1 저장
+			if(mb.getCate1No().length >= 1) {
+				for(int cate1 : mb.getCate1No()) {
+					mDao.putInterCate(cate1, "INTER_CATE1", mb.getMbId());
+				}
+			}
+			// 관심카테고리2 저장
+			if(mb.getCate2No().length >= 1) {
+				for(int cate2 : mb.getCate2No()) {
+					mDao.putInterCate(cate2, "INTER_CATE2", mb.getMbId());
+				}
+			}
 			rattr.addFlashAttribute("fMsg", "회원가입 성공");
 			mav.setViewName("redirect:/");
 		} else {

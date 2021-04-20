@@ -2,6 +2,8 @@ package com.essam.www.member;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 
@@ -14,5 +16,7 @@ public interface IMemberDao {
 	boolean checkEmail(String mbId);
 
 	List<ClassBean> getMyClassList(String mbId);
+
+	void putInterCate (@Param("cateno") int cateno, @Param("tablenm") String tablenm, @Param("mbid") String mbid);
 	
 }

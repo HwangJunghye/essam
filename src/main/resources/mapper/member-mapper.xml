@@ -32,6 +32,10 @@
 			)
 	</insert>
 	
+	<insert id="putInterCate">
+		INSERT INTO ${tablenm} VALUES (#{mbid}, #{cateno})
+	</insert>
+	
 	<select id="getMemberInfo" resultType="memberbean">
 		SELECT * FROM MEMBER WHERE MBID=#{mbId} AND ROWNUM=1
 	</select>

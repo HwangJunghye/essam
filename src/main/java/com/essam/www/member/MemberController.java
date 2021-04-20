@@ -44,8 +44,10 @@ public class MemberController {
 	@PostMapping(value = "/memberjoin")
 	ModelAndView memberJoin(MemberBean mb, RedirectAttributes rattr) {
 		// System.out.println(mb.getMbId());
-		// System.out.println(mb.getMbPwd());
-		// System.out.println(mb.getMbBirth());
+		System.out.println("회원타이ㅃ ====" + mb.getMbType());
+		int[] cate1 = mb.getCate1No();
+		System.out.println("관심카테고리1 ===> "+  cate1[0]);
+		
 		ModelAndView mav = mm.memberJoin(mb, rattr);
 		return mav;
 	}
@@ -82,4 +84,14 @@ public class MemberController {
 		return mav;
 	}
 
+	//로그아웃
+	@RequestMapping(value = "/logout")
+	ModelAndView logout(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		// 1: 기존의 세션 데이터를 모두 삭제
+	    session.invalidate();
+	    // 2: 로그인 페이지로 이동시킴.
+	    mav.setViewName("redirect:/");
+		return mav;
+	}
 }

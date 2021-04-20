@@ -13,6 +13,8 @@
 <!-- post : 크기제한 없음. url에 정보 표시 X, 
             form이나 ajax만으로 전송 가능 -->           
 <form action="memberjoin" method="post">
+	성별 <input type="radio" name="mbType" value="1" checked /> 학생 
+			<input type="radio" name="mbType" value="2" /> 강사 <br> 
 	아이디 <input type="text" name="mbId" id="mbId" required/>
 	<div id="result"><!-- 중복체크 결과 출력 --></div>
 	<br>
@@ -26,21 +28,21 @@
 		연락처 <input type="text" name="mbTel" required /><br> 
 		주소 <input type="text" name="mbAddr" required /><br> 
 		관심카테고리 1
-		<input type="checkbox" name="유아" value="1"/>
-		<input type="checkbox" name="초등" value="2"/>
-		<input type="checkbox" name="중등" value="3"/>
-		<input type="checkbox" name="고등" value="4"/>
-		<input type="checkbox" name="특목" value="5"/>
-		<input type="checkbox" name="기타" value="6"/><br>
+		<input type="checkbox" name="cate1No" value="1"/>유아
+		<input type="checkbox" name="cate1No" value="2"/>초등
+		<input type="checkbox" name="cate1No" value="3"/>중등
+		<input type="checkbox" name="cate1No" value="4"/>고등
+		<input type="checkbox" name="cate1No" value="5"/>특목
+		<input type="checkbox" name="cate1No" value="6"/>기타<br>
 		관심카테고리 2
-		<input type="checkbox" name="국어" value="1"/>
-		<input type="checkbox" name="영어" value="2"/>
-		<input type="checkbox" name="수학" value="3"/>
-		<input type="checkbox" name="과학" value="4"/>
-		<input type="checkbox" name="논술" value="5"/>
-		<input type="checkbox" name="독서" value="6"/>
-		<input type="checkbox" name="입시컨설팅" value="7"/>
-		<input type="checkbox" name="기타" value="8"/><br>
+		<input type="checkbox" name="cate2No" value="1"/>국어
+		<input type="checkbox" name="cate2No" value="2"/>영어
+		<input type="checkbox" name="cate2No" value="3"/>수학
+		<input type="checkbox" name="cate2No" value="4"/>과학
+		<input type="checkbox" name="cate2No" value="5"/>논술
+		<input type="checkbox" name="cate2No" value="6"/>독서
+		<input type="checkbox" name="cate2No" value="7"/>입시컨설팅
+		<input type="checkbox" name="cate2No" value="8"/>기타<br>
 		<input type="submit" value="회원가입">
 </form>
 
