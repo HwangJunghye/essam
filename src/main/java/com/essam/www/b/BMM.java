@@ -38,6 +38,8 @@ public class BMM {
 		
 		//클래스 정보 가져와 mav에 담기
 		ClassBean cb = bDao.getClassInfo(clsNo);
+		//클래스 수강신청인원 가져와 cb에 담기
+		cb.setClsRegiCnt(bDao.getClassRegiCnt(clsNo));
 		mav.addObject("classInfo", cb);
 		
 		//강사 정보 가져와 mav에 담기 (MemberMM)

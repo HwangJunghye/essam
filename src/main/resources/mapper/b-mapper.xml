@@ -24,4 +24,9 @@
 			ON CLASS.CATE2NO = CATE2.CATE2NO
 		WHERE CLSNO=#{clsNo} AND ROWNUM=1
 	</select>
+	<select id="getClassRegiCnt" resultType="int">
+		SELECT COUNT(*) 
+		FROM STUDENT 
+		WHERE clsNo=#{clsNo}
+	</select>
 </mapper>

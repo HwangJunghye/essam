@@ -12,4 +12,6 @@ public interface IBDao {
 
 	ClassBean getClassInfo(String clsNo);
 
+	int getClassRegiCnt(String clsNo);
+
 }
