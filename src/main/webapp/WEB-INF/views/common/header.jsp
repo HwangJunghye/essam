@@ -27,7 +27,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 		}
 		
 		// 로그아웃 버튼 클릭시 로그아웃(post) 실행
-		$('#logout').on('clicik',function(){
+		$('#logout').on('click',function(){
 			// form 태그 생성
 			let $logoutForm = $('<form>');
 			$logoutForm.attr('action','${ctxPath}/logout');
