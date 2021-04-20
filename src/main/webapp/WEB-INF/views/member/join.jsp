@@ -13,7 +13,7 @@
 <!-- post : 크기제한 없음. url에 정보 표시 X, 
             form이나 ajax만으로 전송 가능 -->           
 <form action="memberjoin" method="post">
-	성별 <input type="radio" name="mbType" value="1" checked /> 학생 
+	회원타입 <input type="radio" name="mbType" value="1" checked /> 학생 
 			<input type="radio" name="mbType" value="2" /> 강사 <br> 
 	아이디 <input type="text" name="mbId" id="mbId" required/>
 	<div id="result"><!-- 중복체크 결과 출력 --></div>
