@@ -17,7 +17,7 @@
 			  		AND CATE2NO = #{cate2No}
 			  		</if>
 			  		<if test='!keyword.equals("")'>
-			  		AND CLSKEYWORD LIKE '%' || #{keyword} || '%'
+			  		AND UPPER(CLSKEYWORD) LIKE '%' || UPPER(#{keyword}) || '%'
 			  		</if>
 			  		ORDER BY CLSOPENDATE DESC
 			  		) C
