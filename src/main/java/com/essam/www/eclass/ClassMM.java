@@ -6,15 +6,20 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.bean.AttendBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.StudentBean;
+import com.essam.www.file.FileMM;
 
 @Service
 public class ClassMM {
+	@Autowired
+	private FileMM fm;
+	
 	@Autowired
 	private IClassDao cDao;	
 	// (CM01)공지사항 쓰기, 수정페이지 이동	
@@ -83,9 +88,37 @@ public class ClassMM {
 		mav.setViewName("class/class_write"); // .jsp
 		return mav;
 	}
+	
 	// (CM22)클래스 등록, 수정하기
-	public ModelAndView classClassinfoUpdate(HttpSession session) {
+	/*  
+	class_write.jsp에서 입력한 클래스 정보를 MultipartRequest와 ClassBean 형태로
+	ClassController의 /class/classinfo/update -->ClassMM의 classClassinfoUpdate()에 전달		*/
+	public ModelAndView classClassinfoUpdate(MultipartHttpServletRequest newInfo, ClassBean cb) {
+		ModelAndView mav = new ModelAndView();
+		boolean updatedOrNot = true;	
+		/*
+		클래스이미지를 가져왔다면 saveFile()에 MultipartFile 전달, fileNo 반환받음							
+		clsNo가 null이 아니라면 기존 클래스 정보의 fileNo를 가져옴							
+		*/
 		
-		return null;
+		
+		// clsNo가 null이라면 insert, 아니라면 update 실행(Dao)												
+		if(cb.getClsNo()!=null){//clsNo가 있다면 --> 수정(UPDATE) SQL문 실행
+			//updatedOrNot = cDao.classClassinfoUpdate();
+		}else {//clsNo가 있다면 --> 삽입(INSERT) SQL문 실행
+			//updatedOrNot = cDao.classClassinfoInsert();
+		}
+		
+		
+		/*
+		기존의 fileNo를 가져왔다면 deleteFile에 넘겨 이미지파일 삭제							
+		성공시 classinfo_t.jsp로 이동(/class/classinfo)
+		*/
+		if(updatedOrNot) { //등록(수정) 성공시
+			mav.setViewName("class/classinfo_t"); //.jsp
+		}else { //등록(수정) 실패시
+			mav.setViewName("class/class_wirte"); //.jsp
+		}
+		return mav;
 	}
 }

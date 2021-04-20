@@ -5,7 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.essam.www.bean.ClassBean;
 
 @Controller
 public class ClassController {
@@ -57,8 +60,8 @@ public class ClassController {
 		}
 	// (CM22)클래스 등록, 수정하기	
 	@RequestMapping(value = "/class/classinfo/update")
-	ModelAndView classClassinfoUpdate(HttpSession session) {
-		ModelAndView mav = cm.classClassinfoUpdate(session);
+	ModelAndView classClassinfoUpdate(MultipartHttpServletRequest newInfo, ClassBean cb) {
+		ModelAndView mav = cm.classClassinfoUpdate(newInfo, cb);
 		return mav;
 		}
 }
