@@ -10,16 +10,14 @@ header {
 #nav {
 	width: 1440px;
 	height: 75px;
+	line-height: 75px;
 	margin: 0 auto;
 	border: 2px solid black;
 	display: flex;
 }
 #nav_area1 {
 	flex: 1;
-	margin: 0 auto;
-	display: block;
 	border: 2px solid black;
-	
 }
 #nav_area2 {
 	flex: 2;
@@ -35,8 +33,7 @@ header {
 	text-align: right;
 }
 #nav_cate1 {
-	font-family: NanumGothic;
-	font-style: normal;
+	font-family: '나눔 고딕', 'Nanum Gothic', 'Verdana';
 	font-weight: bold;
 	font-size: 20px;
 	line-height: 20px;
