@@ -8,6 +8,5 @@
 </head>
 <body>
 <h1>admin.jsp</h1>
-
 </body>
 </html>

@@ -59,7 +59,7 @@ public class ClassController {
 		return mav;
 		}
 	
-//	// 클래스 등록, 수정하기	
+	// 클래스 등록, 수정하기	
 //	@RequestMapping(value = "/class/classinfo/update")
 //	ModelAndView classClassinfoUpdate(HttpSession session) {
 //		ModelAndView mav = cm.classClassinfoUpdate(session);

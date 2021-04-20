@@ -38,7 +38,7 @@ public class ClassMM {
 		public ModelAndView goAttend(String mbId) {
 			ModelAndView mav = new ModelAndView();
 			AttendBean attendInfo = new AttendBean();
-			attendInfo = cDao.getAttend();
+			attendInfo = cDao.getAttend(mbId);
 			// 가져온 정보를 mav에 넣기
 			mav.addObject("attendInfo",attendInfo);	
 			//class_attend.jsp로 이동하기 위해 viewname 지정
@@ -49,10 +49,10 @@ public class ClassMM {
 		// 클래스 등록, 수정하기 페이지 이동
 		public ModelAndView goClassInfoWrite(String clsNo) {
 			ModelAndView mav = new ModelAndView();
-			ClassBean cb = new ClassBean();
+			ClassBean clsInfo = new ClassBean();
 			if(clsNo!=null) {
-				cb = cDao.getMyClassList(clsNo);
-				mav.addObject("cb",cb);
+				clsInfo = cDao.getMyClassList(clsNo);
+				mav.addObject("clsInfo",clsInfo);
 			}
 			mav.setViewName("class/class_write"); // .jsp
 			return mav;

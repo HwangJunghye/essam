@@ -15,5 +15,5 @@ public interface IClassDao {
 
 	MemberBean getStudentInfo(String mbId);
 
-	AttendBean getAttend();
+	AttendBean getAttend(String mbId);
 }

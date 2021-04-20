@@ -21,55 +21,35 @@ import com.essam.www.bean.MemberBean;
 public class MemberMM {
 	@Autowired
 	private IMemberDao mDao;
-//	로그인	
-//	회원가입	
-//	이메일 중복체크(ajax)	
-//	로그아웃	
-//	로그인 실행	
-//	수강신청 실행	
-//	비밀번호 변경 실행(ajax)	
-//	계정관리 이동하기	
-//	회원정보 수정 실행	
-//	회원정보 가져오기        	
-//	교사프로필 이동	
-//	교사프로필 가져오기	
-//	교사프로필 동록, 수정 이동하기	
-//	교사프로필 등록,수정	
-//	교사프로필 삭제하기	
+// (MM01)로그인 이동-해당없음	
+// (MM02)회원가입 이동-해당없음
+// (MM04)로그아웃-해당없음
+	
+// (MM07)수강신청 실행	
+// (MM08)비밀번호 변경 실행(ajax)	
+// (MM09)계정관리 이동	
+// (MM10)회원정보 수정 실행	
+// (MM11)회원정보 가져오기        	
+// (MM12)교사프로필 이동	
+// (MM13)교사프로필 가져오기	
+// (MM14)교사프로필 동록, 수정 이동	
+// (MM15)교사프로필 등록,수정	
+// (MM16)교사프로필 삭제하기	
 
 	
-	// 회원가입 실행
-	public ModelAndView memberJoin(MemberBean mb, RedirectAttributes rattr) {
-		ModelAndView mav = new ModelAndView();
-		// 비밀번호 암호화 라이브러리 불러오기
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		// 비밀번호 암호화
-		String encPwd = encoder.encode(mb.getMbPwd());
-		mb.setMbPwd(encPwd);
-
-		if (mDao.memberJoin(mb)) { // 회원등록 성공시
-			// 관심카테고리1 저장
-			if(mb.getCate1No() != null) {
-				for(int cate1 : mb.getCate1No()) {
-					mDao.putInterCate(cate1, "INTER_CATE1", mb.getMbId());
-				}
-			}
-			// 관심카테고리2 저장
-			if(mb.getCate2No() != null) {
-				for(int cate2 : mb.getCate2No()) {
-					mDao.putInterCate(cate2, "INTER_CATE2", mb.getMbId());
-				}
-			}
-			rattr.addFlashAttribute("fMsg", "회원가입 성공");
-			mav.setViewName("redirect:/");
-		} else {
-			rattr.addFlashAttribute("fMsg", "회원가입 실패");
-			mav.setViewName("redirect:/join");
+	// (MM03)이메일 중복체크(ajax)
+	public Map<String, String> checkEmail(String mbId) {
+		Map<String,String> hMap = new HashMap<>();
+		boolean isExist = mDao.checkEmail(mbId);
+		if(isExist) {
+			hMap.put("msg", "존재하는 이메일입니다.");
+		}else {
+			hMap.put("msg", "사용가능한 이메일입니다.");
 		}
-		return mav;
+		return hMap;
 	}
 
-	// 로그인 실행
+	// (MM05)로그인 실행
 	public ModelAndView access(MemberBean mb, HttpServletRequest request, RedirectAttributes rattr) {
 		ModelAndView mav = new ModelAndView();
 		MemberBean mbInfo = mDao.getMemberInfo(mb.getMbId());
@@ -97,22 +77,39 @@ public class MemberMM {
 		return mav;
 	}
 
-	// 이메일 중복체크
-	public Map<String, String> checkEmail(String mbId) {
-		Map<String,String> hMap = new HashMap<>();
-		boolean isExist = mDao.checkEmail(mbId);
-		if(isExist) {
-			hMap.put("msg", "존재하는 이메일입니다.");
-		}else {
-			hMap.put("msg", "사용가능한 이메일입니다.");
+	// (MM06)회원가입 실행
+	public ModelAndView memberJoin(MemberBean mb, RedirectAttributes rattr) {
+		ModelAndView mav = new ModelAndView();
+		// 비밀번호 암호화 라이브러리 불러오기
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		// 비밀번호 암호화
+		String encPwd = encoder.encode(mb.getMbPwd());
+		mb.setMbPwd(encPwd);
+		if (mDao.memberJoin(mb)) { // 회원등록 성공시
+			// 관심카테고리1 저장
+			if(mb.getCate1No() != null) {
+				for(int cate1 : mb.getCate1No()) {
+					mDao.putInterCate(cate1, "INTER_CATE1", mb.getMbId());
+				}
+			}
+			// 관심카테고리2 저장
+			if(mb.getCate2No() != null) {
+				for(int cate2 : mb.getCate2No()) {
+					mDao.putInterCate(cate2, "INTER_CATE2", mb.getMbId());
+				}
+			}
+			rattr.addFlashAttribute("fMsg", "회원가입 성공");
+			mav.setViewName("redirect:/");
+		} else {
+			rattr.addFlashAttribute("fMsg", "회원가입 실패");
+			mav.setViewName("redirect:/join");
 		}
-		return hMap;
+		return mav;
 	}
 	
-	/**
-	 * 클래스관리 페이지로 이동<br>
-	 * 클래스목록 가져오기 getMyClassList()
-	 */
+	
+	
+	// (MM17+MM19)클래스관리이동 + 내 클래스 목록 가져오기
 	public ModelAndView goMyclass_t(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		List<ClassBean> clsInfo = null;
@@ -132,10 +129,7 @@ public class MemberMM {
 		return mav;
 	}
 
-	/**
-	 * 마이클래스 페이지로 이동<br>
-	 * 클래스목록 가져오기 getMyClassList()
-	 */
+	// (MM18+MM19)마이클래스이동 + 내 클래스 목록 가져오기
 	public ModelAndView goMyclass_s(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		List<ClassBean> clsInfo = null;
@@ -155,6 +149,6 @@ public class MemberMM {
 		return mav;
 	}
 
-	
+
 	
 }

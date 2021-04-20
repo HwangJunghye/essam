@@ -18,4 +18,8 @@
 		SELECT * FROM MEMBER WHERE MBID=#{mbId}
 	</select>
 	
+	<select id="getAttend" resultType="attendbean">
+		<!-- SELECT * FROM 출석view WHERE MBID=#{mbId} //수정필요...--> 
+	</select>
+	
 </mapper>
