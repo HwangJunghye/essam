@@ -18,7 +18,7 @@
 <p>
 가격 : ${classInfo.clsPrice}원/월<br/>
 신청현황 : ${classInfo.clsRegiCnt} / ${classInfo.clsLimit}<br/>
-<a href="${ctxPath}/classjoin">수강신청</a>
+<a href="${ctxPath}/classjoin?clsNo=${classInfo.clsNo}">수강신청</a>
 </p>
 </section>
 	<%@ include file="../common/footer.jsp" %>

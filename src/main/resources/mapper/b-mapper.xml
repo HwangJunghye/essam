@@ -29,4 +29,8 @@
 		FROM STUDENT 
 		WHERE clsNo=#{clsNo}
 	</select>
+	<insert id="classJoin">
+		INSERT INTO STUDENT (regiNo, clsNo, mbId, regiStartDate)
+		VALUES (STUDENT_SEQ.NEXTVAL, #{clsNo}, #{mbId}, DEFALUT)
+	</insert>
 </mapper>

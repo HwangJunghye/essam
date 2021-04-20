@@ -3,9 +3,12 @@ package com.essam.www.b;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.TeacherBean;
@@ -49,6 +52,18 @@ public class BMM {
 		//커리큘럼 정보 가져와 mav에 담기
 		
 		mav.setViewName("class/classinfo_main");
+		return mav;
+	}
+
+	public ModelAndView classJoin(String clsNo, String mbId, RedirectAttributes rattr) {
+		mav = new ModelAndView();
+		
+		if(bDao.classJoin(clsNo, mbId)) 
+			rattr.addFlashAttribute("fMsg","수강신청이 완료되었습니다.");
+		else
+			rattr.addFlashAttribute("fMsg","수강신청에 실패하였습니다. 다시 이용해주세요.");
+		
+		mav.setViewName("redirect:/myclass_s");
 		return mav;
 	}
 	

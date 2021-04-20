@@ -14,4 +14,6 @@ public interface IBDao {
 
 	int getClassRegiCnt(String clsNo);
 
+	boolean classJoin(String clsNo, String mbId);
+
 }
