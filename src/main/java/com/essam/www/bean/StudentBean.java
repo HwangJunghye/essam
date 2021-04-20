@@ -1,5 +1,13 @@
 package com.essam.www.bean;
 
+import org.apache.ibatis.type.Alias;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+@Alias("studentbean")
+@Data
+@Accessors(chain = true)
 public class StudentBean {
 	/*
 	regiNo     		NVARCHAR2 
