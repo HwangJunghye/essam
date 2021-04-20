@@ -6,9 +6,9 @@
 <mapper namespace="com.essam.www.common.ICommonDao">
 		<select id="getSearchList" resultType="classbean">
 		SELECT *
-		FROM (SELECT ROWNUM RN, C.*, M.MBNICKNAME, CATE1.CATE1NAME, CATE2.CATE2NAME
+		FROM (SELECT ROWNUM RN, C.*
 			  FROM (SELECT *
-			        FROM CLASS
+			        FROM V_CLASSBEAN
 			        WHERE 1=1
 			        <if test="cate1No!=0">
 			  	    AND CATE1NO = #{cate1No}
@@ -21,12 +21,6 @@
 			  		</if>
 			  		ORDER BY CLSOPENDATE DESC
 			  		) C
-			 LEFT JOIN MEMBER M
-			 ON C.MBID = M.MBID
-			 LEFT JOIN CATE1
-			 ON C.CATE1NO = CATE1.CATE1NO
-			 LEFT JOIN CATE2
-			 ON C.CATE2NO = CATE2.CATE2NO
 			 )
 		WHERE RN BETWEEN #{pageNo}*10-9 AND #{pageNo}*10
 	</select>
