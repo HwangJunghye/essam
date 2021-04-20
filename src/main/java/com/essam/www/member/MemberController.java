@@ -22,7 +22,6 @@ public class MemberController {
 	private MemberMM mm;
 
 //	로그아웃	
-
 //	수강신청 실행	
 //	비밀번호 변경 실행(ajax)	
 //	계정관리 이동하기	
@@ -33,9 +32,7 @@ public class MemberController {
 //	교사프로필 동록, 수정 이동하기	
 //	교사프로필 등록,수정	
 //	교사프로필 삭제하기	
-	
-//	마이클래스이동	
-//	내 클래스 목록 가져오기
+
 
 	// 회원가입 이동
 	@RequestMapping(value = "/join")
@@ -74,7 +71,15 @@ public class MemberController {
 	// 클래스관리이동 + 내 클래스 목록 가져오기
 	@RequestMapping(value = "/myclass_t")
 	ModelAndView goMyclass_t(HttpSession session) {
-		return mm.goMyclass_t(session);
+		ModelAndView mav = mm.goMyclass_t(session);
+		return mav;
+	}
+
+	// 마이클래스이동 + 내 클래스 목록 가져오기
+	@RequestMapping(value = "/myclass_s")
+	ModelAndView goMyclass_s(HttpSession session) {
+		ModelAndView mav = mm.goMyclass_s(session);
+		return mav;
 	}
 
 }

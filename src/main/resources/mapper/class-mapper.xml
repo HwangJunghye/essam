@@ -5,4 +5,9 @@
 
 <mapper namespace="com.essam.www.eclass.IClassDao">
 
+	
+	<select id="getMyClassList" resultType="classbean">
+		SELECT * FROM CLASS WHERE CLSNO=#{clsNo}
+	</select>
+
 </mapper>
