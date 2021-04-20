@@ -19,17 +19,17 @@ import com.essam.www.bean.MemberBean;
 public class EtcController {
 	@Autowired
 	private EtcMM em;
-		// 관리자 페이지 이동
-		@RequestMapping(value = "/admin")
-		ModelAndView goAdmin(HttpSession session) {
-			ModelAndView mav = em.goAdmin(session);
-			return mav;
-		}
+	// (EM01)관리자 페이지 이동
+	@RequestMapping(value = "/admin")
+	ModelAndView goAdmin(HttpSession session) {
+		ModelAndView mav = em.goAdmin(session);
+		return mav;
+	}
 				
-		// 통계 가져오기(ajax)	
-		//@RequestMapping(value = "/getstatistic")
-		//String getStatistic() {
-		// return null;	
-		//}
+	// (EM02)통계 가져오기(ajax)	
+	//@RequestMapping(value = "/getstatistic")
+	//String getStatistic() {
+	// return null;	
+	//}
 
 }

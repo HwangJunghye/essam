@@ -13,7 +13,7 @@ public class EtcMM {
 	@Autowired
 	private IEtcDao eDao;
 
-	// 관리자 페이지 이동	
+	// (EM01)관리자 페이지 이동	
 	public ModelAndView goAdmin(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		// 세션에서 mbType을 가져옴 --> 관리자 회원(mbType==3)인지 확인하기
@@ -25,5 +25,5 @@ public class EtcMM {
 		return mav;
 	}
 	
-	// 통계 가져오기(ajax)	
+	// (EM02)통계 가져오기(ajax)	
 }
