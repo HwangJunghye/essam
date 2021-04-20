@@ -59,7 +59,7 @@ public class ClassMM {
 			sList = cDao.getStudentList(clsNo);
 			// 가져온 정보를 mav에 넣기
 			mav.addObject("sList",sList);	
-			// myclass_t.jsp로 이동하기 위해 viewname 지정
+			// class_studentinfo.jsp로 이동하기 위해 viewname 지정
 			mav.setViewName("class/class_studentinfo"); // .jsp
 			return mav;
 		}
@@ -74,7 +74,7 @@ public class ClassMM {
 			mInfo = cDao.getStudentInfo(mbId);
 			// 가져온 정보를 mav에 넣기
 			mav.addObject("mInfo",mInfo);	
-			// myclass_t.jsp로 이동하기 위해 viewname 지정
+			// class_studentinfo_read.jsp로 이동하기 위해 viewname 지정
 			mav.setViewName("class/class_studentinfo_read"); // .jsp
 			return mav;
 		}
