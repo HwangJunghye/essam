@@ -85,7 +85,7 @@ public class MemberController {
 	}
 
 	//로그아웃
-	@RequestMapping(value = "/logout")
+	@PostMapping(value = "/logout")
 	ModelAndView logout(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		// 1: 기존의 세션 데이터를 모두 삭제
