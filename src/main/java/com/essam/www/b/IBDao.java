@@ -10,4 +10,6 @@ public interface IBDao {
 
 	List<ClassBean> getClassListMy(String mbId);
 
+	ClassBean getClassInfo(String clsNo);
+
 }

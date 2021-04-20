@@ -15,4 +15,13 @@
 	<select id="getClassListMy" resultType="classbean" parameterType="string">
 		SELECT C.clsNo,C.clsName,C.mbId FROM CLASS C JOIN STUDENT S ON C.clsNo=S.clsNo WHERE S.MBID=#{mbId}
 	</select>
+	<select id="getClassInfo" resultType="classbean">
+		SELECT CLASS.*, CATE1.CATE1NAME, CATE2.CATE2NAME
+		FROM CLASS
+			LEFT JOIN CATE1
+			ON CLASS.CATE1NO = CATE1.CATE1NO
+			LEFT JOIN CATE2
+			ON CLASS.CATE2NO = CATE2.CATE2NO
+		WHERE CLSNO=#{clsNo} AND ROWNUM=1
+	</select>
 </mapper>
