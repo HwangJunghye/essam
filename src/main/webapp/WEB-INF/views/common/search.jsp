@@ -9,7 +9,7 @@
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<h1>search.jsp</h1>
-
+	<nav>${searchInfo!=null?searchInfo:""}</nav>
 	<div id="searchResult">
 		<!-- 검색 결과 표시 -->
 	</div>
