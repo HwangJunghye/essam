@@ -14,11 +14,5 @@ public class AController {
 	@Autowired
 	private AMM cm;
 	
-	// 출석 현황 이동 + 출석현황 가져오기
-	@RequestMapping(value = "/class/attend")
-	ModelAndView goAttend(String mbId){
-		ModelAndView mav = cm.goAttend(mbId);
-		return mav;
-		}	
 	
 }

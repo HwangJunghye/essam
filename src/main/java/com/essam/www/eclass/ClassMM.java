@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.essam.www.bean.AttendBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.StudentBean;
@@ -26,14 +27,24 @@ public class ClassMM {
 //	댓글 삭제(ajax)	
 //	과제 수정,등록	
 //	과제 삭제	
-//	출석 현황 이동	
-//	출석현황 가져오기	
 //	공지사항 수정, 등록	
 //	공지사항 삭제
 //	공지사항 목록 페이지 이동	
 //	공지사항 목록 가져오기	
 //	공지사항 상세 페이지 이동	
 //	공지사항 상세 가져오기	
+	
+		// 출석 현황 이동 + 출석현황 가져오기
+		public ModelAndView goAttend(String mbId) {
+			ModelAndView mav = new ModelAndView();
+			AttendBean attendInfo = new AttendBean();
+			attendInfo = cDao.getAttend();
+			// 가져온 정보를 mav에 넣기
+			mav.addObject("attendInfo",attendInfo);	
+			//class_attend.jsp로 이동하기 위해 viewname 지정
+			mav.setViewName("class/class_attend"); // .jsp
+			return mav;
+		}
 	
 		// 클래스 등록, 수정하기 페이지 이동
 		public ModelAndView goClassInfoWrite(String clsNo) {

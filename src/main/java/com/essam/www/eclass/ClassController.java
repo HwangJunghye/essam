@@ -23,15 +23,20 @@ public class ClassController {
 //	댓글 수정(ajax)	
 //	댓글 삭제(ajax)	
 //	과제 수정,등록	
-//	과제 삭제	
-//	출석 현황 이동	
-//	출석현황 가져오기	
+//	과제 삭제		
 //	공지사항 수정, 등록	
 //	공지사항 삭제
 //	공지사항 목록 페이지 이동	
 //	공지사항 목록 가져오기	
 //	공지사항 상세 페이지 이동	
 //	공지사항 상세 가져오기	
+	
+	// 출석 현황 이동 + 출석현황 가져오기
+	@RequestMapping(value = "/class/attend")
+	ModelAndView goAttend(String mbId){
+		ModelAndView mav = cm.goAttend(mbId);
+		return mav;
+		}	
 	
 	// 학생목록 이동 + 학생목록 가져오기	
 	@RequestMapping(value = "/class/studentlist")

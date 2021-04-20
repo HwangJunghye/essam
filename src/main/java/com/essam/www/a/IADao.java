@@ -7,7 +7,7 @@ import com.essam.www.bean.StudentBean;
 
 public interface IADao {
 
-	List<StudentBean> getAttend();
+
 
 	
 	
