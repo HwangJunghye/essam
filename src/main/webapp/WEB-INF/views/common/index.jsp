@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+html, body, header, h3 {
+  margin: 0;
+  padding: 0;
+}
+</style>
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
