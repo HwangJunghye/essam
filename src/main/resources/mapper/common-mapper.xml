@@ -6,8 +6,8 @@
 <mapper namespace="com.essam.www.common.ICommonDao">
 		<select id="getSearchList" resultType="classbean">
 		SELECT *
-		FROM (SELECT ROWNUM RN, C.*
-			  FROM (SELECT * 
+		FROM (SELECT ROWNUM RN, C.*, M.MBNICKNAME
+			  FROM (SELECT *
 			        FROM CLASS
 			        WHERE 1=1
 			        <if test="{cate1No != 0}">
@@ -21,6 +21,8 @@
 			  		</if>
 			  		ORDER BY CLSOPENDATE DESC
 			  		) C
+			 LEFT JOIN MEMBER M
+			 ON C.MBID = M.MBID
 			 )
 		WHERE RN BETWEEN #{pageNo}*10-9 AND #{pageNo}*10
 	</select>
