@@ -10,13 +10,13 @@
 			  FROM (SELECT *
 			        FROM CLASS
 			        WHERE 1=1
-			        <if test="{cate1No != 0}">
+			        <if test="cate1No!=0">
 			  	    AND CATE1NO = #{cate1No}
 			        </if>
-			  		<if test="{cate2No != 0}">
+			  		<if test="cate2No!=0">
 			  		AND CATE2NO = #{cate2No}
 			  		</if>
-			  		<if test="{keyword != ''}">
+			  		<if test='keyword.equals("")'>
 			  		AND CLSKEYWORD LIKE '%' || #{keyword} || '%'
 			  		</if>
 			  		ORDER BY CLSOPENDATE DESC
