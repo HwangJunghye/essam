@@ -25,6 +25,18 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 		if(fMsg !=''){
 			alert(fMsg);
 		}
+		
+		// 로그아웃 버튼 클릭시 로그아웃(post) 실행
+		$('#logout').on('clicik',function(){
+			// form 태그 생성
+			let $logoutForm = $('<form>');
+			$logoutForm.attr('action','${ctxPath}/logout');
+			$logoutForm.attr('method','post');
+			// body에 추가
+			$logoutForm.appendTo('body');
+			// 전송(로그아웃 실행)
+			$logoutForm.submit();
+		}); // on End
 	}); // ready End
 </script>
 </head>
@@ -49,7 +61,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 					<!-- 강사인 경우 -->
 					강사로그인
 				</c:if>
-				<a href="${ctxPath}/logout">로그아웃</a>
+				<a id="logout" href="#">로그아웃</a>
 			</c:if>
 		</div>
 	</div>
