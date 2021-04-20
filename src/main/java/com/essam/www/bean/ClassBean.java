@@ -42,6 +42,7 @@ public class ClassBean {
 	private String mbNickName;
 	private String cate1Name;
 	private String cate2Name;
+	private int clsRegiCnt;
 	
 	
 }
