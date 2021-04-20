@@ -15,7 +15,7 @@
 클래스 인원 : ${classInfo.clsLimit}<br/>
 한줄 소개 : ${classInfo.clsIntro}<br/>
 상세 소개 : ${classInfo.clsDesc}<br/>
-
+ 
 </section>
 	<%@ include file="../common/footer.jsp" %>
 </body>
