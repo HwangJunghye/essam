@@ -38,6 +38,10 @@ public class ClassBean {
 	private String clsKeyword;
 	private String zoomLink;
 	private String zoomPwd;
+	//추가된 필드
 	private String mbNickName;
+	private String cate1Name;
+	private String cate2Name;
+	
 	
 }
