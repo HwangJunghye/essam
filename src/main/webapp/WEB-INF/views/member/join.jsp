@@ -8,6 +8,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
+<%@ include file="../common/header.jsp" %>
+	<section>
 <h1>회원가입 페이지 ${fMsg}</h1>
 <!--  get : 크기제한 있음. url?param1=aaa&param2=bbb -->
 <!-- post : 크기제한 없음. url에 정보 표시 X, 
