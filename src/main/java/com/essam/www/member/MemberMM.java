@@ -106,8 +106,6 @@ public class MemberMM {
 		return mav;
 	}
 	
-	
-	
 	// (MM17+MM19)클래스관리이동 + 내 클래스 목록 가져오기
 	public ModelAndView goMyclass_t(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -147,7 +145,5 @@ public class MemberMM {
 		mav.setViewName("member/myclass_s"); // .jsp
 		return mav;
 	}
-
-
 	
 }

@@ -24,8 +24,8 @@ public class ClassController {
 	// (CM12)과제 삭제		
 	// (CM11)공지사항 수정, 등록	
 	// (CM12)공지사항 삭제
-	// (CM20+CM04)공지사항 목록 페이지 이동 + 공지사항 목록 가져오기	
-	// (CM21+CM06)공지사항 상세 페이지 이동 + 공지사항 상세 가져오기
+	// (CM19+CM04)공지사항 목록 페이지 이동 + 공지사항 목록 가져오기	
+	// (CM20+CM06)공지사항 상세 페이지 이동 + 공지사항 상세 가져오기
 	
 	// (CM13+CM14)출석 현황 이동 + 출석현황 가져오기
 	@RequestMapping(value = "/class/attend")
@@ -34,30 +34,31 @@ public class ClassController {
 		return mav;
 		}
 	
-	// (CM15)클래스 등록, 수정하기	
-//	@RequestMapping(value = "/class/classinfo/update")
-//	ModelAndView classClassinfoUpdate(HttpSession session) {
-//		ModelAndView mav = cm.classClassinfoUpdate(session);
-//		return mav;
-//		}
-	// (CM16+CM17)학생목록 이동 + 학생목록 가져오기	
+	
+	// (CM15+CM16)학생목록 이동 + 학생목록 가져오기	
 	@RequestMapping(value = "/class/studentlist")
 	ModelAndView goStudentList(String clsNo) {
 		ModelAndView mav = cm.goStudentList(clsNo);
 		return mav;
 		}
 		
-	// (CM18+CM19)학생정보보기 이동 + 학생정보 가져오기	
+	// (CM17+CM18)학생정보보기 이동 + 학생정보 가져오기	
 	@RequestMapping(value = "/class/studentinfo")
 	ModelAndView goStudentInfo(String mbId){
 		ModelAndView mav = cm.goStudentInfo(mbId);
 		return mav;
 		}	
 	
-	// (CM22)클래스 등록, 수정 페이지 이동
+	// (CM21)클래스 등록, 수정 페이지 이동
 	@RequestMapping(value = "/class/classinfo/write")
 	ModelAndView goClassInfoWrite(String clsNo) {
 		ModelAndView mav = cm.goClassInfoWrite(clsNo);
+		return mav;
+		}
+	// (CM22)클래스 등록, 수정하기	
+	@RequestMapping(value = "/class/classinfo/update")
+	ModelAndView classClassinfoUpdate(HttpSession session) {
+		ModelAndView mav = cm.classClassinfoUpdate(session);
 		return mav;
 		}
 }

@@ -31,7 +31,6 @@ public class MemberController {
 	// (MM15)교사프로필 등록,수정
 	// (MM16)교사프로필 삭제하기
 
-
 	// (MM01)로그인 이동
 	@RequestMapping(value = "/login")
 	String goLogin() {
@@ -78,8 +77,6 @@ public class MemberController {
 		ModelAndView mav = mm.memberJoin(mb, rattr);
 		return mav;
 	}
-	
-	
 	
 	// (MM17+MM19)클래스관리이동 + 내 클래스 목록 가져오기
 	@RequestMapping(value = "/myclass_t")

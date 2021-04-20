@@ -2,6 +2,8 @@ package com.essam.www.eclass;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,8 +29,8 @@ public class ClassMM {
 	// (CM12)과제 삭제
 	// (CM11)공지사항 수정, 등록	
 	// (CM12)공지사항 삭제
-	// (CM20+CM04)공지사항 목록 페이지 이동 + 공지사항 목록 가져오기	
-	// (CM21+CM06)공지사항 상세 페이지 이동 + 공지사항 상세 가져오기	
+	// (CM19+CM04)공지사항 목록 페이지 이동 + 공지사항 목록 가져오기	
+	// (CM20+CM06)공지사항 상세 페이지 이동 + 공지사항 상세 가져오기	
 	
 	
 	// (CM13+CM14)출석 현황 이동 + 출석현황 가져오기
@@ -43,10 +45,10 @@ public class ClassMM {
 		return mav;
 	}
 	
-	// (CM15)클래스 등록, 수정하기
+	
 		
 		
-	// (CM16+CM17)학생목록 이동 + 학생목록 가져오기
+	// (CM15+CM16)학생목록 이동 + 학생목록 가져오기
 	public ModelAndView goStudentList(String clsNo) {
 		ModelAndView mav = new ModelAndView();
 		List<StudentBean> sList = null;
@@ -58,7 +60,7 @@ public class ClassMM {
 		return mav;
 	}
 		
-	// (CM18+CM19)학생정보보기 이동 + 학생정보 가져오기
+	// (CM17+CM18)학생정보보기 이동 + 학생정보 가져오기
 	public ModelAndView goStudentInfo(String mbId) {
 		ModelAndView mav = new ModelAndView();
 		MemberBean mInfo = new MemberBean();
@@ -70,7 +72,7 @@ public class ClassMM {
 		return mav;
 	}
 		
-	// (CM22)클래스 등록, 수정하기 페이지 이동
+	// (CM21)클래스 등록, 수정하기 페이지 이동
 	public ModelAndView goClassInfoWrite(String clsNo) {
 		ModelAndView mav = new ModelAndView();
 		ClassBean clsInfo = new ClassBean();
@@ -81,5 +83,9 @@ public class ClassMM {
 		mav.setViewName("class/class_write"); // .jsp
 		return mav;
 	}
-
+	// (CM22)클래스 등록, 수정하기
+	public ModelAndView classClassinfoUpdate(HttpSession session) {
+		
+		return null;
+	}
 }
