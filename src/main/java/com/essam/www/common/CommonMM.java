@@ -71,21 +71,33 @@ public class CommonMM {
 	public ModelAndView goSearch(Integer cate1No, Integer cate2No, String keyword) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("common/search"); // .jsp
+		StringBuffer sb = new StringBuffer("");
 
-		if (cate1No != null && cate2No != null) {
-			StringBuffer sb = new StringBuffer();
-			sb.append("카테고리 : ");
+		boolean keywordFlag = keyword != null;
+		boolean cate1Flag = cate1No != null && (cate1No > 0 && cate1No < Constant.cate1Name.length);
+		boolean cate2Flag = cate2No != null && (cate2No > 0 && cate2No < Constant.cate2Name.length);
+
+		if (cate1Flag) {
+			mav.addObject("cate1No", cate1No);
 			sb.append(Constant.cate1Name[cate1No]);
+		}
+		if (cate1Flag && cate2Flag) {
 			sb.append(" > ");
+		}
+		if (cate2Flag) {
+			mav.addObject("cate2No", cate2No);
 			sb.append(Constant.cate2Name[cate2No]);
-			mav.addObject("searchInfo", sb.toString());
-		} else if (keyword != null) {
-			StringBuffer sb = new StringBuffer();
-			sb.append("키워드 : ");
+		}
+		if (keywordFlag && (cate1Flag || cate2Flag)) {
+			sb.append(", ");
+		}
+		if (keywordFlag) {
+			mav.addObject("keyword", keyword);
+			sb.append("검색어 : ");
 			sb.append(keyword);
-			mav.addObject("searchInfo", sb.toString());
 		}
 
+		mav.addObject("searchParam", sb.toString());
 		return mav;
 	}
 
@@ -94,19 +106,18 @@ public class CommonMM {
 	 * pageNo : 페이지 번호<br>
 	 * cate1No,cate2No : 카테고리1,2 번호<br>
 	 * keyword : 검색 키워드
-	 * */
+	 */
 	public Map<String, Object> getSearchList(Integer pageNo, Integer cate1No, Integer cate2No, String keyword) {
-		// null값 변경
-		if (cate1No == null) {
-			cate1No = 0;
+		String keywords[] = null;
+		if(keyword!=null) { 
+			// 문자열 좌우 공백 제거
+			keyword.replaceAll("(^\\p{Z}+|\\p{Z}+$)", "");
+			// 공백을 기준으로 문자열 자르기
+			keywords = keyword.split("\\s+");
 		}
-		if (cate2No == null) {
-			cate2No = 0;
-		}
-		if (keyword == null) {
-			keyword = "";
-		}
-		List<ClassBean> cList = coDao.getSearchList(pageNo, cate1No, cate2No, keyword);
+		
+		
+		List<ClassBean> cList = coDao.getSearchList(pageNo, cate1No, cate2No, keywords);
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("pageNo", pageNo);
 		result.put("pageSize", (cList == null ? 0 : cList.size()));

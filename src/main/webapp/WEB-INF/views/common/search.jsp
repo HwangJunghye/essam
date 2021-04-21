@@ -21,7 +21,7 @@
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
-	<div id="searchnav">${searchInfo!=null?searchInfo:"클래스 검색"}</div>
+	<div id="searchnav">${requestScope.searchParam}</div>
 	<section>
 		<article id="searchresult">
 			<!-- 검색 결과 표시 -->
@@ -33,9 +33,9 @@
 		// 스크롤 페이징 생성
 		let searchFlag = true; // 페이징 여부
 		let pageNo = 0;
-		const cate1No = '${param.cate1No}';
-		const cate2No = '${param.cate2No}';
-		const keyword = '${param.keyword}';
+		const cate1No = '${requestScope.cate1No}';
+		const cate2No = '${requestScope.cate2No}';
+		const keyword = '${requestScope.keyword}';
 		$(function() {
 			getSearchList(); // 처음에 초기화
 
@@ -73,8 +73,8 @@
 				dataType : 'json'
 			}).done(
 					function(data) {
-						if (data.pageSize < 10) {
-							// searchFlag = false;
+						if (data.pageSize < 20) { // 검색결과가 20보다 작다면 다음 페이지 정보는 존재하지 않음
+							searchFlag = false;
 						}
 						let word = '카테고리1 : ' + cate1No + '<br>' + '카테고리2 : '
 								+ cate2No + '<br>' + '키워드 : ' + keyword

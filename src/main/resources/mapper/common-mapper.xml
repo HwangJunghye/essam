@@ -10,18 +10,22 @@
 			  FROM (SELECT *
 			        FROM V_CLASSBEAN
 			        WHERE 1=1
-			        <if test="cate1No!=0">
+			        <if test="cate1No!=null">
 			  	    AND CATE1NO = #{cate1No}
 			        </if>
-			  		<if test="cate2No!=0">
+			  		<if test="cate2No!=null">
 			  		AND CATE2NO = #{cate2No}
 			  		</if>
-			  		<if test='!keyword.equals("")'>
-			  		AND UPPER(CLSKEYWORD) LIKE '%' || UPPER(#{keyword}) || '%'
+			  		<if test="keywords!=null">
+			  			<foreach collection="keywords" item="word">
+			  				<if test='word!=null and !word.equals("")'>
+			  				AND UPPER(CLSKEYWORD) LIKE '%' || UPPER(#{word}) || '%'
+			  				</if>
+			  			</foreach>
 			  		</if>
 			  		ORDER BY CLSOPENDATE DESC
 			  		) C
 			 )
-		WHERE RN BETWEEN #{pageNo}*10-9 AND #{pageNo}*10
+		WHERE RN BETWEEN #{pageNo}*20-9 AND #{pageNo}*20
 	</select>
 </mapper>
