@@ -5,8 +5,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.essam.www.bean.MemberBean;
 
 @Controller
 public class DController {
@@ -19,4 +22,21 @@ public class DController {
 		ModelAndView mav = dm.goMypage(mbId);
 		return mav;
 	}	
-}
+	
+//	회원정보 수정 실행
+	
+	@RequestMapping(value = "/memberupdate")
+	String memberUpdate(MemberBean mb) {
+		ModelAndView memberUpdate = dm.memberUpdate();
+		
+		return "redirect:/mypage";
+	}
+}		
+
+
+
+
+
+
+
+

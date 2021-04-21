@@ -19,10 +19,15 @@ public class DMM {
 		MemberBean mb = DDao.getMemberInfo(mbId);
 		
 		return mav;
+	}	
+//	회원정보 수정 실행
+
+	public ModelAndView memberUpdate() {
+		MemberBean mb = new MemberBean();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject(mav);
+		mav  = DDao.memberUpdate(mb);
+		return mav;
 	}
-	
-//	계정관리 이동하기	
-//	회원정보 수정 실행	
-//	회원정보 가져오기 
 
 }

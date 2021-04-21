@@ -5,5 +5,13 @@
 
 <mapper namespace="com.essam.www.d.IDDao">
 
+	<select id="getMemberInfo" resultType="MemberBean">
+		SELECT * FROM MEMBER WHERE MBID=#{mbId}
+	</select>
+	
+	<update id="memberUpdate">
+		UPDATE MEMBER SET mbPwd, mbNickname, mbTel, mbAddr, mbBirth, mbGender, cate1No, cate2No
+		 = mbPwd, mbNickname, mbTel, mbAddr, mbBirth, mbGender, cate1No, cate2No WHERE IS NOT NULL
+	</update>
 
 </mapper>
