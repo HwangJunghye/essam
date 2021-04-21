@@ -1,3 +1,4 @@
+<%@page import="com.essam.www.constant.Constant"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -44,7 +45,13 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 <header>
 	<div id="nav">
 		<div id="nav_area1"><h3>header1.jsp - <a href="${ctxPath}/">home</a></h3></div>
-		<div id="nav_area2"><span id="#nav_cate1">유아 초등 중등 고등 특목 입시 기타</span></div>
+		<div id="nav_area2">
+			<span id="#nav_cate1">
+				<c:forEach items="<%=Constant.cate1Name%>" begin="1" varStatus="state" var="item">
+					<a href="${ctxPath}/search?cate1No=${state.index}">${item}</a>
+				</c:forEach>			
+			</span>
+		</div>
 		<div id="nav_area3">
 			<form action="${ctxPath}/search" method="get">
 				<input type="search" name="keyword" /><input type="submit" value="검색"/>
