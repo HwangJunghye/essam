@@ -62,8 +62,8 @@ public class ClassController {
 		}
 	// (CM22)클래스 등록, 수정하기	
 	@RequestMapping(value = "/class/classinfo/update")
-	ModelAndView classClassinfoUpdate(MultipartHttpServletRequest mReq, HttpServletRequest request, MultipartFile mFile, int fileTypeNo, ClassBean cb) {
-		ModelAndView mav = cm.classClassinfoUpdate(mReq, request, mFile, fileTypeNo, cb);
+	ModelAndView classClassinfoUpdate(MultipartHttpServletRequest mReq, HttpServletRequest request, ClassBean cb) {
+		ModelAndView mav = cm.classClassinfoUpdate(mReq, request, cb);
 		return mav;
 		}
 }

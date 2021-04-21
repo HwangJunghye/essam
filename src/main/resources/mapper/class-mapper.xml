@@ -14,12 +14,8 @@
 		SELECT * FROM STUDENT WHERE CLSNO=#{clsNo}
 	</select>
 	
-	<select id="getStudentInfo" resultType="memberbean">
-		SELECT * FROM MEMBER WHERE MBID=#{mbId}
-	</select>
-	
-	<select id="getAttend" resultType="attendbean">
-		SELECT * FROM V_STUDENTBEAN WHERE MBID=#{mbId} 
+	<select id="getStudentInfo" resultType="studentbean">
+		SELECT * FROM V_STUDENTBEAN WHERE MBID=#{mbId}
 	</select>
 	
 </mapper>

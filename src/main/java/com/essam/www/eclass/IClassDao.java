@@ -12,7 +12,7 @@ public interface IClassDao {
 	
 	List<StudentBean> getStudentList(String clsNo);
 
-	MemberBean getStudentInfo(String mbId);
+	StudentBean getStudentInfo(String mbId);
 
 	StudentBean getAttend(String mbId);
 

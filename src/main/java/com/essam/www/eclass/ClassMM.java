@@ -43,7 +43,7 @@ public class ClassMM {
 	public ModelAndView goAttend(String mbId) {
 		ModelAndView mav = new ModelAndView();
 		StudentBean attendInfo = new StudentBean();
-		attendInfo = cDao.getAttend(mbId);
+		attendInfo = cDao.getStudentInfo(mbId);
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("attendInfo",attendInfo);	
 		//class_attend.jsp로 이동하기 위해 viewname 지정
@@ -66,7 +66,7 @@ public class ClassMM {
 	// (CM17+CM18)학생정보보기 이동 + 학생정보 가져오기
 	public ModelAndView goStudentInfo(String mbId) {
 		ModelAndView mav = new ModelAndView();
-		MemberBean mInfo = new MemberBean();
+		StudentBean mInfo = new StudentBean();
 		mInfo = cDao.getStudentInfo(mbId);
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("mInfo",mInfo);	
@@ -88,20 +88,24 @@ public class ClassMM {
 	}
 	
 	// (CM22)클래스 등록, 수정하기
-	public ModelAndView classClassinfoUpdate(MultipartHttpServletRequest mReq, HttpServletRequest request, MultipartFile mFile, int fileTypeNo, ClassBean cb) {
+	public ModelAndView classClassinfoUpdate(MultipartHttpServletRequest mReq, HttpServletRequest request, ClassBean cb) {
 		ModelAndView mav = new ModelAndView();
 		boolean updatedOrNot = true;
+		MultipartFile mFile = mReq.getFile("name속성");
 		String fileNo ="";
 		
-		//클래스이미지를 가져왔다면 saveFile()에 MultipartFile 전달, fileNo 반환받음				
-		if(fileNo!=null) {
-			fm.saveFile(mReq, mFile, fileTypeNo);
+		//클래스이미지를 가져왔다면 saveFile()에 MultipartFile 전달, fileNo 반환받음	
+
+		if(mFile!=null) {
+			//가져온 파일번호를 cb에 저장.
+			cb.setFileNo(fm.saveFile(mReq, mFile, 1));
+			
 		}
 		
 		
 		
 		if(cb.getClsNo()!=null) {//clsNo가 null이 아니라면 기존 클래스 정보의 fileNo를 가져옴
-			fileNo = cb.getFileNo();	
+			//fileNo = //db갔다 와야 함. 	
 		}
 		
 												
@@ -112,9 +116,9 @@ public class ClassMM {
 		}
 		
 	
-		//기존의 fileNo를 가져왔다면 deleteFile에 넘겨 이미지파일 삭제							
+		//기존의 db에서 fileNo를 가져왔다면 deleteFile에 넘겨 이미지파일 삭제							
 		if(fileNo!=null) {
-			//fm.deleteFile(fileNo, request);
+			fm.deleteFile(fileNo, request);
 		}
 		
 		if(updatedOrNot) { //등록(수정) 성공시
