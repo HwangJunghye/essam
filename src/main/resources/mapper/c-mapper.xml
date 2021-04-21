@@ -5,9 +5,7 @@
 
 <mapper namespace="com.essam.www.c.ICDao">
 	<select id="getTeacherProfile" resultType="teacherbean">
-		SELECT mbId, mbNickName, fileNo, teacherGrade, teacherIntro, teacherDetail 
-		FROM MEMBER LEFT OUTER JOIN TEACHER 
-		ON TEACHER.MBID=MEMBER.MBID 
-		WHERE MBID=#{mbId}
+		SELECT TEACHER.*, MEMBER.MBNICKNAME FROM TEACHER LEFT JOIN MEMBER 
+		ON TEACHER.MBID=MEMBER.MBID WHERE TEACHER.MBID=#{mbId}
 	</select>
 </mapper>
