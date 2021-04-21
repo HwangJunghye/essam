@@ -14,8 +14,6 @@ public interface IClassDao {
 
 	StudentBean getStudentInfo(String mbId);
 
-	StudentBean getAttend(String mbId);
-
 	boolean classClassinfoUpdate();
 
 	boolean classClassinfoInsert();
