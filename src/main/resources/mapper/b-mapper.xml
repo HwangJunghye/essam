@@ -33,4 +33,17 @@
 		INSERT INTO STUDENT (regiNo, clsNo, mbId, regiStartDate)
 		VALUES (STUDENT_SEQ.NEXTVAL, #{clsNo}, #{mbId}, DEFALUT)
 	</insert>
+	<select id="getBoardList" resultType="boardbean">
+		SELECT
+		  C.*,
+		  NVL(V.clsBrdViewS, 0) clsBrdView
+		FROM
+		  CLS_BRD C
+		  LEFT OUTER JOIN (SELECT CLSBRDNO, COUNT(*) clsBrdViewS FROM CLS_BRD_VIEW GROUP BY CLSBRDNO) V
+		  ON C.CLSBRDNO = V.CLSBRDNO
+		WHERE C.clsBrdType=#{clsBrdType}
+	</select>
+	<select id="getBoardFiles" resultType="int">
+		SELECT COUNT(*) FROM BRD_FILE WHERE clsBrdNo=#{clsBrdNo}	
+	</select>
 </mapper>

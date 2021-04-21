@@ -6,16 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-html, body, header, h3 {
-  margin: 0;
-  padding: 0;
-}
-</style>
 </head>
 <body>
-	<%@ include file="../common/header.jsp" %>
-	<section>
+<%@ include file="../common/header.jsp" %>
+<section>
 	인덱스 페이지(/)<br/>
 	${msg}<br>
 	${fMsg}
@@ -50,7 +44,7 @@ html, body, header, h3 {
 	</c:if>
 	</table>
 	
-	</section>
-	<%@ include file="../common/footer.jsp" %>
+</section>
+<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

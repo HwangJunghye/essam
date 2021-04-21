@@ -32,5 +32,12 @@ public class BController {
 		String mbId= loginData.getMbId();
 		return bm.classJoin(clsNo, mbId, rattr);
 	}
+	/**
+	 * 게시판 리스트
+	 */
+	@RequestMapping(value = "/class/board")
+	ModelAndView goBoardList(int clsBrdType) {
+		return bm.goBoardList(clsBrdType);		
+	}
 	
 }

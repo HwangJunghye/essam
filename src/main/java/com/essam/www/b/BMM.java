@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.TeacherBean;
 import com.essam.www.file.FileMM;
@@ -64,6 +65,23 @@ public class BMM {
 			rattr.addFlashAttribute("fMsg","수강신청에 실패하였습니다. 다시 이용해주세요.");
 		
 		mav.setViewName("redirect:/myclass_s");
+		return mav;
+	}
+
+	public ModelAndView goBoardList(int clsBrdType) {
+		mav = new ModelAndView();
+		//게시판 목록 가져오기
+		ArrayList<BoardBean> bList = bDao.getBoardList(clsBrdType);	
+		//각 게시글의 첨부파일 갯수 가져와 bean에 저장
+		for(BoardBean board : bList) {
+			board.setClsBrdfileCnt(bDao.getBoardFiles(board.getClsBrdNo()));
+		}
+		//mav에 게시판 목록 정보 저장
+		mav.addObject("bList", bList);		
+		//mav에 게시판 타입 추가
+		mav.addObject("clsBrdType", clsBrdType);
+		//view 페이지 설정
+		mav.setViewName("board/boardList");
 		return mav;
 	}
 	
