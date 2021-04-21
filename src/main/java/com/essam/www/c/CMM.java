@@ -24,9 +24,9 @@ public class CMM {
 	 * @param session
 	 * @return ModelAndView
 	 */
-	public ModelAndView getTeacherProfile(HttpSession session, HttpServletRequest request) {
+	public ModelAndView getTeacherProfile(HttpSession session, RedirectAttributes rattr) {
 		ModelAndView mav = new ModelAndView();
-		List<TeacherBean> teacherInfo = null;
+		TeacherBean teacherInfo = null;
 		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
 		//세션에서 mbId, mbType을 가져옴
 		String mbId = loginData.getMbId();
@@ -44,7 +44,7 @@ public class CMM {
 				return mav;
 			}else { //강사프로필 정보가 없다면
 				mav.setViewName("member/teacher_profile"); //강사프로필 페이지로
-				request.setAttribute("Msg", "등록된 강사프로필 정보가 없습니다");
+				rattr.addFlashAttribute("Msg", "등록된 강사프로필 정보가 없습니다");
 			}
 		}
 		return mav;

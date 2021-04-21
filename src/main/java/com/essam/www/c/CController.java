@@ -22,8 +22,8 @@ public class CController {
 	 * @return ModelAndView
 	 */
 	@RequestMapping(value = "/teacher_profile")
-	ModelAndView goTeacherProfile(HttpSession session, HttpServletRequest request) {
-		ModelAndView mav = mm.getTeacherProfile(session, request);
+	ModelAndView goTeacherProfile(HttpSession session, RedirectAttributes rattr) {
+		ModelAndView mav = mm.getTeacherProfile(session, rattr);
 		return mav; 
 	}
 	

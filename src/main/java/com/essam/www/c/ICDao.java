@@ -6,6 +6,6 @@ import com.essam.www.bean.TeacherBean;
 
 public interface ICDao {
 	// c-mapper 사용
-	List<TeacherBean> getTeacherProfile(String mbId);
+	TeacherBean getTeacherProfile(String mbId);
 
 }
