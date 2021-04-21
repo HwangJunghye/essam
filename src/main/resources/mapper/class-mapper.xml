@@ -19,7 +19,7 @@
 	</select>
 	
 	<select id="getAttend" resultType="attendbean">
-		SELECT * FROM V_ATTENDBEAN WHERE MBID=#{mbId} 
+		SELECT * FROM V_STUDENTBEAN WHERE MBID=#{mbId} 
 	</select>
 	
 </mapper>

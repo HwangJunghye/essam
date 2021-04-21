@@ -26,11 +26,11 @@ public class ClassBean {
 	*/
 
 	private String clsNo;
+	private String clsName;
 	private String mbId;
 	private String fileNo;
 	private int cate1No;
 	private int cate2No;
-	private String clsName;
 	private int clsLimit;
 	private String clsIntro;
 	private String clsDesc;

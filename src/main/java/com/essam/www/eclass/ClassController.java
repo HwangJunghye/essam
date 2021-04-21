@@ -1,10 +1,12 @@
 package com.essam.www.eclass;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -60,8 +62,8 @@ public class ClassController {
 		}
 	// (CM22)클래스 등록, 수정하기	
 	@RequestMapping(value = "/class/classinfo/update")
-	ModelAndView classClassinfoUpdate(MultipartHttpServletRequest newInfo, ClassBean cb) {
-		ModelAndView mav = cm.classClassinfoUpdate(newInfo, cb);
+	ModelAndView classClassinfoUpdate(MultipartHttpServletRequest mReq, HttpServletRequest request, MultipartFile mFile, int fileTypeNo, ClassBean cb) {
+		ModelAndView mav = cm.classClassinfoUpdate(mReq, request, mFile, fileTypeNo, cb);
 		return mav;
 		}
 }

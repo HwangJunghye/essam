@@ -266,7 +266,6 @@ public class FileMM {
 		if (file.exists()) { // 파일이 존재하는 경우
 			return file.delete(); // 실제 파일 삭제
 		}
-
 		return false;
 	}
 
