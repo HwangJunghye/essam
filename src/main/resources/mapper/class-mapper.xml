@@ -18,4 +18,24 @@
 		SELECT * FROM V_STUDENTBEAN WHERE MBID=#{mbId}
 	</select>
 	
+	<select id="getFileNo" resultType="classbean">
+		SELECT FILENO FROM CLASS WHERE FILENO=#{fileNo} AND ROWNUM=1
+	</select>
+	
+	<insert id="classClassinfoInsert" parameterType="classbean" >
+	INSERT INTO CLASS(CLSNO, MBID, FILENO,CATE1NO,CATE2NO,CLSNAME, CLSOPENDATE, CLSLIMIT, CLSINTRO, CLSDESC, CLSPRICE, CLSKEYWORD,ZOOMLINK, ZOOMPWD)
+	VALUES(CLASS_SEQ.NEXTVAL, #{mbId},#{fileNo},#{cate1No}, #{cate2No}, #{clsName},DEFAULT,#{clsLimit},#{clsIntro},#{clsDesc},#{clsPrice},#{clsKeyword}, #{zoomLink}, #{zoomPwd}	)
+	</insert>
+	
+	<update id="classClassinfoUpdate" parameterType="classbean" >
+		UPDATE CLASS SET 
+			FILENO=#{fileNo}, CATE1NO=#{cate1No}, CATE2NO=#{cate2No}, CLSNAME=#{clsName},   
+			CLSLIMIT=#{clsLimit}, CLSINTRO=#{clsIntro}, CLSDESC=#{clsDesc}, CLSPRICE=#{clsPrice}, CLSKEYWORD=#{clsKeyword}, 
+			ZOOMLINK=#{zoomLink}, ZOOMPWD=#{zoomPwd}		
+		WHERE CLSNO=#{clsNo}
+	</update>
+	
+	
+	
+	
 </mapper>

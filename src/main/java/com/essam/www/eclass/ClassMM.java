@@ -94,30 +94,25 @@ public class ClassMM {
 		MultipartFile mFile = mReq.getFile("name속성");
 		String fileNo ="";
 		
-		//클래스이미지를 가져왔다면 saveFile()에 MultipartFile 전달, fileNo 반환받음	
-
-		if(mFile!=null) {
-			//가져온 파일번호를 cb에 저장.
-			cb.setFileNo(fm.saveFile(mReq, mFile, 1));
-			
+		//새로 등록할 클래스 이미지의 fileNo 
+		if(mFile!=null) {	
+			//클래스 이미지를 가져왔다면 saveFile()에 MultipartFile 전달, fileNo 반환받음
+			//가져온 fileNo를 cb에 저장.
+			cb.setFileNo(fm.saveFile(mReq, mFile, 1));	
 		}
 		
-		
-		
-		if(cb.getClsNo()!=null) {//clsNo가 null이 아니라면 기존 클래스 정보의 fileNo를 가져옴
-			//fileNo = //db갔다 와야 함. 	
+		//기존에 올려져 있던 fileNo 가져오기 (기존파일 삭제를 위해서...)
+		if(cb.getClsNo()!=null && mFile!=null) {//clsNo가 null이 아니라면 DB로 가서 기존 클래스 정보의 fileNo를 가져옴
+			fileNo = cDao.getFileNo(cb.getFileNo()); 	
 		}
-		
 												
 		if(cb.getClsNo()!=null){//clsNo가 있다면 --> 수정(UPDATE) SQL문 실행
-			updatedOrNot = cDao.classClassinfoUpdate();
+			updatedOrNot = cDao.classClassinfoUpdate(cb);
 		}else {//clsNo가 있다면 --> 삽입(INSERT) SQL문 실행
-			updatedOrNot = cDao.classClassinfoInsert();
+			updatedOrNot = cDao.classClassinfoInsert(cb);
 		}
-		
 	
-		//기존의 db에서 fileNo를 가져왔다면 deleteFile에 넘겨 이미지파일 삭제							
-		if(fileNo!=null) {
+		if(fileNo!=null) {  //DB에서 fileNo를 가져왔다면 deleteFile()에 넘겨 이미지파일 삭제		
 			fm.deleteFile(fileNo, request);
 		}
 		

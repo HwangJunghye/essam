@@ -24,7 +24,7 @@ public class MemberMM {
 	// (MM01)로그인 이동-해당없음	
 	// (MM02)회원가입 이동-해당없음
 	// (MM04)로그아웃-해당없음
-		
+	
 	// (MM07)수강신청 실행	
 	// (MM08)비밀번호 변경 실행(ajax)	
 	// (MM09)계정관리 이동	
@@ -34,7 +34,7 @@ public class MemberMM {
 	// (MM14)교사프로필 동록, 수정 이동	
 	// (MM15)교사프로필 등록,수정	
 	// (MM16)교사프로필 삭제하기	
-
+	
 	
 	// (MM03)이메일 중복체크(ajax)
 	public Map<String, String> checkEmail(String mbId) {
@@ -47,7 +47,7 @@ public class MemberMM {
 		}
 		return hMap;
 	}
-
+	
 	// (MM05)로그인 실행
 	public ModelAndView access(MemberBean mb, HttpServletRequest request, RedirectAttributes rattr) {
 		ModelAndView mav = new ModelAndView();

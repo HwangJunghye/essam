@@ -14,7 +14,9 @@ public interface IClassDao {
 
 	StudentBean getStudentInfo(String mbId);
 
-	boolean classClassinfoUpdate();
+	boolean classClassinfoUpdate(ClassBean cb);
 
-	boolean classClassinfoInsert();
+	boolean classClassinfoInsert(ClassBean cb);
+
+	String getFileNo(String fileNo);
 }
