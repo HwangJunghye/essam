@@ -8,4 +8,5 @@ public interface Constant {
 	String[] fileTypeName = { "파일타입", "image", "video", "other" };
 	String[] curTypeName = { "커리큘럼타입", "실시간", "동영상" };
 	String[] clsBrdTypeName = { "게시판타입", "notice", "report" };
+	boolean[] clsBrdHasReply = { true, false, true };
 }
