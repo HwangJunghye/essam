@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.essam.www.bean.MemberBean;
 
@@ -21,8 +22,8 @@ public class CController {
 	 * @return ModelAndView
 	 */
 	@RequestMapping(value = "/teacher_profile")
-	ModelAndView goTeacherProfile(HttpSession session) {
-		ModelAndView mav = mm.getTeacherProfile(session);
+	ModelAndView goTeacherProfile(HttpSession session, HttpServletRequest request) {
+		ModelAndView mav = mm.getTeacherProfile(session, request);
 		return mav; 
 	}
 	
@@ -33,7 +34,7 @@ public class CController {
 	 */
 	@RequestMapping(value = "/teacher_profile/write")
 	String goTeacherProfileWrite(HttpSession session) {
-		ModelAndView mav = mm.getTeacherProfile(session);
+		//ModelAndView mav = mm.getTeacherProfile(session);
 		return "member/teacher_profile_write"; //.jsp
 	}
 	
