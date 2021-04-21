@@ -20,5 +20,5 @@ public class BoardBean {
 	private String clsBrdContent; // 본문
 	private String clsBrdDate; // 작성일
 	private List<FileBean> files; // 첨부파일 목록
-	private int clsBrdView;	//조회수
+	private int clsBrdView;	//조회수 
 }
