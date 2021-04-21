@@ -39,6 +39,11 @@
 			<mapping path="/**"/>
 			<!-- 예외 설정(exclude-mapping) -->
 			<!-- <exclude-mapping path="/"/> -->
+			<exclude-mapping path="/"/>
+			<exclude-mapping path="/resources/**"/>
+			<exclude-mapping path="/login"/>
+			<exclude-mapping path="/join"/>
+			<exclude-mapping path="/search"/>
 			<!-- 인터셉터 클래스 -->
 			<beans:bean class="com.essam.www.interceptor.CommonInterceptor"/>
 		</interceptor>
