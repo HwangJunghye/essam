@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.essam.www.bean.AttendBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.StudentBean;
@@ -41,7 +40,7 @@ public class ClassMM {
 	// (CM13+CM14)출석 현황 이동 + 출석현황 가져오기
 	public ModelAndView goAttend(String mbId) {
 		ModelAndView mav = new ModelAndView();
-		AttendBean attendInfo = new AttendBean();
+		StudentBean attendInfo = new StudentBean();
 		attendInfo = cDao.getAttend(mbId);
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("attendInfo",attendInfo);	

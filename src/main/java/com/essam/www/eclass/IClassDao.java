@@ -2,7 +2,6 @@ package com.essam.www.eclass;
 
 import java.util.List;
 
-import com.essam.www.bean.AttendBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.StudentBean;
@@ -15,5 +14,5 @@ public interface IClassDao {
 
 	MemberBean getStudentInfo(String mbId);
 
-	AttendBean getAttend(String mbId);
+	StudentBean getAttend(String mbId);
 }
