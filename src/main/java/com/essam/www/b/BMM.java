@@ -68,20 +68,39 @@ public class BMM {
 		return mav;
 	}
 
-	public ModelAndView goBoardList(int clsBrdType) {
+	public ModelAndView goBoardList(String clsNo, int clsBrdType) {
 		mav = new ModelAndView();
 		//게시판 목록 가져오기
-		ArrayList<BoardBean> bList = bDao.getBoardList(clsBrdType);	
+		ArrayList<BoardBean> bList = bDao.getBoardList(clsNo, clsBrdType);	
 		//각 게시글의 첨부파일 갯수 가져와 bean에 저장
 		for(BoardBean board : bList) {
 			board.setClsBrdfileCnt(bDao.getBoardFiles(board.getClsBrdNo()));
 		}
 		//mav에 게시판 목록 정보 저장
-		mav.addObject("bList", bList);		
+		mav.addObject("bList", bList);
+		//mav에 클래스넘버 추가
+		mav.addObject("clsNo", clsNo);
 		//mav에 게시판 타입 추가
 		mav.addObject("clsBrdType", clsBrdType);
 		//view 페이지 설정
 		mav.setViewName("board/boardList");
+		return mav;
+	}
+
+	public ModelAndView goBoardWrite(String clsNo, int clsBrdType, String clsBrdNo, String mbId, RedirectAttributes rattr) {
+		mav = new ModelAndView();
+		//게시물 수정인 경우
+		if(clsBrdNo != null) {
+			//게시물 정보 가져와 bean에 담기
+			BoardBean board = bDao.getBoardRead(clsBrdNo);	
+			mav.addObject("boardData", board);
+		}
+		//mav에 클래스넘버 추가
+		mav.addObject("clsNo", clsNo);
+		//mav에 게시판 타입 추가
+		mav.addObject("clsBrdType", clsBrdType);
+		//view 페이지 설정
+		mav.setViewName("board/boardWrite");
 		return mav;
 	}
 	

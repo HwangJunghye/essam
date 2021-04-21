@@ -35,9 +35,17 @@ public class BController {
 	/**
 	 * 게시판 리스트
 	 */
-	@RequestMapping(value = "/class/board")
-	ModelAndView goBoardList(int clsBrdType) {
-		return bm.goBoardList(clsBrdType);		
+	@RequestMapping(value = "/class/boardlist")
+	ModelAndView boardList(String clsNo, int clsBrdType) {
+		return bm.goBoardList(clsNo, clsBrdType);		
 	}
-	
+	/**
+	 * 게시판 글쓰기/수정
+	 */
+	@RequestMapping(value = "/class/boardWrite")
+	ModelAndView boardWrite(String clsNo, int clsBrdType, String clsBrdNo, HttpSession session, RedirectAttributes rattr) {
+		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
+		String mbId= loginData.getMbId();
+		return bm.goBoardWrite(clsNo, clsBrdType, clsBrdNo, mbId, rattr);		
+	}
 }

@@ -2,11 +2,6 @@
 
 /* header */
 
-html, body, header, h3 {
-  margin: 0;
-  padding: 0;
-}
-
 header {
 	width: 100%;
 	height: 75px;
