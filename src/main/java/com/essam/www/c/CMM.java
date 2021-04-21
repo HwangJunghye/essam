@@ -44,7 +44,8 @@ public class CMM {
 				return mav;
 			}else { //강사프로필 정보가 없다면
 				mav.setViewName("member/teacher_profile"); //강사프로필 페이지로
-				rattr.addFlashAttribute("fMsg", "등록된 강사프로필 정보가 없습니다");
+				mav.addObject("msg", "등록된 강사프로필 정보가 없습니다");
+				//rattr.addFlashAttribute("fMsg", "등록된 강사프로필 정보가 없습니다");
 			}
 		}
 		return mav;

@@ -15,6 +15,7 @@
 	강사등급 : ${teacherInfo.teacherGrade}<br/>
 	한줄 소개 : ${teacherInfo.teacherIntro}<br/>
 	상세 소개 : ${teacherInfo.teacherDetail}<br/>
+	${msg}
 	<p>
 		<a href="${ctxPath}/teacher_profile/write?mbId=${teacherInfo.mbId}">수정</a>
 		<a href="${ctxPath}/teacher_profile/delete?mbId=${teacherInfo.mbId}">삭제</a>
