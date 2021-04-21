@@ -12,9 +12,9 @@ public class AttendBean {
 	
 	private String mbId; //아이디
 	private String mbNickName; //닉네임
-	private String curNo; //커리큘럼일련번호
+	private String clsName; //클래스이름
 	private String regiNo; //수강신청일련번호
-	private int curTypeNo; //커리큘럼타입번호
-	private String curEndDate; //커리큘럼 종료일시
+	private int attendDay; //출석일수
+	private int absenceDay; //결석일수
 	 
 }
