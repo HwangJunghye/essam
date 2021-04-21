@@ -246,7 +246,7 @@ public class FileMM {
 	 * return true - 삭제 성공<br>
 	 * return false - 삭제 실패
 	 */
-	boolean deleteFile(String fileNo, HttpServletRequest request) {
+	public boolean deleteFile(String fileNo, HttpServletRequest request) {
 		if (fileNo == null) { // 파일번호가 없다면 false
 			return false;
 		}
