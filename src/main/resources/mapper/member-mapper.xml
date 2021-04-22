@@ -63,6 +63,9 @@
 				ON C.CLSNO = S.CLSNO
 			)
 		</if>
-		
 	</select>
+	
+	<insert id="putTeacher">
+		INSERT INTO TEACHER(MBID,TEACHERGRADE) VALUES(#{mbId},DEFAULT)
+	</insert>
 </mapper>

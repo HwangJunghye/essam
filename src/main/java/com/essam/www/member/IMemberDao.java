@@ -18,5 +18,7 @@ public interface IMemberDao {
 	List<ClassBean> getMyClassList(@Param("mbid") String mbId, @Param("mbtype") int mbType);
 
 	void putInterCate (@Param("cateno") int cateno, @Param("tablenm") String tablenm, @Param("mbid") String mbid);
+
+	void putTeacher(String mbId);
 	
 }

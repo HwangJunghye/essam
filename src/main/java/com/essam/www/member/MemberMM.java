@@ -97,6 +97,11 @@ public class MemberMM {
 					mDao.putInterCate(cate2, "INTER_CATE2", mb.getMbId());
 				}
 			}
+			
+			// 강사회원인 경우 TEACHER 테이블에 정보 저장
+			if(mb.getMbType()==2) {
+				mDao.putTeacher(mb.getMbId());
+			}
 			rattr.addFlashAttribute("fMsg", "회원가입 성공");
 			mav.setViewName("redirect:/");
 		} else {
