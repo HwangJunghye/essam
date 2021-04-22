@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="../common/header.jsp" %>
+<section>
 <h1>class_attend.jsp</h1>
+	
+</section>
+<%@ include file="../common/footer.jsp" %>
+
 </body>
 </html>
