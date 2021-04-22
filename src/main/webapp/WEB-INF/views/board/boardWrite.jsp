@@ -15,19 +15,21 @@
 <body>
 <%@ include file="../common/header.jsp" %>
 <section>
-<h3>글쓰기</h3>
+
+<center>
+<h3><c:if test="${empty boardData}">글쓰기</c:if><c:if test="${!empty boardData}">글수정</c:if></h3>
 <table>
 <tr>
-	<th></th>
-	<td><input type="text" name="" id=""/></td>
+	<th>제목</th>
+	<td><input type="text" name="clsBrdTitle" id="clsBrdTitle" required/></td>
 </tr>
 <tr>
-	<th></th>
-	<td><input type="text" name="" id=""/></td>
+	<th>내용</th>
+	<td><input type="textarea" name="" id="" rows="20" cols="60" required/></td>
 </tr>
 <tr>
-	<th></th>
-	<td><input type="text" name="" id=""/></td>
+	<th>첨부파일</th>
+	<td><input type="file" name="files" id="files" multiple/></td>
 </tr>
 </table>
 </section>

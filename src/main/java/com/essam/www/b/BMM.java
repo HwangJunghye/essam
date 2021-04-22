@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.TeacherBean;
+import com.essam.www.constant.Constant;
 import com.essam.www.eclass.Paging;
 import com.essam.www.exception.CommonException;
 import com.essam.www.file.FileMM;
@@ -95,6 +96,10 @@ public class BMM {
 		mav.addObject("clsNo", clsNo);
 		//mav에 게시판 타입 추가
 		mav.addObject("clsBrdType", clsBrdType);
+		//mav에 네비타이틀 추가
+		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[clsBrdType]);
+		//mav에 클래스명 추가
+		mav.addObject("clsName", bDao.getClassName(clsNo));
 		//view 페이지 설정
 		mav.setViewName("board/boardList");	
 		
@@ -127,6 +132,8 @@ public class BMM {
 		mav.addObject("clsNo", clsNo);
 		//mav에 게시판 타입 추가
 		mav.addObject("clsBrdType", clsBrdType);
+		//mav에 네비타이틀 추가
+		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[clsBrdType]);
 		//view 페이지 설정
 		mav.setViewName("board/boardWrite");
 		return mav;

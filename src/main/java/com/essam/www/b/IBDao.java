@@ -31,4 +31,6 @@ public interface IBDao {
 
 	List<FileBean> getBoardFiles(String clsBrdNo);
 
+	String getClassName(String clsNo);
+
 }

@@ -70,4 +70,7 @@
 	<select id="getBoardFiles" resultType="filebean">
 		SELECT * FROM BRD_FILE WHERE clsBrdNo=#{clsBrdNo}
 	</select>
+	<select id="getClassName" resultType="string">
+		SELECT clsName FROM CLASS WHERE CLSNO=#{clsNo} AND ROWNUM=1
+	</select>
 </mapper>

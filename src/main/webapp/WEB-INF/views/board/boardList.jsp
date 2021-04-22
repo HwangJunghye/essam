@@ -14,6 +14,7 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
+<%@ include file="../common/nav.jsp"%>
 <section>
 
 <center>
@@ -23,7 +24,7 @@
 <c:if test="${sessionScope.loginData.mbType==2}">
 	<button type="button" onclick="location.href='${ctxPath}/class/boardWrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}';">글쓰기</button>
 </c:if>
-
+<h3>${clsName}</h3>
 <table class="tbl" width=600>
 <tr height=30>
 	<th>번호</th>
