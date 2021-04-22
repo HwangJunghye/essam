@@ -69,7 +69,7 @@ public class BMM {
 		return mav;
 	}
 
-	public ModelAndView goBoardList(String clsNo, int clsBrdType, Integer pageNum) {
+	public ModelAndView goBoardList(String clsNo, int clsBrdType, Integer pageNum) throws CommonException {
 		mav = new ModelAndView();
 		pageNum = (pageNum==null)? 1 : pageNum;
 		

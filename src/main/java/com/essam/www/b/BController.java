@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.essam.www.bean.MemberBean;
+import com.essam.www.exception.CommonException;
 
 @Controller
 public class BController {
@@ -36,7 +37,7 @@ public class BController {
 	 * 게시판 리스트
 	 */
 	@RequestMapping(value = "/class/boardlist")
-	ModelAndView boardList(String clsNo, int clsBrdType, Integer pageNum) {
+	ModelAndView boardList(String clsNo, int clsBrdType, Integer pageNum) throws CommonException{
 		return bm.goBoardList(clsNo, clsBrdType, pageNum);		
 	}
 	/**

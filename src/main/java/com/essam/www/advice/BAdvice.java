@@ -13,7 +13,7 @@ import lombok.extern.log4j.Log4j;
 public class BAdvice {
 	@ExceptionHandler(CommonException.class)
 	public String except(CommonException ex, RedirectAttributes attr) {
-		attr.addFlashAttribute("msg", ex.getMessage());
+		attr.addFlashAttribute("fMsg", ex.getMessage());
 		return "redirect: /class/boardlist";
 	} 
 }
