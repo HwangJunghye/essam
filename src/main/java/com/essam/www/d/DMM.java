@@ -32,7 +32,7 @@ public class DMM {
 		DDao.memberUpdate(mb);
 		
 		// 관심카테고리1 저장
-		if(mb.getCate1No() != null) {
+		if(mb.getCate1No() != null) { 
 			//관심카테고리1 삭제
 			DDao.deleteInterCate(mb.getMbId(), "INTER_CATE1");
 			for(int cate1 : mb.getCate1No()) {
