@@ -2,11 +2,16 @@
 
 /* nav */
 nav {
-	top:;
-	
+	top:0;
 	width: 100%;
+	height: 75px;	
+}
+
+#nav_title {
+	width: 1400px;
 	height: 75px;
 	line-height: 75px;
+	margin: 0 auto;
 	font-family: Comfortaa;
 	font-style: normal;
 	font-weight: normal;
