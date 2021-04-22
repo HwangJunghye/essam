@@ -60,7 +60,7 @@ ${paging}
 	검색 : <input type="text" name="search"><br>
 	<button>enter</button>
 </form> -->
-
+ 
 </section>
 <%@ include file="../common/footer.jsp" %>
 </body>
