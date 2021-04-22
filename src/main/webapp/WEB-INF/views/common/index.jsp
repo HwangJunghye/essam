@@ -45,8 +45,9 @@
 		</c:forEach>
 	</c:if>
 	</table>
-	
 </section>
+
 <%@ include file="../common/footer.jsp" %>
+
 </body>
 </html>

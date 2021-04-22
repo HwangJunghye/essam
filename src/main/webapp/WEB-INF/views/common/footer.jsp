@@ -5,15 +5,18 @@
 <head>
 <meta charset="UTF-8">
 </head>
+<link rel="stylesheet" type="text/css"
+	href="${ctxPath}/resources/css/footer.css">
+<style>
+</style>
 <body>
 	<footer>
-		<div id="textArea1">
+		<div id="footerTextArea1">
 			e-Ssam<br/>
 		</div>
-		<div id="textArea2">
-			©Team.JEAMIRO. ALL RIGHTS RESERVED
+		<div id="footerTextArea2">
+		©Team.JEAMIRO. ALL RIGHTS RESERVED
 		</div>
-		
 	</footer>
 </body>
 </html>
