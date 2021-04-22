@@ -12,7 +12,7 @@
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
-	<div id="searchnav">${requestScope.searchParam}</div>
+	<%@ include file="../common/nav.jsp"%>
 	<section>
 		<article id="searchresult">
 			<!-- 검색 결과 표시 -->

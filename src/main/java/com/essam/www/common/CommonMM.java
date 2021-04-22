@@ -90,7 +90,7 @@ public class CommonMM {
 			sb.append(keyword);
 		}
 
-		mav.addObject("searchParam", sb.toString());
+		mav.addObject("navtext", sb.toString());
 		return mav;
 	}
 
