@@ -32,21 +32,21 @@
 		주소 <input type="text" name="mbAddr" value="${myInfo.mbAddr}" required />
 		<input type="button"> 주소검색 <br> 
 		관심카테고리 1
-		<input type="checkbox" name="cate1No" value="1"/>유아
-		<input type="checkbox" name="cate1No" value="2"/>초등
-		<input type="checkbox" name="cate1No" value="3"/>중등
-		<input type="checkbox" name="cate1No" value="4"/>고등
-		<input type="checkbox" name="cate1No" value="5"/>특목
-		<input type="checkbox" name="cate1No" value="6"/>기타<br>
+		<input type="checkbox" name="cate1No" value="1" ${cate1Chk[1]?'checked':''}/>유아
+		<input type="checkbox" name="cate1No" value="2" ${cate1Chk[2]?'checked':''}/>초등
+		<input type="checkbox" name="cate1No" value="3" ${cate1Chk[3]?'checked':''}/>중등
+		<input type="checkbox" name="cate1No" value="4" ${cate1Chk[4]?'checked':''}/>고등
+		<input type="checkbox" name="cate1No" value="5" ${cate1Chk[5]?'checked':''}/>특목
+		<input type="checkbox" name="cate1No" value="6" ${cate1Chk[6]?'checked':''}/>기타<br>
 		관심카테고리 2
-		<input type="checkbox" name="cate2No" value="1"/>국어
-		<input type="checkbox" name="cate2No" value="2"/>영어
-		<input type="checkbox" name="cate2No" value="3"/>수학
-		<input type="checkbox" name="cate2No" value="4"/>과학
-		<input type="checkbox" name="cate2No" value="5"/>논술
-		<input type="checkbox" name="cate2No" value="6"/>독서
-		<input type="checkbox" name="cate2No" value="7"/>입시컨설팅
-		<input type="checkbox" name="cate2No" value="8"/>기타<br>
+		<input type="checkbox" name="cate2No" value="1" ${cate2Chk[1]?'checked':''}/>국어
+		<input type="checkbox" name="cate2No" value="2" ${cate2Chk[2]?'checked':''}/>영어
+		<input type="checkbox" name="cate2No" value="3" ${cate2Chk[3]?'checked':''}/>수학
+		<input type="checkbox" name="cate2No" value="4" ${cate2Chk[4]?'checked':''}/>과학
+		<input type="checkbox" name="cate2No" value="5" ${cate2Chk[5]?'checked':''}/>논술
+		<input type="checkbox" name="cate2No" value="6" ${cate2Chk[6]?'checked':''}/>독서
+		<input type="checkbox" name="cate2No" value="7" ${cate2Chk[7]?'checked':''}/>입시컨설팅
+		<input type="checkbox" name="cate2No" value="8" ${cate2Chk[8]?'checked':''}/>기타<br>
 		<input type="submit" value="회원가입">
 </form>
 </section>
