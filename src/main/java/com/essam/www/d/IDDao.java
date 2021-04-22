@@ -15,4 +15,6 @@ public interface IDDao {
 
 	void deleteInterCate(@Param("mbId") String mbId, @Param ("tablenm")String tablenm);
 
+	int[] getinterCate(@Param("mbId") String mbId, @Param("tablenm")String tablenm);
+
 }

@@ -27,5 +27,16 @@
 	<delete id="deleteInterCate">
 		DELETE FROM ${tablenm} WHERE MBID=#{mbId}
 	</delete>
+	
+	<select id="getinterCate" resultType="int">
+		SELECT 
+		<if test='tablenm.equals("INTER_CATE1")'>
+		cate1No
+		</if>
+		<if test='tablenm.equals("INTER_CATE2")'>
+		cate2No
+		</if>
+		FROM ${tablenm} WHERE MBID=#{mbId}
+	</select>
 
 </mapper>

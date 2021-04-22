@@ -17,10 +17,18 @@ public class DMM {
 	private IDDao DDao;
 	
 	//계정관리 이동하기+회원정보 가져오기
-	public ModelAndView goMypage(String mbId) {
+	public ModelAndView goMypage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		MemberBean mb = DDao.getMemberInfo(mbId);
-		mav.setViewName(mbId);
+		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
+		MemberBean mb = DDao.getMemberInfo(loginData.getMbId());
+		
+		int[] cate1 = DDao.getinterCate(loginData.getMbId(), "INTER_CATE1");
+		int[] cate2 = DDao.getinterCate(loginData.getMbId(), "INTER_CATE2");
+		mb.setCate1No(cate1);
+		mb.setCate2No(cate2);
+		mav.setViewName("member/mypage");
+		mav.addObject("myInfo",mb);
+		
 		return mav;
 	}	
 //	회원정보 수정 실행
