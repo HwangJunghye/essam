@@ -38,7 +38,14 @@ public class BController {
 	 */
 	@RequestMapping(value = "/class/boardlist")
 	ModelAndView boardList(String clsNo, Integer clsBrdType, Integer pageNum) throws CommonException{
-		return bm.goBoardList(clsNo, clsBrdType, pageNum);		
+		return bm.goBoardList(clsNo, clsBrdType, pageNum);
+		
+		// ControllerAdvide 안쓰고 예외처리
+		// try {
+		// 	 bm.goBoardList(clsNo, clsBrdType, pageNum);
+		// } catch(CommonException err){
+		// 		예외가 발생한 경우
+		// }
 	}
 	/**
 	 * 게시판 글쓰기/수정
