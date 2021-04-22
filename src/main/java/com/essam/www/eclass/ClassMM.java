@@ -45,7 +45,8 @@ public class ClassMM {
 		StudentBean attendInfo = new StudentBean();
 		attendInfo = cDao.getStudentInfo(mbId);
 		// 가져온 정보를 mav에 넣기
-		mav.addObject("attendInfo",attendInfo);	
+		mav.addObject("attendInfo",attendInfo);
+		mav.addObject("navtext", "마이 클래스> 출석현황");
 		//class_attend.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("class/class_attend"); // .jsp
 		return mav;
@@ -57,7 +58,8 @@ public class ClassMM {
 		List<StudentBean> sList = null;
 		sList = cDao.getStudentList(clsNo);
 		// 가져온 정보를 mav에 넣기
-		mav.addObject("sList",sList);	
+		mav.addObject("sList",sList);
+		mav.addObject("navtext", "클래스 관리> 마이 클래스> 학생");
 		// class_studentinfo.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("class/class_studentinfo"); // .jsp
 		return mav;
@@ -69,7 +71,8 @@ public class ClassMM {
 		StudentBean mInfo = new StudentBean();
 		mInfo = cDao.getStudentInfo(mbId);
 		// 가져온 정보를 mav에 넣기
-		mav.addObject("mInfo",mInfo);	
+		mav.addObject("mInfo",mInfo);
+		mav.addObject("navtext", "클래스 관리> 마이 클래스> 학생");
 		// class_studentinfo_read.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("class/class_studentinfo_read"); // .jsp
 		return mav;
@@ -82,6 +85,9 @@ public class ClassMM {
 		if(clsNo!=null) {
 			clsInfo = cDao.getMyClassList(clsNo);
 			mav.addObject("clsInfo",clsInfo);
+			mav.addObject("navtext", "클래스 관리> 마이 클래스> 클래스 수정");
+		}else {
+		mav.addObject("navtext", "클래스 관리> 클래스 개설");
 		}
 		mav.setViewName("class/class_write"); // .jsp
 		return mav;

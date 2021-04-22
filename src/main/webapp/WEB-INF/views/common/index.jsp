@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>e-쌤 메인화면</title>
+<title>e-쌤:::메인:::</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
 <body>
@@ -49,6 +49,5 @@
 </section>
 
 <%@ include file="../common/footer.jsp" %>
-
 </body>
 </html>

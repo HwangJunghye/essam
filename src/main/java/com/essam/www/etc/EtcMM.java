@@ -21,6 +21,7 @@ public class EtcMM {
 		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
 		int mbType=loginData.getMbType();
 		if(mbType==3){ //관리자라면
+			mav.addObject("navtext", "관리자 모드> 통계관리");
 			mav.setViewName("etc/admin"); // .jsp
 		}else { //관리자가 아니라면 index.jsp로
 			mav.setViewName("redirect:/"); // .jsp

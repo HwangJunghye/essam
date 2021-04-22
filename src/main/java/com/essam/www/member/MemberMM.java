@@ -120,7 +120,8 @@ public class MemberMM {
 			clsInfo = mDao.getMyClassList(mbId,mbType);
 		}
 		// 가져온 정보를 mav에 넣기
-		mav.addObject("clsInfo",clsInfo);	
+		mav.addObject("clsInfo",clsInfo);
+		mav.addObject("navtext", "클래스 관리> 마이 클래스");
 		// myclass_t.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("member/myclass_t"); // .jsp
 		return mav;
@@ -141,6 +142,7 @@ public class MemberMM {
 		}
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("clsInfo",clsInfo);
+		mav.addObject("navtext", "마이 클래스");
 		// myclass_s.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("member/myclass_s"); // .jsp
 		return mav;

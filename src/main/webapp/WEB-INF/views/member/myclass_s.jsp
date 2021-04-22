@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이 클래스</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
 <body>
@@ -18,7 +18,5 @@
 	
 </section>
 <%@ include file="../common/footer.jsp" %>
-
-
 </body>
 </html>
