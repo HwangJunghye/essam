@@ -15,7 +15,7 @@ public interface IMemberDao {
 
 	boolean checkEmail(String mbId);
 
-	List<ClassBean> getMyClassList(String mbId);
+	List<ClassBean> getMyClassList(@Param("mbid") String mbId, @Param("mbtype") int mbType);
 
 	void putInterCate (@Param("cateno") int cateno, @Param("tablenm") String tablenm, @Param("mbid") String mbid);
 	
