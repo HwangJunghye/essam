@@ -12,7 +12,11 @@
 <%@ include file="../common/nav.jsp" %>
 <section>
 	<h1>teacher_profile.jsp</h1>
-	<c:if test="${!empty teacherInfo}">
+	<c:if test="${teacherInfo.fileNo==null && teacherInfo.teacherIntro==null && teacherInfo.teacherDetail==null}">
+		등록된 프로필 정보가 없습니다.
+		<a href="${ctxPath}/teacher_profile/write">등록</a>
+	</c:if>
+	<c:if test="${teacherInfo.fileNo!=null || teacherInfo.teacherIntro!=null || teacherInfo.teacherDetail!=null}">
 		강사닉네임 : ${teacherInfo.mbNickName}<br/>
 		강사프로필이미지 : ${teacherInfo.fileNo}<br/>
 		강사등급 : ${teacherInfo.teacherGrade}<br/>
@@ -20,10 +24,6 @@
 		상세 소개 : ${teacherInfo.teacherDetail}<br/>
 		<a href="${ctxPath}/teacher_profile/write">수정</a>
 		<a href="${ctxPath}/teacher_profile/delete">삭제</a>
-	</c:if>
-	<c:if test="${empty teacherInfo}">
-		${msg}
-		<a href="${ctxPath}/teacher_profile/write">등록</a>
 	</c:if>
 </section>
 <%@ include file="../common/footer.jsp" %>

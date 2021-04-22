@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.essam.www.bean.MemberBean;
+import com.essam.www.exception.CommonException;
 
 @Controller
 public class CController {
@@ -22,7 +23,7 @@ public class CController {
 	 * @return ModelAndView
 	 */
 	@RequestMapping(value = "/teacher_profile")
-	ModelAndView goTeacherProfile(HttpSession session, RedirectAttributes rattr) {
+	ModelAndView goTeacherProfile(HttpSession session, RedirectAttributes rattr) throws CommonException {
 		ModelAndView mav = mm.getTeacherProfile(session, rattr);
 		return mav; 
 	}

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.TeacherBean;
+import com.essam.www.exception.CommonException;
 
 @Service
 public class CMM {
@@ -24,7 +25,7 @@ public class CMM {
 	 * @param session
 	 * @return ModelAndView
 	 */
-	public ModelAndView getTeacherProfile(HttpSession session, RedirectAttributes rattr) {
+	public ModelAndView getTeacherProfile(HttpSession session, RedirectAttributes rattr) throws CommonException {
 		ModelAndView mav = new ModelAndView();
 		TeacherBean teacherInfo = null;
 		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
@@ -43,9 +44,10 @@ public class CMM {
 				mav.setViewName("member/teacher_profile"); //강사프로필 페이지로
 				return mav;
 			}else { //강사프로필 정보가 없다면
-				mav.setViewName("member/teacher_profile"); //강사프로필 페이지로
-				mav.addObject("msg", "등록된 강사프로필 정보가 없습니다");
+				//mav.setViewName("member/teacher_profile"); //강사프로필 페이지로
+				//mav.addObject("msg", "등록된 강사프로필 정보가 없습니다");
 				//rattr.addFlashAttribute("fMsg", "등록된 강사프로필 정보가 없습니다");
+				throw new CommonException("teacher 테이블 teacherGrade 예외발생");
 			}
 		}
 		return mav;
