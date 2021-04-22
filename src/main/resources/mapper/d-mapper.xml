@@ -38,5 +38,15 @@
 		</if>
 		FROM ${tablenm} WHERE MBID=#{mbId}
 	</select>
+	
+	<select id="getReplyList" resultType="replybean">
+		SELECT R.*,M.MBNICKNAME,F.ORIGFILENAME
+		FROM cls_brd_rep R
+		LEFT OUTER JOIN MEMBER M
+		ON R.MBID=M.MBID
+		LEFT OUTER JOIN TB_FILE F
+		ON R.FILENO=F.FILENO
+		WHERE R.CLSBRDNO=#{clsBrdNo}
+	</select>
 
 </mapper>
