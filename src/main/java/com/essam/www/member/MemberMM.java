@@ -113,11 +113,11 @@ public class MemberMM {
 		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
 		// 세션에서 mbId,mbType을 가져옴
 		String mbId= loginData.getMbId();
-		String mbType=loginData.getMbType()+"";
+		int mbType=loginData.getMbType();
 		// 강사회원(mbType==2)인지 확인하기
-		if(mbType.equals("2")){ //회원타입이 강사라면
+		if(mbType==2){ //회원타입이 강사라면
 			//getMyClassList()에 mbId, mbType을 넘겨 클래스목록 가져오기 dao에 요청
-			clsInfo = mDao.getMyClassList(mbId);
+			clsInfo = mDao.getMyClassList(mbId,mbType);
 		}
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("clsInfo",clsInfo);	
@@ -133,11 +133,11 @@ public class MemberMM {
 		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
 		// 세션에서 mbId,mbType을 가져옴
 		String mbId= loginData.getMbId();
-		String mbType=loginData.getMbType()+"";
+		int mbType=loginData.getMbType();
 		// 학생회원(mbType==1)인지 확인하기
-		if(mbType.equals("1")){ //회원타입이 학생이라면
+		if(mbType==1){ //회원타입이 학생이라면
 			//getMyClassList()에 mbId, mbType을 넘겨 클래스목록 가져오기 dao에 요청
-			clsInfo = mDao.getMyClassList(mbId);
+			clsInfo = mDao.getMyClassList(mbId, mbType);
 		}
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("clsInfo",clsInfo);

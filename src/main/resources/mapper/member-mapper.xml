@@ -45,6 +45,7 @@
 	</select>
 	
 	<select id="getMyClassList" resultType="classbean">
-		SELECT * FROM CLASS WHERE MBID=#{mbId}
+		SELECT * FROM V_CLASSBEAN WHERE MBID=#{mbId}
+		
 	</select>
 </mapper>
