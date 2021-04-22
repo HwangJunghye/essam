@@ -1,9 +1,30 @@
 @charset "UTF-8";
 
 /* footer */
+footer {
+	width: 1440px;
+	height: 60px;
+	background: #8DBDC4;
+}
 
-header {
-width: 1440px;
-height: 60px;
-background: #8DBDC4;
+#textArea1 {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 16px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	color: #4F4F4F;
+}
+
+#textArea2 {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 14px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	color: #4F4F4F;
 }
