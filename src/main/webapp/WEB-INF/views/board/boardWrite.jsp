@@ -18,17 +18,16 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
+<%@ include file="../common/nav.jsp"%>
 <section>
 
 <center>
 <h3>클래스명 : ${clsName}</h3>
 <h3><c:if test="${empty boardData}">글쓰기</c:if><c:if test="${!empty boardData}">글수정</c:if></h3>
 <form action="class/boardwrite" id="frm" method="post" enctype="multipart/form-data">
-<c:if test="${!empty boardData}">
-	<input type="hidden" name="clsBrdNo" value="${boardData.clsBrdNo}">
-	<input type="hidden" name="clsNo" value="${boardData.clsNo}">
-	<input type="hidden" name="clsBrdType" value="${boardData.clsBrdType}">
-</c:if>
+<input type="hidden" name="clsBrdNo" value="${clsBrdNo}">
+<input type="hidden" name="clsBrdType" value="${clsBrdType}">
+<input type="hidden" name="clsNo" value="${boardData.clsNo}">
 <table>
 <tr>
 	<th>제목</th>

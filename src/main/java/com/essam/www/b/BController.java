@@ -66,8 +66,6 @@ public class BController {
 	 */
 	@RequestMapping(value = "/class/boardwrite")
 	ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
-		MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
-		String mbId= loginData.getMbId();
 		return bm.boardWrite(board, mReq, request, rattr);		
 	}
 	/**

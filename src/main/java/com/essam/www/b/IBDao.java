@@ -33,4 +33,10 @@ public interface IBDao {
 
 	String getClassName(String clsNo);
 
+	boolean boardUpdate(BoardBean board);
+
+	String boardInsert(BoardBean board);
+
+	boolean brdFileInsert(String clsBrdNo, String fileNo);
+
 }
