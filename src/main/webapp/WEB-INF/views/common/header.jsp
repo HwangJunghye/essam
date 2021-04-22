@@ -8,6 +8,17 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 예) 인덱스 페이지 -> ${ctxPath}/
 --%>
 <c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
+<c:if test="${!empty sessionScope.loginData}">
+	<c:if test="${sessionScope.loginData.mbType==2}">
+		<c:set var="mbColor" value="t_color"/>
+	</c:if>
+	<c:if test="${sessionScope.loginData.mbType!=2}">
+		<c:set var="mbColor" value="s_color"/>
+	</c:if>
+</c:if>
+<c:if test="${empty sessionScope.loginData}">
+	<c:set var="mbColor" value="s_color"/>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
