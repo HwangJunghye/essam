@@ -11,11 +11,13 @@
 </style>
 <body>
 	<footer>
+	<div id="footerTextArea">
 		<div id="footerTextArea1">
 			e-Ssam<br/>
 		</div>
 		<div id="footerTextArea2">
 		©Team.JEAMIRO. ALL RIGHTS RESERVED
+		</div>
 		</div>
 	</footer>
 </body>
