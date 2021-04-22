@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.TeacherBean;
+import com.essam.www.eclass.Paging;
 import com.essam.www.exception.CommonException;
 import com.essam.www.file.FileMM;
 
@@ -69,7 +70,7 @@ public class BMM {
 		return mav;
 	}
 
-	public ModelAndView goBoardList(String clsNo, int clsBrdType, Integer pageNum) throws CommonException {
+	public ModelAndView goBoardList(String clsNo, Integer clsBrdType, Integer pageNum) throws CommonException {
 		mav = new ModelAndView();
 		pageNum = (pageNum==null)? 1 : pageNum;
 		
@@ -77,23 +78,40 @@ public class BMM {
 			throw new CommonException("잘못된 페이지번호 입니다.");
 		}
 		//게시판 목록 가져오기
-		ArrayList<BoardBean> bList = bDao.getBoardList(clsNo, clsBrdType);	
-		//각 게시글의 첨부파일 갯수 가져와 bean에 저장
-		for(BoardBean board : bList) {
-			board.setClsBrdfileCnt(bDao.getBoardFiles(board.getClsBrdNo()));
+		ArrayList<BoardBean> bList = bDao.getBoardList(clsNo, clsBrdType, pageNum);	
+		System.out.println("bList.size = "+ bList.size());
+		
+		if(bList != null && bList.size() != 0) {
+			//각 게시글의 첨부파일 갯수 가져와 bean에 저장
+			for(BoardBean board : bList) {
+				board.setClsBrdfileCnt(bDao.getBoardFiles(board.getClsBrdNo()));
+			}
 		}
 		//mav에 게시판 목록 정보 저장
 		mav.addObject("bList", bList);
+		//mav에 페이징 정보 저장
+		mav.addObject("paging", getPaging(clsNo, clsBrdType, pageNum));
 		//mav에 클래스넘버 추가
 		mav.addObject("clsNo", clsNo);
 		//mav에 게시판 타입 추가
 		mav.addObject("clsBrdType", clsBrdType);
 		//view 페이지 설정
-		mav.setViewName("board/boardList");
+		mav.setViewName("board/boardList");	
+		
 		return mav;
 	}
 
-	public ModelAndView goBoardWrite(String clsNo, int clsBrdType, String clsBrdNo, String mbId, RedirectAttributes rattr) {
+	private String getPaging(String clsNo, Integer clsBrdType, Integer pageNum) {
+		//전체 글 갯수 가져오기
+		int maxNum = bDao.getBoardCount(clsNo, clsBrdType);
+		int listCount = 10; //페이지당 나타낼 글의 갯수
+		int pageCount = 2;	//페이지그룹당 페이지 갯수
+		
+		Paging paging = new Paging(maxNum, pageNum, listCount, pageCount, clsNo, clsBrdType);
+		return paging.makeHtmlPaging();
+	}
+	
+	public ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, String mbId, RedirectAttributes rattr) {
 		mav = new ModelAndView();
 		//게시물 수정인 경우
 		if(clsBrdNo != null) {

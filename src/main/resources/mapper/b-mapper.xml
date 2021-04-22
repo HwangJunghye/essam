@@ -34,7 +34,10 @@
 		VALUES (STUDENT_SEQ.NEXTVAL, #{clsNo}, #{mbId}, DEFALUT)
 	</insert>
 	<select id="getBoardList" resultType="boardbean">
-		SELECT
+	<![CDATA[
+      SELECT * FROM (
+        SELECT
+		  /*+INDEX_DESC(C PK_CLS_BRD)*/ ROWNUM RN, 
 		  C.*,
 		  NVL(V.clsBrdViewS, 0) clsBrdView,
           mbNickName
@@ -43,7 +46,12 @@
 		  LEFT OUTER JOIN (SELECT CLSBRDNO, COUNT(*) clsBrdViewS FROM CLS_BRD_VIEW GROUP BY CLSBRDNO) V
 		  		ON C.CLSBRDNO = V.CLSBRDNO
           JOIN MEMBER M ON C.MBID=M.MBID
-		WHERE C.clsNo=#{clsNo} AND C.clsBrdType=#{clsBrdType}
+		WHERE C.clsNo=#{clsNo} AND C.clsBrdType=#{clsBrdType} AND ROWNUM<=#{pageNum}*10)
+	  WHERE RN>=#{pageNum}*10-9
+	]]>
+	</select>
+	<select id="getBoardCount" resultType="int">
+		SELECT COUNT(*) FROM CLS_BRD WHERE clsNo=#{clsNo} AND clsBrdType=#{clsBrdType}
 	</select>
 	<select id="getBoardFiles" resultType="int">
 		SELECT COUNT(*) FROM BRD_FILE WHERE clsBrdNo=#{clsBrdNo}	

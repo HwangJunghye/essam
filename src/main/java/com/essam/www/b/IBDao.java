@@ -20,10 +20,12 @@ public interface IBDao {
 
 	boolean classJoin(String clsNo, String mbId);
 
-	ArrayList<BoardBean> getBoardList(@Param("clsNo") String clsNo, @Param("clsBrdType") int clsBrdType);
+	ArrayList<BoardBean> getBoardList(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType, @Param("pageNum") Integer pageNum);
 
 	int getBoardFiles(String clsBrdNo);
 
 	BoardBean getBoardRead(String clsBrdNo);
+
+	int getBoardCount(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType);
 
 }
