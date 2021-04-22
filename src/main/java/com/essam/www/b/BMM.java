@@ -84,7 +84,7 @@ public class BMM {
 		if(bList != null && bList.size() != 0) {
 			//각 게시글의 첨부파일 갯수 가져와 bean에 저장
 			for(BoardBean board : bList) {
-				board.setClsBrdfileCnt(bDao.getBoardFiles(board.getClsBrdNo()));
+				board.setClsBrdfileCnt(bDao.getBoardFileCnt(board.getClsBrdNo()));
 			}
 		}
 		//mav에 게시판 목록 정보 저장
@@ -117,6 +117,10 @@ public class BMM {
 		if(clsBrdNo != null) {
 			//게시물 정보 가져와 bean에 담기
 			BoardBean board = bDao.getBoardRead(clsBrdNo);	
+			//첨부파일 정보 가져와 bean에 저장
+			if(board != null)
+				board.setFiles(bDao.getBoardFiles(clsBrdNo));
+			
 			mav.addObject("boardData", board);
 		}
 		//mav에 클래스넘버 추가

@@ -55,17 +55,11 @@
 ${paging}
 </center>
 
-<!-- 모달(Modal) 박스 -->
-<div id="articleView_layer">
-	<div id="bg_layer"></div>
-	<div id="contents_layer"></div>
-</div>
-
-<form action="testmap">
+<!-- <form action="testmap">
 	컬럼명 : <input type="text" name="cName"><br>
 	검색 : <input type="text" name="search"><br>
 	<button>enter</button>
-</form>
+</form> -->
 
 </section>
 <%@ include file="../common/footer.jsp" %>

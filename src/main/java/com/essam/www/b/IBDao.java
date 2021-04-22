@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
+import com.essam.www.bean.FileBean;
 
 public interface IBDao {
 
@@ -22,10 +23,12 @@ public interface IBDao {
 
 	ArrayList<BoardBean> getBoardList(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType, @Param("pageNum") Integer pageNum);
 
-	int getBoardFiles(String clsBrdNo);
+	int getBoardFileCnt(String clsBrdNo);
 
 	BoardBean getBoardRead(String clsBrdNo);
 
 	int getBoardCount(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType);
+
+	List<FileBean> getBoardFiles(String clsBrdNo);
 
 }

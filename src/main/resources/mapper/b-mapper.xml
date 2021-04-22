@@ -53,11 +53,21 @@
 	<select id="getBoardCount" resultType="int">
 		SELECT COUNT(*) FROM CLS_BRD WHERE clsNo=#{clsNo} AND clsBrdType=#{clsBrdType}
 	</select>
-	<select id="getBoardFiles" resultType="int">
+	<select id="getBoardFileCnt" resultType="int">
 		SELECT COUNT(*) FROM BRD_FILE WHERE clsBrdNo=#{clsBrdNo}	
 	</select>
 	<select id="getBoardRead" resultType="boardbean">
-		SELECT mbNickName, C.* FROM CLS_BRD C 
-		JOIN MEMBER M ON C.MBID=M.MBID WHERE clsBrdNo=#{clsBrdNo}
+		SELECT 
+		  mbNickName,
+		  C.*,
+		  NVL(V.clsBrdViewS, 0) clsBrdView
+		FROM CLS_BRD C 
+		  LEFT OUTER JOIN (SELECT CLSBRDNO, COUNT(*) clsBrdViewS FROM CLS_BRD_VIEW GROUP BY CLSBRDNO) V
+		  		ON C.CLSBRDNO = V.CLSBRDNO
+		  JOIN MEMBER M ON C.MBID=M.MBID 
+		WHERE C.clsBrdNo=#{clsBrdNo} AND ROWNUM=1
+	</select>
+	<select id="getBoardFiles" resultType="filebean">
+		SELECT * FROM BRD_FILE WHERE clsBrdNo=#{clsBrdNo}
 	</select>
 </mapper>
