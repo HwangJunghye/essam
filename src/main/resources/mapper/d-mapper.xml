@@ -9,9 +9,8 @@
 		SELECT * FROM MEMBER WHERE MBID=#{mbId}
 	</select>
 	
-	<update id="memberUpdate">
-		UPDATE MEMBER SET mbPwd, mbNickname, mbTel, mbAddr, mbBirth, mbGender, cate1No, cate2No
-		 = mbPwd, mbNickname, mbTel, mbAddr, mbBirth, mbGender, cate1No, cate2No WHERE IS NOT NULL
-	</update>
+	<delete id="memberUpdate">
+		DELETE FROM inter_cate1 WHERE mbId=#{mbId}	
+	</delete>
 
 </mapper>
