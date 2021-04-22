@@ -86,6 +86,7 @@ public class ClassMM {
 			clsInfo = cDao.getMyClassList(clsNo);
 			mav.addObject("clsInfo",clsInfo);
 			mav.addObject("navtext", "클래스 관리> 마이 클래스> 클래스 수정");
+			
 		}else {
 		mav.addObject("navtext", "클래스 관리> 클래스 개설");
 		}
