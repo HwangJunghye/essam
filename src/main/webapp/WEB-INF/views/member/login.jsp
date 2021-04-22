@@ -8,6 +8,7 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
+<%@ include file="../common/nav.jsp" %>
 
 <section>
 <h1>로그인 페이지 ${fMsg}</h1>

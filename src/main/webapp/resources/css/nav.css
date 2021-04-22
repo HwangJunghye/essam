@@ -12,8 +12,12 @@
 	font-size: 40px;
 	color: #FFFFFF;
 }
-
-/* 강사 */
+.t_color{
+	/* 강사 */
 background: #9E3C7E;
+}
+
+.s_color{
 /* 학생 */
 background: #3566A2;
+}

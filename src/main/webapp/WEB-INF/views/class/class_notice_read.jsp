@@ -9,6 +9,7 @@
 <body>
 
 <%@ include file="../common/header.jsp" %>
+<%@ include file="../common/nav.jsp" %>
 <section>
 <h1>class_notice_read.jsp</h1>
 	

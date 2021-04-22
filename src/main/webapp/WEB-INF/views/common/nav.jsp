@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/nav.css">
 <body>
 
-<nav class="${sessionScope.loginData.mbType==2?'강사':'강사아님'}">
+<nav class="${mbColor}">
 ${navtext}
 </nav>
 

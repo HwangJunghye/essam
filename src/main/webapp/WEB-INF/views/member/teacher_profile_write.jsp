@@ -9,6 +9,7 @@
 <body>
 
 <%@ include file="../common/header.jsp" %>
+<%@ include file="../common/nav.jsp" %>
 <section>
 <h1>teacher_profile_write.jsp</h1>
 	

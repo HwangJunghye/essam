@@ -8,6 +8,7 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
+<%@ include file="../common/nav.jsp" %>
 <section>
 	<h1>teacher_profile.jsp</h1>
 	강사닉네임 : ${teacherInfo.mbNickName}<br/>

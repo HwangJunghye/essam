@@ -8,6 +8,7 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
+<%@ include file="../common/nav.jsp" %>
 <section>
 
 	<h1>클래스 소개</h1>

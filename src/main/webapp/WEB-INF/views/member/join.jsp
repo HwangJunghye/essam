@@ -9,6 +9,7 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
+<%@ include file="../common/nav.jsp" %>
 	<section>
 <h1>회원가입 페이지 ${fMsg}</h1>
 <!--  get : 크기제한 있음. url?param1=aaa&param2=bbb -->
