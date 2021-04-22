@@ -23,5 +23,9 @@
 		#{mbGender}) WHERE
 		MBID=#{mbId}
 	</update>
+	
+	<delete id="deleteInterCate">
+		DELETE FROM ${tablenm} WHERE MBID=#{mbId}
+	</delete>
 
 </mapper>
