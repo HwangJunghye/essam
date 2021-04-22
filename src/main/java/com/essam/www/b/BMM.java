@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.TeacherBean;
+import com.essam.www.exception.CommonException;
 import com.essam.www.file.FileMM;
 
 @Service
@@ -68,8 +69,13 @@ public class BMM {
 		return mav;
 	}
 
-	public ModelAndView goBoardList(String clsNo, int clsBrdType) {
+	public ModelAndView goBoardList(String clsNo, int clsBrdType, Integer pageNum) {
 		mav = new ModelAndView();
+		pageNum = (pageNum==null)? 1 : pageNum;
+		
+		if(pageNum<=0) {
+			throw new CommonException("잘못된 페이지번호 입니다.");
+		}
 		//게시판 목록 가져오기
 		ArrayList<BoardBean> bList = bDao.getBoardList(clsNo, clsBrdType);	
 		//각 게시글의 첨부파일 갯수 가져와 bean에 저장

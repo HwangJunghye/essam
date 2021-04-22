@@ -36,8 +36,8 @@ public class BController {
 	 * 게시판 리스트
 	 */
 	@RequestMapping(value = "/class/boardlist")
-	ModelAndView boardList(String clsNo, int clsBrdType) {
-		return bm.goBoardList(clsNo, clsBrdType);		
+	ModelAndView boardList(String clsNo, int clsBrdType, Integer pageNum) {
+		return bm.goBoardList(clsNo, clsBrdType, pageNum);		
 	}
 	/**
 	 * 게시판 글쓰기/수정
