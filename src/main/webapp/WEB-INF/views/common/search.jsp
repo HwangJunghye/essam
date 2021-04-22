@@ -7,16 +7,7 @@
 <meta charset="UTF-8">
 <title>검색 페이지</title>
 <style type="text/css">
-#searchnav {
-	height: 75px;
-	background-color: #3566A2;
-	line-height: 75px;
-	font-family: Comfortaa;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 40px;
-	color: #FFFFFF;
-}
+
 </style>
 </head>
 <body>

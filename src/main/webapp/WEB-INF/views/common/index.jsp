@@ -11,6 +11,7 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
+<%@ include file="../common/nav.jsp" %>
 <section>
 	인덱스 페이지(/)<br/>
 	${msg}<br>
