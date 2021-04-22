@@ -6,10 +6,6 @@ footer{
 	width: 100%;
 	height: 60px;
 	background: #8DBDC4;
-}
-footerTextArea{
-	width: 100%;
-	height: 60px;
 	position:absolute;
     font-style: normal;
 	font-weight: normal;
@@ -17,6 +13,10 @@ footerTextArea{
 	align-items: center;
 	text-align: center;
 	color: #4F4F4F;
+}
+footerTextArea{
+	width: 100%;
+	height: 60px;
 }
 
 #footerTextArea1 {
