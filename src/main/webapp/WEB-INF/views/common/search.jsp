@@ -45,8 +45,10 @@
 				let windowHeight = $window.height();
 				let documentHeight = $(document).height();
 
-				if (scrollTop + windowHeight + 30 > documentHeight) {
-					getSearchList();
+				if (searchFlag) {
+					if (scrollTop + windowHeight + 30 > documentHeight) {
+						getSearchList();
+					}
 				}
 			}); // scroll End
 		}); // ready End
@@ -75,6 +77,7 @@
 					function(data) {
 						if (data.pageSize < 20) { // 검색결과가 20보다 작다면 다음 페이지 정보는 존재하지 않음
 							searchFlag = false;
+							console.log(searchFlag);
 						}
 						let word = '카테고리1 : ' + cate1No + '<br>' + '카테고리2 : '
 								+ cate2No + '<br>' + '키워드 : ' + keyword
@@ -83,7 +86,7 @@
 
 						$('#searchresult').append(
 								$('<div>').addClass('classinfo').append(word));
-						console.log(data.cList);
+						console.log(data);
 					}); // ajax End
 		} // getSearchList End
 	</script>
