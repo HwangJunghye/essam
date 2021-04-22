@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.bean.ClassBean;
+import com.essam.www.bean.MemberBean;
 
 @Service
 public class EtcMM {
@@ -17,10 +18,12 @@ public class EtcMM {
 	public ModelAndView goAdmin(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		// 세션에서 mbType을 가져옴 --> 관리자 회원(mbType==3)인지 확인하기
-		if(session.getAttribute("mbType").toString().equals("3")){ //관리자라면
+		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
+		int mbType=loginData.getMbType();
+		if(mbType==3){ //관리자라면
 			mav.setViewName("etc/admin"); // .jsp
 		}else { //관리자가 아니라면 index.jsp로
-			mav.setViewName("./"); // .jsp
+			mav.setViewName("redirect:/"); // .jsp
 		}
 		return mav;
 	}
