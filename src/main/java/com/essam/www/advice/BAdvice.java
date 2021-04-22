@@ -12,7 +12,7 @@ public class BAdvice {
 	@ExceptionHandler(CommonException.class)
 	public String except(CommonException ex, RedirectAttributes attr) {
 		attr.addFlashAttribute("fMsg", ex.getMessage());
-		return "redirect:/class/boardlist";
+		return "redirect:/";
 	}
 }
 	
