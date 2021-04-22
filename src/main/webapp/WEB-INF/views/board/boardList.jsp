@@ -22,9 +22,9 @@
 <span style="color:red">${msg}</span>
 
 <c:if test="${sessionScope.loginData.mbType==2}">
-	<button type="button" onclick="location.href='${ctxPath}/class/boardWrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}';">글쓰기</button>
+	<button type="button" onclick="location.href='${ctxPath}/class/goboardwrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}';">글쓰기</button>
 </c:if>
-<h3>${clsName}</h3>
+<h3>클래스명 : ${clsName}</h3>
 <table class="tbl" width=600>
 <tr height=30>
 	<th>번호</th>

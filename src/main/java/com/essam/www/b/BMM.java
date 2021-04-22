@@ -3,10 +3,12 @@ package com.essam.www.b;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,19 +45,26 @@ public class BMM {
 	public ModelAndView goClassInfo(String clsNo) {
 		mav = new ModelAndView();
 		
-		//클래스 정보 가져와 mav에 담기
-		ClassBean cb = bDao.getClassInfo(clsNo);
-		//클래스 수강신청인원 가져와 cb에 담기
-		cb.setClsRegiCnt(bDao.getClassRegiCnt(clsNo));
-		mav.addObject("classInfo", cb);
-		
-		//강사 정보 가져와 mav에 담기 (MemberMM)
-		//TeacherBean tb = bDao.getTeacherProfile(cb.getMbId());
-		//mav.addObject("teacherProfile", tb);
-		
-		//커리큘럼 정보 가져와 mav에 담기
-		
-		mav.setViewName("class/classinfo_main");
+		if(clsNo == null) {
+			mav.setViewName("redirect:/");			
+		} else {
+			//클래스 정보 가져와 mav에 담기
+			ClassBean cb = bDao.getClassInfo(clsNo);
+			
+			if(cb != null) {
+				//클래스 수강신청인원 가져와 cb에 담기
+				cb.setClsRegiCnt(bDao.getClassRegiCnt(clsNo));
+			}
+			mav.addObject("classInfo", cb);
+			
+			//강사 정보 가져와 mav에 담기 (MemberMM)
+			//TeacherBean tb = bDao.getTeacherProfile(cb.getMbId());
+			//mav.addObject("teacherProfile", tb);
+			
+			//커리큘럼 정보 가져와 mav에 담기
+			
+			mav.setViewName("class/classinfo_main");			
+		}
 		return mav;
 	}
 
@@ -116,7 +125,7 @@ public class BMM {
 		return paging.makeHtmlPaging();
 	}
 	
-	public ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, String mbId, RedirectAttributes rattr) {
+	public ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo) {
 		mav = new ModelAndView();
 		//게시물 수정인 경우
 		if(clsBrdNo != null) {
@@ -134,9 +143,33 @@ public class BMM {
 		mav.addObject("clsBrdType", clsBrdType);
 		//mav에 네비타이틀 추가
 		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[clsBrdType]);
+		//mav에 클래스명 추가
+		mav.addObject("clsName", bDao.getClassName(clsNo));
 		//view 페이지 설정
 		mav.setViewName("board/boardWrite");
 		return mav;
 	}
+
+	public ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request,
+			RedirectAttributes rattr) {
+		mav = new ModelAndView();
+		//게시판 글 업데이트
+		
+		//파일 저장
+
+		rattr.addFlashAttribute("fMsg","글이 등록되었습니다.");
+		//mav에 클래스넘버 추가
+		mav.addObject("clsNo", board.getClsNo());
+		//mav에 게시판 타입 추가
+		mav.addObject("clsBrdType", board.getClsBrdType());
+		//mav에 네비타이틀 추가
+		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[board.getClsBrdType()]);
+		//mav에 클래스명 추가
+		mav.addObject("clsName", bDao.getClassName(board.getClsNo()));
+		//view 페이지 설정
+		mav.setViewName("board/boardList");
+		return mav;
+	}
+
 	
 }

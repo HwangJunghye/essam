@@ -5,17 +5,24 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.exception.CommonException;
+import com.essam.www.file.FileMM;
 
 @Controller
 public class BController {
 	@Autowired
 	private BMM bm;
+	@Autowired
+	private FileMM fm;
 	
 	/**
 	 * 클래스소개 이동
@@ -48,12 +55,27 @@ public class BController {
 		// }
 	}
 	/**
+	 * 게시판 글쓰기/수정 이동
+	 */
+	@RequestMapping(value = "/class/goboardwrite")
+	ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo) {
+		return bm.goBoardWrite(clsNo, clsBrdType, clsBrdNo);		
+	}
+	/**
 	 * 게시판 글쓰기/수정
 	 */
-	@RequestMapping(value = "/class/boardWrite")
-	ModelAndView boardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, HttpSession session, RedirectAttributes rattr) {
-		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
+	@RequestMapping(value = "/class/boardwrite")
+	ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
+		MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
 		String mbId= loginData.getMbId();
-		return bm.goBoardWrite(clsNo, clsBrdType, clsBrdNo, mbId, rattr);		
+		return bm.boardWrite(board, mReq, request, rattr);		
 	}
+	/**
+	 * 게시판 파일 삭제
+	 */
+	@RequestMapping(value = "/class/delbrdfile")
+	public @ResponseBody boolean delBrdFile(@RequestBody String fileNo, HttpServletRequest request, RedirectAttributes rattr) {
+		return fm.deleteFile(fileNo, request);	
+	}
+	
 }

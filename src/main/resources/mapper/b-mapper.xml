@@ -68,7 +68,9 @@
 		WHERE C.clsBrdNo=#{clsBrdNo} AND ROWNUM=1
 	</select>
 	<select id="getBoardFiles" resultType="filebean">
-		SELECT * FROM BRD_FILE WHERE clsBrdNo=#{clsBrdNo}
+		SELECT B.*, origFileName FROM BRD_FILE B
+		  LEFT OUTER JOIN TB_FILE T ON B.fileNo=T.fileNo 
+		WHERE B.clsBrdNo=#{clsBrdNo}
 	</select>
 	<select id="getClassName" resultType="string">
 		SELECT clsName FROM CLASS WHERE CLSNO=#{clsNo} AND ROWNUM=1
