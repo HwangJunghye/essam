@@ -65,7 +65,7 @@
 		</if>
 	</select>
 	
-	<insert id="putTeacher">
-		INSERT INTO TEACHER(MBID,TEACHERGRADE) VALUES(#{mbId},DEFAULT)
+	<insert id="putTeacher" parameterType="String">
+		INSERT INTO TEACHER(MBID,TEACHERGRADE) VALUES(#{mbId}, 0)
 	</insert>
 </mapper>
