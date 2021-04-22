@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>검색 페이지</title>
+<link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <style type="text/css">
 
 </style>

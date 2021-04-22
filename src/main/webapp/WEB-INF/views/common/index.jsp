@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>e-쌤 메인화면</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
 <body>
