@@ -15,6 +15,6 @@ public class BAdvice {
 	public String except(CommonException ex, RedirectAttributes attr) {
 		attr.addFlashAttribute("msg", ex.getMessage());
 		return "redirect: /class/boardlist";
-	}
+	} 
 }
 	
