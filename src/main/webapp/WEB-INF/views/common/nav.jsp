@@ -10,7 +10,9 @@
 <body>
 
 <nav class="${mbColor}">
-${navtext}
+	<div id="nav_title">
+		${navtext}
+	</div>
 </nav>
 
 </body>

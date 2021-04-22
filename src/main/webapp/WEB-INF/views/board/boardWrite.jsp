@@ -15,7 +15,21 @@
 <body>
 <%@ include file="../common/header.jsp" %>
 <section>
-
+<h3>글쓰기</h3>
+<table>
+<tr>
+	<th></th>
+	<td><input type="text" name="" id=""/></td>
+</tr>
+<tr>
+	<th></th>
+	<td><input type="text" name="" id=""/></td>
+</tr>
+<tr>
+	<th></th>
+	<td><input type="text" name="" id=""/></td>
+</tr>
+</table>
 </section>
 <%@ include file="../common/footer.jsp" %>
 </body>
