@@ -12,12 +12,12 @@
 <body>
 	<footer>
 	<div id="footerTextArea">
-		<div id="footerTextArea1">
-			e-Ssam<br/>
-		</div>
-		<div id="footerTextArea2">
+		<p id="footerTextArea1">
+			e-Ssam
+		</p>
+		<p id="footerTextArea2">
 		©Team.JEAMIRO. ALL RIGHTS RESERVED
-		</div>
+		</p>
 		</div>
 	</footer>
 </body>

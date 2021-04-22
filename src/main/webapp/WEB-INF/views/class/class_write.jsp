@@ -10,6 +10,13 @@
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
 <style>
+
+.clsTitle{
+font-weight: bold;
+font-size: 24px;
+line-height: 28px;
+}
+
 .line{
 width: 960px;
 height: 0px;
@@ -19,8 +26,6 @@ border: 2px solid #9E3C7E;
 .btn{
 width: 64px;
 height: 32px;
-left: 1069px;
-top: 769px;
 background: #9E3C7E;
 box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
 border-radius: 10px;
@@ -29,20 +34,17 @@ text-align: center;
 border: none;
 }
 
-
-
 </style>
 
 <body>
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 
-
 <section>
 <form action="class/classinfo/update" method="post">
 <!-- 클래스 정보 수정 페이지 -->
 <c:if test="${!empty clsInfo}">
-<h1>${clsInfo.clsName}</h1>
+<div class="clsTitle">${clsInfo.clsName}</div>
 <hr class="line">
 <br/>
 카테고리1:

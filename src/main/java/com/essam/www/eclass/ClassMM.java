@@ -44,6 +44,21 @@ public class ClassMM {
 		ModelAndView mav = new ModelAndView();
 		StudentBean attendInfo = new StudentBean();
 		attendInfo = cDao.getStudentInfo(mbId);
+		
+		//출석률 구하기 & 출석현황 메시지 가져오기.
+		int attendDay = attendInfo.getAttendDay();
+		int totalDay = attendInfo.getTotalDay();
+		int attendPercent = (attendDay/totalDay)*100;
+		mav.addObject("attendPercent",attendPercent);
+		
+		if(attendPercent<=80) {
+			mav.addObject("attendMsg","정말 최고예요! (>ㅁ<)b ");
+		}else if(attendPercent>=60 && attendPercent<80) {
+			mav.addObject("attendMsg","노력하고 있군요~ ('ㅁ') ");
+		}else if(attendPercent<60){
+			mav.addObject("attendMsg","조금 아쉽네요... (TㅅT) ");
+		}
+				
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("attendInfo",attendInfo);
 		mav.addObject("navtext", "마이 클래스> 출석현황");
