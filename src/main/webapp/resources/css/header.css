@@ -6,14 +6,14 @@ header {
 	top:0;
 	width: 100%;
 	height: 75px;
-	background-color: #eeeeee;
+	background-color: #ffffff;
 }
-#nav {
+#nav_menu {
 	width: 1400px;
 	height: 75px;
 	line-height:75px;
 	margin: 0 auto;
-	border: 2px solid black;
+	border: 2px solid black;	/* div 구분용 : 나중에 삭제 예정*/
 	display: flex;
 }
 #nav_area1 {

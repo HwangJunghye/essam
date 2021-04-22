@@ -54,7 +54,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 </head>
 <body>
 <header>
-	<div id="nav">
+	<div id="nav_menu">
 		<div id="nav_area1"><h3>header1.jsp - <a href="${ctxPath}/">home</a></h3></div>
 		<div id="nav_area2">
 			<span id="#nav_cate1">
