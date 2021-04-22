@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.bean.MemberBean;
@@ -40,10 +41,15 @@ public class DController {
 	@ResponseBody List<ReplyBean> getReplyList(String clsBrdNo){
 		List<ReplyBean> rList = dm.getReplyList(clsBrdNo);
 		return rList;
+	}
+	//댓글 등록(ajax)	
+	@RequestMapping(value = "/class/addreply")
+	@ResponseBody List<ReplyBean> addReply(ReplyBean rList, MultipartHttpServletRequest mReq){
+		List<ReplyBean> reList = dm.addReply(rList,mReq);
+		return reList;
 		
 	}
 	
-	//댓글 등록(ajax)	
 	//댓글 수정(ajax)	
 	//댓글 삭제(ajax)	
 	

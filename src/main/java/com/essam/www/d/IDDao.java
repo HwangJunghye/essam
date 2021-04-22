@@ -3,6 +3,7 @@ package com.essam.www.d;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.bean.MemberBean;
@@ -22,4 +23,8 @@ public interface IDDao {
 
 	List<ReplyBean> getReplyList(String clsBrdNo);
 
+	void addReply(ReplyBean rb);
+
 }
+
+	

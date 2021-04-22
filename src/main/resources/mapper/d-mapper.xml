@@ -48,5 +48,10 @@
 		ON R.FILENO=F.FILENO
 		WHERE R.CLSBRDNO=#{clsBrdNo}
 	</select>
+	
+	<insert id="addReply">
+		INSERT INTO CLS_BRD_REP (clsBrdRepNo, clsBrdNo, mbId, fileNo, clsBrdRepDate, clsBrdRepContent)
+		VALUES (#{clsBrdRepNo}, #{clsBrdNo}, #{mbId}, #{fileNo}, #{clsBrdRepDate}, #{clsBrdRepContent})
+	</insert>
 
 </mapper>

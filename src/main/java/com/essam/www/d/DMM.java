@@ -7,15 +7,20 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.ReplyBean;
+import com.essam.www.file.FileMM;
 
 @Service
 public class DMM {
 	@Autowired
 	private IDDao DDao;
+	@Autowired
+	private FileMM fm;
 
 	// 계정관리 이동하기+회원정보 가져오기
 	public ModelAndView goMypage(HttpSession session) {
@@ -73,7 +78,17 @@ public class DMM {
 		List<ReplyBean> rList = DDao.getReplyList(clsBrdNo);
 		return rList;
 	}
-	//댓글 등록(ajax)	
-			//댓글 수정(ajax)	
-			//댓글 삭제(ajax)	
+	//댓글 등록(ajax)
+	public List<ReplyBean> addReply(ReplyBean rb, MultipartHttpServletRequest mReq) {
+		MultipartFile file = mReq.getFile("file");
+		MemberBean mb = (MemberBean)mReq.getSession().getAttribute("loginData");
+		rb.setMbId(mb.getMbId());
+		if(file != null) {
+			rb.setFileNo(fm.saveFile(mReq, file, 3));
+		}
+		DDao.addReply(rb);
+		return DDao.getReplyList(rb.getClsBrdNo());
+	}
+	//댓글 수정(ajax)	
+	//댓글 삭제(ajax)	
 }
