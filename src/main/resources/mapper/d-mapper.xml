@@ -9,8 +9,19 @@
 		SELECT * FROM MEMBER WHERE MBID=#{mbId}
 	</select>
 	
-	<delete id="memberUpdate">
-		DELETE FROM inter_cate1 WHERE mbId=#{mbId}	
-	</delete>
+	<update id="memberUpdate">
+		UPDATE MEMBER SET
+		(mbNickname,	
+		mbTel,
+		mbAddr,
+		mbBirth,
+		mbGender) =
+		(#{mbNickname},
+		#{mbTel},
+		#{mbAddr},
+		#{mbBirth},
+		#{mbGender}) WHERE
+		MBID=#{mbId}
+	</update>
 
 </mapper>

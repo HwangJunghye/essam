@@ -1,12 +1,15 @@
 package com.essam.www.d;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.bean.MemberBean;
+
+
 
 @Service
 public class DMM {
@@ -17,28 +20,34 @@ public class DMM {
 	public ModelAndView goMypage(String mbId) {
 		ModelAndView mav = new ModelAndView();
 		MemberBean mb = DDao.getMemberInfo(mbId);
-		
+		mav.setViewName(mbId);
 		return mav;
 	}	
 //	회원정보 수정 실행
 
-	public ModelAndView memberUpdate() {
-		MemberBean mb = new MemberBean();
+	public ModelAndView memberUpdate(MemberBean mb,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject(mav);
-		mav  = DDao.memberUpdate(mb);
+		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
+		mb.setMbId(loginData.getMbId());
+		DDao.memberUpdate(mb);
+		
 		// 관심카테고리1 저장
 		if(mb.getCate1No() != null) {
+			//관심카테고리1 삭제
+			DDao.deleteInterCate(mb.getMbId(), "INTER_CATE1");
 			for(int cate1 : mb.getCate1No()) {
 				DDao.putInterCate(cate1, "INTER_CATE1", mb.getMbId());
 			}
 		}
 		// 관심카테고리2 저장
 		if(mb.getCate2No() != null) {
+			//관심카테고리2 삭제
+			DDao.deleteInterCate(mb.getMbId(), "INTER_CATE2");
 			for(int cate2 : mb.getCate2No()) {
 				DDao.putInterCate(cate2, "INTER_CATE2", mb.getMbId());
 			}
 		}
+		mav.setViewName("redirect:/mypage");
 		return mav;
 	}
 

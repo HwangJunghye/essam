@@ -26,10 +26,10 @@ public class DController {
 //	회원정보 수정 실행
 	
 	@RequestMapping(value = "/memberupdate")
-	String memberUpdate(MemberBean mb) {
-		ModelAndView memberUpdate = dm.memberUpdate();
+	ModelAndView memberUpdate(MemberBean mb, HttpSession session) {
+		ModelAndView mav = dm.memberUpdate(mb, session);
 		
-		return "redirect:/mypage";
+		return mav;
 	}
 }		
 

@@ -9,8 +9,10 @@ public interface IDDao {
 
 	MemberBean getMemberInfo(String mbId);
 
-	ModelAndView memberUpdate(MemberBean mb);
+	boolean memberUpdate(MemberBean mb);
 
 	void putInterCate(@Param("cateno") int cateno, @Param("tablenm") String tablenm, @Param("mbid") String mbid);
+
+	void deleteInterCate(@Param("mbId") String mbId, @Param ("tablenm")String tablenm);
 
 }
