@@ -14,7 +14,7 @@ public interface IClassDao {
 	
 	List<StudentBean> getStudentList(String clsNo);
 
-	StudentBean getStudentInfo(@Param("clsNo")String clsNo, @Param("mbid")String mbId);
+	StudentBean getStudentInfo(@Param("clsNo")String clsNo, @Param("mbId")String mbId);
 
 	boolean classClassinfoUpdate(ClassBean cb);
 
