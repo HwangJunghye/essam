@@ -28,23 +28,25 @@ border: none;
 <section>
 <h1>admin.jsp</h1>
 
-조회기간: <input type="date"> ~ <input type="date">
+조회기간: <input type="date"> ~ <input type="date"><br/>
 조회대상:
 <input type="radio" name="searchTarget" value="1" required/>클래스
 <input type="radio" name="searchTarget" value="2" />강사
 <input type="radio" name="searchTarget" value="3" />수강생
-
+<br/>
 필터1: 
 <input type="radio" name="filter1" value="1" required/>전체
 <input type="radio" name="filter1" value="2" />카테고리
+<br/>
 필터2:
 <input type="radio" name="filter2" value="1" required/>총
 <input type="radio" name="filter2" value="2" />신규
-
+<br/>
+<br/>
 <input type="reset" class="btn" value="초기화">
 <input type="button" class="btn" value="조회">
-
-
+<br/>
+<br/>
 
 <div id="showChart">
 차트 표시 영역
@@ -53,6 +55,5 @@ border: none;
 	
 </section>
 <%@ include file="../common/footer.jsp" %>
-
 </body>
 </html>
