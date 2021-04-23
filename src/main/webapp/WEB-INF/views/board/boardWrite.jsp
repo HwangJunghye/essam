@@ -24,10 +24,10 @@
 <center>
 <h3>클래스명 : ${clsName}</h3>
 <h3><c:if test="${empty boardData}">글쓰기</c:if><c:if test="${!empty boardData}">글수정</c:if></h3>
-<form action="class/boardwrite" id="frm" method="post" enctype="multipart/form-data">
+<form action="${ctxPath}/class/boardwrite" id="frm" method="post" enctype="multipart/form-data">
 <input type="hidden" name="clsBrdNo" value="${clsBrdNo}">
 <input type="hidden" name="clsBrdType" value="${clsBrdType}">
-<input type="hidden" name="clsNo" value="${boardData.clsNo}">
+<input type="hidden" name="clsNo" value="${clsNo}">
 <input type="hidden" name="pageNum" value="${pageNum}">
 <table>
 <tr>

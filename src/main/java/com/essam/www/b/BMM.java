@@ -138,14 +138,16 @@ public class BMM {
 		
 		//게시물 수정인 경우
 		if(clsBrdNo != null) {
+			System.out.println("게시물 수정 ----------");
 			//게시물 정보 가져와 bean에 담기
 			BoardBean board = bDao.getBoardRead(clsBrdNo);	
 			//첨부파일 정보 가져와 bean에 저장
 			if(board != null)
-				board.setFiles(bDao.getBoardFiles(clsBrdNo));
+				board.setFilesInfo(bDao.getBoardFiles(clsBrdNo));
 			
 			mav.addObject("boardData", board);
 		} else {
+			System.out.println("새 게시물 등록 ----------");
 			//새글 작성인 경우 글목록 클릭시 첫페이지로 이동
 			pageNum = 1;
 		}
@@ -172,6 +174,8 @@ public class BMM {
 		int fileTypeNo = 0;
 		String clsBrdNo = null;
 		int pageNum = Integer.parseInt(mReq.getParameter("pageNum"));
+		List<FileBean> fList = null;
+		System.out.println("pageNum =======> "+ pageNum);
 				
 		//request에서 mbId 가져오기
 		MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
@@ -180,10 +184,14 @@ public class BMM {
 		//게시판 글번호가 null이 아니면
 		if(board.getClsBrdNo() != null) {
 			//update 실행
+			System.out.println("-------- 게시물 update -------");
 			clsBrdNo = board.getClsBrdNo();
 			result = bDao.boardUpdate(board);
 		} else {
 			//insert 실행 ==> clsBrdNo 반환
+			System.out.println("-------- 게시물 insert -------");
+			
+			board.setFilesInfo(fList);
 			clsBrdNo = bDao.boardInsert(board);
 			//board bean에 clsBrdNo 저장
 			board.setClsBrdNo(clsBrdNo);
@@ -238,49 +246,67 @@ public class BMM {
 		BoardBean newBoard = bDao.getBoardRead(clsBrdNo);
 		//첨부파일 정보 가져와 bean에 저장
 		if(newBoard != null)
-			newBoard.setFiles(bDao.getBoardFiles(clsBrdNo));
+			newBoard.setFilesInfo(bDao.getBoardFiles(clsBrdNo));
 		
 		//mav에 게시물 정보 담기
-		mav.addObject("boardData", newBoard);		
-//		//mav에 클래스넘버 추가
-//		mav.addObject("clsNo", board.getClsNo());
-//		//mav에 게시판 타입 추가
-//		mav.addObject("clsBrdType", board.getClsBrdType());
+		mav.addObject("boardData", newBoard);	
 		//mav에 네비타이틀 추가
-		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[board.getClsBrdType()]);
-//		//mav에 클래스명 추가
-//		mav.addObject("clsName", bDao.getClassName(board.getClsNo()));
-//		//mav에 글번호 추가
-//		mav.addObject("clsBrdNo", clsBrdNo);
+		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[newBoard.getClsBrdType()]);
+		//mav에 클래스명 추가
+		mav.addObject("clsName", bDao.getClassName(newBoard.getClsNo()));
 		//mav에 페이지넘버 추가
 		mav.addObject("pageNum", pageNum);
 		return mav;
 	}
 
-	public ModelAndView boardRead(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) {
+	public ModelAndView boardRead(String clsBrdNo, Integer pageNum, HttpServletRequest request) {
 		mav = new ModelAndView();
-		//게시물 정보 가져와 bean에 담기
+		//게시물정보 가져와 bean에 담기
 		BoardBean board = bDao.getBoardRead(clsBrdNo);	
-		//첨부파일 정보 가져와 bean에 저장
-		if(board != null)
-			board.setFiles(bDao.getBoardFiles(clsBrdNo));
-		
+		//가져온 게시물정보가 있으면
+		if(board != null) {
+			//첨부파일 정보 가져와 bean에 저장
+			board.setFilesInfo(bDao.getBoardFiles(clsBrdNo));
+		}
+		//로그인한 세션정보가 있으면
+		if(request.getSession().getAttribute("loginData") != null) {
+			//로그인정보 가져와 bean에 담기
+			MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
+			//로그인정보의 mbId와 게시물정보의 mbId가 같으면
+			if(loginData.getMbId().equals(board.getMbId())) {
+				//mav에 수정/삭제 버튼 추가
+				mav.addObject("btnUpdate", makeHtmlBtnUpdate(board, pageNum, request));
+			}			
+		}
 		//mav에 게시판정보 담기
-		mav.addObject("boardData", board);		
-//		//mav에 클래스넘버 추가
-//		mav.addObject("clsNo", board.getClsNo());
-//		//mav에 게시판 타입 추가
-//		mav.addObject("clsBrdType", board.getClsBrdType());
+		mav.addObject("boardData", board);	
 		//mav에 네비타이틀 추가
 		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[board.getClsBrdType()]);
 		//mav에 클래스명 추가
-//		mav.addObject("clsName", bDao.getClassName(board.getClsNo()));
-//		//mav에 글번호 추가
-//		mav.addObject("clsBrdNo", clsBrdNo);
+		mav.addObject("clsName", bDao.getClassName(board.getClsNo()));
 		//mav에 페이지넘버 추가
 		mav.addObject("pageNum", pageNum);
 		//view 페이지 설정
 		mav.setViewName("board/boardRead");
+		return mav;
+	}
+
+	private String makeHtmlBtnUpdate(BoardBean board, Integer pageNum, HttpServletRequest request) {
+		String ctxPath = request.getContextPath();
+		StringBuilder sb = new StringBuilder();
+		sb.append("<form action='class/goboardwrite' method='post'>\n");
+		sb.append("<input type='hidden' name='clsBrdNo' value='"+ board.getClsBrdNo() +"'>\n");
+		sb.append("<input type='hidden' name='clsBrdType' value='"+ board.getClsBrdType() +"'>\n");
+		sb.append("<input type='hidden' name='clsNo' value='"+ board.getClsNo() +"'>\n");
+		sb.append("<input type='hidden' name='pageNum' value='"+ pageNum +"'>\n");
+		sb.append("<button>수정</button> ");
+		sb.append("<input type='button' value='삭제' onclick=\"location.href='"+ctxPath+"/class/boarddelete?clsBrdNo="+ board.getClsBrdNo() +"&pageNum="+ pageNum +"';\">\n");
+		sb.append("</form>");
+		return sb.toString();
+	}
+
+	public ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request) {
+		mav = new ModelAndView();
 		return mav;
 	}
 

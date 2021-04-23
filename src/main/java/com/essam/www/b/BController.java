@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,8 +46,7 @@ public class BController {
 	 */
 	@RequestMapping(value = "/class/boardlist")
 	ModelAndView boardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) throws CommonException{
-		return bm.goBoardList(clsNo, clsBrdType, pageNum, request);
-		
+		return bm.goBoardList(clsNo, clsBrdType, pageNum, request);		
 		// ControllerAdvide 안쓰고 예외처리
 		// try {
 		// 	 bm.goBoardList(clsNo, clsBrdType, pageNum);
@@ -64,7 +64,7 @@ public class BController {
 	/**
 	 * 게시판 글쓰기/수정
 	 */
-	@RequestMapping(value = "/class/boardwrite")
+	@PostMapping(value = "/class/boardwrite")
 	ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
 		return bm.boardWrite(board, mReq, request, rattr);		
 	}
@@ -72,20 +72,20 @@ public class BController {
 	 * 게시판 글읽기
 	 */
 	@RequestMapping(value = "/class/boardread")
-	ModelAndView boardRead(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) throws CommonException{
-		return bm.boardRead(clsNo, clsBrdType, clsBrdNo, pageNum);
-		
-		// ControllerAdvide 안쓰고 예외처리
-		// try {
-		// 	 bm.goBoardList(clsNo, clsBrdType, pageNum);
-		// } catch(CommonException err){
-		// 		예외가 발생한 경우
-		// }
+	ModelAndView boardRead(String clsBrdNo, Integer pageNum, HttpServletRequest request) throws CommonException{
+		return bm.boardRead(clsBrdNo, pageNum, request);
+	}
+	/**
+	 * 게시판 글 삭제
+	 */
+	@RequestMapping(value = "/class/boarddelete")
+	ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request) throws CommonException{
+		return bm.boardDelete(clsBrdNo, pageNum, request);
 	}
 	/**
 	 * 게시판 파일 삭제
 	 */
-	@RequestMapping(value = "/class/delbrdfile")
+	@PostMapping(value = "/class/delbrdfile")
 	public @ResponseBody boolean delBrdFile(@RequestBody String fileNo, HttpServletRequest request, RedirectAttributes rattr) {
 		return fm.deleteFile(fileNo, request);	
 	}

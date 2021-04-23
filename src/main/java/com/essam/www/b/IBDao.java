@@ -19,7 +19,7 @@ public interface IBDao {
 
 	int getClassRegiCnt(String clsNo);
 
-	boolean classJoin(String clsNo, String mbId);
+	boolean classJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
 
 	ArrayList<BoardBean> getBoardList(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType, @Param("pageNum") Integer pageNum);
 
@@ -37,6 +37,6 @@ public interface IBDao {
 
 	String boardInsert(BoardBean board);
 
-	boolean brdFileInsert(String clsBrdNo, String fileNo);
+	boolean brdFileInsert(@Param("clsBrdNo") String clsBrdNo, @Param("fileNo") String fileNo);
 
 }
