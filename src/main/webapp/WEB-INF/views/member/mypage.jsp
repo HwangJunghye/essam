@@ -19,7 +19,7 @@
 		회원타입 ${myInfo.mbType == 1?"학생":"강사"}<br>
 		아이디 ${myInfo.mbId}<br>
 	
-	<form action="memberjoin" method="post">
+	<form action="memberupdate" method="post">
 		비밀번호 <input type="text" name="mbPwd"/><br>
 		비밀번호 확인 <input type="text" name="mbPwdcheck" />
 		<input type="button"> 비밀번호 변경 <br> 
