@@ -16,7 +16,7 @@
 		mbAddr,
 		mbBirth,
 		mbGender) =
-		(#{mbNickname},
+		(#{mbNickName},
 		#{mbTel},
 		#{mbAddr},
 		#{mbBirth},
