@@ -103,8 +103,13 @@ public class DMM {
 		DDao.updateReply(rb);
 		return DDao.getReplyList(rb.getClsBrdNo());
 	}
-	
 	//댓글 삭제(ajax)	
+	public List<ReplyBean> deleteReply(String clsBrdRepNo, HttpServletRequest req, String clsBrdNo) {
+		MemberBean mb = (MemberBean)req.getSession().getAttribute("loginData");
+		DDao.deleteReply(clsBrdRepNo, mb.getMbId());
+		
+		return DDao.getReplyList(clsBrdNo);
+	}
 	
 	
 }

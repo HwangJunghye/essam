@@ -29,6 +29,10 @@ public interface IDDao {
 
 	void updateReply(ReplyBean rb);
 
+	void deleteReply(@Param("clsBrdRepNo") String clsBrdRepNo, @Param("mbId") String mbId);
+
+	
+
 
 
 }

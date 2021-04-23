@@ -73,5 +73,9 @@
 		WHERE
 		MBID=#{mbId}
 	</update>
+	
+	<delete id="deleteReply">
+		DELETE FROM cls_brd_rep WHERE MBID=#{mbId} AND CLSBRDNO=#{clsBrdNo}
+	</delete>
 
 </mapper>

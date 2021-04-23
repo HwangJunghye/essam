@@ -55,10 +55,13 @@ public class DController {
 		return rList;
 	}
 	
-	
-	
 	//댓글 삭제(ajax)	
-	
+	@RequestMapping(value = "/deletereply")
+	@ResponseBody List<ReplyBean> deleteReply(String clsBrdRepNo, HttpServletRequest req, String clsBrdNo){
+		List<ReplyBean> rList = dm.deleteReply(clsBrdRepNo, req, clsBrdNo);
+		
+		return rList;
+	}
 }		
 
 
