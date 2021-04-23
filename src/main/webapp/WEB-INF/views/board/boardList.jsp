@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
+<%@ page import = "com.essam.www.constant.Constant" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +19,12 @@
 <section>
 
 <center>
-<h3>Board 1.<a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=1">공지사항</a> 2.<a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=2">과제</a></h3>
+<%//int cn = (Integer)request.getAttribute("clsBrdType");%>
+<h3>Board <%//Constant.clsBrdName[cn]%> 1.<a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=1">공지사항</a> 2.<a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=2">과제</a></h3>
 <span style="color:red">${msg}</span>
 
 <c:if test="${sessionScope.loginData.mbType==2}">
-	<button type="button" onclick="location.href='${ctxPath}/class/goboardwrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}';">글쓰기</button>
+	<button type="button" onclick="location.href='${ctxPath}/class/goboardwrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}&pageNum=${param.pageNum}';">글쓰기</button>
 </c:if>
 <h3>클래스명 : ${clsName}</h3>
 <table class="tbl" width=600>
@@ -36,7 +38,7 @@
 </tr>
 <c:if test="${empty bList}">
 <tr>
-	<td colspan="6">등록된 글이 없습니다.</td>
+	<td colspan="6" align="center" height="200">등록된 글이 없습니다.</td>
 </tr>
 </c:if>
 <c:if test="${!empty bList}">

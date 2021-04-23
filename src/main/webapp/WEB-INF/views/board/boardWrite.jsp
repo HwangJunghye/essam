@@ -28,6 +28,7 @@
 <input type="hidden" name="clsBrdNo" value="${clsBrdNo}">
 <input type="hidden" name="clsBrdType" value="${clsBrdType}">
 <input type="hidden" name="clsNo" value="${boardData.clsNo}">
+<input type="hidden" name="pageNum" value="${pageNum}">
 <table>
 <tr>
 	<th>제목</th>

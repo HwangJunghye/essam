@@ -1,5 +1,7 @@
 package com.essam.www.eclass;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Paging {
 	private int maxNum; 			// 전체 글의 개수
 	private int pageNum; 			// 현재 페이지 번호
@@ -18,7 +20,7 @@ public class Paging {
 	}
 
 	@SuppressWarnings("unused")	//unsused 경고 무시하겠는 설정
-	public String makeHtmlPaging() {
+	public String makeHtmlPaging(HttpServletRequest request) {
 		// 전체 페이지 갯수
 		int totalPage = (maxNum % listCount > 0)
 				? maxNum/listCount+1 : maxNum/listCount;
@@ -28,11 +30,13 @@ public class Paging {
 		// 현재 페이지가 속해 있는 그룹 번호
 		int currentGroup = (pageNum % pageCount > 0)
 				? pageNum/pageCount+1 : pageNum/pageCount;
-		return makeHtml(currentGroup, totalPage, clsNo, clsBrdType);
+		return makeHtml(currentGroup, totalPage, clsNo, clsBrdType, request);
 	}
 
-	private String makeHtml(int currentGroup, int totalPage, String clsNo, Integer clsBrdType) {
+	private String makeHtml(int currentGroup, int totalPage, String clsNo, Integer clsBrdType, HttpServletRequest request) {
 		StringBuffer sb = new StringBuffer();
+		String ctxPath = request.getContextPath();
+		
 		//현재그룹의 시작 페이지 번호
 		int start = (currentGroup * pageCount) 
 				    - (pageCount - 1);
@@ -42,14 +46,14 @@ public class Paging {
 				: currentGroup * pageCount;
 
 		if (start != 1) {
-			sb.append("<a href='/www/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"&pageNum=" + (start -1) + "'>");
+			sb.append("<a href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"&pageNum=" + (start -1) + "'>");
 			sb.append("[이전]");
 			sb.append("</a>");
 		}
 
 		for (int i = start; i <= end; i++) {
 			if (pageNum != i) { //현재 페이지가 아닌 경우 링크처리
-				sb.append("<a href='/www/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"pageNum=" + i + "'>");
+				sb.append("<a href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"pageNum=" + i + "'>");
 				sb.append(" [ ");
 				sb.append(i);
 				sb.append(" ] ");
@@ -63,7 +67,7 @@ public class Paging {
 			}
 		}
 		if (end != totalPage) {
-			sb.append("<a href='/www/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"pageNum=" + (end + 1) + "'>");
+			sb.append("<a href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"pageNum=" + (end + 1) + "'>");
 			sb.append("[다음]");
 			sb.append("</a>");
 		}

@@ -44,8 +44,8 @@ public class BController {
 	 * 게시판 리스트
 	 */
 	@RequestMapping(value = "/class/boardlist")
-	ModelAndView boardList(String clsNo, Integer clsBrdType, Integer pageNum) throws CommonException{
-		return bm.goBoardList(clsNo, clsBrdType, pageNum);
+	ModelAndView boardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) throws CommonException{
+		return bm.goBoardList(clsNo, clsBrdType, pageNum, request);
 		
 		// ControllerAdvide 안쓰고 예외처리
 		// try {
@@ -58,8 +58,8 @@ public class BController {
 	 * 게시판 글쓰기/수정 이동
 	 */
 	@RequestMapping(value = "/class/goboardwrite")
-	ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo) {
-		return bm.goBoardWrite(clsNo, clsBrdType, clsBrdNo);		
+	ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) {
+		return bm.goBoardWrite(clsNo, clsBrdType, clsBrdNo, pageNum);		
 	}
 	/**
 	 * 게시판 글쓰기/수정
@@ -67,6 +67,20 @@ public class BController {
 	@RequestMapping(value = "/class/boardwrite")
 	ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
 		return bm.boardWrite(board, mReq, request, rattr);		
+	}
+	/**
+	 * 게시판 글읽기
+	 */
+	@RequestMapping(value = "/class/boardread")
+	ModelAndView boardRead(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) throws CommonException{
+		return bm.boardRead(clsNo, clsBrdType, clsBrdNo, pageNum);
+		
+		// ControllerAdvide 안쓰고 예외처리
+		// try {
+		// 	 bm.goBoardList(clsNo, clsBrdType, pageNum);
+		// } catch(CommonException err){
+		// 		예외가 발생한 경우
+		// }
 	}
 	/**
 	 * 게시판 파일 삭제

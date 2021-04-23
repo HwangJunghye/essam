@@ -83,8 +83,9 @@ public class BMM {
 		return mav;
 	}
 
-	public ModelAndView goBoardList(String clsNo, Integer clsBrdType, Integer pageNum) throws CommonException {
+	public ModelAndView goBoardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
 		mav = new ModelAndView();
+
 		//pageNum이 null이면 1로 세팅
 		pageNum = (pageNum==null)? 1 : pageNum;
 		
@@ -104,7 +105,7 @@ public class BMM {
 		//mav에 게시판 목록 정보 저장
 		mav.addObject("bList", bList);
 		//mav에 페이징 정보 저장
-		mav.addObject("paging", getPaging(clsNo, clsBrdType, pageNum));
+		mav.addObject("paging", getPaging(clsNo, clsBrdType, pageNum, request));
 		//mav에 클래스넘버 추가
 		mav.addObject("clsNo", clsNo);
 		//mav에 게시판 타입 추가
@@ -119,7 +120,7 @@ public class BMM {
 		return mav;
 	}
 
-	private String getPaging(String clsNo, Integer clsBrdType, Integer pageNum) {
+	private String getPaging(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
 		//전체 글 갯수 가져오기
 		int maxNum = bDao.getBoardCount(clsNo, clsBrdType);
 		int listCount = 10; //페이지당 나타낼 글의 갯수
@@ -127,11 +128,14 @@ public class BMM {
 		
 		//Paging 클래스 객체 생성해서 page makeHhml 리턴
 		Paging paging = new Paging(maxNum, pageNum, listCount, pageCount, clsNo, clsBrdType);
-		return paging.makeHtmlPaging();
+		return paging.makeHtmlPaging(request);
 	}
 	
-	public ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo) {
+	public ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) {
 		mav = new ModelAndView();
+		//pageNum이 null이면 1로 세팅
+		pageNum = (pageNum==null)? 1 : pageNum;
+		
 		//게시물 수정인 경우
 		if(clsBrdNo != null) {
 			//게시물 정보 가져와 bean에 담기
@@ -141,6 +145,9 @@ public class BMM {
 				board.setFiles(bDao.getBoardFiles(clsBrdNo));
 			
 			mav.addObject("boardData", board);
+		} else {
+			//새글 작성인 경우 글목록 클릭시 첫페이지로 이동
+			pageNum = 1;
 		}
 		//mav에 클래스넘버 추가
 		mav.addObject("clsNo", clsNo);
@@ -150,6 +157,8 @@ public class BMM {
 		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[clsBrdType]);
 		//mav에 클래스명 추가
 		mav.addObject("clsName", bDao.getClassName(clsNo));
+		//mav에 페이지넘버 추가
+		mav.addObject("pageNum", pageNum);
 		//view 페이지 설정
 		mav.setViewName("board/boardWrite");
 		return mav;
@@ -159,9 +168,10 @@ public class BMM {
 		mav = new ModelAndView();
 		boolean result;
 		String[] arrayFilename;
-		String fileType;
+		String fileType = null;
 		int fileTypeNo = 0;
-		String clsBrdNo;
+		String clsBrdNo = null;
+		int pageNum = Integer.parseInt(mReq.getParameter("pageNum"));
 				
 		//request에서 mbId 가져오기
 		MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
@@ -175,11 +185,13 @@ public class BMM {
 		} else {
 			//insert 실행 ==> clsBrdNo 반환
 			clsBrdNo = bDao.boardInsert(board);
+			//board bean에 clsBrdNo 저장
+			board.setClsBrdNo(clsBrdNo);
 			result = (clsBrdNo != null) ? true : false;
 		}
 		
-		//(새로운)첨부파일이 있다면 
-		if(mReq.getFiles("files").get(0).getSize() != 0){
+		//글저장에 성공하고, (새로운)첨부파일이 있다면 
+		if(result && mReq.getFiles("files").get(0).getSize() != 0){
 			//파일 가져오기
 			List<MultipartFile> files = mReq.getFiles("files");
 			System.out.println("파일 갯수 : "+ files.size());
@@ -203,27 +215,70 @@ public class BMM {
 				String fileNo = fm.saveFile(mReq, mf, fileTypeNo);
 				
 				if(fileNo != null) {
+					// DB에 파일정보 저장
 					if(bDao.brdFileInsert(clsBrdNo, fileNo))
-						System.out.println("brd_file 테이블에 clsBrdNo, fileNo 저장 성공.");
-				}			
+						System.out.println("file 저장 후 brd_file 테이블에 데이터 저장 성공.");
+				} else
+					System.out.println("file 저장 실패");
 			}
 		}		
 		
-		if(result) 
+		if(result) {
 			rattr.addFlashAttribute("fMsg","글이 등록되었습니다.");
-		else
+			//view 페이지 설정
+			mav.setViewName("board/boardRead");
+		} else {
 			rattr.addFlashAttribute("fMsg","글 등록에 실패하였습니다. \n문제가 지속된다면 관리자에 문의 바랍니다.");
+			//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
+			String referer = request.getHeader("Referer");
+			//view 페이지 설정
+			mav.setViewName("redirect:"+ referer);
+		}
+		//등록한 게시물 정보 가져와 bean에 담기
+		BoardBean newBoard = bDao.getBoardRead(clsBrdNo);
+		//첨부파일 정보 가져와 bean에 저장
+		if(newBoard != null)
+			newBoard.setFiles(bDao.getBoardFiles(clsBrdNo));
 		
-		//mav에 클래스넘버 추가
-		mav.addObject("clsNo", board.getClsNo());
-		//mav에 게시판 타입 추가
-		mav.addObject("clsBrdType", board.getClsBrdType());
+		//mav에 게시물 정보 담기
+		mav.addObject("boardData", newBoard);		
+//		//mav에 클래스넘버 추가
+//		mav.addObject("clsNo", board.getClsNo());
+//		//mav에 게시판 타입 추가
+//		mav.addObject("clsBrdType", board.getClsBrdType());
+		//mav에 네비타이틀 추가
+		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[board.getClsBrdType()]);
+//		//mav에 클래스명 추가
+//		mav.addObject("clsName", bDao.getClassName(board.getClsNo()));
+//		//mav에 글번호 추가
+//		mav.addObject("clsBrdNo", clsBrdNo);
+		//mav에 페이지넘버 추가
+		mav.addObject("pageNum", pageNum);
+		return mav;
+	}
+
+	public ModelAndView boardRead(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) {
+		mav = new ModelAndView();
+		//게시물 정보 가져와 bean에 담기
+		BoardBean board = bDao.getBoardRead(clsBrdNo);	
+		//첨부파일 정보 가져와 bean에 저장
+		if(board != null)
+			board.setFiles(bDao.getBoardFiles(clsBrdNo));
+		
+		//mav에 게시판정보 담기
+		mav.addObject("boardData", board);		
+//		//mav에 클래스넘버 추가
+//		mav.addObject("clsNo", board.getClsNo());
+//		//mav에 게시판 타입 추가
+//		mav.addObject("clsBrdType", board.getClsBrdType());
 		//mav에 네비타이틀 추가
 		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[board.getClsBrdType()]);
 		//mav에 클래스명 추가
-		mav.addObject("clsName", bDao.getClassName(board.getClsNo()));
-		//mav에 글번호 추가
-		mav.addObject("clsBrdNo", clsBrdNo);
+//		mav.addObject("clsName", bDao.getClassName(board.getClsNo()));
+//		//mav에 글번호 추가
+//		mav.addObject("clsBrdNo", clsBrdNo);
+		//mav에 페이지넘버 추가
+		mav.addObject("pageNum", pageNum);
 		//view 페이지 설정
 		mav.setViewName("board/boardRead");
 		return mav;
