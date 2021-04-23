@@ -75,4 +75,23 @@
 	<select id="getClassName" resultType="string">
 		SELECT clsName FROM CLASS WHERE CLSNO=#{clsNo} AND ROWNUM=1
 	</select>
+	<update id="boardUpdate">
+		UPDATE CLS_BRD SET
+			 clsNo=#{clsNo},
+			 clsBrdType=#{clsBrdType},
+			 mbId=#{mbId},
+			 clsBrdTitle=#{clsBrdTitle},
+			 clsBrdContent=#{clsBrdContent}
+		WHERE clsBrdNO=#{clsBrdNo}
+	</update>
+	<insert id="boardInsert" useGeneratedKeys="true" keyColumn="clsBrdNo" keyProperty="clsBrdNo_new">
+		INSERT INTO CLS_BRD 
+			(clsBrdNo, clsNo, clsBrdType, mbId, clsBrdTitle, clsBrdContent, clsBrdDate)
+		VALUES
+			(CLS_BRD_SEQ.NEXTVAL, #{clsNo}, #{clsBrdType}, #{mbId}, #{clsBrdTitle}, #{clsBrdContent}, SYSDATE)		
+	</insert>
+	<insert id="brdFileInsert">
+		INSERT INTO BRD_FILE (clsBrdNo, fileNo)
+		VALUES (#{clsBrdNo}, #{fileNo})
+	</insert>
 </mapper>
