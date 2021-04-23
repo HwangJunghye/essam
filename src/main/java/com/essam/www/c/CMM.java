@@ -31,15 +31,16 @@ public class CMM {
 
 	/**
 	 * 교사프로필 가져오기 getTeacherProfile()
-	 * 
-	 * @param session
+	 * @param HttpSession
+	 * @param RedirectAttriutes
 	 * @return ModelAndView
 	 */
-	public ModelAndView getTeacherProfile(HttpSession session, RedirectAttributes rattr) throws CommonException {
+	public ModelAndView getTeacherProfile(HttpSession session) throws CommonException {
 		ModelAndView mav = new ModelAndView();
 		TeacherBean teacherInfo = null;
+		// 세션에서 로그인 데이터를 MemberBean에 담기
 		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
-		// 세션에서 mbId, mbType을 가져옴
+		// MemberBean으로 부터 mbId, mbType을 가져옴
 		String mbId = loginData.getMbId();
 		// System.out.println("mbId");
 		String mbType = loginData.getMbType() + "";
@@ -62,20 +63,43 @@ public class CMM {
 		}
 		return mav;
 	}
+	
+	public ModelAndView getTeacherProfileWrite(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		TeacherBean teacherInfo = null;
+		// 세션에서 로그인 데이터를 MemberBean에 담기
+		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+		// MemberBean으로 부터 mbId, mbType을 가져옴
+		String mbId = loginData.getMbId();
+		// System.out.println("mbId");
+		teacherInfo = mDao.getTeacherProfile(mbId);
+		if (teacherInfo != null) { // 강사프로필 정보가 있다면
+			// 가져온 정보를 mav에 넣기
+			mav.addObject("teacherInfo", teacherInfo);
+			// teacher_profile.jsp로 이동하기 위해 viewname 지정
+			mav.setViewName("member/teacher_profile_write"); // 강사프로필 페이지로
+		}
+		return mav;
+	}
 
+	/**
+	 *  교사프로필 등록, 수정 teacherProfileUpdate()
+	 * @param MultipartHttpServletRequest
+	 * @param TeacherBeanb
+	 * @param HttpServletRequest
+	 * @return ModelAndView
+	 */
 	public ModelAndView teacherProfileUpdate(MultipartHttpServletRequest mReq, TeacherBean tb, HttpServletRequest request) {
 		// <input type="file" name="속성"> --> mReq.getFile("속성")
 		// 파라미터 가져오기 : mReq.getParameter(name)
 		MultipartFile mFile = mReq.getFile("file");
 		// image : 1
-
 		// MemberBean loginData = (MemberBean)session.getAttribute("loginData");
 		String mbId = ((MemberBean) mReq.getSession().getAttribute("loginData")).getMbId();
 		System.out.println(mbId);
 		tb.setMbId(mbId);
 
 		TeacherBean teacherInfo = mDao.getTeacherProfile(mbId);
-		
 
 		if (mFile != null) {
 			String fileNo = fm.saveFile(mReq, mFile, 1);
@@ -95,8 +119,21 @@ public class CMM {
 	}
 
 	
-	// 교사프로필 등록, 수정 이동하기
-	// 교사프로필 등록, 수정
+
 	// 교사프로필 삭제하기
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

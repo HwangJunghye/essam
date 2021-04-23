@@ -28,8 +28,8 @@ public class CController {
 	 * @return ModelAndView
 	 */
 	@RequestMapping(value = "/teacher_profile")
-	ModelAndView goTeacherProfile(HttpSession session, RedirectAttributes rattr) throws CommonException {
-		ModelAndView mav = mm.getTeacherProfile(session, rattr);
+	ModelAndView goTeacherProfile(HttpSession session) throws CommonException {
+		ModelAndView mav = mm.getTeacherProfile(session);
 		return mav; 
 	}
 	
@@ -39,28 +39,33 @@ public class CController {
 	 * @return ModelAndView
 	 */
 	@RequestMapping(value = "/teacher_profile/write")
-	String goTeacherProfileWrite(HttpSession session) {
-		//ModelAndView mav = mm.getTeacherProfile(session);
-		return "member/teacher_profile_write"; //.jsp
+	ModelAndView goTeacherProfileWrite(HttpSession session) {
+		ModelAndView mav = mm.getTeacherProfileWrite(session);
+		return mav; //.jsp
 	}
 	
 	/**
-	 * 교사프로필 등록, 수정
+	 * 교사프로필 등록, 수정 teacherProfileUpdate()
 	 * @param mReq
-	 * @return
+	 * @return ModelAndView
 	 */
 	@PostMapping(value = "/teacher_profile/update")
 	ModelAndView teacherProfileUpdate(MultipartHttpServletRequest mReq, TeacherBean tb, HttpServletRequest request) {
 		ModelAndView mav = mm.teacherProfileUpdate(mReq, tb, request);
-		
 		return mav;
 	}
 	
 	
-	//교사프로필 삭제하기
+	/**
+	 * 교사프로필 삭제하기
+	 * @param session
+	 * @param rattr
+	 * @return
+	 * @throws CommonException
+	 */
 	@RequestMapping(value = "/teacher_profile/delete")
 	ModelAndView TeacherProfileDelete(HttpSession session, RedirectAttributes rattr) throws CommonException {
-		ModelAndView mav = mm.getTeacherProfile(session, rattr);
+		ModelAndView mav = mm.getTeacherProfile(session);
 		return mav; 
 	}
 	
