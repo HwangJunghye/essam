@@ -27,6 +27,7 @@ public class DMM {
 		ModelAndView mav = new ModelAndView();
 		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
 		MemberBean mb = DDao.getMemberInfo(loginData.getMbId());
+		mb.setMbBirth(mb.getMbBirth().substring(0,mb.getMbBirth().length()-8));
 		boolean[] cate1Chk = { false, false, false, false, false, false, false };
 		boolean[] cate2Chk = { false, false, false, false, false, false, false, false, false };
 		int[] cate1 = DDao.getinterCate(loginData.getMbId(), "INTER_CATE1");
