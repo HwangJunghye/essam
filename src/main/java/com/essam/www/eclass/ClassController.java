@@ -35,8 +35,8 @@ public class ClassController {
 	
 	// (CM13+CM14)출석 현황 이동 + 출석현황 가져오기
 	@RequestMapping(value = "/class/attend")
-	ModelAndView goAttend(String mbId){
-		ModelAndView mav = cm.goAttend(mbId);
+	ModelAndView goAttend(HttpServletRequest request, String clsNo){
+		ModelAndView mav = cm.goAttend(request, clsNo);
 		return mav;
 		}
 	
@@ -50,8 +50,8 @@ public class ClassController {
 		
 	// (CM17+CM18)학생정보보기 이동 + 학생정보 가져오기	
 	@RequestMapping(value = "/class/studentinfo")
-	ModelAndView goStudentInfo(String mbId){
-		ModelAndView mav = cm.goStudentInfo(mbId); 
+	ModelAndView goStudentInfo(HttpServletRequest request, String clsNo){
+		ModelAndView mav = cm.goStudentInfo(request, clsNo); 
 		return mav;
 		}	
 	

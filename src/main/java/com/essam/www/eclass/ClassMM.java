@@ -42,10 +42,12 @@ public class ClassMM {
 	
 	
 	// (CM13+CM14)출석 현황 이동 + 출석현황 가져오기
-	public ModelAndView goAttend(String mbId) {
+	public ModelAndView goAttend(HttpServletRequest request, String clsNo) {
 		ModelAndView mav = new ModelAndView();
-		StudentBean attendInfo = new StudentBean();
-		attendInfo = cDao.getStudentInfo(mbId);
+		MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
+		String mbId = loginData.getMbId();
+		
+		StudentBean attendInfo = cDao.getStudentInfo(clsNo, mbId);
 		
 		//출석률 구하기 & 출석현황 메시지 가져오기.
 		int attendDay = attendInfo.getAttendDay();
@@ -83,12 +85,13 @@ public class ClassMM {
 	}
 		
 	// (CM17+CM18)학생정보보기 이동 + 학생정보 가져오기
-	public ModelAndView goStudentInfo(String mbId) {
+	public ModelAndView goStudentInfo(HttpServletRequest request, String clsNo) {
 		ModelAndView mav = new ModelAndView();
-		StudentBean sInfo = new StudentBean();
-		MemberBean mInfo = new MemberBean();
-		sInfo = cDao.getStudentInfo(mbId);
-		mInfo = mDao.getMemberInfo(mbId);
+		MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
+		String mbId = loginData.getMbId(); 
+		StudentBean sInfo = cDao.getStudentInfo(clsNo,mbId);
+		MemberBean mInfo = mDao.getMemberInfo(mbId);
+		
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("sInfo",sInfo);
 		mav.addObject("mInfo",mInfo);

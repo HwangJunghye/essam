@@ -32,7 +32,9 @@ border-radius: 10px;
 color: #FFFFFF;
 text-align: center;
 border: none;
+cursor: pointer;
 }
+
 
 </style>
 
@@ -112,7 +114,7 @@ border: none;
 	<br/>
 	클래스 정원: <input type="number" name="clsLimit" required/> (명)
 	<br/>
-	커버이미지: <input type="file" name="file">
+	커버이미지: <input type="file" name="file">	
 	<br/>
 	한줄 소개:<input type="text" name="clsIntro" required/>
 	<br/>

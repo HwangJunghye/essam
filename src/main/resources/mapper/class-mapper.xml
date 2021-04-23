@@ -15,7 +15,7 @@
 	</select>
 	
 	<select id="getStudentInfo" resultType="studentbean">
-		SELECT * FROM V_STUDENTBEAN WHERE MBID=#{mbId}
+		SELECT * FROM V_STUDENTBEAN WHERE MBID=#{mbId} AND CLSNO=#{clsNo} 
 	</select>
 	
 	<select id="getFileNo" resultType="classbean">

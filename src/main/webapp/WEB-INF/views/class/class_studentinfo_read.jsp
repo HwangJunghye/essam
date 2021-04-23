@@ -24,6 +24,7 @@ border-radius: 10px;
 color: #FFFFFF;
 text-align: center;
 border: none;
+cursor: pointer;
 }
 </style>
 <body>

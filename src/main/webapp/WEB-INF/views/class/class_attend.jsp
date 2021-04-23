@@ -29,8 +29,13 @@ font-size: 18px;
 line-height: 21px;
 }
 
-.attendText{
-
+aside{
+float:left;
+top:150px;
+left:0;
+width: 158px;
+height: 814px;
+background: #E0E0E0;
 }
 
 </style>
@@ -43,6 +48,17 @@ line-height: 21px;
 <body>
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
+
+<aside>
+<ul>
+<li>계정관리</li>
+<li>마이 클래스</li>
+</ul>
+</aside>
+
+
+
+
 <section>
 
 <p class="clsTitle">${attendInfo.clsName}</p>
