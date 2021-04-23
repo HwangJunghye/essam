@@ -71,7 +71,7 @@
 		(#{fileNo},
 		#{clsBrdRepContent}) 
 		WHERE
-		MBID=#{mbId}
+		MBID=#{mbId} 
 	</update>
 	
 	<delete id="deleteReply">
