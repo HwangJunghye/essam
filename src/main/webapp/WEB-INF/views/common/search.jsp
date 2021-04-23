@@ -73,14 +73,19 @@
 							searchFlag = false;
 							console.log(searchFlag);
 						}
-						let word = '카테고리1 : ' + cate1No + '<br>' + '카테고리2 : '
-								+ cate2No + '<br>' + '키워드 : ' + keyword
-								+ '<br>' + '페이지 : ' + pageNo + '<br>'
-								+ '결과수 : ' + data.pageSize + '<br>';
-
-						$('#searchresult').append(
-								$('<div>').addClass('classinfo').append(word));
+						let $resultArea = $('#searchresult');
 						console.log(data);
+						
+						$.each(data.cList, function(index,item){
+							let $span = $('<span>');
+							let imgPath = '${ctxPath}/getthumbnail?fileNo=' + item.fileNo + '&width=200&height=200';
+							$('<image>').attr('src',imgPath).appendTo($span);
+							$span.append(item.mbNickName + '<br>');
+							$span.append(item.clsIntro);
+							$span.appendTo($resultArea);
+						});
+						
+						
 					}); // ajax End
 		} // getSearchList End
 	</script>
