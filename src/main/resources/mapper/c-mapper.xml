@@ -8,4 +8,10 @@
 		SELECT TEACHER.*, MEMBER.MBNICKNAME FROM TEACHER LEFT JOIN MEMBER 
 		ON TEACHER.MBID=MEMBER.MBID WHERE TEACHER.MBID=#{mbId}
 	</select>
+	
+	<update id="teacherProfileUpdate" parameterType="teacherbean">
+		UPDATE TEACHER 
+		SET FILENO=#{fileNo}, TEACHERINTRO=#{teacherIntro}, TEACHERDETAIL=#{teacherDetail} 
+		WHERE MBID=#{mbId}
+	</update>
 </mapper>

@@ -8,4 +8,5 @@ public interface ICDao {
 	// c-mapper 사용
 	TeacherBean getTeacherProfile(String mbId);
 
+	boolean teacherProfileUpdate(TeacherBean tb);
 }

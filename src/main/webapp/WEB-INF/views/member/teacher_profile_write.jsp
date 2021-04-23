@@ -15,11 +15,12 @@
 <%@ include file="../common/nav.jsp" %>
 <section>
 <h1>teacher_profile_write.jsp</h1>
-<form action="memberjoin" method="post">
-	강사닉네임 ${sessionScope.loginData.mbNickName}
-	한줄소개 <input type="text" name="teacherInfo" value="${teacherInfo.teacherIntro}"/><br>
+<form action="update" method="post" enctype="multipart/form-data">
+	강사닉네임 ${sessionScope.loginData.mbNickName}<br>
+	한줄소개 <input type="text" name="teacherIntro" value="${teacherInfo.teacherIntro}"/><br>
 	상세소개 <textarea name="teacherDetail">${teacherInfo.teacherDetail}</textarea><br>
-	프로필사진 <input type="file" name="fileNo" /><br>
+	프로필사진 <input type="file" name="file" accept="image/*" /><br>
+	<input type="submit" value="등록" />
 </form>
 </section>
 <%@ include file="../common/footer.jsp" %>
