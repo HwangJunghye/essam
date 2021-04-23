@@ -63,8 +63,13 @@ public class MemberMM {
 				loginData.setMbName(mbInfo.getMbName());
 				loginData.setMbNickName(mbInfo.getMbNickName());
 				request.getSession().setAttribute("loginData", loginData);
+				
 				mav.setViewName("redirect:/"); // 메인으로
 				rattr.addFlashAttribute("fMsg","로그인 성공");
+				
+//				Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
+//				String referer = request.getHeader("Referer");
+//				mav.setViewName("redirect:"+ referer);
 			}else { // 비밀번호 불일치시
 				mav.setViewName("redirect:/login"); // 로그인 페이지로
 				rattr.addFlashAttribute("fMsg","로그인 실패");
