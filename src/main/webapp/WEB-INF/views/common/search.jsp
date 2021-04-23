@@ -79,7 +79,7 @@
 						$.each(data.cList, function(index,item){
 							let $span = $('<span>');
 							let imgPath = '${ctxPath}/getthumbnail?fileNo=' + item.fileNo + '&width=200&height=200';
-							$('<image>').attr('src',imgPath).appendTo($span);
+							$('<img>').attr('src',imgPath).appendTo($span);
 							$span.append(item.mbNickName + '<br>');
 							$span.append(item.clsIntro);
 							$span.appendTo($resultArea);
