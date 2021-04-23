@@ -90,5 +90,21 @@ public class DMM {
 		return DDao.getReplyList(rb.getClsBrdNo());
 	}
 	//댓글 수정(ajax)	
+
+	public List<ReplyBean> updateReply(ReplyBean rb, MultipartHttpServletRequest mReq) {
+		MemberBean mb = (MemberBean)mReq.getSession().getAttribute("loginData");
+		rb.setMbId(mb.getMbId());
+		MultipartFile file = mReq.getFile("file");
+		if(file != null) {
+			rb.setFileNo(fm.saveFile(mReq, file, 3));
+			ReplyBean rBean = DDao.getReply(rb.getClsBrdRepNo());
+			fm.deleteFile(rBean.getFileNo(), mReq);
+		}
+		DDao.updateReply(rb);
+		return DDao.getReplyList(rb.getClsBrdNo());
+	}
+	
 	//댓글 삭제(ajax)	
+	
+	
 }

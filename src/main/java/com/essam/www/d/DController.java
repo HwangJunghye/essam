@@ -44,13 +44,19 @@ public class DController {
 	}
 	//댓글 등록(ajax)	
 	@RequestMapping(value = "/class/addreply")
-	@ResponseBody List<ReplyBean> addReply(ReplyBean rList, MultipartHttpServletRequest mReq){
-		List<ReplyBean> reList = dm.addReply(rList,mReq);
-		return reList;
-		
+	@ResponseBody List<ReplyBean> addReply(ReplyBean rb, MultipartHttpServletRequest mReq){
+		List<ReplyBean> rList = dm.addReply(rb,mReq);
+		return rList;
+	}
+	//댓글 수정(ajax)
+	@RequestMapping(value = "/class/updatereply")
+	@ResponseBody List<ReplyBean> updateReply(ReplyBean rb, MultipartHttpServletRequest mReq){
+		List<ReplyBean> rList = dm.updateReply(rb, mReq);
+		return rList;
 	}
 	
-	//댓글 수정(ajax)	
+	
+	
 	//댓글 삭제(ajax)	
 	
 }		

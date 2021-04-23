@@ -25,6 +25,12 @@ public interface IDDao {
 
 	void addReply(ReplyBean rb);
 
+	ReplyBean getReply(String clsBrdRepNo);
+
+	void updateReply(ReplyBean rb);
+
+
+
 }
 
 	

@@ -53,5 +53,25 @@
 		INSERT INTO CLS_BRD_REP (clsBrdRepNo, clsBrdNo, mbId, fileNo, clsBrdRepDate, clsBrdRepContent)
 		VALUES (#{clsBrdRepNo}, #{clsBrdNo}, #{mbId}, #{fileNo}, #{clsBrdRepDate}, #{clsBrdRepContent})
 	</insert>
+	
+	<select id="getReply" resultType="replybean">
+		SELECT R.*,M.MBNICKNAME,F.ORIGFILENAME
+		FROM cls_brd_rep R
+		LEFT OUTER JOIN MEMBER M
+		ON R.MBID=M.MBID
+		LEFT OUTER JOIN TB_FILE F
+		ON R.FILENO=F.FILENO
+		WHERE R.CLSBRDREPNO=#{clsBrdRepNo}
+	</select>
+	
+	<update id="updateReply">
+		UPDATE cls_brd_rep SET
+		(fileNo,	
+		clsBrdRepContent) =
+		(#{fileNo},
+		#{clsBrdRepContent}) 
+		WHERE
+		MBID=#{mbId}
+	</update>
 
 </mapper>
