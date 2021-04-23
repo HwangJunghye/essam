@@ -16,12 +16,15 @@
 <section>
 <h1>로그인 페이지 ${fMsg}</h1>
 <form action="access" method="post">
-	아이디 <input type="text" name="mbId"/><br>
+	아이디 <input type="text" name="mbId" id="mbId"/><br>
 	비밀번호 <input type="text" name="mbPwd"/><br>
 	<input type="submit" value="로그인"/>
 </form>
 </section>
 
 <%@ include file="../common/footer.jsp" %>
+<script>
+$(document).ready(function(){ $("#mbId").focus(); });
+</script>
 </body>
 </html>
