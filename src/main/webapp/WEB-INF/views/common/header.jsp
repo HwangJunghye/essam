@@ -83,6 +83,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 					<!-- 강사인 경우 -->
 					강사로그인
 				</c:if>
+				<a id="mypage" href="${ctxPath}/mypage">마이페이지</a>
 				<a id="logout" href="#">로그아웃</a>
 			</c:if>
 		</div>
