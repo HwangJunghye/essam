@@ -19,7 +19,6 @@
 
 		<!-- clsInfo가 있으면 -->
 		<c:if test="${!empty clsInfo}">
-			<table>
 				<c:forEach var="cInfo" items="${clsInfo}">
 					<a href=>
 					<div>
@@ -28,8 +27,7 @@
 						<p>${clsInfo.clsIntro}</p>
 					</div>
 					</a>
-				</c:forEach>
-			</table>
+				</c:forEach>		
 		</c:if>
 
 
