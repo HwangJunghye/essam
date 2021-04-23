@@ -102,7 +102,7 @@ public class ClassMM {
 			mav.addObject("clsInfo",clsInfo);
 			mav.addObject("navtext", "클래스 관리> 마이 클래스> 클래스 수정");
 			
-		}else {
+		}else { 
 		mav.addObject("navtext", "클래스 관리> 클래스 개설");
 		}
 		mav.setViewName("class/class_write"); // .jsp
