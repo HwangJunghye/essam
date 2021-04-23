@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.ReplyBean;
 import com.essam.www.file.FileMM;
+import com.essam.www.member.IMemberDao;
 
 @Service
 public class DMM {
@@ -21,6 +22,8 @@ public class DMM {
 	private IDDao DDao;
 	@Autowired
 	private FileMM fm;
+	@Autowired
+	private IMemberDao mDao;
 
 	// 계정관리 이동하기+회원정보 가져오기
 	public ModelAndView goMypage(HttpSession session) {
@@ -60,7 +63,7 @@ public class DMM {
 			// 관심카테고리1 삭제
 			DDao.deleteInterCate(mb.getMbId(), "INTER_CATE1");
 			for (int cate1 : mb.getCate1No()) {
-				DDao.putInterCate(cate1, "INTER_CATE1", mb.getMbId());
+				mDao.putInterCate(cate1, "INTER_CATE1", mb.getMbId());
 			}
 		}
 		// 관심카테고리2 저장
@@ -68,7 +71,7 @@ public class DMM {
 			// 관심카테고리2 삭제
 			DDao.deleteInterCate(mb.getMbId(), "INTER_CATE2");
 			for (int cate2 : mb.getCate2No()) {
-				DDao.putInterCate(cate2, "INTER_CATE2", mb.getMbId());
+				mDao.putInterCate(cate2, "INTER_CATE2", mb.getMbId());
 			}
 		}
 		mav.setViewName("redirect:/mypage");

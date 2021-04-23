@@ -15,8 +15,6 @@ public interface IDDao {
 
 	boolean memberUpdate(MemberBean mb);
 
-	void putInterCate(@Param("cateno") int cateno, @Param("tablenm") String tablenm, @Param("mbId") String mbId);
-
 	void deleteInterCate(@Param("mbId") String mbId, @Param ("tablenm")String tablenm);
 
 	int[] getinterCate(@Param("mbId") String mbId, @Param("tablenm")String tablenm);
