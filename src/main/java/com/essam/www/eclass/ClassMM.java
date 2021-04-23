@@ -15,12 +15,14 @@ import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.StudentBean;
 import com.essam.www.file.FileMM;
+import com.essam.www.member.IMemberDao;
 
 @Service
 public class ClassMM {
 	@Autowired
 	private FileMM fm;
-	
+	@Autowired
+	private IMemberDao mDao;	
 	@Autowired
 	private IClassDao cDao;	
 	// (CM01)공지사항 쓰기, 수정페이지 이동	
@@ -83,9 +85,12 @@ public class ClassMM {
 	// (CM17+CM18)학생정보보기 이동 + 학생정보 가져오기
 	public ModelAndView goStudentInfo(String mbId) {
 		ModelAndView mav = new ModelAndView();
-		StudentBean mInfo = new StudentBean();
-		mInfo = cDao.getStudentInfo(mbId);
+		StudentBean sInfo = new StudentBean();
+		MemberBean mInfo = new MemberBean();
+		sInfo = cDao.getStudentInfo(mbId);
+		mInfo = mDao.getMemberInfo(mbId);
 		// 가져온 정보를 mav에 넣기
+		mav.addObject("sInfo",sInfo);
 		mav.addObject("mInfo",mInfo);
 		mav.addObject("navtext", "클래스 관리> 마이 클래스> 학생");
 		// class_studentinfo_read.jsp로 이동하기 위해 viewname 지정
