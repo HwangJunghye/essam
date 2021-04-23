@@ -82,6 +82,9 @@
 							$('<img>').attr('src',imgPath).appendTo($span);
 							$span.append(item.mbNickName + '<br>');
 							$span.append(item.clsIntro);
+							$span.on('click',function(evt){
+								location.href = '${ctxPath}/classinfo?clsNo=' + item.clsNo;
+							});
 							$span.appendTo($resultArea);
 						});
 						
