@@ -11,16 +11,12 @@
 	
 	<update id="memberUpdate">
 		UPDATE MEMBER SET
-		(mbNickname,	
-		mbTel,
-		mbAddr,
-		mbBirth,
-		mbGender) =
-		(#{mbNickName},
-		#{mbTel},
-		#{mbAddr},
-		#{mbBirth},
-		#{mbGender}) WHERE
+		mbNickname = #{mbNickName},	
+		mbTel = #{mbTel},
+		mbAddr = #{mbAddr},
+		mbBirth = #{mbBirth},
+		mbGender = #{mbGender}
+		WHERE
 		MBID=#{mbId}
 	</update>
 	
