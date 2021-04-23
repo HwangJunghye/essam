@@ -50,8 +50,8 @@ public class CController {
 	 * @return
 	 */
 	@PostMapping(value = "/teacher_profile/update")
-	ModelAndView teacherProfileUpdate(MultipartHttpServletRequest mReq, TeacherBean tb) {
-		ModelAndView mav = mm.teacherProfileUpdate(mReq, tb);
+	ModelAndView teacherProfileUpdate(MultipartHttpServletRequest mReq, TeacherBean tb, HttpServletRequest request) {
+		ModelAndView mav = mm.teacherProfileUpdate(mReq, tb, request);
 		
 		return mav;
 	}

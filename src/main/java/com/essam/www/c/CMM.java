@@ -63,8 +63,9 @@ public class CMM {
 		return mav;
 	}
 
-	public ModelAndView teacherProfileUpdate(MultipartHttpServletRequest mReq, TeacherBean tb) {
+	public ModelAndView teacherProfileUpdate(MultipartHttpServletRequest mReq, TeacherBean tb, HttpServletRequest request) {
 		// <input type="file" name="속성"> --> mReq.getFile("속성")
+		// 파라미터 가져오기 : mReq.getParameter(name)
 		MultipartFile mFile = mReq.getFile("file");
 		// image : 1
 
@@ -74,11 +75,8 @@ public class CMM {
 		tb.setMbId(mbId);
 
 		TeacherBean teacherInfo = mDao.getTeacherProfile(mbId);
-		if (teacherInfo.getFileNo() != null && mFile != null) {
-			fm.deleteFile(teacherInfo.getFileNo(), mReq);
-		}
+		
 
-		// 파라미터 가져오기 : mReq.getParameter(name)
 		if (mFile != null) {
 			String fileNo = fm.saveFile(mReq, mFile, 1);
 			tb.setFileNo(fileNo);
@@ -86,6 +84,11 @@ public class CMM {
 
 		log.info(tb.toString());
 		boolean result = mDao.teacherProfileUpdate(tb);
+		
+		if (teacherInfo.getFileNo() != null && mFile != null) {
+			fm.deleteFile(teacherInfo.getFileNo(), request);
+		}
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/teacher_profile");
 		return mav;
