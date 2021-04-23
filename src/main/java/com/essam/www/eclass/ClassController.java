@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -50,7 +51,7 @@ public class ClassController {
 	// (CM17+CM18)학생정보보기 이동 + 학생정보 가져오기	
 	@RequestMapping(value = "/class/studentinfo")
 	ModelAndView goStudentInfo(String mbId){
-		ModelAndView mav = cm.goStudentInfo(mbId);
+		ModelAndView mav = cm.goStudentInfo(mbId); 
 		return mav;
 		}	
 	
@@ -61,7 +62,7 @@ public class ClassController {
 		return mav;
 		}
 	// (CM22)클래스 등록, 수정하기	
-	@RequestMapping(value = "/class/classinfo/update")
+	@PostMapping(value = "/class/classinfo/update")
 	ModelAndView classClassinfoUpdate(MultipartHttpServletRequest mReq, HttpServletRequest request, ClassBean cb) {
 		ModelAndView mav = cm.classClassinfoUpdate(mReq, request, cb);
 		return mav;

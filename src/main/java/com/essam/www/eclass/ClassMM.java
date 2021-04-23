@@ -112,9 +112,11 @@ public class ClassMM {
 	// (CM22)클래스 등록, 수정하기
 	public ModelAndView classClassinfoUpdate(MultipartHttpServletRequest mReq, HttpServletRequest request, ClassBean cb) {
 		ModelAndView mav = new ModelAndView();
+		MemberBean loginData= (MemberBean)mReq.getSession().getAttribute("loginData");
+		cb.setMbId(loginData.getMbId());
 		boolean updatedOrNot = true;
-		MultipartFile mFile = mReq.getFile("name속성");
-		String fileNo ="";
+		MultipartFile mFile = mReq.getFile("file");
+		String fileNo =null;
 		
 		//새로 등록할 클래스 이미지의 fileNo 
 		if(mFile!=null) {	

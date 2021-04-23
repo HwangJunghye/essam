@@ -41,7 +41,7 @@ border: none;
 <%@ include file="../common/nav.jsp" %>
 
 <section>
-<form action="class/classinfo/update" method="post">
+<form action="update" method="post" enctype="multipart/form-data">
 <!-- 클래스 정보 수정 페이지 -->
 <c:if test="${!empty clsInfo}">
 <div class="clsTitle">${clsInfo.clsName}</div>
@@ -67,15 +67,15 @@ border: none;
 	<br/>
 	클래스명: <input type="text" name="clsName" value="${clsInfo.clsName}" required/>
 	<br/>
-	클래스 정원: <input type="text" name="clsLimit" value="${clsInfo.clsLimit}" required/> (명)
+	클래스 정원: <input type="number" name="clsLimit" value="${clsInfo.clsLimit}" required/> (명)
 	<br/>
-	커버이미지: <input type="file" name="fileNo" value="${clsInfo.fileNo}" >
+	커버이미지: <input type="file" name="file" value="${clsInfo.fileNo}" >
 	<br/>
 	한줄 소개:<input type="text" name="clsIntro" value="${clsInfo.clsIntro}" required/>
 	<br/>
-	상세 소개:<input type="text" name="clsDesc" value="${clsInfo.clsDesc}" required/>
+	상세 소개:<textarea cols="50" rows="10" name="clsDesc" value="${clsInfo.clsDesc}" required/></textarea>
 	<br/>
-	가격:<input type="text" name="clsPrice" value="${clsInfo.clsPrice}"> (/월)
+	가격:<input type="number" name="clsPrice" value="${clsInfo.clsPrice}"> (/월)
 	<br/>
 	키워드:<input type="text" name="clsKeyword" value="${clsInfo.clsKeyword}">
 	<br/>
@@ -110,15 +110,15 @@ border: none;
 	<br/>
 	클래스명: <input type="text" name="clsName" required/>
 	<br/>
-	클래스 정원: <input type="text" name="clsLimit" required/> (명)
+	클래스 정원: <input type="number" name="clsLimit" required/> (명)
 	<br/>
-	커버이미지: <input type="file" name="fileNo">
+	커버이미지: <input type="file" name="file">
 	<br/>
 	한줄 소개:<input type="text" name="clsIntro" required/>
 	<br/>
-	상세 소개:<input type="text" name="clsDesc" required/>
+	상세 소개:<textarea cols="50" rows="10" name="clsDesc" required/></textarea>
 	<br/>
-	가격:<input type="text" name="clsPrice"> (/월)
+	가격:<input type="number" name="clsPrice"> (/월)
 	<br/>
 	키워드:<input type="text" name="clsKeyword">
 	<br/>
