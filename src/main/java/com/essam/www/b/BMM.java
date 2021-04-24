@@ -24,8 +24,10 @@ import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.FileBean;
 import com.essam.www.bean.MemberBean;
+import com.essam.www.bean.ReplyBean;
 import com.essam.www.bean.TeacherBean;
 import com.essam.www.constant.Constant;
+import com.essam.www.d.IDDao;
 import com.essam.www.eclass.Paging;
 import com.essam.www.exception.CommonException;
 import com.essam.www.file.FileMM;
@@ -38,6 +40,8 @@ public class BMM {
 	private IBDao bDao;
 	@Autowired
 	private FileMM fm;
+	@Autowired
+	private IDDao DDao;
 	
 	ModelAndView mav;
 	
@@ -93,8 +97,16 @@ public class BMM {
 	}
 
 	public ModelAndView goBoardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
+		
+		//RedirectAttributes.addFlashAttribute로 보낸 데이터 가져오기
+		Map<String, ?> redirectMap = RequestContextUtils.getInputFlashMap(request);  
+	    if( redirectMap != null ){
+	    	clsNo = (String)redirectMap.get("clsNo");  // 오브젝트 타입이라 캐스팅해줌
+	    	clsBrdType = (Integer)redirectMap.get("clsBrdType");
+	        pageNum = (Integer)redirectMap.get("pageNum");  
+	    }
+	    
 		mav = new ModelAndView();
-
 		//pageNum이 null이면 1로 세팅
 		pageNum = (pageNum==null)? 1 : pageNum;
 		
@@ -231,7 +243,7 @@ public class BMM {
 				if(fileNo != null) {
 					// DB에 파일정보 저장
 					if(bDao.brdFileInsert(clsBrdNo, fileNo))
-						System.out.println("file 저장 후 brd_file 테이블에 데이터 저장 성공.");
+						System.out.println("file 저장 후 brd_file 테이블에 데이터 저장 완료.");
 				} else
 					System.out.println("file 저장 실패");
 			}
@@ -247,20 +259,8 @@ public class BMM {
 			//view 페이지 설정
 			mav.setViewName("redirect:"+ referer);
 		}
-		//등록한 게시물 정보 가져와 bean에 담기
-//		BoardBean newBoard = bDao.getBoardRead(clsBrdNo);
-//		//첨부파일 정보 가져와 bean에 저장
-//		if(newBoard != null)
-//			newBoard.setFilesInfo(bDao.getBoardFiles(clsBrdNo));
-		
-		//rattr에 게시물 정보 담기
-//		rattr.addFlashAttribute("boardData", newBoard);	
 		//rattr에 게시물번호 추가
 		rattr.addFlashAttribute("clsBrdNo", clsBrdNo);	
-		//rattr에 네비타이틀 추가
-//		rattr.addFlashAttribute("navtext", "마이 클래스 > "+ Constant.clsBrdName[newBoard.getClsBrdType()]);
-		//rattr에 클래스명 추가
-//		rattr.addFlashAttribute("clsName", bDao.getClassName(newBoard.getClsNo()));
 		//rattr에 페이지넘버 추가
 		rattr.addFlashAttribute("pageNum", pageNum);
 		return mav;
@@ -302,6 +302,7 @@ public class BMM {
 		}
 		//mav에 게시판정보 담기
 		mav.addObject("boardData", board);	
+		System.out.println("getFilesInfo 파일갯수 =======> "+ board.getFilesInfo().size());
 		//mav에 네비타이틀 추가
 		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[board.getClsBrdType()]);
 		//mav에 클래스명 추가
@@ -327,11 +328,94 @@ public class BMM {
 		return sb.toString();
 	}
 
-	public ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request) {
+	public ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) {
 		mav = new ModelAndView();
+		boolean result = false;		
+		//게시물정보 가져와 bean에 담기
+		BoardBean board = bDao.getBoardRead(clsBrdNo);	
+		//가져온 게시물정보가 있으면
+		if(!ObjectUtils.isEmpty(board)) {
+			//댓글 사용하는 게시판이면
+			if(Constant.clsBrdHasReply[board.getClsBrdType()]) {
+				//댓글정보 삭제
+				if(result = goDeleteReplyList(clsBrdNo, request))	//삭제 성공시 true
+					logger.info(clsBrdNo +"번 게시글 댓글리스트 정보삭제 완료. ");	
+				else
+					logger.info(clsBrdNo +"번 게시글 댓글리스트 정보삭제 실패! ");	
+			} else
+				result = true;	//댓글 사용하지않는 게시판이면 true
+			
+			//댓글 삭제 성공이거나 댓글 사용하지않는 게시판이면 첨부파일 삭제루틴 실행
+			if(result) {				
+				//첨부파일 정보 가져오기
+				List<FileBean> fList = bDao.getBoardFiles(clsBrdNo);
+				//가져온 파일정보가 있으면
+				if(!ObjectUtils.isEmpty(fList)) {
+					// 모두 삭제
+					for(FileBean fb : fList) {
+						//DB > BRD_FILE 정보 삭제
+						if(bDao.deleteBrdFile(fb.getFileNo())) {
+							//DB > TB_FILE 정보 삭제, 파일 삭제
+							if(fm.deleteFile(fb.getFileNo(), request)) {
+								logger.info(fb.getFileNo() +"번 파일 : 삭제(DB/file) 완료.");
+							} else
+								logger.info(fb.getFileNo() +"번 파일 : 삭제(DB or file) 실패! ");								
+						} else {
+							logger.info(fb.getFileNo() +"번 파일 : DB(brd_file) 정보삭제 실패! ");
+							result = false;
+						}
+					}
+				}				
+			}
+			//댓글과 파일 삭제가 성공하면
+			if(result) {
+				//게시물정보(CLS_BRD) 삭제
+				if(bDao.deleteBrd(clsBrdNo)) {
+					rattr.addFlashAttribute("fMsg","게시물 삭제가 완료되었습니다.");
+					logger.info(clsBrdNo +"번 게시물 : 삭제(DB) 완료. ");
+				} else {
+					result = false;
+				}				
+			}
+			//실패시
+			if(!result) {
+				rattr.addFlashAttribute("fMsg","게시물 삭제에 실패하였습니다. \n문제가 지속된다면 관리자에 문의 바랍니다.");
+				logger.info(clsBrdNo +"번 게시물 : 삭제 실패! ");
+			}
+		}
+		//rattr에 클래스넘버 추가
+		rattr.addFlashAttribute("clsNo", board.getClsNo());
+		//rattr에 게시판 타입 추가
+		rattr.addFlashAttribute("clsBrdType", board.getClsBrdType());
+		//rattr에 페이지넘버 추가
+		rattr.addFlashAttribute("pageNum", pageNum);
+		//view 페이지 설정
+		mav.setViewName("redirect:/class/boardlist");
 		return mav;
 	}
 
-
-	
+	private boolean goDeleteReplyList(String clsBrdNo, HttpServletRequest request) {
+		boolean result = true;
+		//댓글리스트 가져오기
+		List<ReplyBean> rList = DDao.getReplyList(clsBrdNo);		
+		//댓글리스트 정보가 존재하면
+		if(!ObjectUtils.isEmpty(rList)) {
+			//댓글리스트 삭제
+			if(bDao.deleteReplyList(clsBrdNo)) {
+				//첨부파일 삭제루틴 실행
+				for(ReplyBean rb : rList) {
+					//fileNo가 존재하는 경우(첨부파일이 있는 경우)
+					if(!StringUtils.isEmpty(rb.getFileNo())) {
+						//파일 삭제
+						if(fm.deleteFile(rb.getFileNo(), request)) {
+							logger.info(rb.getFileNo() +"번 파일 : 삭제(DB/file) 완료.");
+						} else {
+							logger.info(rb.getFileNo() +"번 파일 : 삭제(DB or file) 실패! ");	
+						}
+					}			
+				}
+			} else 	result = false;			
+		}		
+		return result;
+	}
 }

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* 전체 설정 */
 html, body, header, section, h3 {
   margin: 0;
   padding: 0;
@@ -13,15 +14,15 @@ a:hover {text-decoration: none; color: blue;}
 
 button, input[type=button], input[type=button], input[type=submit], input[type=search] {cursor:pointer; height:30px;}
 
-
 /* section */
-
 section {
 	top:0;
 	width: 100%;
 	height: 100%;
 	background-color: #ffffff;
 }
+
+/* section body : aside 없는 페이지에서 본문(contenst) 영역 */
 #contents {
 	width: 1400px;
 	height: 100%;
@@ -29,9 +30,9 @@ section {
 /* 	border: 2px solid black;	div 구분용 */
 	display: flex;
 }
-#main_area {
-	
-}
+
+/* section body > aside 		>> aside_area : aside 메뉴 영역 
+				> contents_area 			  : 본문(contents) 영역 */
 #aside {
 	flex: 1;
 	background-color: #e0e0e0;
@@ -44,7 +45,4 @@ section {
 	background-color: #ffffff;
 	text-align: center;
 /*	border: 2px solid black;	 div 구분용 */
-}
-.tbl_w90 {
-	width: 90%;
 }

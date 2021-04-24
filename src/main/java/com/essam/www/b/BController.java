@@ -80,14 +80,14 @@ public class BController {
 	 * 게시판 글 삭제
 	 */
 	@RequestMapping(value = "/class/boarddelete")
-	ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request) throws CommonException {
-		return bm.boardDelete(clsBrdNo, pageNum, request);
+	ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) {
+		return bm.boardDelete(clsBrdNo, pageNum, request, rattr);
 	}
 	/**
 	 * 게시판 파일 삭제
 	 */
 	@PostMapping(value = "/class/delbrdfile")
-	public @ResponseBody boolean delBrdFile(@RequestBody String fileNo, HttpServletRequest request, RedirectAttributes rattr) {
+	@ResponseBody public boolean delBrdFile(String fileNo, HttpServletRequest request, RedirectAttributes rattr) {
 		return fm.deleteFile(fileNo, request);	
 	}
 	

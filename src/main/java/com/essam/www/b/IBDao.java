@@ -39,4 +39,10 @@ public interface IBDao {
 
 	boolean brdFileInsert(@Param("clsBrdNo") String clsBrdNo, @Param("fileNo") String fileNo);
 
+	boolean deleteBrdFile(String fileNo);
+
+	boolean deleteBrd(String clsBrdNo);
+
+	boolean deleteReplyList(String clsBrdNo);
+
 }

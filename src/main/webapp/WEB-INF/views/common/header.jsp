@@ -69,7 +69,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 				<table width=180 height=30>
 				<tr>
 					<td align="right"><input type="search" name="keyword" size="20" style="height:30px;display: inline-block;vertical-align:middle;"/></td>
-					<td align="right"><input type="button" value="검색" style="height:30px;width:50px;color:#fff;font-size: 15px;margin: 20px 0;display: inline-block;text-align: center;border: none;border-radius:10px; background-color:#8DBDC4;"/></td>
+					<td align="right"><input type="submit" value="검색" style="height:30px;width:50px;color:#fff;font-size: 15px;margin: 20px 0;display: inline-block;text-align: center;border: none;border-radius:10px; background-color:#8DBDC4;"/></td>
 				</tr>
 				</table>
 			</form>

@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
 <%@ page import = "com.essam.www.constant.Constant" %>
 <!DOCTYPE html>
@@ -10,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Board</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <script>
 //console.dir(${bList2 });
@@ -23,14 +21,11 @@
 <div id="contents">
 	<div id="aside">
 		<div id="aside_area">
-			<ul>
-				<li><a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
-				<li><a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=2&pageNum=1">과제</a></li>
-			</ul>
+			<%@ include file="../common/aside.jsp"%>
 		</div>
 	</div>
 	<div id="contents_area">
-		<h3>클래스명 : ${clsName}</h3>
+		<h3>클래스 : ${clsName}</h3>
 		<table class="container">
 		<tr><td></td>
 			<td align="left">전체 : ${totalNum} 건</td>
@@ -67,7 +62,7 @@
 						<td><a href="${ctxPath}/class/boardread?clsBrdNo=${board.clsBrdNo}&pageNum=${param.pageNum}">${board.clsBrdTitle}</a></td>
 						<td>${board.mbNickName}</td>
 						<td>${board.clsBrdDate}</td>
-						<td><c:if test="${board.clsBrdfileCnt > 0}"><img src="${ctxPath}/resources/images/icon_file.jfif" width=18></c:if></td>
+						<td><c:if test="${board.clsBrdfileCnt > 0}"><img src="${ctxPath}/resources/images/icon_file.jfif" width=20></c:if></td>
 						<td>${board.clsBrdView}</td>
 					</tr>
 				</c:forEach>
