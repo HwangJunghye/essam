@@ -25,18 +25,18 @@
 <h3>클래스명 : ${clsName}</h3>
 <h3><c:if test="${empty boardData}">글쓰기</c:if><c:if test="${!empty boardData}">글수정</c:if></h3>
 <form action="${ctxPath}/class/boardwrite" id="frm" method="post" enctype="multipart/form-data">
-<input type="hidden" name="clsBrdNo" value="${clsBrdNo}">
+<input type="hidden" name="clsBrdNo" value="${boardData.clsBrdNo}">
 <input type="hidden" name="clsBrdType" value="${clsBrdType}">
 <input type="hidden" name="clsNo" value="${clsNo}">
 <input type="hidden" name="pageNum" value="${pageNum}">
 <table>
 <tr>
 	<th>제목</th>
-	<td><input type="text" name="clsBrdTitle" id="clsBrdTitle" value="${boardData.clsBrdTitle}" required/></td>
+	<td><input type="text" name="clsBrdTitle" id="clsBrdTitle" size="75" value="${boardData.clsBrdTitle}" autofocus required/></td>
 </tr>
 <tr>
 	<th>내용</th>
-	<td><textarea name="clsBrdContent" id="clsBrdContent" rows="20" cols="60" required>${boardData.clsBrdContent}</textarea></td>
+	<td><textarea name="clsBrdContent" id="clsBrdContent" rows="20" cols="70" required>${boardData.clsBrdContent}</textarea></td>
 </tr>
 <tr>
 	<th>첨부파일</th>

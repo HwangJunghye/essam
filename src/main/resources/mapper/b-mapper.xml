@@ -38,7 +38,9 @@
       SELECT * FROM (
         SELECT
 		  /*+INDEX_DESC(C PK_CLS_BRD)*/ ROWNUM RN, 
-		  C.*,
+		  C.clsBrdNo,
+		  C.clsBrdTitle,
+		  TO_CHAR(C.clsBrdDate,'YYYY.MM.DD') clsBrdDate,
 		  NVL(V.clsBrdViewS, 0) clsBrdView,
           mbNickName
 		FROM
@@ -84,11 +86,14 @@
 			 clsBrdContent=#{clsBrdContent}
 		WHERE clsBrdNO=#{clsBrdNo}
 	</update>
-	<insert id="boardInsert" useGeneratedKeys="true" keyColumn="clsBrdNo" keyProperty="clsBrdNo_new">
+	<insert id="boardInsert">
+		<selectKey keyProperty="clsBrdNo" resultType="String" order="BEFORE">
+			SELECT TO_CHAR(CLS_BRD_SEQ.NEXTVAL) FROM DUAL
+		</selectKey>
 		INSERT INTO CLS_BRD 
-			(clsBrdNo, clsNo, clsBrdType, mbId, clsBrdTitle, clsBrdContent, clsBrdDate)
+			(CLSBRDNO, clsNo, clsBrdType, mbId, clsBrdTitle, clsBrdContent, clsBrdDate)
 		VALUES
-			(CLS_BRD_SEQ.NEXTVAL, #{clsNo}, #{clsBrdType}, #{mbId}, #{clsBrdTitle}, #{clsBrdContent}, SYSDATE)		
+			(#{clsBrdNo}, #{clsNo}, #{clsBrdType}, #{mbId}, #{clsBrdTitle}, #{clsBrdContent}, SYSDATE)		
 	</insert>
 	<insert id="brdFileInsert">
 		INSERT INTO BRD_FILE (clsBrdNo, fileNo)

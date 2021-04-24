@@ -1,6 +1,50 @@
 @charset "UTF-8";
 
-html, body, header, h3 {
+html, body, header, section, h3 {
   margin: 0;
   padding: 0;
+  font-family: '나눔 고딕', 'Nanum Gothic', 'Verdana';
+}
+
+a:link {text-decoration: none; color: blue;}
+a:visited {text-decoration: none; color: blue;}
+a:active {text-decoration: none; color: blue;}
+a:hover {text-decoration: none; color: blue;}
+
+button, input[type=button], input[type=button], input[type=submit], input[type=search] {cursor:pointer; height:30px;}
+
+
+/* section */
+
+section {
+	top:0;
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+}
+#contents {
+	width: 1400px;
+	height: 100%;
+	margin: 0 auto;
+/* 	border: 2px solid black;	div 구분용 */
+	display: flex;
+}
+#main_area {
+	
+}
+#aside {
+	flex: 1;
+	background-color: #e0e0e0;
+}
+#aside_area {
+	padding:20px 2px 20px 2px;
+}
+#contents_area {
+	flex: 7;
+	background-color: #ffffff;
+	text-align: center;
+/*	border: 2px solid black;	 div 구분용 */
+}
+.tbl_w90 {
+	width: 90%;
 }

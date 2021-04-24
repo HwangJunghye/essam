@@ -13,20 +13,17 @@ header {
 	height: 75px;
 	line-height:75px;
 	margin: 0 auto;
-	border: 2px solid black;	/* div 구분용 : 나중에 삭제 예정*/
+/* 	border: 2px solid black;	div 구분용 */
 	display: flex;
 }
 #nav_area1 {
 	flex: 1;
-	border: 2px solid black;
 }
 #nav_area2 {
 	flex: 2;
-	border: 2px solid black;
 }
 #nav_area3 {
 	flex: 1;
-	border: 2px solid black;
 	text-align: right;
 }
 #nav_area4 {

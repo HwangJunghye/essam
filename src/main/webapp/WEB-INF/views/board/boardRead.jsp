@@ -25,9 +25,9 @@
 <center>
 <h3>클래스명 : ${clsName}</h3>
 
-<table>
+<table width=760>
 <tr>
-	<td colspan=3>${boardData.clsBrdTitle}</td>
+	<td colspan=3>[${boardData.clsBrdNo}] ${boardData.clsBrdTitle}</td>
 </tr>
 <tr>
 	<td>${boardData.mbNickName}</td>
@@ -35,10 +35,16 @@
 	<td>조회 <fmt:formatNumber value="${boardData.clsBrdView}" type="number"/></td>
 </tr>
 <tr>
-	<td colspan=3>${boardData.clsBrdContent}</td>
+	<td colspan=3 style="white-space:pre-wrap">${boardData.clsBrdContent}</td>
 </tr>
 </table>
-<p>${btnUpdate} <button type="button" id="goList" onclick="location.href='${ctxPath}/class/boardlist?clsNo=${boardData.clsNo}&clsBrdType=${boardData.clsBrdType}&pageNum=${pageNum}';">목록</button></p>
+<p>
+<table width=760>
+<tr>
+	<td>${btnUpdate}</td>
+	<td align="right"><button type="button" id="goList" onclick="location.href='${ctxPath}/class/boardlist?clsNo=${boardData.clsNo}&clsBrdType=${boardData.clsBrdType}&pageNum=${pageNum}';">목록</button></td>
+</tr>
+</table></p>
 </section>
 
 <script>

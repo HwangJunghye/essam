@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.MemberBean;
@@ -45,7 +46,7 @@ public class BController {
 	 * 게시판 리스트
 	 */
 	@RequestMapping(value = "/class/boardlist")
-	ModelAndView boardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) throws CommonException{
+	ModelAndView boardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
 		return bm.goBoardList(clsNo, clsBrdType, pageNum, request);		
 		// ControllerAdvide 안쓰고 예외처리
 		// try {
@@ -72,14 +73,14 @@ public class BController {
 	 * 게시판 글읽기
 	 */
 	@RequestMapping(value = "/class/boardread")
-	ModelAndView boardRead(String clsBrdNo, Integer pageNum, HttpServletRequest request) throws CommonException{
+	ModelAndView boardRead(String clsBrdNo, Integer pageNum, HttpServletRequest request) {
 		return bm.boardRead(clsBrdNo, pageNum, request);
 	}
 	/**
 	 * 게시판 글 삭제
 	 */
 	@RequestMapping(value = "/class/boarddelete")
-	ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request) throws CommonException{
+	ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request) throws CommonException {
 		return bm.boardDelete(clsBrdNo, pageNum, request);
 	}
 	/**

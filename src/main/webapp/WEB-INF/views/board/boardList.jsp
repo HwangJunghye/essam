@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
 <%@ page import = "com.essam.www.constant.Constant" %>
 <!DOCTYPE html>
@@ -8,6 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Board</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <script>
 //console.dir(${bList2 });
@@ -17,53 +20,66 @@
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp"%>
 <section>
-
-<center>
-<%//int cn = (Integer)request.getAttribute("clsBrdType");%>
-<h3>Board <%//Constant.clsBrdName[cn]%> 1.<a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=1">공지사항</a> 2.<a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=2">과제</a></h3>
-<span style="color:red">${msg}</span>
-
-<c:if test="${sessionScope.loginData.mbType==2}">
-	<button type="button" onclick="location.href='${ctxPath}/class/goboardwrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}&pageNum=${param.pageNum}';">글쓰기</button>
-</c:if>
-<h3>클래스명 : ${clsName}</h3>
-<table class="tbl" width=600>
-<tr height=30>
-	<th>번호</th>
-	<th>제 목</th>
-	<th>작성자</th>
-	<th>작성일</th>
-	<th>첨부파일</th>
-	<th>조회</th>
-</tr>
-<c:if test="${empty bList}">
-<tr>
-	<td colspan="6" align="center" height="200">등록된 글이 없습니다.</td>
-</tr>
-</c:if>
-<c:if test="${!empty bList}">
-	<c:forEach var="board" items="${bList}">
-		<tr height=24>
-			<td align="center">${board.clsBrdNo}</td>
-			<td align="center"><a href="${ctxPath}/class/boardWrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}&clsBrdNo=${board.clsBrdNo}">${board.clsBrdTitle}</a></td>
-			<td align="center">${board.mbNickName}</td>
-			<td align="center">${board.clsBrdDate}</td>
-			<td align="center"><c:if test="${board.clsBrdfileCnt > 0}"><img src="${ctxPath}/resources/images/icon_file.jfif"></c:if></td>
-			<td align="center">${board.clsBrdView}</td>
+<div id="contents">
+	<div id="aside">
+		<div id="aside_area">
+			<ul>
+				<li><a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
+				<li><a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=2&pageNum=1">과제</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="contents_area">
+		<h3>클래스명 : ${clsName}</h3>
+		<table class="container">
+		<tr><td></td>
+			<td align="left">전체 : ${totalNum} 건</td>
+			<td align="right">
+				<c:if test="${sessionScope.loginData.mbType==2}">
+					<button type="button" onclick="location.href='${ctxPath}/class/goboardwrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}';">글쓰기</button>
+				</c:if></td>
+			<td></td></tr>
+		</table>
+		<div class="container">
+		<table class='table table-hover' style='background-color: white;' width=760>
+		<thead>
+		<tr>
+			<th>번호</th>
+			<th>제 목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>첨부파일</th>
+			<th>조회</th>
 		</tr>
-	</c:forEach>
-</c:if>
-</table>
-<!-- 페이징 -->
-${paging}
-</center>
+		</thead>
+		<c:if test="${empty bList}">
+			<thead>
+			<tr class='prod'>
+				<td colspan="6" align="center" height="200">등록된 게시물이 없습니다.</td>
+			</tr>
+			</thead>
+		</c:if>
+		<c:if test="${!empty bList}">
+			<tbody class='tbl'>
+				<c:forEach var="board" items="${bList}">
+					<tr class='prod'>
+						<td>${board.clsBrdNo}</td>
+						<td><a href="${ctxPath}/class/boardread?clsBrdNo=${board.clsBrdNo}&pageNum=${param.pageNum}">${board.clsBrdTitle}</a></td>
+						<td>${board.mbNickName}</td>
+						<td>${board.clsBrdDate}</td>
+						<td><c:if test="${board.clsBrdfileCnt > 0}"><img src="${ctxPath}/resources/images/icon_file.jfif" width=18></c:if></td>
+						<td>${board.clsBrdView}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</c:if>
+		</table>
+		</div>
+		<!-- 페이징 -->
+		${paging}
 
-<!-- <form action="testmap">
-	컬럼명 : <input type="text" name="cName"><br>
-	검색 : <input type="text" name="search"><br>
-	<button>enter</button>
-</form> -->
-
+	</div>
+</div>
 </section>
 <%@ include file="../common/footer.jsp" %>
 </body>

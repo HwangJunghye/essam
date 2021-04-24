@@ -55,7 +55,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 <body>
 <header>
 	<div id="nav_menu">
-		<div id="nav_area1"><h3>header1.jsp - <a href="${ctxPath}/">home</a></h3></div>
+		<div id="nav_area1"><a href="${ctxPath}/"><span style="font-size: 30px">e-쌤</span></a></div>
 		<div id="nav_area2">
 			<span id="#nav_cate1">
 				<c:forEach items="<%=Constant.cate1Name%>" begin="1" varStatus="state" var="item">
@@ -65,7 +65,13 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 		</div>
 		<div id="nav_area3">
 			<form action="${ctxPath}/search" method="get">
-				<input type="search" name="keyword" /><input type="submit" value="검색"/>
+				<!-- <div style="heigth:30px; margin: 0 auto; text-align:center;"><div style="width:100px;height:30px;display: inline-block;vertical-align:top;"><input type="search" name="keyword" size="10" /></div><div style="height:30px;display: inline-block;vertical-align:top;"><button type="button">검색</button></div></div> -->
+				<table width=180 height=30>
+				<tr>
+					<td align="right"><input type="search" name="keyword" size="20" style="height:30px;display: inline-block;vertical-align:middle;"/></td>
+					<td align="right"><input type="button" value="검색" style="height:30px;width:50px;color:#fff;font-size: 15px;margin: 20px 0;display: inline-block;text-align: center;border: none;border-radius:10px; background-color:#8DBDC4;"/></td>
+				</tr>
+				</table>
 			</form>
 		</div>
 		<div id="nav_area4">

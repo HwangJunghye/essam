@@ -13,9 +13,7 @@
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 <section>
-	인덱스 페이지(/)<br/>
-	${msg}<br>
-	${fMsg}
+<div id="contents">
 	
 	<!-- 수강중인 클래스가 있으면 -->
 	<c:if test="${!empty myList}">
@@ -28,7 +26,7 @@
 				<td>${eclass.mbId}</td>
 			</tr>
 		</c:forEach>
-		</table>
+		</table></li>
 	</c:if>
 	
 	<li>New 클래스 
@@ -45,7 +43,8 @@
 			</tr>
 		</c:forEach>
 	</c:if>
-	</table>
+	</table></li>
+</div>
 </section>
 
 <%@ include file="../common/footer.jsp" %>

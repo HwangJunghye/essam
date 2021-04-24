@@ -53,21 +53,21 @@ public class Paging {
 
 		for (int i = start; i <= end; i++) {
 			if (pageNum != i) { //현재 페이지가 아닌 경우 링크처리
-				sb.append("<a href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"pageNum=" + i + "'>");
-				sb.append(" [ ");
+				sb.append("<a href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"&pageNum=" + i + "'>");
+				sb.append(" ");
 				sb.append(i);
-				sb.append(" ] ");
+				sb.append(" ");
 				sb.append("</a>");
 			} else { //현재 페이지인 경우 링크 해제
 				sb.append("<font style='color:red;'>");
-				sb.append(" [ ");
+				sb.append(" ");
 				sb.append(i);
-				sb.append(" ] ");
+				sb.append(" ");
 				sb.append("</font>");
 			}
 		}
 		if (end != totalPage) {
-			sb.append("<a href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"pageNum=" + (end + 1) + "'>");
+			sb.append("<a href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"&pageNum=" + (end + 1) + "'>");
 			sb.append("[다음]");
 			sb.append("</a>");
 		}

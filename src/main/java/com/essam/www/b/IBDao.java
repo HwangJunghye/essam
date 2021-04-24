@@ -35,7 +35,7 @@ public interface IBDao {
 
 	boolean boardUpdate(BoardBean board);
 
-	String boardInsert(BoardBean board);
+	boolean boardInsert(BoardBean board);
 
 	boolean brdFileInsert(@Param("clsBrdNo") String clsBrdNo, @Param("fileNo") String fileNo);
 
