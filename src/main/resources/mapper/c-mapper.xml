@@ -14,4 +14,10 @@
 		SET FILENO=#{fileNo}, TEACHERINTRO=#{teacherIntro}, TEACHERDETAIL=#{teacherDetail} 
 		WHERE MBID=#{mbId}
 	</update>
+	
+	<update id="teacherInfoDelete" >
+		UPDATE TEACHER 
+		SET FILENO=NULL, TEACHERINTRO=NULL, TEACHERDETAIL=NULL 
+		WHERE MBID=#{mbId}
+	</update>
 </mapper>

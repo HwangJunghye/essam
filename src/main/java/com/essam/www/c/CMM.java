@@ -64,6 +64,7 @@ public class CMM {
 		return mav;
 	}
 	
+
 	public ModelAndView getTeacherProfileWrite(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		TeacherBean teacherInfo = null;
@@ -118,11 +119,48 @@ public class CMM {
 		return mav;
 	}
 
-	
-
-	// 교사프로필 삭제하기
-	
-
+	/**
+	 *  교사프로필 삭제하기 teacherProfileDelete()
+	 *  @param HttpSession
+	 *  @param HttpServletRequest
+	 */
+	public ModelAndView teacherProfileDelete(HttpSession session, HttpServletRequest request) throws CommonException {
+		ModelAndView mav = new ModelAndView();
+		TeacherBean teacherInfo = null;
+		// 세션에서 로그인 데이터를 MemberBean에 담기
+		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+		// MemberBean으로 부터 mbId 가져옴
+		String mbId = loginData.getMbId();
+		// getTeacherProfile()에 mbId 넘겨 fileNo 가져오기
+		teacherInfo = mDao.getTeacherProfile(mbId);
+		String fileNo = teacherInfo.getFileNo();
+		// DB에 mbId 가지고 가서 fileNo, teacherIntro, teacherDetail에 NULL값 UPDATE
+		boolean isDeleteTeacherInfo = mDao.teacherInfoDelete(mbId);
+		if (isDeleteTeacherInfo) { // DB에 UPDATE 성공하면
+			// UPDATE 한 강사프로필 데이터 가져오기
+			teacherInfo = mDao.getTeacherProfile(mbId);
+			if (fileNo != null) { // 강사프로필에 fileNo가 있었다면
+				// 서버에 저장된 이미지파일 삭제
+				boolean isDeleteFile = fm.deleteFile(fileNo, request);
+				if(isDeleteFile) { // 서버에 저장된 이미지파일 삭제 성공하면
+					// 삭제한(정확히는 update한) 강사프로필 정보를 mav에 담기
+					mav.addObject("teacherInfo", teacherInfo);
+					// teacher_profile.jsp로 이동하기 위해 viewname 지정
+					mav.setViewName("member/teacher_profile"); // 강사프로필 페이지로
+				}else {
+					System.out.println("서버에 저장된 이미지파일 삭제 실패");
+				}
+			}else {
+				// 삭제한(정확히는 update한) 정보를 mav에 담기
+				mav.addObject("teacherInfo", teacherInfo);
+				// teacher_profile.jsp로 이동하기 위해 viewname 지정
+				mav.setViewName("member/teacher_profile"); // 강사프로필 페이지로
+			}
+			return mav;
+		}else { // DB에 UPDATE 실패하면
+			throw new CommonException("DB에 UPDATE 실패 예외발생");
+		}	
+	}	
 }
 
 

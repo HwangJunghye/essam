@@ -26,6 +26,7 @@ public class CController {
 	 * 교사프로필 이동 + 교사프로필 가져오기 goTeacherProfile()
 	 * @param session
 	 * @return ModelAndView
+	 * @throws CommonException
 	 */
 	@RequestMapping(value = "/teacher_profile")
 	ModelAndView goTeacherProfile(HttpSession session) throws CommonException {
@@ -55,17 +56,15 @@ public class CController {
 		return mav;
 	}
 	
-	
 	/**
-	 * 교사프로필 삭제하기
-	 * @param session
-	 * @param rattr
-	 * @return
-	 * @throws CommonException
+	 * 교사프로필 삭제하기 teacherProfileDelete
+	 * @param HttpSession
+	 * @param HttpServletRequest
+	 * @return ModelAndView
 	 */
 	@RequestMapping(value = "/teacher_profile/delete")
-	ModelAndView TeacherProfileDelete(HttpSession session, RedirectAttributes rattr) throws CommonException {
-		ModelAndView mav = mm.getTeacherProfile(session);
+	ModelAndView teacherProfileDelete(HttpSession session, HttpServletRequest request) throws CommonException {
+		ModelAndView mav = mm.teacherProfileDelete(session, request);
 		return mav; 
 	}
 	

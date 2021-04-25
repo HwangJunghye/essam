@@ -9,4 +9,6 @@ public interface ICDao {
 	TeacherBean getTeacherProfile(String mbId);
 
 	boolean teacherProfileUpdate(TeacherBean tb);
+
+	boolean teacherInfoDelete(String mbId);
 }
