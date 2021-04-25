@@ -44,9 +44,10 @@ header {
 #input_txt_src {	/* 검색어 입력박스(input) */
 	width:200px;
 	height:30px;
-	border: 1px solid #8DBDC4;
+	border: 1px solid #bebebe;
 	display:inline-block;
 	vertical-align:middle;
+	border-radius :3px;
 }
 #btn_src {			/* 검색버튼 */
 	height:30px !important;

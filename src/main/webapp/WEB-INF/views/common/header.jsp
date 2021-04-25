@@ -23,7 +23,6 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -53,51 +52,30 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 <body>
 <header>
 	<div id="nav_area">
-		<div id="nav_area1"><a href="${ctxPath}/"><span style="font-size: 30px;color:#000;">e-쌤</span></a></div>
+		<div id="nav_area1"><a href="${ctxPath}/"><span style="font-size:30px;color:#000;">e-쌤</span></a></div>
 		<div id="nav_area2">
 			<p class="text-center" style="margin-top:25px"><h5>
 				<c:forEach items="<%=Constant.cate1Name%>" begin="1" varStatus="state" var="item">
-					<a href="${ctxPath}/search?cate1No=${state.index}">${item}</a>
+					<a href="${ctxPath}/search?cate1No=${state.index}">${item}</a>&nbsp;&nbsp;&nbsp;
 				</c:forEach>			
 			</h5></p>
 		</div>
 		<div id="nav_area3">
-			<form action="${ctxPath}/search" method="get">
-    
+			<form action="${ctxPath}/search" method="get">    
     			<table>
 				<tr>
-					<td align="right">
-						<div class="form-row">
-					      <div class="col">
-					        <input type="search" name="keyword" class="form-control" placeholder="검색어">
-					      </div>
-					    </div></td>
-					<td align="left"><!-- bootstrap과의 css 충돌로 인해 div 사용 -->
-						<div class="form-row">
-					      <div class="col">
-					        <button type="submit" class="btn btn-primary btn-sm">Search</button>
-					      </div>
-					    </div>
-						<!-- <div id="btn_src_div1">
-							<div id="btn_src_div2"><input type="submit" id="btn_src" value="검색" /></div>
-						</div> --></td>
+					<td align="right"><input type="search" name="keyword" id="input_txt_src" placeholder="검색어" /></td>
+					<td align="left"><button type="submit" class="btn btn-primary btn-sm">Search</button>
+						<!-- bootstrap과의 css 충돌로 인해 div 사용 -->
+						<!-- <div id="btn_src_div1"><div id="btn_src_div2"><input type="submit" id="btn_src" value="검색" /></div></div> --></td>
 				</tr>
 				</table>
-		<!-- 		<table>
-				<tr>
-					<td align="right"><input type="search" name="keyword" id="input_txt_src"/></td>
-					<td align="left">bootstrap과의 css 충돌로 인해 div 사용
-						<div id="btn_src_div1">
-							<div id="btn_src_div2"><input type="submit" id="btn_src" value="검색" /></div>
-						</div></td>
-				</tr>
-				</table> -->
 			</form>
 		</div>
-		<div id="nav_area4">
+		<div id="nav_area4"><p class="text-center" style="margin-top:28px"><h6><span style="font-weight: bold;">
 			<c:if test="${empty sessionScope.loginData}">
 				<!-- 로그아웃 상태 -->
-				<a href="${ctxPath}/login">로그인</a>   <a href="${ctxPath}/join">회원가입</a>
+				<a href="${ctxPath}/login">로그인</a>&nbsp;&nbsp;<a href="${ctxPath}/join">회원가입</a>
 			</c:if>
 			<c:if test="${!empty sessionScope.loginData}">
 				<!-- 로그인 상태 -->
@@ -109,9 +87,9 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 					<!-- 강사인 경우 -->
 					강사로그인
 				</c:if>
-				<a id="mypage" href="${ctxPath}/mypage">마이페이지</a>
-				<a id="logout" href="#">로그아웃</a>
-			</c:if>
+				&nbsp;&nbsp;<a id="mypage" href="${ctxPath}/mypage">마이페이지</a>
+				&nbsp;&nbsp;<a id="logout" href="#">로그아웃</a>
+			</c:if></span></h6></p>
 		</div>
 	</div>
 </header>
