@@ -28,8 +28,7 @@
 		WHERE CLSNO=#{clsNo} AND ROWNUM=1
 	</select>
 	<select id="getClassRegiCnt" resultType="int">
-		SELECT COUNT(*) 
-		FROM STUDENT 
+		SELECT COUNT(*) FROM STUDENT 
 		WHERE clsNo=#{clsNo}
 	</select>
 	<insert id="classJoin">
@@ -42,7 +41,7 @@
 	<![CDATA[
       SELECT * FROM (
         SELECT
-		  /*+INDEX_DESC(C PK_CLS_BRD)*/ ROWNUM RN, 
+		  /*+INDEX_DESC(C PK_CLS_BRD)*/ ROW_NUMBER() OVER(ORDER BY C.clsbrdno+0 DESC) RN,
 		  C.clsBrdNo,
 		  C.clsBrdTitle,
 		  TO_CHAR(C.clsBrdDate,'YYYY.MM.DD') clsBrdDate,
@@ -51,10 +50,10 @@
 		FROM
 		  CLS_BRD C
 		  LEFT OUTER JOIN (SELECT CLSBRDNO, COUNT(*) clsBrdViewS FROM CLS_BRD_VIEW GROUP BY CLSBRDNO) V
-		  		ON C.CLSBRDNO = V.CLSBRDNO
+		  	   ON C.CLSBRDNO = V.CLSBRDNO
           JOIN MEMBER M ON C.MBID=M.MBID
-		WHERE C.clsNo=#{clsNo} AND C.clsBrdType=#{clsBrdType} AND ROWNUM<=#{pageNum}*10)
-	  WHERE RN>=#{pageNum}*10-9
+		WHERE C.clsNo=#{clsNo} AND C.clsBrdType=#{clsBrdType})
+	  WHERE RN BETWEEN #{pageNum}*10-9 AND #{pageNum}*10
 	]]>
 	</select>
 	<select id="getBoardCount" resultType="int">
@@ -84,8 +83,7 @@
 		WHERE B.clsBrdNo=#{clsBrdNo}
 	</select>
 	<select id="getClassName" resultType="string">
-		SELECT clsName 
-		FROM CLASS 
+		SELECT clsName FROM CLASS 
 		WHERE CLSNO=#{clsNo} AND ROWNUM=1
 	</select>
 	<update id="boardUpdate">
@@ -124,4 +122,17 @@
 		DELETE FROM CLS_BRD_REP
 		WHERE CLSBRDNO = #{clsBrdNo}	
 	</delete>
+	<select id="getBrdViewId" resultType="int">
+		SELECT COUNT(*) FROM CLS_BRD_VIEW
+		WHERE CLSBRDNO=#{clsBrdNo} AND MBID=#{mbId} AND ROWNUM=1
+	</select>
+	<insert id="addBrdView">
+		INSERT INTO CLS_BRD_VIEW 
+		VALUES (#{clsBrdNo}, #{mbId})
+	</insert>
+	<delete id="delBrdView">
+		DELETE FROM CLS_BRD_VIEW
+		WHERE CLSBRDNO=#{clsBrdNo}	
+	</delete>
+	
 </mapper>

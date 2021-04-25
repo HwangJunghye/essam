@@ -1,6 +1,5 @@
 <%@page import="com.essam.www.constant.Constant"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 
 ctxPath : contextPath는 절대경로
@@ -23,13 +22,12 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/header.css">
-<style>
-
-</style>
 <script>
 	$(function(){
 		// alert창 출력
@@ -54,24 +52,46 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 </head>
 <body>
 <header>
-	<div id="nav_menu">
-		<div id="nav_area1"><a href="${ctxPath}/"><span style="font-size: 30px">e-쌤</span></a></div>
+	<div id="nav_area">
+		<div id="nav_area1"><a href="${ctxPath}/"><span style="font-size: 30px;color:#000;">e-쌤</span></a></div>
 		<div id="nav_area2">
-			<span id="#nav_cate1">
+			<p class="text-center" style="margin-top:25px"><h5>
 				<c:forEach items="<%=Constant.cate1Name%>" begin="1" varStatus="state" var="item">
 					<a href="${ctxPath}/search?cate1No=${state.index}">${item}</a>
 				</c:forEach>			
-			</span>
+			</h5></p>
 		</div>
 		<div id="nav_area3">
 			<form action="${ctxPath}/search" method="get">
-				<!-- <div style="heigth:30px; margin: 0 auto; text-align:center;"><div style="width:100px;height:30px;display: inline-block;vertical-align:top;"><input type="search" name="keyword" size="10" /></div><div style="height:30px;display: inline-block;vertical-align:top;"><button type="button">검색</button></div></div> -->
-				<table width=180 height=30>
+    
+    			<table>
 				<tr>
-					<td align="right"><input type="search" name="keyword" size="20" style="height:30px;display: inline-block;vertical-align:middle;"/></td>
-					<td align="right"><input type="submit" value="검색" style="height:30px;width:50px;color:#fff;font-size: 15px;margin: 20px 0;display: inline-block;text-align: center;border: none;border-radius:10px; background-color:#8DBDC4;"/></td>
+					<td align="right">
+						<div class="form-row">
+					      <div class="col">
+					        <input type="search" name="keyword" class="form-control" placeholder="검색어">
+					      </div>
+					    </div></td>
+					<td align="left"><!-- bootstrap과의 css 충돌로 인해 div 사용 -->
+						<div class="form-row">
+					      <div class="col">
+					        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+					      </div>
+					    </div>
+						<!-- <div id="btn_src_div1">
+							<div id="btn_src_div2"><input type="submit" id="btn_src" value="검색" /></div>
+						</div> --></td>
 				</tr>
 				</table>
+		<!-- 		<table>
+				<tr>
+					<td align="right"><input type="search" name="keyword" id="input_txt_src"/></td>
+					<td align="left">bootstrap과의 css 충돌로 인해 div 사용
+						<div id="btn_src_div1">
+							<div id="btn_src_div2"><input type="submit" id="btn_src" value="검색" /></div>
+						</div></td>
+				</tr>
+				</table> -->
 			</form>
 		</div>
 		<div id="nav_area4">

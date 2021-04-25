@@ -31,7 +31,7 @@
 	<td>조회 <fmt:formatNumber value="${boardData.clsBrdView}" type="number"/></td>
 </tr>
 <tr>
-	<td colspan=3 style="white-space:pre-wrap">${boardData.clsBrdContent}</td>
+	<td colspan=3 style="white-space:pre-wrap;word-break:break-all;">${boardData.clsBrdContent}</td>
 </tr>
 <tr>
 	<td>첨부파일</td>

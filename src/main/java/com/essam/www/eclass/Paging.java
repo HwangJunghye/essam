@@ -44,33 +44,37 @@ public class Paging {
 		int end = (currentGroup * pageCount >= totalPage)
 				? totalPage
 				: currentGroup * pageCount;
-
+		
+		sb.append("<div class=\"container\">");
+		sb.append("<ul class=\"pagination justify-content-center\">");
 		if (start != 1) {
-			sb.append("<a href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"&pageNum=" + (start -1) + "'>");
-			sb.append("[이전]");
-			sb.append("</a>");
+			sb.append("<li class=\"page-item\">");
+			sb.append("<a class=\"page-link\" href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"&pageNum=" + (start -1) + "'>");
+			sb.append("이전");
+			sb.append("</a></li>");
 		}
 
 		for (int i = start; i <= end; i++) {
 			if (pageNum != i) { //현재 페이지가 아닌 경우 링크처리
-				sb.append("<a href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"&pageNum=" + i + "'>");
-				sb.append(" ");
+				sb.append("<li class=\"page-item\">");
+				sb.append("<a class=\"page-link\" href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"&pageNum=" + i + "'>");
 				sb.append(i);
-				sb.append(" ");
-				sb.append("</a>");
+				sb.append("</a></li>");
 			} else { //현재 페이지인 경우 링크 해제
-				sb.append("<font style='color:red;'>");
-				sb.append(" ");
+				sb.append("<li class=\"page-item active\">");
+				sb.append("<a class=\"page-link\" href=\"#\">");
 				sb.append(i);
-				sb.append(" ");
-				sb.append("</font>");
+				sb.append("</a></li>");
 			}
 		}
 		if (end != totalPage) {
-			sb.append("<a href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"&pageNum=" + (end + 1) + "'>");
-			sb.append("[다음]");
-			sb.append("</a>");
+			sb.append("<li class=\"page-item\">");
+			sb.append("<a class=\"page-link\" href='"+ ctxPath +"/class/boardlist?clsNo="+ clsNo +"&clsBrdType="+ clsBrdType +"&pageNum=" + (end + 1) + "'>");
+			sb.append("다음");
+			sb.append("</a></li>");
 		}
+		sb.append("</ul>");
+		sb.append("</div>");
 		return sb.toString();
 	}
 }

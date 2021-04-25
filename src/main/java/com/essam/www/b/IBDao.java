@@ -45,4 +45,10 @@ public interface IBDao {
 
 	boolean deleteReplyList(String clsBrdNo);
 
+	int getBrdViewId(@Param("clsBrdNo") String clsBrdNo, @Param("mbId") String mbId);
+
+	void addBrdView(@Param("clsBrdNo") String clsBrdNo, @Param("mbId") String mbId);
+
+	boolean delBrdView(String clsBrdNo);
+
 }

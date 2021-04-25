@@ -8,7 +8,7 @@ header {
 	height: 75px;
 	background-color: #ffffff;
 }
-#nav_menu {
+#nav_area {		/* 상단메뉴 영역 */
 	width: 1400px;
 	height: 75px;
 	line-height:75px;
@@ -16,25 +16,58 @@ header {
 /* 	border: 2px solid black;	div 구분용 */
 	display: flex;
 }
-#nav_area1 {
+#nav_area1 {	/* e-쌤 로고 영역 */
 	flex: 1;
 }
-#nav_area2 {
+#nav_area2 {	/* 카테고리 영역 */
 	flex: 2;
 }
-#nav_area3 {
+#nav_area3 {	/* 검색 영역 */
 	flex: 1;
 	text-align: right;
 }
-#nav_area4 {
+#nav_area4 {	/* 회원메뉴 영역 */
 	flex: 1;
 	text-align: right;
 }
-#nav_cate1 {
+#nav_cate1 {	/* 카테고리 */
 	font-family: '나눔 고딕', 'Nanum Gothic', 'Verdana';
 	font-weight: bold;
 	font-size: 20px;
 	line-height: 20px;
 	display: flex;
 	color: #333333;
+}
+
+/* 검색 영역 요소 */
+
+#input_txt_src {	/* 검색어 입력박스(input) */
+	width:200px;
+	height:30px;
+	border: 1px solid #8DBDC4;
+	display:inline-block;
+	vertical-align:middle;
+}
+#btn_src {			/* 검색버튼 */
+	height:30px !important;
+	width:50px !important;
+	color:#fff !important;
+	font-size: 15px !important;
+	margin: 0px !important;
+	padding:0px !important;
+	text-align: center !important;
+	border: none !important;
+	border-radius:10px !important;
+	background-color:#8DBDC4 !important;
+}
+#btn_src_div1 {		/* 검색버튼 div 1 */
+	line-height:70px;
+	vertical-align:middle;
+	display:inline-table;
+}
+#btn_src_div2 {		/* 검색버튼 div 2 */
+	height:30px;
+	line-height:30px;
+	display:table-cell;
+	vertical-align:middle;
 }

@@ -1,6 +1,8 @@
 package com.essam.www.b;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -100,11 +102,11 @@ public class BMM {
 		
 		//RedirectAttributes.addFlashAttribute로 보낸 데이터 가져오기
 		Map<String, ?> redirectMap = RequestContextUtils.getInputFlashMap(request);  
-	    if( redirectMap != null ){
-	    	clsNo = (String)redirectMap.get("clsNo");  // 오브젝트 타입이라 캐스팅해줌
-	    	clsBrdType = (Integer)redirectMap.get("clsBrdType");
-	        pageNum = (Integer)redirectMap.get("pageNum");  
-	    }
+		if( redirectMap != null ){
+			clsNo = (String)redirectMap.get("clsNo");  // 오브젝트 타입이라 캐스팅해줌
+			clsBrdType = (Integer)redirectMap.get("clsBrdType");
+			pageNum = (Integer)redirectMap.get("pageNum");  
+		}
 	    
 		mav = new ModelAndView();
 		//pageNum이 null이면 1로 세팅
@@ -115,6 +117,7 @@ public class BMM {
 		}
 		//전체 글 갯수 가져오기
 		int totalNum = bDao.getBoardCount(clsNo, clsBrdType);
+		
 		//게시판 목록 가져오기
 		ArrayList<BoardBean> bList = bDao.getBoardList(clsNo, clsBrdType, pageNum);	
 		
@@ -124,8 +127,18 @@ public class BMM {
 				board.setClsBrdfileCnt(bDao.getBoardFileCnt(board.getClsBrdNo()));
 			}
 		}
+		
+		/* clsBrdNo 기준 내림차순 정렬하기*/
+		List<BoardBean> bListSort = new ArrayList<>();
+        BListDecending bListDecending = new BListDecending();
+        Collections.sort(bList, bListDecending);
+ 
+        for (BoardBean nb : bList) {
+            bListSort.add(nb);
+        }
+
 		//mav에 게시판 목록 정보 저장
-		mav.addObject("bList", bList);
+		mav.addObject("bList", bListSort);
 		//mav에 페이징 정보 저장
 		mav.addObject("paging", getPaging(clsNo, clsBrdType, pageNum, request));
 		//mav에 클래스넘버 추가
@@ -294,6 +307,8 @@ public class BMM {
 		if(!ObjectUtils.isEmpty(request.getSession().getAttribute("loginData"))) {
 			//로그인정보 가져와 bean에 담기
 			MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
+			//조회수 추가(아이디 당 1번만 추가)
+			addBrdView(clsBrdNo, loginData.getMbId());
 			//로그인정보의 mbId와 게시물정보의 mbId가 같으면
 			if(loginData.getMbId().equals(board.getMbId())) {
 				//mav에 수정/삭제 버튼 추가
@@ -312,6 +327,15 @@ public class BMM {
 		//view 페이지 설정
 		mav.setViewName("board/boardRead");
 		return mav;
+	}
+
+	//조회수 추가
+	private void addBrdView(String clsBrdNo, String mbId) {
+		int isViewCnt = 0;
+		isViewCnt = bDao.getBrdViewId(clsBrdNo, mbId);
+		if(isViewCnt < 1) {
+			bDao.addBrdView(clsBrdNo, mbId);
+		}		
 	}
 
 	private String makeHtmlBtnUpdate(BoardBean board, Integer pageNum, HttpServletRequest request) {
@@ -338,7 +362,7 @@ public class BMM {
 			//댓글 사용하는 게시판이면
 			if(Constant.clsBrdHasReply[board.getClsBrdType()]) {
 				//댓글정보 삭제
-				if(result = goDeleteReplyList(clsBrdNo, request))	//삭제 성공시 true
+				if(result = goDeleteReplyList(clsBrdNo, request))	//삭제 성공시 true 리턴
 					logger.info(clsBrdNo +"번 게시글 댓글리스트 정보삭제 완료. ");	
 				else
 					logger.info(clsBrdNo +"번 게시글 댓글리스트 정보삭제 실패! ");	
@@ -369,13 +393,17 @@ public class BMM {
 			}
 			//댓글과 파일 삭제가 성공하면
 			if(result) {
-				//게시물정보(CLS_BRD) 삭제
-				if(bDao.deleteBrd(clsBrdNo)) {
-					rattr.addFlashAttribute("fMsg","게시물 삭제가 완료되었습니다.");
-					logger.info(clsBrdNo +"번 게시물 : 삭제(DB) 완료. ");
-				} else {
-					result = false;
-				}				
+				//조회수 정보 삭제
+				if(bDao.delBrdView(clsBrdNo)) {
+					System.out.println("조회수 정보 삭제 완료.");
+					//게시물정보(CLS_BRD) 삭제
+					if(bDao.deleteBrd(clsBrdNo)) {
+						rattr.addFlashAttribute("fMsg","게시물 삭제가 완료되었습니다.");
+						logger.info(clsBrdNo +"번 게시물 : 삭제(DB) 완료. ");
+					} else
+						result = false;
+				} else
+					result = false;		
 			}
 			//실패시
 			if(!result) {
@@ -418,4 +446,15 @@ public class BMM {
 		}		
 		return result;
 	}
+}
+
+/*clsBrdNo 기준으로 내림차순 정렬하기*/
+class BListDecending implements Comparator<BoardBean> {
+ 
+    @Override
+    public int compare(BoardBean a, BoardBean b) {
+        Integer temp1 = Integer.parseInt(a.getClsBrdNo());
+        Integer temp2 = Integer.parseInt(b.getClsBrdNo());        
+        return temp2.compareTo(temp1);
+    }
 }
