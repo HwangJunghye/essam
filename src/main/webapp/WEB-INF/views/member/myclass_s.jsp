@@ -19,15 +19,13 @@
 
 		<!-- clsInfo가 있으면 -->
 		<c:if test="${!empty clsInfo}">
-				<c:forEach var="cInfo" items="${clsInfo}">
-					<a href=>
-					<div>
-						<p>${clsInfo.cate1Name}>${clsInfo.cate2Name}</p>
-						<span>${clsInfo.clsName}</span> <span>${clsRegiCnt}/${clsInfo.clsLimit}</span>
-						<p>${clsInfo.clsIntro}</p>
-					</div>
-					</a>
-				</c:forEach>		
+			<c:forEach var="cInfo" items="${clsInfo}">
+				<div>
+					<p>${cInfo.cate1Name}>${cInfo.cate2Name}</p>
+					<span>${cInfo.clsName}</span> <span>${cInfo.clsRegiCnt}/${cInfo.clsLimit}</span>
+					<p>${cInfo.clsIntro}</p>
+				</div>
+			</c:forEach>
 		</c:if>
 
 
