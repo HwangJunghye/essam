@@ -12,6 +12,9 @@
 	.center{
 		margin:auto;
 	}
+	td{
+	padding : 5px;
+	}
 </style>
 </head>
 <body>
