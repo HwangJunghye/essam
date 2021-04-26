@@ -15,8 +15,10 @@
 	<%@ include file="../common/header.jsp"%>
 	<%@ include file="../common/nav.jsp"%>
 	<section>
-		<article id="cls-list">
-		</article>
+		<div id="contents">
+			<div id="cls-list">
+			</div>
+		</div>
 	</section>
 	<%@ include file="../common/footer.jsp"%>
 
