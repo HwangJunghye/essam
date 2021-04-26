@@ -15,6 +15,12 @@
 	td{
 	padding : 5px;
 	}
+	.modal-table{
+		display:table;
+		position:relative;
+		width:100%;
+		height:100px;
+	}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
@@ -28,6 +34,7 @@
 <form action="memberjoin" method="post">
 <table class="center">
 	<caption>회원가입</caption>
+	<div class="modal-table">
 	<tr>
 		<th>회원타입</th>
 		<td>

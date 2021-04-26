@@ -10,10 +10,16 @@
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <style type="text/css">
 	.center{
-		margin:auto;
+		margin: auto;
 	}
 	td{
-	padding : 5px;
+		padding : 5px;
+	}
+	.modal-table{
+		display:table;
+		position:relative;
+		width:100%;
+		height:100px;
 	}
 </style>
 </head>
@@ -25,6 +31,7 @@
 	<form action="memberupdate" method="post">  
 	<table class="center">
 		<caption>회원가입</caption>
+		<div class="modal-table">
 		<tr>
 			<th>회원타입</th>
 			<td>
@@ -46,7 +53,7 @@
 			<td><input type="text" id="newMbPwd" name="newMbPwd" /></td>
 		</tr>
 		<tr>
-			<th>새로운 비밀번호 확인</th>
+			<th>비밀번호 확인</th>
 			<td>
 				<input type="text" id="mbPwdcheck" name="mbPwdcheck" />
 				<input type="button" id="pwChange" value="비밀번호 변경">
