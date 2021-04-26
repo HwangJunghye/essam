@@ -31,8 +31,8 @@ section {
 	display: flex;
 }
 
-/* section body > aside 		>> aside_area : aside 메뉴 영역 
-				> contents_area 			  : 본문(contents) 영역 */
+/* section body > aside 		>> aside_area  : aside 메뉴 영역 
+				> contents_area 			   : 본문(contents) 영역 */
 #aside {
 	flex: 1;
 	background-color: #e0e0e0;
@@ -48,7 +48,6 @@ section {
 }
 
 /* 검색 영역 */
-
 #cls-list{
 	margin:auto;
 	display: flex;
@@ -59,4 +58,13 @@ section {
 	margin:40px;
 	width: 200px;
 	height: 200px;
+}
+
+/* 게시판 영역 */
+.clsBrdTitle {
+	width:800px;
+}
+.clsBrdContent {
+	width:800px;
+	height:500px;	
 }
