@@ -2,63 +2,73 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
+<% //Author : 고연미 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Board</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script>
-//console.dir(${bList2 });
-</script>
-</head>
 <body>
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp"%>
 <section>
+<div id="contents">
+	<div id="aside">
+		<div id="aside_area">
+			<%@ include file="../common/aside.jsp"%>
+		</div>
+	</div>
+	<div id="contents_area">
+	<!---------- 본문 시작 ---------->
 
-<center>
-<h3>클래스 : ${clsName}</h3>
+		<table class="container">
+		<tr>
+			<td align="left" style="padding:20px 0;"><h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
+				<hr style="height:10px;border:0px;box-shadow:0px 10px 10px -10px #bbb inset;"></td>
+		</tr></table>
 
-<table width=760>
-<tr>
-	<td colspan=3>[${boardData.clsBrdNo}] ${boardData.clsBrdTitle}</td>
-</tr>
-<tr>
-	<td>${boardData.mbNickName}</td>
-	<td>${boardData.clsBrdDate}</td>
-	<td>조회 <fmt:formatNumber value="${boardData.clsBrdView}" type="number"/></td>
-</tr>
-<tr>
-	<td colspan=3 style="white-space:pre-wrap;word-break:break-all;">${boardData.clsBrdContent}</td>
-</tr>
-<tr>
-	<td>첨부파일</td>
-	<td colspan=2>	
-		<c:set var="files" value="${boardData.filesInfo}" />
-		<c:if test="${!empty files}">
-			<c:forEach var="file" items="${files}">
-				<c:if test="${file.fileTypeNo == 1}"><i class="far fa-file-image"></i></c:if>
-				<c:if test="${file.fileTypeNo == 2}"><i class="far fa-file-video"></i></c:if>
-				<c:if test="${file.fileTypeNo == 3}"><i class="far fa-file-alt"></i></c:if>
-				<a href="${ctxPath}/download?fileNo=${file.fileNo}">${file.origFileName}</a>&nbsp;&nbsp;
-			</c:forEach>
-		</c:if></td>
-</tr>
-</table>
-<p>
-<table width=760>
-<tr>
-	<td>${btnUpdate}</td>
-	<td align="right"><button type="button" id="goList" onclick="location.href='${ctxPath}/class/boardlist?clsNo=${boardData.clsNo}&clsBrdType=${boardData.clsBrdType}&pageNum=${pageNum}';">목록</button></td>
-</tr>
-</table></p>
+		<div class="container">
+
+			<table width="86%" align="center" class="tbl_brd01">
+			<tr>
+				<td colspan=3 align="left">[${boardData.clsBrdNo}] ${boardData.clsBrdTitle}</td>
+			</tr>
+			<tr>
+				<td align="left">${boardData.mbNickName}</td>
+				<td align="left">${boardData.clsBrdDate}</td>
+				<td align="left">조회 <fmt:formatNumber value="${boardData.clsBrdView}" type="number"/></td>
+			</tr>
+			<tr>
+				<td colspan=3 align="left" style="white-space:pre-wrap;word-break:break-all;">${boardData.clsBrdContent}</td>
+			</tr>
+			<tr>
+				<td align="left">첨부파일</td>
+				<td colspan=2 align="left">
+					<c:set var="files" value="${boardData.filesInfo}" />
+					<c:if test="${!empty files}">
+						<c:forEach var="file" items="${files}">
+							<c:if test="${file.fileTypeNo == 1}"><i class="far fa-file-image"></i></c:if>
+							<c:if test="${file.fileTypeNo == 2}"><i class="far fa-file-video"></i></c:if>
+							<c:if test="${file.fileTypeNo == 3}"><i class="far fa-file-alt"></i></c:if>
+							<a href="${ctxPath}/download?fileNo=${file.fileNo}">${file.origFileName}</a>&nbsp;&nbsp;
+						</c:forEach>
+					</c:if></td>
+			</tr>
+			</table>
+			<p>
+			<table width="86%">
+			<tr>
+				<td align="left">${btnUpdate}</td>
+				<td align="right"><button type="button" id="goList" onclick="location.href='${ctxPath}/class/boardlist?clsNo=${boardData.clsNo}&clsBrdType=${boardData.clsBrdType}&pageNum=${pageNum}';">목록</button></td>
+			</tr>
+			</table></p>
+		</div>
+
+	<!---------- 본문 끝 ---------->
+	</div>
+</div>
 </section>
-
-<script>
-
-</script>
 <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

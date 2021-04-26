@@ -47,6 +47,10 @@ public class BMM {
 	
 	ModelAndView mav;
 	
+	/**
+	 * 클래스 리스트 가져오기
+	 * Author : 고연미
+	 */
 	public List<ClassBean> getClassList(String str, String mbId) {
 		List<ClassBean> cList = null;
 		switch(str) {
@@ -58,8 +62,11 @@ public class BMM {
 			break;
 		}
 		return cList;
-	}
-
+	}	
+	/**
+	 * 클래스 정보 가져오기
+	 * Author : 고연미
+	 */
 	public ModelAndView goClassInfo(String clsNo) {
 		mav = new ModelAndView();
 		
@@ -85,7 +92,10 @@ public class BMM {
 		}
 		return mav;
 	}
-
+	/**
+	 * 수강신청
+	 * Author : 고연미
+	 */
 	public ModelAndView classJoin(String clsNo, String mbId, RedirectAttributes rattr) {
 		mav = new ModelAndView();
 		
@@ -97,7 +107,10 @@ public class BMM {
 		mav.setViewName("redirect:/myclass_s");
 		return mav;
 	}
-
+	/**
+	 * 게시판 목록 가져오기
+	 * Author : 고연미
+	 */
 	public ModelAndView goBoardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
 		
 		//RedirectAttributes.addFlashAttribute로 보낸 데이터 가져오기
@@ -149,13 +162,16 @@ public class BMM {
 		mav.addObject("navtext", "마이 클래스 > "+ Constant.clsBrdName[clsBrdType]);
 		//mav에 클래스명 추가
 		mav.addObject("clsName", bDao.getClassName(clsNo));
-		//mav에 전체게시물수 추가
+		//mav에 전체게시글수 추가
 		mav.addObject("totalNum", totalNum);
 		//view 페이지 설정
 		mav.setViewName("board/boardList");			
 		return mav;
 	}
-
+	/**
+	 * Paging
+	 * Author : 고연미
+	 */
 	private String getPaging(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
 		//전체 글 갯수 가져오기
 		int maxNum = bDao.getBoardCount(clsNo, clsBrdType);
@@ -166,16 +182,20 @@ public class BMM {
 		Paging paging = new Paging(maxNum, pageNum, listCount, pageCount, clsNo, clsBrdType);
 		return paging.makeHtmlPaging(request);
 	}
-	
+	/**
+	 * 게시글 등록/수정 이동
+	 * Author : 고연미
+	 */
 	public ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) {
 		mav = new ModelAndView();
 		//pageNum이 null이면 1로 세팅
 		pageNum = (pageNum==null)? 1 : pageNum;
-		System.out.println("clsBrdNo ========> "+ clsBrdNo);
-		//게시물 수정인 경우
+		
+		//게시글 수정인 경우
 		if(!StringUtils.isEmpty(clsBrdNo)) {
-			System.out.println("게시물 수정 ----------");
-			//게시물 정보 가져와 bean에 담기
+			System.out.println("게시글 수정 ----------");
+			System.out.println("clsBrdNo ========> "+ clsBrdNo);
+			//게시글 정보 가져와 bean에 담기
 			BoardBean board = bDao.getBoardRead(clsBrdNo);	
 			//첨부파일 정보 가져와 bean에 저장
 			if(board != null)
@@ -183,7 +203,7 @@ public class BMM {
 			
 			mav.addObject("boardData", board);
 		} else {
-			System.out.println("새 게시물 등록 ----------");
+			System.out.println("새 게시글 등록 ----------");
 			//새글 작성인 경우 글목록 클릭시 첫페이지로 이동
 			pageNum = 1;
 		}
@@ -201,7 +221,10 @@ public class BMM {
 		mav.setViewName("board/boardWrite");
 		return mav;
 	}
-	
+	/**
+	 * 게시글 등록/수정
+	 * Author : 고연미
+	 */
 	public ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
 		mav = new ModelAndView();
 		boolean result = false;		//게시판 저장 결과
@@ -217,12 +240,12 @@ public class BMM {
 		//게시판 글번호가 null이 아니면
 		if(!StringUtils.isEmpty(board.getClsBrdNo())) {
 			//update 실행
-			System.out.println("-------- 게시물 update -------");
+			System.out.println("-------- 게시글 update -------");
 			clsBrdNo = board.getClsBrdNo();
 			result = bDao.boardUpdate(board);
 		} else {
 			//insert 실행 ==> 새 clsBrdNo를 bean에 담아서 반환
-			System.out.println("-------- 게시물 insert -------");
+			System.out.println("-------- 게시글 insert -------");
 			//게시글 등록 성공이면
 			if(bDao.boardInsert(board)) {
 				clsBrdNo = board.getClsBrdNo();
@@ -262,23 +285,26 @@ public class BMM {
 			}
 		}				
 		if(result) {
-			rattr.addFlashAttribute("fMsg","게시물 저장을 완료하였습니다.");
+			rattr.addFlashAttribute("fMsg","게시글 저장을 완료하였습니다.");
 			//view 페이지 설정
 			mav.setViewName("redirect:/class/boardread");
 		} else {
-			rattr.addFlashAttribute("fMsg","게시물 저장에 실패하였습니다. \n문제가 지속된다면 관리자에 문의 바랍니다.");
+			rattr.addFlashAttribute("fMsg","게시글 저장에 실패하였습니다. \n문제가 지속된다면 관리자에 문의 바랍니다.");
 			//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
 			String referer = request.getHeader("Referer");
 			//view 페이지 설정
 			mav.setViewName("redirect:"+ referer);
 		}
-		//rattr에 게시물번호 추가
+		//rattr에 게시글번호 추가
 		rattr.addFlashAttribute("clsBrdNo", clsBrdNo);	
 		//rattr에 페이지넘버 추가
 		rattr.addFlashAttribute("pageNum", pageNum);
 		return mav;
 	}
-
+	/**
+	 * 게시글 읽기
+	 * Author : 고연미
+	 */
 	public ModelAndView boardRead(String clsBrdNo, Integer pageNum, HttpServletRequest request) {
 		
 		//RedirectAttributes.addFlashAttribute로 보낸 데이터 가져오기
@@ -290,14 +316,14 @@ public class BMM {
 	    //글쓰기 후 boardRead로 이동된(redirect) 경우, 데이터를 addFlashAttribute로 가져오기때문에 브라우저 리로드시 NullPointException 발생
 	    // (게시판 목록에서 직접 boardRead한 경우는 상관없음.)
 		if(StringUtils.isEmpty(clsBrdNo)) {
-			logger.info("게시물 리로드 오류. 메인으로 이동.");
+			logger.info("게시글 리로드 오류. 메인으로 이동.");
 			throw new CommonException("[오류] 페이지를 리로드할 수 없습니다.\n\n메인화면으로 이동합니다.");
 		}
 	
 		mav = new ModelAndView();
-		//게시물정보 가져와 bean에 담기
+		//게시글정보 가져와 bean에 담기
 		BoardBean board = bDao.getBoardRead(clsBrdNo);	
-		//가져온 게시물정보가 있으면
+		//가져온 게시글정보가 있으면
 //		if(board != null) {
 		if(!ObjectUtils.isEmpty(board)) {
 			//첨부파일 정보 가져와 bean에 저장
@@ -309,7 +335,7 @@ public class BMM {
 			MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
 			//조회수 추가(아이디 당 1번만 추가)
 			addBrdView(clsBrdNo, loginData.getMbId());
-			//로그인정보의 mbId와 게시물정보의 mbId가 같으면
+			//로그인정보의 mbId와 게시글정보의 mbId가 같으면
 			if(loginData.getMbId().equals(board.getMbId())) {
 				//mav에 수정/삭제 버튼 추가
 				mav.addObject("btnUpdate", makeHtmlBtnUpdate(board, pageNum, request));
@@ -328,8 +354,10 @@ public class BMM {
 		mav.setViewName("board/boardRead");
 		return mav;
 	}
-
-	//조회수 추가
+	/**
+	 * 조회수 추가
+	 * Author : 고연미
+	 */
 	private void addBrdView(String clsBrdNo, String mbId) {
 		int isViewCnt = 0;
 		isViewCnt = bDao.getBrdViewId(clsBrdNo, mbId);
@@ -337,7 +365,10 @@ public class BMM {
 			bDao.addBrdView(clsBrdNo, mbId);
 		}		
 	}
-
+	/**
+	 * 수정/삭제 버튼 생성
+	 * Author : 고연미
+	 */
 	private String makeHtmlBtnUpdate(BoardBean board, Integer pageNum, HttpServletRequest request) {
 		String ctxPath = request.getContextPath();
 		StringBuilder sb = new StringBuilder();
@@ -346,23 +377,26 @@ public class BMM {
 		sb.append("<input type='hidden' name='clsBrdType' value='"+ board.getClsBrdType() +"'>\n");
 		sb.append("<input type='hidden' name='clsNo' value='"+ board.getClsNo() +"'>\n");
 		sb.append("<input type='hidden' name='pageNum' value='"+ pageNum +"'>\n");
-		sb.append("<button>수정</button> ");
-		sb.append("<input type='button' value='삭제' onclick=\"location.href='"+ ctxPath +"/class/boarddelete?clsBrdNo="+ board.getClsBrdNo() +"&pageNum="+ pageNum +"';\">\n");
+		sb.append("<input type='submit' value='수정'> ");
+		sb.append("<a href='"+ ctxPath +"/class/boarddelete?clsBrdNo="+ board.getClsBrdNo() +"&pageNum="+ pageNum +"'><i class=\"fas fa-backspace\"></i></a>\n");
 		sb.append("</form>");
 		return sb.toString();
 	}
-
+	/**
+	 * 게시글 삭제
+	 * Author : 고연미
+	 */
 	public ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) {
 		mav = new ModelAndView();
 		boolean result = false;		
-		//게시물정보 가져와 bean에 담기
+		//게시글정보 가져와 bean에 담기
 		BoardBean board = bDao.getBoardRead(clsBrdNo);	
-		//가져온 게시물정보가 있으면
+		//가져온 게시글정보가 있으면
 		if(!ObjectUtils.isEmpty(board)) {
 			//댓글 사용하는 게시판이면
 			if(Constant.clsBrdHasReply[board.getClsBrdType()]) {
 				//댓글정보 삭제
-				if(result = goDeleteReplyList(clsBrdNo, request))	//삭제 성공시 true 리턴
+				if(result = deleteReplyList(clsBrdNo, request))	//삭제 성공시 true 리턴
 					logger.info(clsBrdNo +"번 게시글 댓글리스트 정보삭제 완료. ");	
 				else
 					logger.info(clsBrdNo +"번 게시글 댓글리스트 정보삭제 실패! ");	
@@ -396,10 +430,10 @@ public class BMM {
 				//조회수 정보 삭제
 				if(bDao.delBrdView(clsBrdNo)) {
 					System.out.println("조회수 정보 삭제 완료.");
-					//게시물정보(CLS_BRD) 삭제
+					//게시글정보(CLS_BRD) 삭제
 					if(bDao.deleteBrd(clsBrdNo)) {
-						rattr.addFlashAttribute("fMsg","게시물 삭제가 완료되었습니다.");
-						logger.info(clsBrdNo +"번 게시물 : 삭제(DB) 완료. ");
+						rattr.addFlashAttribute("fMsg","게시글 삭제가 완료되었습니다.");
+						logger.info(clsBrdNo +"번 게시글 : 삭제(DB) 완료. ");
 					} else
 						result = false;
 				} else
@@ -407,8 +441,8 @@ public class BMM {
 			}
 			//실패시
 			if(!result) {
-				rattr.addFlashAttribute("fMsg","게시물 삭제에 실패하였습니다. \n문제가 지속된다면 관리자에 문의 바랍니다.");
-				logger.info(clsBrdNo +"번 게시물 : 삭제 실패! ");
+				rattr.addFlashAttribute("fMsg","게시글 삭제에 실패하였습니다. \n문제가 지속된다면 관리자에 문의 바랍니다.");
+				logger.info(clsBrdNo +"번 게시글 : 삭제 실패! ");
 			}
 		}
 		//rattr에 클래스넘버 추가
@@ -421,8 +455,11 @@ public class BMM {
 		mav.setViewName("redirect:/class/boardlist");
 		return mav;
 	}
-
-	private boolean goDeleteReplyList(String clsBrdNo, HttpServletRequest request) {
+	/**
+	 * 댓글 목록 삭제
+	 * Author : 고연미
+	 */
+	private boolean deleteReplyList(String clsBrdNo, HttpServletRequest request) {
 		boolean result = true;
 		//댓글리스트 가져오기
 		List<ReplyBean> rList = DDao.getReplyList(clsBrdNo);		
@@ -447,8 +484,10 @@ public class BMM {
 		return result;
 	}
 }
-
-/*clsBrdNo 기준으로 내림차순 정렬하기*/
+/**
+ * 게시판 목록 내림차순 정렬
+ * Author : 고연미
+ */
 class BListDecending implements Comparator<BoardBean> {
  
     @Override

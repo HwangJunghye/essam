@@ -1,77 +1,91 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
+<% //Author : 고연미 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Board</title>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-//console.dir(${bList2 });
-</script>
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp"%>
 <section>
+<div id="contents">
+	<div id="aside">
+		<div id="aside_area">
+			<%@ include file="../common/aside.jsp"%>
+		</div>
+	</div>
+	<div id="contents_area">
+	<!---------- 본문 시작 ---------->
 
-<center>
-<h3>클래스명 : ${clsName}</h3>
-<h3><c:if test="${empty boardData}">글쓰기</c:if><c:if test="${!empty boardData}">글수정</c:if></h3>
-<form action="${ctxPath}/class/boardwrite" id="frm" method="post" enctype="multipart/form-data">
-<input type="hidden" name="clsBrdNo" value="${boardData.clsBrdNo}">
-<input type="hidden" name="clsBrdType" value="${clsBrdType}">
-<input type="hidden" name="clsNo" value="${clsNo}">
-<input type="hidden" name="pageNum" value="${pageNum}">
-<table>
-<tr>
-	<th>제목</th>
-	<td><input type="text" name="clsBrdTitle" id="clsBrdTitle" size="75" value="${boardData.clsBrdTitle}" autofocus required/></td>
-</tr>
-<tr>
-	<th>내용</th>
-	<td><textarea name="clsBrdContent" id="clsBrdContent" rows="20" cols="70" required>${boardData.clsBrdContent}</textarea></td>
-</tr>
-<tr>
-	<th>첨부파일</th>
-	<td><c:set var="files" value="${boardData.files}" />
-		<c:if test="${!empty files}">
-			<c:forEach var="file" items="${files}">
-				<img src="${ctxPath}/resources/images/icon_file.jfif" width="20" style="float:left;margin-top:3px">
-				<i class="fa fa-paperclip"></i><a href="/download?fileNo=${file.fileNo}">${file.origFileName}</a> <input type="button" value="삭제" id="delFile" onclick="fncDelFile(${file.fileNo})"/>
-			</c:forEach>
-		</c:if>
-		<input type="file" name="files" id="files" multiple/></td>
-</tr>
-</table>
-<p><button>등록</button> <input type="button" value="이전으로" onClick="history.back();"></p>
-</form>
-<script>
+		<table class="container">
+		<tr>
+			<td align="left" style="padding:20px 0;"><h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
+				<hr style="height:10px;border:0px;box-shadow:0px 10px 10px -10px #bbb inset;"></td>
+		</tr></table>
 
-//file 삭제 --->ajax처리
-//$('#delFile').on('click',function(){
-function fncDelFile(fn) {
-	//js객체
-	const param = {
-			_method:"patch", //method(type):post
-			delFileNo: fn
-		};
-	$.ajax({
-		url: "class/delbrdfile",
-		method: "post", //type:'post',
-		data:param
-	}).done(()=> {
-		toastr.success("파일을 삭제했습니다", '서버 메시지');
-	}).fail((xhr)=> printError(xhr, "파일 삭제에 실패했습니다"));
-	
-}
-</script>
+		<div class="container">
+			<form action="${ctxPath}/class/boardwrite" id="frm" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="clsBrdNo" value="${boardData.clsBrdNo}">
+			<input type="hidden" name="clsBrdType" value="${clsBrdType}">
+			<input type="hidden" name="clsNo" value="${clsNo}">
+			<input type="hidden" name="pageNum" value="${pageNum}">
+			<table>
+			<tr>
+				<th width="150">제목</th>
+				<td><input type="text" name="clsBrdTitle" class="clsBrdTitle" size="75" value="${boardData.clsBrdTitle}" autofocus required/></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea name="clsBrdContent" class="clsBrdContent" rows="20" cols="70" required>${boardData.clsBrdContent}</textarea></td>
+			</tr>
+			<tr>
+				<th valign="top">첨부파일</th>
+				<td align="left">
+					<c:set var="files" value="${boardData.filesInfo}" />
+					<c:if test="${!empty files}">
+						<c:forEach var="file" items="${files}">
+							<c:if test="${file.fileTypeNo == 1}"><i class="far fa-file-image"></i></c:if>
+							<c:if test="${file.fileTypeNo == 2}"><i class="far fa-file-video"></i></c:if>
+							<c:if test="${file.fileTypeNo == 3}"><i class="far fa-file-alt"></i></c:if>
+							<a href="${ctxPath}/download?fileNo=${file.fileNo}">${file.origFileName}</a> 
+							<input type="button" value="삭제" id="delFile" onclick="fncDelFile(${file.fileNo})"/>
+						</c:forEach>
+					</c:if>
+					<p><input type="file" name="files" id="files" multiple/></p></td>
+			</tr>
+			</table><br>
+			<p><button>등록</button> <input type="button" value="이전으로" onClick="history.back();"></p>
+			</form><br><br>
+		</div>
+		
+		<script>
+		//file 삭제 --->ajax처리
+		//$('#delFile').on('click',function(){
+		function fncDelFile(fn) {
+			//js객체
+			const param = {
+					_method:"patch", //method(type):post
+					delFileNo: fn
+				};
+			$.ajax({
+				url: "class/delbrdfile",
+				method: "post", //type:'post',
+				data:param
+			}).done(()=> {
+				toastr.success("파일을 삭제했습니다", '서버 메시지');
+			}).fail((xhr)=> printError(xhr, "파일 삭제에 실패했습니다"));
+			
+		}
+		</script>
+
+	<!---------- 본문 끝 ---------->
+	</div>
+</div>
 </section>
 <%@ include file="../common/footer.jsp" %>
 </body>

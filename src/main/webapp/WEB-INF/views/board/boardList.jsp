@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
+<% //Author : 고연미 %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,13 @@
 		</div>
 	</div>
 	<div id="contents_area">
-		<h3>클래스 : ${clsName}</h3>
+	<!---------- 본문 시작 ---------->
+	
+		<table class="container">
+		<tr>
+			<td align="left" style="padding:20px 0;"><h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
+				<hr style="height:10px;border:0px;box-shadow:0px 10px 10px -10px #bbb inset;"></td>
+		</tr></table>
 		<table class="container">
 		<tr><td></td>
 			<td align="left">전체 : ${totalNum} 건</td>
@@ -67,6 +74,7 @@
 		<!-- 페이징 -->
 		${paging}
 
+	<!---------- 본문 끝 ---------->
 	</div>
 </div>
 </section>
