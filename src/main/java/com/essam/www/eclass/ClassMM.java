@@ -51,9 +51,9 @@ public class ClassMM {
 		StudentBean attendInfo = cDao.getStudentInfo(clsNo, mbId);
 		
 		//출석률 구하기 & 출석현황 메시지 가져오기.
-		int attendDay = attendInfo.getAttendDay();
-		int totalDay = attendInfo.getTotalDay();
-		int attendPercent = (attendDay/totalDay)*100;
+		float attendDay = (float)attendInfo.getAttendDay();
+		float totalDay = (float)attendInfo.getTotalDay();
+		float attendPercent = (attendDay/totalDay)*100;
 		mav.addObject("attendPercent",attendPercent);
 		
 		if(attendPercent<=80) {
@@ -95,9 +95,9 @@ public class ClassMM {
 		MemberBean mInfo = mDao.getMemberInfo(mbId);
 		
 		//출석률 구하기
-		int attendDay = sInfo.getAttendDay();
-		int totalDay = sInfo.getTotalDay();
-		int attendPercent = (attendDay/totalDay)*100;
+		float attendDay = (float)sInfo.getAttendDay();
+		float totalDay = (float)sInfo.getTotalDay();
+		float attendPercent = (attendDay/totalDay)*100;
 				
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("sInfo",sInfo);
