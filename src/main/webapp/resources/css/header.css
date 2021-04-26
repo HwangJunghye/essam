@@ -72,3 +72,26 @@ header {
 	display:table-cell;
 	vertical-align:middle;
 }
+
+.menu-container{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.dropdown{		/* dropdown 메뉴바 */
+	position: relative;
+	width: 80px;
+	height: 20px;
+}
+
+.dropdown-content{		/* dropdown 목록 */
+	display: none;
+	position: absolute;
+	background-color: white;
+	width: 100px;
+	height: 30px;
+}
+
+.dropdown:hover>.dropdown-content{	/* 메뉴에 마우스를 올리면 표시*/
+	display: block;
+}

@@ -55,11 +55,20 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 	<div id="nav_area">
 		<div id="nav_area1"><a href="${ctxPath}/"><span style="font-size:30px;color:#000;">e-쌤</span></a></div>
 		<div id="nav_area2">
-			<p class="text-center" style="margin-top:25px"><h5>
+			<!-- <p class="text-center" style="margin-top:25px"><h5> -->
+				<div class="menu-container">
 				<c:forEach items="<%=Constant.cate1Name%>" begin="1" varStatus="state" var="item">
-					<a href="${ctxPath}/search?cate1No=${state.index}">${item}</a>&nbsp;&nbsp;&nbsp;
-				</c:forEach>			
-			</h5></p>
+				<div class="dropdown">
+					<a href="${ctxPath}/search?cate1No=${state.index}"><div>${item}</div></a>
+					<div class="dropdown-content">
+						<c:forEach items="<%=Constant.cate2Name%>" begin="1" varStatus="state2" var="item2">
+						<a href="${ctxPath}/search?cate1No=${state.index}&cate2No=${state2.index}"><div>${item2}</div></a>
+						</c:forEach>
+					</div>
+				</div>
+				</c:forEach>
+				</div>			
+		<!-- 	</h5></p> -->
 		</div>
 		<div id="nav_area3">
 			<form action="${ctxPath}/search" method="get">    
