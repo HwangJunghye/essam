@@ -77,8 +77,10 @@ public class ClassMM {
 	public ModelAndView goStudentList(String clsNo) {
 		ModelAndView mav = new ModelAndView();
 		List<StudentBean> sList = null;
+		ClassBean clsInfo = cDao.getMyClassList(clsNo);
 		sList = cDao.getStudentList(clsNo); 
 		// 가져온 정보를 mav에 넣기
+		mav.addObject("clsInfo",clsInfo);
 		mav.addObject("sList",sList);
 		mav.addObject("navtext", "클래스 관리> 마이 클래스> 학생");
 		// class_studentinfo.jsp로 이동하기 위해 viewname 지정
