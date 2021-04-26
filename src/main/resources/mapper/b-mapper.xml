@@ -35,7 +35,7 @@
 		INSERT INTO STUDENT 
 			(regiNo, clsNo, mbId, regiStartDate)
 		VALUES 
-			(STUDENT_SEQ.NEXTVAL, #{clsNo}, #{mbId}, DEFALUT)
+			(STUDENT_SEQ.NEXTVAL, #{clsNo}, #{mbId}, DEFAULT)
 	</insert>
 	<select id="getBoardList" resultType="boardbean">
 	<![CDATA[
