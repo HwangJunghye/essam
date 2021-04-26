@@ -43,9 +43,8 @@ cursor: pointer;
 
 
 출석현황<br/>
-출석일수/총수업일수: ${sInfo.attendDay}  / ${sInfo.totalDay}<br/>
-결석일수:${sInfo.absenceDay} <br/>
-출석률:<br/>
+출석일수/총수업일수: ${sInfo.attendDay}  / ${sInfo.totalDay} <br/>
+출석률: ${attendPercent}%<br/>
 <br/>
 <input type="button" class="btn" value="학생목록" onclick="history.back(-1);">
 

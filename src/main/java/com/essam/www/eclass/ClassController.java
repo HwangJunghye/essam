@@ -50,8 +50,8 @@ public class ClassController {
 		
 	// (CM17+CM18)학생정보보기 이동 + 학생정보 가져오기	
 	@RequestMapping(value = "/class/studentinfo")
-	ModelAndView goStudentInfo(HttpServletRequest request, String clsNo){
-		ModelAndView mav = cm.goStudentInfo(request, clsNo); 
+	ModelAndView goStudentInfo(String mbId, String clsNo){
+		ModelAndView mav = cm.goStudentInfo(mbId, clsNo); 
 		return mav;
 		}	
 	

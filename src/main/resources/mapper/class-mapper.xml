@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="getStudentList" resultType="studentbean">
-		SELECT * FROM STUDENT WHERE CLSNO=#{clsNo}
+		SELECT * FROM V_STUDENTBEAN WHERE CLSNO=#{clsNo}
 	</select>
 	
 	<select id="getStudentInfo" resultType="studentbean">
