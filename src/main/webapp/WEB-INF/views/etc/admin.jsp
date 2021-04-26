@@ -26,9 +26,9 @@ border: none;
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 <section>
-<h1>admin.jsp</h1>
 
-조회기간: <input type="date"> ~ <input type="date"><br/>
+
+조회기간: <input type="date" id="startDate"> ~ <input type="date" id="endDate"><br/>
 조회대상:
 <input type="radio" name="searchTarget" value="1" required/>클래스
 <input type="radio" name="searchTarget" value="2" />강사
@@ -43,17 +43,40 @@ border: none;
 <input type="radio" name="filter2" value="2" />신규
 <br/>
 <br/>
-<input type="reset" class="btn" value="초기화">
-<input type="button" class="btn" value="조회">
+<input type="reset" class="btn" id="reset" value="초기화">
+<input type="button" class="btn" id="showChart" value="조회">
 <br/>
 <br/>
 
-<div id="showChart">
+<div id="chartArea">
 차트 표시 영역
 </div>
 
 	
 </section>
 <%@ include file="../common/footer.jsp" %>
+
+<script type="text/javascript">
+
+//function showChart(){}
+
+$(function(){
+	$("#showChart").on("click", function(){
+		let startDate = $("#startDate").val();
+		let endDate = $("#endDate").val();
+		let searchTarget = $("#").val();
+		let filter1 = $("#").val();
+		let filter2 = $("#").val();
+		
+		
+	})//showchart onclick end
+	
+})//ready function end
+
+
+
+</script>
+
+
 </body>
 </html>
