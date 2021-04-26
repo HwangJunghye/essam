@@ -67,8 +67,6 @@ public class ClassMM {
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("attendInfo",attendInfo);
 		}	
-		
-		
 		mav.addObject("navtext", "마이 클래스> 출석현황");
 		//class_attend.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("class/class_attend"); // .jsp
@@ -79,7 +77,7 @@ public class ClassMM {
 	public ModelAndView goStudentList(String clsNo) {
 		ModelAndView mav = new ModelAndView();
 		List<StudentBean> sList = null;
-		sList = cDao.getStudentList(clsNo);
+		sList = cDao.getStudentList(clsNo); 
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("sList",sList);
 		mav.addObject("navtext", "클래스 관리> 마이 클래스> 학생");

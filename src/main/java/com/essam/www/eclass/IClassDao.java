@@ -21,4 +21,5 @@ public interface IClassDao {
 	boolean classClassinfoInsert(ClassBean cb);
 
 	String getFileNo(String fileNo);
+
 }

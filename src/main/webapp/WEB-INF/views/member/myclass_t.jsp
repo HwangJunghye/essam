@@ -14,7 +14,6 @@
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 <section>
-<h1>myclass_t.jsp</h1>
 	
 	<!-- clsInfo가 있으면 -->
 	<c:if test="${!empty clsInfo}">

@@ -15,8 +15,7 @@
 	<%@ include file="../common/nav.jsp"%>
 
 	<section>
-		<h1>myclass_s.jsp</h1>
-
+		
 		<!-- clsInfo가 있으면 -->
 		<c:if test="${!empty clsInfo}">
 			<c:forEach var="cInfo" items="${clsInfo}">

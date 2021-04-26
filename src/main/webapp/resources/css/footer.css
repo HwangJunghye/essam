@@ -2,11 +2,12 @@
 
 /* footer */
 footer{
+
 	bottom:0;
 	width: 100%;
 	height: 60px;
 	background: #8DBDC4;
-	position:absolute;
+	/* position:absolute !important; */
     font-style: normal;
 	font-weight: normal;
 	display: block;

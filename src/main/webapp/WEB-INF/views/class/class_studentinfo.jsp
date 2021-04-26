@@ -9,40 +9,35 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
-<style>
-aside{
-float:left;
-top:150px;
-left:0;
-width: 158px;
-height: 814px;
-background: #E0E0E0;
-}
-
-
-</style>
-
 <body>
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 
-<aside>
-<ul>
-<li>계정관리</li>
-<li>마이 클래스</li>
-</ul>
-</aside>
-
-
-
 
 <section>
 
+	<h1>${sList.clsName}</h1>
 
-<h1>class_studentinfo.jsp</h1>
+
 	
-	${sList}
+	<!-- sList가 있으면 -->
+		<c:if test="${!empty sList}">
 	
+		
+		
+			<c:forEach var="sInfo" items="${sList}">
+				<div>
+				닉네임 이메일 연락처 등록일 출결현황(출석일/총수업일)
+					<p>${sInfo.mbNickName} ${sInfo.mbId} ${sInfo.regiStartDate} ${sInfo.attendDay} / ${sInfo.totalDay}</p>
+				</div>
+			</c:forEach>
+		</c:if>
+
+
+		<!-- sList가 없으면 -->
+		<c:if test="${empty sList}">
+			<h3>수강생이 없습니다.</h3>
+		</c:if>
 	
 </section>
 
