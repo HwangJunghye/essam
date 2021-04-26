@@ -89,10 +89,10 @@ public class ClassMM {
 	}
 		
 	// (CM17+CM18)학생정보보기 이동 + 학생정보 가져오기
-	public ModelAndView goStudentInfo(HttpServletRequest request, String clsNo) {
+	public ModelAndView goStudentInfo(String mbId, String clsNo) {
 		ModelAndView mav = new ModelAndView();
-		MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
-		String mbId = loginData.getMbId(); 
+		//MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
+		//String mbId = loginData.getMbId(); 
 		StudentBean sInfo = cDao.getStudentInfo(clsNo,mbId);
 		MemberBean mInfo = mDao.getMemberInfo(mbId);
 		

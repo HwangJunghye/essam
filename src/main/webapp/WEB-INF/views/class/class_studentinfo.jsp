@@ -11,31 +11,26 @@
 	href="${ctxPath}/resources/css/basic.css">
 </head>
 <style>
-table{
-float: center;
-margin: auto;
-items-align:center;
-width:80%;
-border: none;
-text-align: center;
-line-height: 28px;
+table {
+	float: center;
+	margin: auto;
+	items-align: center;
+	width: 80%;
+	border: none;
+	text-align: center;
+	line-height: 28px;
 }
 
-.line{
-width: 960px;
-height: 0px;
-border: 2px solid #9E3C7E;
+.line {
+	width: 960px;
+	height: 0px;
+	border: 2px solid #9E3C7E;
 }
-
 </style>
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<%@ include file="../common/nav.jsp"%>
-
-
 	<section>
-
-
 
 		<!-- sList가 있으면 -->
 		<c:if test="${!empty sList}">
@@ -43,7 +38,7 @@ border: 2px solid #9E3C7E;
 			<br>
 			<hr class="line">
 			<br>
-			
+
 			<table>
 				<tr>
 					<th>닉네임</th>
@@ -52,11 +47,10 @@ border: 2px solid #9E3C7E;
 					<th colspan="3">출결현황(출석일/총수업일)</th>
 				</tr>
 				<c:forEach var="sInfo" items="${sList}">
-					<tr>					
-						<td>${sInfo.mbNickName}</td>
 
+					<tr>
+						<td>${sInfo.mbNickName}</td>
 						<td>${sInfo.mbId}</td>
-						
 						<td>${sInfo.regiStartDate}</td>
 						<td>${sInfo.attendDay}</td>
 						<td>/</td>
@@ -65,12 +59,11 @@ border: 2px solid #9E3C7E;
 				</c:forEach>
 			</table>
 		</c:if>
-		
 
-			<!-- sList가 없으면 -->
-			<c:if test="${empty sList}">
-				<h3>수강생이 없습니다.</h3>
-			</c:if>
+		<!-- sList가 없으면 -->
+		<c:if test="${empty sList}">
+			<h3>수강생이 없습니다.</h3>
+		</c:if>
 	</section>
 
 
