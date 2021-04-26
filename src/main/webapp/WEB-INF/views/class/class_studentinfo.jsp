@@ -46,15 +46,15 @@ border: 2px solid #9E3C7E;
 			
 			<table>
 				<tr>
-					<th>번호</th>
 					<th>닉네임</th>
-					
+					<th>이메일</th>
 					<th>등록일</th>
 					<th colspan="3">출결현황(출석일/총수업일)</th>
 				</tr>
 				<c:forEach var="sInfo" items="${sList}">
-					<tr>
-						<td>음..</td>	
+					<tr>					
+						<td>${sInfo.mbNickName}</td>
+
 						<td>${sInfo.mbId}</td>
 						
 						<td>${sInfo.regiStartDate}</td>
