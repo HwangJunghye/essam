@@ -9,16 +9,13 @@
 <meta charset="UTF-8">
 <title>검색 페이지</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
-<style type="text/css">
-
-</style>
+<link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/search.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<%@ include file="../common/nav.jsp"%>
 	<section>
-		<article id="searchresult">
-			<!-- 검색 결과 표시 -->
+		<article id="cls-list">
 		</article>
 	</section>
 	<%@ include file="../common/footer.jsp"%>
@@ -73,21 +70,35 @@
 							searchFlag = false;
 							console.log(searchFlag);
 						}
-						let $resultArea = $('#searchresult');
+						let $clsList = $('#cls-list');
 						console.log(data);
 						
+						// for-반복문을 이용해 목록을 뻥튀기
+						// 나중에 for-반복문 지워야 함
+						for(let i = 0; i<20;i++){
 						$.each(data.cList, function(index,item){
-							let $span = $('<span>');
-							let imgPath = '${ctxPath}/getthumbnail?fileNo=' + item.fileNo + '&width=200&height=200';
-							$('<img>').attr('src',imgPath).appendTo($span);
-							$span.append(item.mbNickName + '<br>');
-							$span.append(item.clsIntro);
-							$span.on('click',function(evt){
+							let $clsItem = $('<div>',{class:'cls-item'}); // 클래스 정보 영역
+							
+							// 클래스 이미지 추가
+							// 이미지를 200x200으로 설정
+							let imgPath = '${ctxPath}/getthumbnail?fileNo=' + item.fileNo + '&width=200&height=150';
+							let $imgDiv = $('<div>').appendTo($clsItem); 
+							$('<img>',{class:'cls-image',width:'200',height:'150'}).attr('src',imgPath).appendTo($imgDiv); // 이미지 삽입
+							
+							// 클래스 닉네임 추가
+							$('<div>',{class:'cls-nickname'}).append(item.mbNickName).appendTo($clsItem); 
+							
+							// 클래스 소개 추가
+							$('<div>',{class:'cls-intro'}).append(item.clsIntro).appendTo($clsItem);
+
+							// 클래스 항목을 눌렀을 때 클래스 페이지로 이동
+							$clsItem.on('click',function(evt){
 								location.href = '${ctxPath}/classinfo?clsNo=' + item.clsNo;
 							});
-							$span.appendTo($resultArea);
-						});
-						
+							
+							$clsItem.appendTo($clsList);
+						}); // each End
+						} // for-반복문 끝
 						
 					}); // ajax End
 		} // getSearchList End
