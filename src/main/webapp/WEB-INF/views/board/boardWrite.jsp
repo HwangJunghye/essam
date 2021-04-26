@@ -53,7 +53,7 @@
 							<c:if test="${file.fileTypeNo == 2}"><i class="far fa-file-video"></i></c:if>
 							<c:if test="${file.fileTypeNo == 3}"><i class="far fa-file-alt"></i></c:if>
 							<a href="${ctxPath}/download?fileNo=${file.fileNo}">${file.origFileName}</a> 
-							<input type="button" value="삭제" id="delFile" onclick="fncDelFile(${file.fileNo})"/>
+							<a href="javascript:void(0);" onclick="fncDelFile(${file.fileNo})" id="delFile"><i class="fas fa-backspace"></i></a>
 						</c:forEach>
 					</c:if>
 					<p><input type="file" name="files" id="files" multiple/></p></td>
