@@ -35,14 +35,18 @@
 			</td>
 		</tr>
 		<tr>
-			<th>비밀번호</th>
-			<td><input type="text" name="mbPwd" /></td>
+			<th>기존 비밀번호</th>
+			<td><input type="text" id="mbPwd" name="mbPwd" /></td>
 		</tr>
 		<tr>
-			<th>비밀번호 확인</th>
+			<th>새로운 비밀번호</th>
+			<td><input type="text" id="newMbPwd" name="newMbPwd" /></td>
+		</tr>
+		<tr>
+			<th>새로운 비밀번호 확인</th>
 			<td>
-				<input type="text" name="mbPwdcheck" />
-				<input type="button" value="비밀번호 변경">
+				<input type="text" id="mbPwdcheck" name="mbPwdcheck" />
+				<input type="button" id="pwChange" value="비밀번호 변경">
 			</td>
 		</tr>
 		<tr>
@@ -118,6 +122,41 @@
 </section>
 <%@ include file="../common/footer.jsp" %>
 
-
+<script type="text/javascript">
+	$(function(){
+		$('#pwChange').on('click',function(){
+			let mbPwd = $('#mbPwd').val();
+			let newMbPwd = $('#newMbPwd').val();
+			let mbPwdcheck = $('#mbPwdcheck').val();
+			
+			if(mbPwd==''){
+				alert('기존 비밀번호을 입력하세요');
+				return false;
+			}
+			if (newMbPwd==''){
+				alert('새로운 비밀번호를 입력하세요');
+				return false;
+			}
+			if (newMbPwd!=mbPwdcheck){
+				alert('비밀번호가 일치하지 않습니다');
+				return false;
+			}
+			
+			// 비밀번호 변경 ajax 요청
+			$.ajax({
+				url:'${ctxPath}/changepassword',
+				data:{mbPwd:mbPwd,newMbPwd:newMbPwd},
+				method: 'post',
+				dataType:'json'
+			}).done(function(data){
+				alert(data.msg);
+				return true;
+			}).fail(function(err){
+				alert('서버와 연결 할 수 없습니다.');
+				return false;
+			}); // ajax End
+		}); // on End
+	}); // ready End
+</script>
 </body>
 </html>

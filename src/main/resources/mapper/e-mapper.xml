@@ -4,5 +4,9 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.essam.www.e.IEDao">
-
+	<update id="changePassword">
+		UPDATE MEMBER 
+		SET MBPWD = #{mbPwd} 
+		WHERE MBID = #{mbId}
+	</update>
 </mapper>

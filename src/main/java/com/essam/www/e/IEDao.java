@@ -9,6 +9,5 @@ import com.essam.www.bean.ClassBean;
 
 public interface IEDao {
 
-	
-
+	boolean changePassword(@Param("mbId") String mbId, @Param("mbPwd") String mbPwd);
 }
