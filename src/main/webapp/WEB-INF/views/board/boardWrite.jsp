@@ -53,10 +53,10 @@
 							<c:if test="${file.fileTypeNo == 2}"><i class="far fa-file-video"></i></c:if>
 							<c:if test="${file.fileTypeNo == 3}"><i class="far fa-file-alt"></i></c:if>
 							<a href="${ctxPath}/download?fileNo=${file.fileNo}">${file.origFileName}</a> 
-							<a href="javascript:void(0);" onclick="fncDelFile(${file.fileNo})" id="delFile"><i class="fas fa-backspace"></i></a>
+							<a href="javascript:void(0);" onclick="fncDelFile(${file.fileNo})" id="delFile"><i class="fas fa-backspace"></i></a><br>
 						</c:forEach>
 					</c:if>
-					<p><input type="file" name="files" id="files" multiple/></p></td>
+					<p><br><input type="file" name="files" id="files" multiple/></p></td>
 			</tr>
 			</table><br>
 			<p><button>등록</button> <input type="button" value="이전으로" onClick="history.back();"></p>

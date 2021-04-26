@@ -25,14 +25,14 @@
 		<table class="container">
 		<tr>
 			<td align="left" style="padding:20px 0;"><h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
-				<hr style="height: 0px;border: 2px solid #3566A2;"></td><!-- style="height:10px;border:0px;box-shadow:0px 10px 10px -10px #bbb inset;" -->
+				<hr style="height:10px;border:0px;box-shadow:0px 10px 10px -10px #bbb inset;"><!-- <hr style="height: 0px;border: 2px solid #9E3C7E;"> --></td>
 		</tr></table>
 		<table class="container">
 		<tr><td></td>
 			<td align="left">전체 : ${totalNum} 건</td>
 			<td align="right">
 				<c:if test="${sessionScope.loginData.mbType==2}">
-					<button type="button" onclick="location.href='${ctxPath}/class/goboardwrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}';">글쓰기</button>
+					<button type="button" onclick="location.href='${ctxPath}/class/goboardwrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}';">글쓰기 <i class="fas fa-pencil-alt"></i></button>
 				</c:if></td>
 			<td></td></tr>
 		</table>
@@ -63,7 +63,7 @@
 						<td><a href="${ctxPath}/class/boardread?clsBrdNo=${board.clsBrdNo}&pageNum=${param.pageNum}">${board.clsBrdTitle}</a></td>
 						<td>${board.mbNickName}</td>
 						<td>${board.clsBrdDate}</td>
-						<td><c:if test="${board.clsBrdfileCnt > 0}"><img src="${ctxPath}/resources/images/icon_file.jfif" width=20></c:if></td>
+						<td><c:if test="${board.clsBrdfileCnt > 0}"><i class="fas fa-save" style="width:24px;color:#666;"></i><%-- <img src="${ctxPath}/resources/images/icon_file.jfif" width=20> --%></c:if></td>
 						<td>${board.clsBrdView}</td>
 					</tr>
 				</c:forEach>
@@ -72,7 +72,7 @@
 		</table>
 		</div>
 		<!-- 페이징 -->
-		${paging}
+		${paging}<br><br>
 
 	<!---------- 본문 끝 ---------->
 	</div>

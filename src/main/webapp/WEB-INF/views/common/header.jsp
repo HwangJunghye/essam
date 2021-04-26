@@ -56,11 +56,11 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 	<div id="nav_area">
 		<div id="nav_area1"><a href="${ctxPath}/"><span style="font-size:30px;color:#000;">e-쌤</span></a></div>
 		<div id="nav_area2">
-			<!-- <p class="text-center" style="margin-top:25px"><h5> -->
+			<!-- <p class="text-center" ><h5> -->
 				<div class="menu-container">
 				<c:forEach items="<%=Constant.cate1Name%>" begin="1" varStatus="state" var="item">
 				<div class="dropdown">
-					<a href="${ctxPath}/search?cate1No=${state.index}"><div>${item}</div></a>
+					<a href="${ctxPath}/search?cate1No=${state.index}"><div><h5 style="margin:26px 0px 0px 0px;">${item}</h5></div></a>
 					<div class="dropdown-content">
 						<c:forEach items="<%=Constant.cate2Name%>" begin="1" varStatus="state2" var="item2">
 						<a href="${ctxPath}/search?cate1No=${state.index}&cate2No=${state2.index}"><div>${item2}</div></a>
@@ -76,7 +76,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
     			<table>
 				<tr>
 					<td align="right"><input type="search" name="keyword" id="input_txt_src" placeholder="검색어" /></td>
-					<td align="left"><button type="submit" class="btn btn-primary btn-sm">Search</button>
+					<td align="left"><button type="submit" class="btn btn-primary btn-sm">검색 <i class="fas fa-search"></i></button>
 						<!-- bootstrap과의 css 충돌로 인해 div 사용 -->
 						<!-- <div id="btn_src_div1"><div id="btn_src_div2"><input type="submit" id="btn_src" value="검색" /></div></div> --></td>
 				</tr>

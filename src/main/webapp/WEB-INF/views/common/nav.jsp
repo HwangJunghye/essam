@@ -11,7 +11,9 @@
 
 <nav class="${mbColor}">
 	<div id="nav_title">
-		${navtext}
+		<c:if test="${!empty navtext}">
+			<i class="fas fa-quote-left"></i> ${navtext} <i class="fas fa-quote-right"></i>
+		</c:if>
 	</div>
 </nav>
 

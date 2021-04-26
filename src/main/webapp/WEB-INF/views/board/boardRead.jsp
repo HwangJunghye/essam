@@ -51,18 +51,19 @@
 							<c:if test="${file.fileTypeNo == 1}"><i class="far fa-file-image"></i></c:if>
 							<c:if test="${file.fileTypeNo == 2}"><i class="far fa-file-video"></i></c:if>
 							<c:if test="${file.fileTypeNo == 3}"><i class="far fa-file-alt"></i></c:if>
-							<a href="${ctxPath}/download?fileNo=${file.fileNo}">${file.origFileName}</a>&nbsp;&nbsp;
+							<a href="${ctxPath}/download?fileNo=${file.fileNo}">${file.origFileName}</a><br>
 						</c:forEach>
 					</c:if></td>
 			</tr>
 			</table>
 			<p>
-			<table width="86%">
+			<table width="86%" align="center">
 			<tr>
 				<td align="left">${btnUpdate}</td>
 				<td align="right"><button type="button" id="goList" onclick="location.href='${ctxPath}/class/boardlist?clsNo=${boardData.clsNo}&clsBrdType=${boardData.clsBrdType}&pageNum=${pageNum}';">목록</button></td>
 			</tr>
 			</table></p>
+			<br>
 		</div>
 
 	<!---------- 본문 끝 ---------->
