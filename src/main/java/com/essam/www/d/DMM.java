@@ -24,6 +24,8 @@ public class DMM {
 	private FileMM fm;
 	@Autowired
 	private IMemberDao mDao;
+	
+	StringBuffer sb = new StringBuffer("");
 
 	// 계정관리 이동하기+회원정보 가져오기
 	public ModelAndView goMypage(HttpSession session) {
@@ -47,6 +49,7 @@ public class DMM {
 		mav.addObject("myInfo", mb);
 		mav.addObject("cate1Chk", cate1Chk);
 		mav.addObject("cate2Chk", cate2Chk);
+		mav.addObject("navtext", "마이페이지");
 
 		return mav;
 	}
@@ -75,6 +78,7 @@ public class DMM {
 			}
 		}
 		mav.setViewName("redirect:/mypage");
+		mav.addObject("navtext", "회원정보수정");
 		return mav;
 	}
 	//댓글 목록 가져오기(ajax)	

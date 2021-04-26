@@ -33,14 +33,20 @@ public class MemberController {
 
 	// (MM01)로그인 이동
 	@RequestMapping(value = "/login")
-	String goLogin() {
-		return "member/login"; // .jsp
+	ModelAndView goLogin() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("navtext", "로그인");
+		mav.setViewName("member/login");
+		return mav; // .jsp
 	}
 	
 	// (MM02)회원가입 이동
 	@RequestMapping(value = "/join")
-	String goJoin() {
-		return "member/join"; // .jsp
+	ModelAndView goJoin() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("navtext", "회원가입");
+		mav.setViewName("member/join");
+		return mav; // .jsp
 	}
 
 	// (MM03)이메일 중복체크(JSON 사용시 @ResponseBody 추가 해야 함)

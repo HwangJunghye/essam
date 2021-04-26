@@ -63,7 +63,6 @@ public class MemberMM {
 				loginData.setMbName(mbInfo.getMbName());
 				loginData.setMbNickName(mbInfo.getMbNickName());
 				request.getSession().setAttribute("loginData", loginData);
-				
 				mav.setViewName("redirect:/"); // 메인으로
 				rattr.addFlashAttribute("fMsg","로그인 성공");
 				
@@ -102,7 +101,6 @@ public class MemberMM {
 					mDao.putInterCate(cate2, "INTER_CATE2", mb.getMbId());
 				}
 			}
-			
 			// 강사회원인 경우 TEACHER 테이블에 정보 저장
 			if(mb.getMbType()==2) {
 				mDao.putTeacher(mb.getMbId());

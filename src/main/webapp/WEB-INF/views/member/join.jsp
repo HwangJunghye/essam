@@ -21,7 +21,7 @@
 <section>
 <!--  get : 크기제한 있음. url?param1=aaa&param2=bbb -->
 <!-- post : 크기제한 없음. url에 정보 표시 X, 
-            form이나 ajax만으로 전송 가능 -->           
+            form이나 ajax만으로 전송 가능 -->  
 <form action="memberjoin" method="post">
 <table class="center">
 	<caption>회원가입</caption>
