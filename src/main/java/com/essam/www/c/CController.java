@@ -61,6 +61,7 @@ public class CController {
 	 * @param HttpSession
 	 * @param HttpServletRequest
 	 * @return ModelAndView
+	 * @throws CommonException
 	 */
 	@RequestMapping(value = "/teacher_profile/delete")
 	ModelAndView teacherProfileDelete(HttpSession session, HttpServletRequest request) throws CommonException {

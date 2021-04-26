@@ -34,6 +34,7 @@ public class CMM {
 	 * @param HttpSession
 	 * @param RedirectAttriutes
 	 * @return ModelAndView
+	 * @throws CommonException
 	 */
 	public ModelAndView getTeacherProfile(HttpSession session) throws CommonException {
 		ModelAndView mav = new ModelAndView();
@@ -123,6 +124,7 @@ public class CMM {
 	 *  교사프로필 삭제하기 teacherProfileDelete()
 	 *  @param HttpSession
 	 *  @param HttpServletRequest
+	 *  @throws CommonException
 	 */
 	public ModelAndView teacherProfileDelete(HttpSession session, HttpServletRequest request) throws CommonException {
 		ModelAndView mav = new ModelAndView();
