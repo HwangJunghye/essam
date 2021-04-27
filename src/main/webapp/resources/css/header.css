@@ -73,34 +73,57 @@ header {
 	vertical-align:middle;
 }
 
-.menu-container{
+/* dropdown 설정 */
+.dropdown-wrap a{ /* dropdown의 a태그 설정*/
+	text-decoration: none; /* 밑줄 X */
+	color: black; /* 글자색 */
+	margin: 0;
+	padding: 0;
+}
+.dropdown-wrap { /* dropdown 가로정렬 */
 	display: flex;
-	flex-wrap: wrap;
+	margin:15px 0px 15px 0px;
+	justify-content: center;
+	align-content: center;
 }
-
-.dropdown{		/* dropdown 메뉴바 */
-	text-align:center;
+.dropdown-menu-wrap {
 	position: relative;
-	width: 80px;
-	height: 20px;
-	background-color: #ffffff;
 }
-
-.dropdown-content{		/* dropdown 목록 */
-	display: none;
+.dropdown-sub-wrap { /* 서브메뉴 위치 absolute */
 	position: absolute;
-	background-color: #ffffff;
-	width: 80px;
-	height: 10px;
+}
+.dropdown-menu-wrap .dropdown-sub { /* 서브메뉴 숨기기 */
+	/* background-color: white; */
+	display: none;
+}
+.dropdown-menu-wrap:hover .dropdown-sub { /* 서브메뉴 보이기(hover) */
+	display: flex;
 }
 
-.dropdown:hover .dropdown-content{	/* 메뉴에 마우스를 올리면 표시*/
-	display: block;
-	background-color: #ffffff;
+/* 메뉴 요소 설정 */
+.dropdown-main,.dropdown-sub { /* 메뉴 크기 및 내용 정렬 */
+	margin: 0;
+	padding: 0;
+	width: 100px;
+	height: 40px;
+	font-size: 20px;
+		
+	/* 요소 내용 가운데 정렬*/
+	display: flex;
+	justify-content: center;
+	align-items: center;            
 }
-
-.dropdown div{
-	background-color: #ffffff; 
+.dropdown-menu-wrap .dropdown-main { /* 메인메뉴 */
+	background-color: white;
+}
+.dropdown-menu-wrap:hover .dropdown-main { /* 메인메뉴(hover) */
+	background-color: gray;
+}
+.dropdown-sub { /* 서브메뉴 */
+	background-color: white;
+}
+.dropdown-sub:hover { /* 서브메뉴(hover)*/
+	background-color: yellow;
 }
 
 /* 로그인 모달창영역 */

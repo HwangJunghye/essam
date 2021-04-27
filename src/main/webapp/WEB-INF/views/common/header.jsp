@@ -56,20 +56,19 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 	<div id="nav_area">
 		<div id="nav_area1"><a href="${ctxPath}/"><span style="font-size:30px;color:#000;">e-쌤</span></a></div>
 		<div id="nav_area2">
-			<!-- <p class="text-center" ><h5> -->
-				<div class="menu-container">
+			<!-- 드롭다운 메뉴 -->
+			<div class="dropdown-wrap">
 				<c:forEach items="<%=Constant.cate1Name%>" begin="1" varStatus="state" var="item">
-				<div class="dropdown">
-					<a href="${ctxPath}/search?cate1No=${state.index}"><div><h5 style="margin:26px 0px 0px 0px;">${item}</h5></div></a>
-					<div class="dropdown-content">
+				<div class="dropdown-menu-wrap">
+					<a href="${ctxPath}/search?cate1No=${state.index}"><div class="dropdown-main">${item}</div></a>
+					<div class="dropdown-sub-wrap">
 						<c:forEach items="<%=Constant.cate2Name%>" begin="1" varStatus="state2" var="item2">
-						<a href="${ctxPath}/search?cate1No=${state.index}&cate2No=${state2.index}"><div>${item2}</div></a>
+						<a href="${ctxPath}/search?cate1No=${state.index}&cate2No=${state2.index}"><div class="dropdown-sub">${item2}</div></a>
 						</c:forEach>
 					</div>
 				</div>
 				</c:forEach>
-				</div>			
-		<!-- 	</h5></p> -->
+        	</div>
 		</div>
 		<div id="nav_area3">
 			<form action="${ctxPath}/search" method="get">    
@@ -86,7 +85,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 		<div id="nav_area4"><p class="text-center" style="margin-top:28px"><h6><span style="font-weight: bold;">
 			<c:if test="${empty sessionScope.loginData}">
 				<!-- 로그아웃 상태 -->
-				<a href="${ctxPath}/login" data-toggle="#modal">로그인</a>&nbsp;&nbsp;
+				<a href="#" data-toggle="modal" data-target="#moaModal">로그인</a>&nbsp;&nbsp;
 				<a href="${ctxPath}/join">회원가입</a>
 			</c:if>
 			<c:if test="${!empty sessionScope.loginData}">
@@ -105,30 +104,28 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 		</div>
 	</div>
 </header>
- <!-- Moa Modal-->
-  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- Moa Modal-->
+  <div class="modal fade" id="moaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to test</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">x</span>
           </button>
-          </div>
-        <div class="modal-body">
-		<form action="access" method="post">
-	       아이디 &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="이메일"><br>
-           비밀번호 <input type="text" placeholder="비밀번호">
-           <!-- <input type="submit" data-dismiss="modal" value="로그인"/> -->
-           <button class="btn btn-primary" type="button" data-dismiss="modal">로그인</button>
-        </form>
         </div>
-        <div class="modal-footer" id="mfooter">
-          <a href="#">비밀번호를 잊으셨나요?</a><br>
-          <h7>아직 e-쌤 회원이 아니신가요?</h7><br>
-          <a href="${ctxPath}/join">회원가입</a>
-          </div>
+        <div class="modal-body">
+	        <!-- 로그인 form 삽입 -->
+	        로그인 form
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>
+  </div>
+
+
 </body>
 </html>
