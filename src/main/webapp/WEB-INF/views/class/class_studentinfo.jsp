@@ -46,8 +46,7 @@ table {
 					<th colspan="3">출결현황(출석일/총수업일)</th>
 				</tr>
 				<c:forEach var="sInfo" items="${sList}">
-
-					<tr>
+					<tr onclick="location.href='${ctxPath}/class/studentinfo?mbId=${sInfo.mbId}&clsNo=${sInfo.clsNo}'">
 						<td>${sInfo.mbNickName}</td>
 						<td>${sInfo.mbId}</td>
 						<td>${sInfo.regiStartDate}</td>

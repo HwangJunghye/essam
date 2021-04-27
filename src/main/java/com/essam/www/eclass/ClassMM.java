@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,7 +55,7 @@ public class ClassMM {
 		float attendDay = (float)attendInfo.getAttendDay();
 		float totalDay = (float)attendInfo.getTotalDay();
 		float attendPercent = (attendDay/totalDay)*100;
-		mav.addObject("attendPercent",attendPercent);
+		
 		
 		if(attendPercent<=80) {
 			mav.addObject("attendMsg","정말 최고예요! (>ㅁ<)b ");
@@ -64,9 +65,16 @@ public class ClassMM {
 			mav.addObject("attendMsg","조금 아쉽네요... (TㅅT) ");
 		}
 		
-		// 가져온 정보를 mav에 넣기
+		// 가져온 정보를 mav에 넣기	
 		mav.addObject("attendInfo",attendInfo);
-		}	
+		//총수업일수가 0일경우 NaN 발생-->수업일수에 따라 따로 넣기
+			if(totalDay==0) {
+				mav.addObject("attendPercent","0");
+			}else {
+				mav.addObject("attendPercent",attendPercent);
+			}
+		}
+		
 		mav.addObject("navtext", "마이 클래스> 출석현황");
 		//class_attend.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("class/class_attend"); // .jsp
@@ -98,11 +106,20 @@ public class ClassMM {
 		float attendDay = (float)sInfo.getAttendDay();
 		float totalDay = (float)sInfo.getTotalDay();
 		float attendPercent = (attendDay/totalDay)*100;
+		
+
+	
+		
 				
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("sInfo",sInfo);
-		mav.addObject("mInfo",mInfo);
-		mav.addObject("attendPercent",attendPercent);
+		mav.addObject("mInfo",mInfo);		
+		//총수업일수가 0일경우 NaN 발생-->수업일수에 따라 따로 넣기
+		if(totalDay==0) {
+			mav.addObject("attendPercent","0");
+		}else {
+			mav.addObject("attendPercent",attendPercent);
+		}
 		mav.addObject("navtext", "클래스 관리> 마이 클래스> 학생");
 		// class_studentinfo_read.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("class/class_studentinfo_read"); // .jsp
@@ -126,6 +143,7 @@ public class ClassMM {
 	}
 	
 	// (CM22)클래스 등록, 수정하기
+	@Transactional
 	public ModelAndView classClassinfoUpdate(MultipartHttpServletRequest mReq, HttpServletRequest request, ClassBean cb) {
 		ModelAndView mav = new ModelAndView();
 		MemberBean loginData= (MemberBean)mReq.getSession().getAttribute("loginData");

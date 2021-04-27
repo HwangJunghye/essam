@@ -39,7 +39,7 @@ cursor: pointer;
 닉네임:${sInfo.mbNickName} <br/>
 이메일:${sInfo.mbId}<br/>
 등록일:${sInfo.regiStartDate}<br/>
-주소:${mInfo.mbAddr}<br/>
+주소:${mInfo.mbAddr}<br/><br/>
 
 
 출석현황<br/>
@@ -47,13 +47,6 @@ cursor: pointer;
 출석률: ${attendPercent}%<br/>
 <br/>
 <input type="button" class="btn" value="학생목록" onclick="history.back(-1);">
-
-
-
-	
-	
-	
-	
 	
 </section>
 <%@ include file="../common/footer.jsp" %>
