@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -65,7 +66,11 @@ public class CMM {
 		return mav;
 	}
 	
-
+	/**
+	 * 교사프로필 등록, 수정 이동하기 getTeacherProfileWrite()
+	 * @param session
+	 * @return ModelAndView
+	 */
 	public ModelAndView getTeacherProfileWrite(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		TeacherBean teacherInfo = null;
@@ -91,6 +96,7 @@ public class CMM {
 	 * @param HttpServletRequest
 	 * @return ModelAndView
 	 */
+	@Transactional
 	public ModelAndView teacherProfileUpdate(MultipartHttpServletRequest mReq, TeacherBean tb, HttpServletRequest request) {
 		// <input type="file" name="속성"> --> mReq.getFile("속성")
 		// 파라미터 가져오기 : mReq.getParameter(name)
@@ -126,6 +132,7 @@ public class CMM {
 	 *  @param HttpServletRequest
 	 *  @throws CommonException
 	 */
+	@Transactional
 	public ModelAndView teacherProfileDelete(HttpSession session, HttpServletRequest request) throws CommonException {
 		ModelAndView mav = new ModelAndView();
 		TeacherBean teacherInfo = null;

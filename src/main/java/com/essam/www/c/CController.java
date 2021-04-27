@@ -31,6 +31,7 @@ public class CController {
 	@RequestMapping(value = "/teacher_profile")
 	ModelAndView goTeacherProfile(HttpSession session) throws CommonException {
 		ModelAndView mav = mm.getTeacherProfile(session);
+		mav.addObject("navtext", "교사프로필");
 		return mav; 
 	}
 	
@@ -42,6 +43,7 @@ public class CController {
 	@RequestMapping(value = "/teacher_profile/write")
 	ModelAndView goTeacherProfileWrite(HttpSession session) {
 		ModelAndView mav = mm.getTeacherProfileWrite(session);
+		mav.addObject("navtext", "교사프로필 등록/수정");
 		return mav; //.jsp
 	}
 	
