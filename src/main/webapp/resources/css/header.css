@@ -42,7 +42,7 @@ header {
 /* 검색 영역 요소 */
 
 #input_txt_src {	/* 검색어 입력박스(input) */
-	width:200px;
+	width:160px;
 	height:30px;
 	border: 1px solid #bebebe;
 	display:inline-block;

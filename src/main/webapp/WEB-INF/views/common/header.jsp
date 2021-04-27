@@ -118,8 +118,8 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
         <div class="modal-body">
 	        <!-- 로그인 form 삽입 -->
 	        <form action="${ctxPath}/access" method="post">
-				아이디 <input type="text" name="mbId" id="mbId"/><br>
-				비밀번호 <input type="text" name="mbPwd"/><br>
+				아이디 <input type="text" name="mbId" id="mbId" required/><br>
+				비밀번호 <input type="text" name="mbPwd" required/><br>
 				<input type="submit" value="로그인"/><br>
 				<a herf="#">비밀번호를 잊으셨나요?</a><br>
 				<br>
@@ -134,6 +134,10 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
     </div>
   </div>
 
-
+<script>
+$("#moaModal").on('shown.bs.modal', function () {
+    $("#mbId").focus();
+});
+</script>
 </body>
 </html>
