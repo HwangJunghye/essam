@@ -115,10 +115,10 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
             <span aria-hidden="true">x</span>
           </button>
         <div class="modal-body">
-		<form action="access" method="post" id="mbody">
+		<form action="access" method="post">
 	       아이디 &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="이메일"><br>
            비밀번호 <input type="text" placeholder="비밀번호">
-           <input type="submit" data-dismiss="modal" value="로그인"/>
+           <input type="submit" data-target="#moaModal" data-dismiss="modal" value="로그인"/>
            <!-- <button class="btn btn-primary" type="button" data-dismiss="modal">로그인</button> -->
         </form>
         </div>
