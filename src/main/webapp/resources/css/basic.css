@@ -68,3 +68,13 @@ section {
 	width:800px;
 	height:500px;	
 }
+
+/* 클래스 영역 */
+.hr_t_color {
+	height: 0px;
+	border: 2px solid #9E3C7E;
+}
+.hr_s_color {
+	height: 0px;
+	border: 2px solid #3566A2;
+}
