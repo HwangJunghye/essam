@@ -87,7 +87,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 				<!-- 로그아웃 상태 -->
 				<a href="#" data-toggle="modal" data-target="#moaModal">로그인</a>&nbsp;&nbsp;
 				<a href="${ctxPath}/join">회원가입</a>
-			</c:if>
+			</c:if> 
 			<c:if test="${!empty sessionScope.loginData}">
 				<!-- 로그인 상태 -->
 				<c:if test="${sessionScope.loginData.mbType==1}">
