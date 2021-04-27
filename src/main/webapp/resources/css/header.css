@@ -102,3 +102,10 @@ header {
 .dropdown div{
 	background-color: #ffffff; 
 }
+
+/* 로그인 모달창영역 */
+#mfooter{
+	height: 50px;
+	width: 200px;
+	text-align: center;
+}

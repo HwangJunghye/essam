@@ -78,7 +78,6 @@ public class DMM {
 			}
 		}
 		mav.setViewName("redirect:/mypage");
-		mav.addObject("navtext", "회원정보수정");
 		return mav;
 	}
 	//댓글 목록 가져오기(ajax)	

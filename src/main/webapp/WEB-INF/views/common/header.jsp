@@ -86,8 +86,8 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 		<div id="nav_area4"><p class="text-center" style="margin-top:28px"><h6><span style="font-weight: bold;">
 			<c:if test="${empty sessionScope.loginData}">
 				<!-- 로그아웃 상태 -->
-				<a class="dropdown-item" href="${ctxPath}/join" data-toggle="modal" data-target="#Modal">
-						<i class="fas fa-arrow-right">로그인</i></a>&nbsp;&nbsp;
+				<a href="${ctxPath}/login" data-toggle="modal" data-target="#moaModal">
+				로그인</a>&nbsp;&nbsp;
 				<a href="${ctxPath}/join">회원가입</a>
 			</c:if>
 			<c:if test="${!empty sessionScope.loginData}">
@@ -111,23 +111,25 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">x</span>
           </button>
-        </div>
         <div class="modal-body">
-	       <input type="text" placeholder="이메일"><br>
-           <input type="text" placeholder="비밀번호">
+		<form action="access" method="post" id="mbody">
+	       아이디 &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="이메일"><br>
+           비밀번호 <input type="text" placeholder="비밀번호">
+           <input type="submit" data-dismiss="modal" value="로그인"/>
+           <!-- <button class="btn btn-primary" type="button" data-dismiss="modal">로그인</button> -->
+        </form>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" type="button" data-dismiss="modal">로그인</button><br>
+        <div class="modal-footer" id="mfooter">
           <a href="#">비밀번호를 잊으셨나요?</a><br>
-          아직 e-쌤 회원이 아니신가요?<br>
+          <h7>아직 e-쌤 회원이 아니신가요?</h7><br>
           <a href="${ctxPath}/join">회원가입</a>
+           </div>
         </div>
       </div>
     </div>
-  </div>
+   </div>
 </body>
 </html>
