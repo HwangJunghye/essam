@@ -117,7 +117,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
         </div>
         <div class="modal-body">
 	        <!-- 로그인 form 삽입 -->
-	        <form action="access" method="post">
+	        <form action="${ctxPath}/access" method="post">
 				아이디 <input type="text" name="mbId" id="mbId"/><br>
 				비밀번호 <input type="text" name="mbPwd"/><br>
 				<input type="submit" value="로그인"/><br>
