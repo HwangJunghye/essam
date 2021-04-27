@@ -32,9 +32,39 @@
 			등록된 프로필 정보가 없습니다.
 			<a href="${ctxPath}/teacher_profile/write">등록</a>
 		</c:if>
-		<div id="t_profile">
-			<c:if test="${teacherInfo.fileNo!=null || teacherInfo.teacherIntro!=null || teacherInfo.teacherDetail!=null}">
-				<table align="left">
+		<c:if test="${teacherInfo.fileNo!=null || teacherInfo.teacherIntro!=null || teacherInfo.teacherDetail!=null}">
+			<div id="wrap" style="width:960px; height:642px; margin:0 auto; overflow:hidden;">
+				<div id="left_side_box" style="width:240px; height:642px; overflow:hidden; float:left;">
+					<div id="profile_image_box" style="width:154px; height:154px; border-radius:70%; overflow:hidden; background:pink; position:relative; left:30px; top:96px;">
+						<img id="profile" style="width:100%; height:100%; object-fit:cover;" src="${ctxPath}/getthumbnail?fileNo=${teacherInfo.fileNo}&width=150&height=150">
+					</div>
+				</div>
+				<div id="right_side_box" style="width:720px; height:642px; float:left; overflow:hidden;">
+					<div id="nickname_box1" style="width:720px; height:168px; overflow:auto;">
+						<div id="nickname" style="width:104px; height:50px; text-align:left; float:left; position:relative; left:0px; top:118px;">
+							<h5 style="font-weight: bold; font-size:25px;">${teacherInfo.mbNickName}</h5>
+						</div>
+						<div id="teachergrade" style="width:140px; height:50px; text-align:left; padding:5px 0px 0px; float:left; position:relative; left:50px; top:118px;">
+							<h5 style="font-weight: bold; font-size:17px;">마스터</h5>
+						</div>
+					</div>
+					<div id="intro_box2" style="width:720px; height:60px; text-align:left; padding:10px 0px 0px;">
+						<h6 style="font-weight: bold;">${teacherInfo.teacherIntro}</h6>
+					</div>
+					<div id="detail_box3" style="width:720px; height:304px; text-align:left;">
+						${teacherInfo.teacherDetail}
+					</div>
+					<div id="button_box4" style="width:720px; height:304px;">
+						<div id="update_button" style="width:149px; height:78px; float:right; position:relative; right:0px; top:0px;">
+							<button type="button" style="margin-right:10px;" onclick="location.href='${ctxPath}/teacher_profile/write'">수정</button>
+							<button type="button" onclick="location.href='${ctxPath}/teacher_profile/delete'">삭제</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		
+				<%-- <table align="left">
 					<tr>
 						<td>
 							<img src="${ctxPath}/getthumbnail?fileNo=${teacherInfo.fileNo}&width=150&height=100"><br/>
@@ -60,9 +90,8 @@
 						<a href="${ctxPath}/teacher_profile/write">수정</a>
 						<a href="${ctxPath}/teacher_profile/delete">삭제</a>
 					</tr>
-				</table>
-			</c:if>
-		</div>
+				</table> --%>
+			
 <!--------- 본문 끝 -------------->
    </div>
 </div>
