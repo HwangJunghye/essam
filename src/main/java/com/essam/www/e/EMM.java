@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.bean.ClassBean;
@@ -27,6 +28,7 @@ public class EMM {
 	/**
 	 * 비밀번호 변경 실행(ajax)
 	 */
+	@Transactional
 	public Map<String, String> changePassword(HttpSession session, String mbPwd, String newMbPwd) {
 		Map<String, String> map = new HashMap<>();
 		boolean flag = false; // 비밀번호 변경 성공여부 저장
