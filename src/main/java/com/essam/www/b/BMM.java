@@ -489,6 +489,11 @@ public class BMM {
 		}		
 		return result;
 	}
+	/**
+	 * (게시글 수정시) 파일 삭제 : 파일 삭제 후 파일목록 반환
+	 * Author : 고연미
+	 */
+	@Transactional
 	public List<FileBean> delBrdFile(String fileNo, String clsBrdNo, HttpServletRequest request) {
 		//DB > BRD_FILE 정보 삭제
 		if(bDao.deleteBrdFile(fileNo)) {

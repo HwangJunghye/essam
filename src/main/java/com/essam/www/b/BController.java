@@ -27,7 +27,6 @@ import com.essam.www.file.FileMM;
 
 @Controller
 public class BController {
-	private static final Logger logger = LoggerFactory.getLogger(BMM.class);
 	
 	@Autowired
 	private BMM bm;
@@ -38,6 +37,7 @@ public class BController {
 	
 	/**
 	 * 클래스소개 이동
+	 * Author : 고연미
 	 */
 	@RequestMapping(value = "/classinfo")
 	ModelAndView goClassInfo(String clsNo) {
@@ -45,6 +45,7 @@ public class BController {
 	}
 	/**
 	 * 수강신청
+	 * Author : 고연미
 	 */
 	@RequestMapping(value = "/classjoin")
 	ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
@@ -54,6 +55,7 @@ public class BController {
 	}
 	/**
 	 * 게시판 리스트
+	 * Author : 고연미
 	 */
 	@RequestMapping(value = "/class/boardlist")
 	ModelAndView boardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
@@ -67,6 +69,7 @@ public class BController {
 	}
 	/**
 	 * 게시판 글쓰기/수정 이동
+	 * Author : 고연미
 	 */
 	@RequestMapping(value = "/class/goboardwrite")
 	ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) {
@@ -74,6 +77,7 @@ public class BController {
 	}
 	/**
 	 * 게시판 글쓰기/수정
+	 * Author : 고연미
 	 */
 	@PostMapping(value = "/class/boardwrite")
 	ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
@@ -81,6 +85,7 @@ public class BController {
 	}
 	/**
 	 * 게시판 글읽기
+	 * Author : 고연미
 	 */
 	@RequestMapping(value = "/class/boardread")
 	ModelAndView boardRead(String clsBrdNo, Integer pageNum, HttpServletRequest request) {
@@ -88,25 +93,26 @@ public class BController {
 	}
 	/**
 	 * 게시판 글 삭제
+	 * Author : 고연미
 	 */
 	@RequestMapping(value = "/class/boarddelete")
 	ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) {
 		return bm.boardDelete(clsBrdNo, pageNum, request, rattr);
 	}
 	/**
-	 * 첨부파일 리스트 가져오기
+	 * (ajax) 첨부파일 리스트 가져오기
+	 * Author : 고연미
 	 */
 	@RequestMapping(value = "/class/getfilelist")
 	@ResponseBody List<FileBean> getFileList(String clsBrdNo) {
 		return bDao.getBoardFiles(clsBrdNo);
 	}
 	/**
-	 * 첨부파일 삭제
+	 * (ajax) 첨부파일 삭제
+	 * Author : 고연미
 	 */
 	@PostMapping(value = "/class/delbrdfile")
-	@Transactional
 	@ResponseBody List<FileBean> delBrdFile(String fileNo, String clsBrdNo, HttpServletRequest request) {
-		System.out.println("------------ 여기 오나??? -------------");
 		return bm.delBrdFile(fileNo, clsBrdNo, request);
 	}
 }

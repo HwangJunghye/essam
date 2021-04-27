@@ -92,12 +92,12 @@
 				if("${loginData.mbId}" != "${boardData.mbId}")
 					return;
 
-				let msg = confirm('파일을 정말 삭제하시겠습니까?'); 
+				let msg = confirm('해당 파일을 정말 삭제하시겠습니까?'); 
 				if(msg) {
-					console.log("삭제 파일번호 : "+ $(this).data("fileNo"));
+					//console.log("삭제 파일번호 : "+ $(this).data("fileno"));
 					const param = {
-						fileNo: $(this).data("fileNo"),  	// 삭제할 파일번호
-						clsBrdNo: $(this).data("clsBrdNo")  // 글번호. 나머지 첨부파일 정보 반환 
+						fileNo: $(this).data("fileno"),  	// 삭제할 파일번호
+						clsBrdNo: bNo  						// 글번호. 나머지 첨부파일 정보 반환 
 					};					
 					$.ajax({
 						url: "${ctxPath}/class/delbrdfile",
@@ -118,7 +118,7 @@
 
 			const $ul=$("#attachment"); 
 			//첨부파일 출력전 기존파일 목록 삭제
-			$ul.empty();	//자식영역만 삭제, remove() : 부모이하 삭제 
+			$ul.empty(); 
 			
 			//파일 목록이 있으면
 			if(fileList != null) {
@@ -137,14 +137,10 @@
 					//첨부파일에 대한 링크를 파일명에 추가
 					const queryString = "${ctxPath}/download?fileNo="+ attachment.fileNo;
 					$("<a>").attr("href",queryString).text(attachment.origFileName).appendTo($li);
-	
-					//삭제위한 첨부파일번호저장: data-ano=attachment.ano
-					//읽어오기 위해 글번호 저장: data-bno=board.bno
-					
-					//읽기 방법: $(this).data(ano),$(this).data(bno)
-					$li.append("&nbsp;<span class='delete_attachment' data-fileNo='" 
-							   + attachment.fileNo + "' data-clsBrdNo='"
-							   + bNo + "'><i class='fas fa-backspace'></i></sapn>");
+						
+					//date-xxx 속성 : $(this).data(xxx)로 값을 가져옴. 주의:xxx는 소문자만 사용.
+					$li.append("&nbsp;<span class='delete_attachment' data-fileno='" 
+							   + attachment.fileNo + "'><i class='fas fa-backspace'></i></sapn>");
 					$(".delete_attachment").css("cursor","pointer").attr("title","파일 삭제");
 				});//each End 
 			}
