@@ -117,7 +117,15 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
         </div>
         <div class="modal-body">
 	        <!-- 로그인 form 삽입 -->
-	        로그인 form
+	        <form action="access" method="post">
+				아이디 <input type="text" name="mbId" id="mbId"/><br>
+				비밀번호 <input type="text" name="mbPwd"/><br>
+				<input type="submit" value="로그인"/><br>
+				<a herf="#">비밀번호를 잊으셨나요?</a><br>
+				<br>
+				<h7>아직 e-쌤 회원이 아니신가요?</h7><br>
+				<a href="${ctxPath}/join">회원가입하기</a>
+			</form>
         </div>
         <div class="modal-footer">
           <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
