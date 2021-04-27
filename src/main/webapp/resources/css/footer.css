@@ -2,15 +2,15 @@
 
 /* footer */
 footer{
-	bottom:0;
 	width: 100%;
-	height: 60px;
 	background: #8DBDC4;
     font-style: normal;
 	font-weight: normal;
-	display: block;
 	align-items: center;
 	color: #4F4F4F;
+	position: fixed;
+	bottom: 0;
+ 	left: 0;
 }
 #footerTextArea{
 	width: 100%;

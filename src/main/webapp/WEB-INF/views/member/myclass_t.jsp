@@ -53,6 +53,13 @@ color: #828282;
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 <section>
+	<div id="contents">
+	<div id="aside">
+		<div id="aside_area">
+			<%@ include file="../common/aside.jsp"%>
+		</div>
+	</div>
+	<div id="contents_area">
 	
 	<!-- clsInfo가 있으면 -->
 	<c:if test="${!empty clsInfo}">
@@ -71,7 +78,8 @@ color: #828282;
 	 <p>마이 클래스가 없습니다.</p>
 	</c:if>
 
-	
+	</div>
+</div>
 </section>
 <%@ include file="../common/footer.jsp" %>
 </body>
