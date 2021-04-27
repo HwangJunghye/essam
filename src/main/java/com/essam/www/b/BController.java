@@ -1,10 +1,15 @@
 package com.essam.www.b;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,16 +20,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.essam.www.bean.BoardBean;
+import com.essam.www.bean.FileBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.exception.CommonException;
 import com.essam.www.file.FileMM;
 
 @Controller
 public class BController {
+	private static final Logger logger = LoggerFactory.getLogger(BMM.class);
+	
 	@Autowired
 	private BMM bm;
 	@Autowired
 	private FileMM fm;
+	@Autowired
+	private IBDao bDao;
 	
 	/**
 	 * 클래스소개 이동
@@ -84,11 +94,19 @@ public class BController {
 		return bm.boardDelete(clsBrdNo, pageNum, request, rattr);
 	}
 	/**
-	 * 게시판 파일 삭제
+	 * 첨부파일 리스트 가져오기
+	 */
+	@RequestMapping(value = "/class/getfilelist")
+	@ResponseBody List<FileBean> getFileList(String clsBrdNo) {
+		return bDao.getBoardFiles(clsBrdNo);
+	}
+	/**
+	 * 첨부파일 삭제
 	 */
 	@PostMapping(value = "/class/delbrdfile")
-	@ResponseBody public boolean delBrdFile(String fileNo, HttpServletRequest request, RedirectAttributes rattr) {
-		return fm.deleteFile(fileNo, request);	
+	@Transactional
+	@ResponseBody List<FileBean> delBrdFile(String fileNo, String clsBrdNo, HttpServletRequest request) {
+		System.out.println("------------ 여기 오나??? -------------");
+		return bm.delBrdFile(fileNo, clsBrdNo, request);
 	}
-	
 }

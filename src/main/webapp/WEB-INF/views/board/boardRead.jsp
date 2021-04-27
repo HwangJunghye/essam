@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Board</title>
+<title>e-쌤</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <body>
 <%@ include file="../common/header.jsp" %>
@@ -25,7 +25,7 @@
 		<table class="container">
 		<tr>
 			<td align="left" style="padding:20px 0;"><h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
-				<hr style="height:10px;border:0px;box-shadow:0px 10px 10px -10px #bbb inset;"></td>
+				<hr class="hr_${mbColor}"></td>
 		</tr></table>
 
 		<div class="container">

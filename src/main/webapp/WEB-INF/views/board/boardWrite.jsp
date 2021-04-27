@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Board</title>
+<title>e-쌤</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
 <body>
@@ -25,7 +25,7 @@
 		<table class="container">
 		<tr>
 			<td align="left" style="padding:20px 0;"><h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
-				<hr style="height:10px;border:0px;box-shadow:0px 10px 10px -10px #bbb inset;"></td>
+				<hr class="hr_${mbColor}"></td>
 		</tr></table>
 
 		<div class="container">
@@ -44,9 +44,9 @@
 				<td><textarea name="clsBrdContent" class="clsBrdContent" rows="20" cols="70" required>${boardData.clsBrdContent}</textarea></td>
 			</tr>
 			<tr>
-				<th valign="top">첨부파일</th>
+				<th>첨부파일</th>
 				<td align="left">
-					<c:set var="files" value="${boardData.filesInfo}" />
+					<%-- <c:set var="files" value="${boardData.filesInfo}" />
 					<c:if test="${!empty files}">
 						<c:forEach var="file" items="${files}">
 							<c:if test="${file.fileTypeNo == 1}"><i class="far fa-file-image"></i></c:if>
@@ -55,7 +55,11 @@
 							<a href="${ctxPath}/download?fileNo=${file.fileNo}">${file.origFileName}</a> 
 							<a href="javascript:void(0);" onclick="fncDelFile(${file.fileNo})" id="delFile"><i class="fas fa-backspace"></i></a><br>
 						</c:forEach>
-					</c:if>
+					</c:if> --%>
+					<!-- 첨부파일 출력 영역 -->
+					<div><span id="result" style="font-size:12px;color:red;"></span>
+						<ul id="attachment"></ul>
+					</div>
 					<p><br><input type="file" name="files" id="files" multiple/></p></td>
 			</tr>
 			</table><br>
@@ -64,22 +68,86 @@
 		</div>
 		
 		<script>
-		//file 삭제 --->ajax처리
-		//$('#delFile').on('click',function(){
-		function fncDelFile(fn) {
-			//js객체
-			const param = {
-					_method:"patch", //method(type):post
-					delFileNo: fn
-				};
-			$.ajax({
-				url: "class/delbrdfile",
-				method: "post", //type:'post',
-				data:param
-			}).done(()=> {
-				toastr.success("파일을 삭제했습니다", '서버 메시지');
-			}).fail((xhr)=> printError(xhr, "파일 삭제에 실패했습니다"));
+		let bNo = "${boardData.clsBrdNo}";	//글번호
+		
+		$(function() {
+			if(bNo != "") {
+				//첨부파일 가져오기
+				$.ajax({
+					url: "${ctxPath}/class/getfilelist",
+					method: "get",
+					data : {clsBrdNo : bNo},
+					dataType : 'json'
+				}).done((result)=>{
+					let fileList = result;	//첨부파일 리스트
+					console.log("fileList = ",fileList);
+					printAttachment(fileList);  //가져온 정보를 화면에 출력
+				}).fail(function(err) {
+					$('#result').text('첨부파일 리스트를 가져올 수 없습니다');
+				});
+			}
+
+			//첨부파일 삭제
+			$("#attachment").on("click", ".delete_attachment", function() {
+				if("${loginData.mbId}" != "${boardData.mbId}")
+					return;
+
+				let msg = confirm('파일을 정말 삭제하시겠습니까?'); 
+				if(msg) {
+					console.log("삭제 파일번호 : "+ $(this).data("fileNo"));
+					const param = {
+						fileNo: $(this).data("fileNo"),  	// 삭제할 파일번호
+						clsBrdNo: $(this).data("clsBrdNo")  // 글번호. 나머지 첨부파일 정보 반환 
+					};					
+					$.ajax({
+						url: "${ctxPath}/class/delbrdfile",
+						method: "post",
+						data: param,
+						dataType : 'json'
+					}).done((result)=> { 
+						printAttachment(result);
+						console.log("nfileList = ",result);
+					}).fail(function(err) {
+						$('#result').text('서버와 통신할 수 없습니다');
+					});	
+				}
+			});
+		});
+		//첨부파일 출력
+		function printAttachment(fileList) {
+
+			const $ul=$("#attachment"); 
+			//첨부파일 출력전 기존파일 목록 삭제
+			$ul.empty();	//자식영역만 삭제, remove() : 부모이하 삭제 
 			
+			//파일 목록이 있으면
+			if(fileList != null) {
+				//화면에 각 파일 출력
+	 			$.each(fileList, function(i, attachment){
+					//<ul> <li></li> </ul>
+					const $li=$("<li></li>").appendTo($ul);
+					//첨부파일에 아이콘 추가
+					if(attachment.fileTypeNo == 1)
+						$('<i class="far fa-file-image" style="margin-right:10px"></i>').appendTo($li);
+					if(attachment.fileTypeNo == 2)
+						$('<i class="far fa-file-video" style="margin-right:10px"></i>').appendTo($li);
+					if(attachment.fileTypeNo == 3)
+						$('<i class="far fa-file-alt" style="margin-right:10px"></i>').appendTo($li);
+					
+					//첨부파일에 대한 링크를 파일명에 추가
+					const queryString = "${ctxPath}/download?fileNo="+ attachment.fileNo;
+					$("<a>").attr("href",queryString).text(attachment.origFileName).appendTo($li);
+	
+					//삭제위한 첨부파일번호저장: data-ano=attachment.ano
+					//읽어오기 위해 글번호 저장: data-bno=board.bno
+					
+					//읽기 방법: $(this).data(ano),$(this).data(bno)
+					$li.append("&nbsp;<span class='delete_attachment' data-fileNo='" 
+							   + attachment.fileNo + "' data-clsBrdNo='"
+							   + bNo + "'><i class='fas fa-backspace'></i></sapn>");
+					$(".delete_attachment").css("cursor","pointer").attr("title","파일 삭제");
+				});//each End 
+			}
 		}
 		</script>
 

@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -96,6 +97,7 @@ public class BMM {
 	 * 수강신청
 	 * Author : 고연미
 	 */
+	@Transactional
 	public ModelAndView classJoin(String clsNo, String mbId, RedirectAttributes rattr) {
 		mav = new ModelAndView();
 		
@@ -225,6 +227,7 @@ public class BMM {
 	 * 게시글 등록/수정
 	 * Author : 고연미
 	 */
+	@Transactional
 	public ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
 		mav = new ModelAndView();
 		boolean result = false;		//게시판 저장 결과
@@ -358,6 +361,7 @@ public class BMM {
 	 * 조회수 추가
 	 * Author : 고연미
 	 */
+	@Transactional
 	private void addBrdView(String clsBrdNo, String mbId) {
 		int isViewCnt = 0;
 		isViewCnt = bDao.getBrdViewId(clsBrdNo, mbId);
@@ -386,6 +390,7 @@ public class BMM {
 	 * 게시글 삭제
 	 * Author : 고연미
 	 */
+	@Transactional
 	public ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) {
 		mav = new ModelAndView();
 		boolean result = false;		
@@ -459,6 +464,7 @@ public class BMM {
 	 * 댓글 목록 삭제
 	 * Author : 고연미
 	 */
+	@Transactional
 	private boolean deleteReplyList(String clsBrdNo, HttpServletRequest request) {
 		boolean result = true;
 		//댓글리스트 가져오기
@@ -483,17 +489,33 @@ public class BMM {
 		}		
 		return result;
 	}
+	public List<FileBean> delBrdFile(String fileNo, String clsBrdNo, HttpServletRequest request) {
+		//DB > BRD_FILE 정보 삭제
+		if(bDao.deleteBrdFile(fileNo)) {
+			//DB > TB_FILE 정보 삭제, 파일 삭제
+			if(fm.deleteFile(fileNo, request)) {
+				logger.info(fileNo +"번 파일 : 삭제(DB/file) 완료.");
+			} else
+				logger.info(fileNo +"번 파일 : 삭제(DB or file) 실패! ");								
+		} else {
+			logger.info(fileNo +"번 파일 : DB(brd_file) 정보삭제 실패! ");
+		}
+		//삭제 여부와 상관없이 파일리스트 반환
+		return bDao.getBoardFiles(clsBrdNo);
+	}
 }
 /**
  * 게시판 목록 내림차순 정렬
  * Author : 고연미
+ * Comparator : 새로운 정렬기준으로 객체를 정렬하는 인터페이스
  */
 class BListDecending implements Comparator<BoardBean> {
  
     @Override
     public int compare(BoardBean a, BoardBean b) {
         Integer temp1 = Integer.parseInt(a.getClsBrdNo());
-        Integer temp2 = Integer.parseInt(b.getClsBrdNo());        
+        Integer temp2 = Integer.parseInt(b.getClsBrdNo());   
+        //compareTo : 두개의 값을 비교하여 int로 반환(크다(1), 같다(0), 작다(-1))
         return temp2.compareTo(temp1);
     }
 }
