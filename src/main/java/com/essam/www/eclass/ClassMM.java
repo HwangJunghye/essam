@@ -106,10 +106,6 @@ public class ClassMM {
 		float attendDay = (float)sInfo.getAttendDay();
 		float totalDay = (float)sInfo.getTotalDay();
 		float attendPercent = (attendDay/totalDay)*100;
-		
-
-	
-		
 				
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("sInfo",sInfo);
@@ -166,7 +162,7 @@ public class ClassMM {
 												
 		if(cb.getClsNo()!=null){//clsNo가 있다면 --> 수정(UPDATE) SQL문 실행
 			updatedOrNot = cDao.classClassinfoUpdate(cb);
-		}else {//clsNo가 있다면 --> 삽입(INSERT) SQL문 실행
+		}else {//clsNo가 없다면 --> 삽입(INSERT) SQL문 실행
 			updatedOrNot = cDao.classClassinfoInsert(cb);
 		}
 	
