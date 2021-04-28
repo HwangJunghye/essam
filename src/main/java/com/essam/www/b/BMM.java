@@ -98,13 +98,21 @@ public class BMM {
 	 * Author : 고연미
 	 */
 	@Transactional
-	public ModelAndView classJoin(String clsNo, String mbId, RedirectAttributes rattr) {
+	public ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
 		mav = new ModelAndView();
+		//세션에서 mbId 가져오기
+		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
+		String mbId= loginData.getMbId();
 		
-		if(bDao.classJoin(clsNo, mbId)) 
-			rattr.addFlashAttribute("fMsg","수강신청이 완료되었습니다.");
-		else
-			rattr.addFlashAttribute("fMsg","수강신청에 실패하였습니다. 다시 이용해주세요.");
+		//수강신청 내역이 있는지 검사
+		if(bDao.hasClassJoin(clsNo, mbId) == 1)
+			rattr.addFlashAttribute("fMsg","이미 수강 신청한 클래스입니다.");
+		else {			
+			if(bDao.classJoin(clsNo, mbId)) 
+				rattr.addFlashAttribute("fMsg","수강신청이 완료되었습니다.");
+			else
+				rattr.addFlashAttribute("fMsg","수강신청에 실패하였습니다. 다시 이용해주세요.");			
+		}
 		
 		mav.setViewName("redirect:/myclass_s");
 		return mav;
@@ -115,6 +123,7 @@ public class BMM {
 	 */
 	public ModelAndView goBoardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
 		
+		//게시글 삭제 후 목록으로 이동시 (redirect)
 		//RedirectAttributes.addFlashAttribute로 보낸 데이터 가져오기
 		Map<String, ?> redirectMap = RequestContextUtils.getInputFlashMap(request);  
 		if( redirectMap != null ){
@@ -292,7 +301,7 @@ public class BMM {
 			//view 페이지 설정
 			mav.setViewName("redirect:/class/boardread");
 		} else {
-			rattr.addFlashAttribute("fMsg","게시글 저장에 실패하였습니다. \n문제가 지속된다면 관리자에 문의 바랍니다.");
+			rattr.addFlashAttribute("fMsg","게시글 저장에 실패하였습니다. \\n문제가 지속된다면 관리자에 문의 바랍니다.");
 			//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
 			String referer = request.getHeader("Referer");
 			//view 페이지 설정

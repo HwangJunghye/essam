@@ -31,6 +31,10 @@
 		SELECT COUNT(*) FROM STUDENT 
 		WHERE clsNo=#{clsNo}
 	</select>
+	<select id="hasClassJoin">
+		SELECT COUNT(*) FROM STUDENT 
+		WHERE clsNo=#{clsNo} AND mbId=#{mbId} AND ROWNUM=1	
+	</select>
 	<insert id="classJoin">
 		INSERT INTO STUDENT 
 			(regiNo, clsNo, mbId, regiStartDate)
