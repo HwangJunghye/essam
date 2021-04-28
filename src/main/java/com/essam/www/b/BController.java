@@ -49,9 +49,7 @@ public class BController {
 	 */
 	@RequestMapping(value = "/classjoin")
 	ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
-		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
-		String mbId= loginData.getMbId();
-		return bm.classJoin(clsNo, mbId, rattr);
+		return bm.classJoin(clsNo, session, rattr);
 	}
 	/**
 	 * 게시판 리스트

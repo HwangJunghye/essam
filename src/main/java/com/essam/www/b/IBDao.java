@@ -51,4 +51,6 @@ public interface IBDao {
 
 	boolean delBrdView(String clsBrdNo);
 
+	int hasClassJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
+
 }
