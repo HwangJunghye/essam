@@ -9,6 +9,6 @@ import com.essam.www.bean.ClassBean;
 public interface ICommonDao {
 	// common-mapper.xml 사용
 
-	List<ClassBean> getSearchList(@Param("pageNo") Integer pageNo, @Param("cate1No") Integer cate1No,
+	List<ClassBean> getSearchList(@Param("pageSize") Integer pageSize, @Param("pageNo") Integer pageNo, @Param("cate1No") Integer cate1No,
 			@Param("cate2No") Integer cate2No, @Param("keywords") String[] keywords);
 }

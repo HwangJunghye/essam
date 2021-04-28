@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <title>검색 페이지</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
-<link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/search.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -29,6 +28,7 @@
 		const cate1No = '${requestScope.cate1No}';
 		const cate2No = '${requestScope.cate2No}';
 		const keyword = '${requestScope.keyword}';
+		const pageSize = 20;
 		$(function() {
 			getSearchList(); // 처음에 초기화
 
@@ -47,6 +47,7 @@
 		}); // ready End
 
 		function getSearchList() {
+			searchFlag = false;
 			let param = {};
 			pageNo++;
 			param['pageNo'] = pageNo;
@@ -68,10 +69,6 @@
 				dataType : 'json'
 			}).done(
 					function(data) {
-						if (data.pageSize < 20) { // 검색결과가 20보다 작다면 다음 페이지 정보는 존재하지 않음
-							searchFlag = false;
-							console.log(searchFlag);
-						}
 						let $clsList = $('#cls-list');
 						console.log(data);
 						
@@ -101,7 +98,10 @@
 							$clsItem.appendTo($clsList);
 						}); // each End
 						} // for-반복문 끝
-						
+						if (data.searchSize == pageSize) { // 검색결과가 20보다 작다면 다음 페이지 정보는 존재하지 않음
+							searchFlag = true;
+						}
+						console.log('searchFlag : ', searchFlag); // 나중에 주석처리
 					}); // ajax End
 		} // getSearchList End
 	</script>

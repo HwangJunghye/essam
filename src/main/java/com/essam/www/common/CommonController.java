@@ -18,7 +18,7 @@ public class CommonController {
 	/**
 	 * 메인 페이지 이동<br>
 	 * "/"
-	 * */
+	 */
 	@RequestMapping(value = "/")
 	ModelAndView goIndex(HttpServletRequest request) {
 		return comm.goIndex(request); // .jsp
@@ -35,21 +35,18 @@ public class CommonController {
 	}
 
 	/**
-	 * 검색결과 가져오기(ajax)<br> 
+	 * 검색결과 가져오기(ajax)<br>
 	 * "/getsearchlist" + param{pageNo,cate1No,cate2No,keyword}
 	 */
 	@RequestMapping(value = "/getsearchlist")
 	@ResponseBody
-	public Map<String, Object> getSearchList(Integer pageNo, Integer cate1No, Integer cate2No, String keyword) {
-		return comm.getSearchList(pageNo, cate1No, cate2No, keyword);
+	public Map<String, Object> getSearchList(Integer pageSize, Integer pageNo, Integer cate1No, Integer cate2No,
+			String keyword) {
+		return comm.getSearchList(pageSize, pageNo, cate1No, cate2No, keyword);
 	}
-	
-	
+
 //	new/hot 클래스목록 가져오기	
 //	클래스 소개 이동	
 //	클래스정보가져오기	
-	
-	
-	
 
 }

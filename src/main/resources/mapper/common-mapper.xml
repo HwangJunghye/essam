@@ -26,6 +26,6 @@
 			  		ORDER BY CLSOPENDATE DESC
 			  		) C
 			 )
-		WHERE RN BETWEEN #{pageNo}*20-19 AND #{pageNo}*20
+		WHERE RN BETWEEN #{pageNo}*#{pageSize}-#{pageSize}+1 AND #{pageNo}*#{pageSize}
 	</select>
 </mapper>

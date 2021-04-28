@@ -39,10 +39,10 @@ public class CommonMM {
 
 		// My 클래스 정보 가져오기 (학생 로그인인 경우)
 		MemberBean loginData = new MemberBean();
-		loginData = (MemberBean)request.getSession().getAttribute("loginData");
-		
-		if(loginData != null) {
-			if(loginData.getMbType() == 1) {
+		loginData = (MemberBean) request.getSession().getAttribute("loginData");
+
+		if (loginData != null) {
+			if (loginData.getMbType() == 1) {
 				cList = bm.getClassList("my", loginData.getMbId());
 				// 가져온 정보를 mav "myList" 에 넣기
 				mav.addObject("myList", cList);
@@ -66,30 +66,33 @@ public class CommonMM {
 		mav.setViewName("common/search"); // .jsp
 		StringBuffer sb = new StringBuffer("");
 
-		boolean keywordFlag = keyword != null;
+		boolean keywordFlag = keyword != null && !keyword.equals("");
 		boolean cate1Flag = cate1No != null && (cate1No > 0 && cate1No < Constant.cate1Name.length);
 		boolean cate2Flag = cate2No != null && (cate2No > 0 && cate2No < Constant.cate2Name.length);
 
-		if (cate1Flag) {
-			mav.addObject("cate1No", cate1No);
-			sb.append(Constant.cate1Name[cate1No]);
+		if (!keywordFlag && !cate1Flag && !cate2Flag) {
+			sb.append("클래스 검색");
+		} else {
+			if (cate1Flag) {
+				mav.addObject("cate1No", cate1No);
+				sb.append(Constant.cate1Name[cate1No]);
+			}
+			if (cate1Flag && cate2Flag) {
+				sb.append(" > ");
+			}
+			if (cate2Flag) {
+				mav.addObject("cate2No", cate2No);
+				sb.append(Constant.cate2Name[cate2No]);
+			}
+			if (keywordFlag && (cate1Flag || cate2Flag)) {
+				sb.append(", ");
+			}
+			if (keywordFlag) {
+				mav.addObject("keyword", keyword);
+				sb.append("검색어 : ");
+				sb.append(keyword);
+			}
 		}
-		if (cate1Flag && cate2Flag) {
-			sb.append(" > ");
-		}
-		if (cate2Flag) {
-			mav.addObject("cate2No", cate2No);
-			sb.append(Constant.cate2Name[cate2No]);
-		}
-		if (keywordFlag && (cate1Flag || cate2Flag)) {
-			sb.append(", ");
-		}
-		if (keywordFlag) {
-			mav.addObject("keyword", keyword);
-			sb.append("검색어 : ");
-			sb.append(keyword);
-		}
-
 		mav.addObject("navtext", sb.toString());
 		return mav;
 	}
@@ -100,21 +103,25 @@ public class CommonMM {
 	 * cate1No,cate2No : 카테고리1,2 번호<br>
 	 * keyword : 검색 키워드
 	 */
-	public Map<String, Object> getSearchList(Integer pageNo, Integer cate1No, Integer cate2No, String keyword) {
+	public Map<String, Object> getSearchList(Integer pageSize, Integer pageNo, 
+			Integer cate1No, Integer cate2No, String keyword) {
 		String keywords[] = null;
-		if(keyword!=null) { 
+		if (keyword != null) {
 			// 문자열 좌우 공백 제거
 			keyword.replaceAll("(^\\p{Z}+|\\p{Z}+$)", "");
 			// 공백을 기준으로 문자열 자르기
 			keywords = keyword.split("\\s+");
 		}
-		
-		
-		List<ClassBean> cList = coDao.getSearchList(pageNo, cate1No, cate2No, keywords);
+
+		List<ClassBean> cList = coDao.getSearchList((pageSize==null?20:pageSize), pageNo, cate1No, cate2No, keywords);
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("pageNo", pageNo);
-		result.put("pageSize", (cList == null ? 0 : cList.size()));
-		result.put("cList", cList);
+		result.put("pageNo", pageNo); // 페이지 번호
+		result.put("pageSize", pageSize); // 검색하는 페이지의 크기
+		result.put("cate1No", cate1No); // 카테고리1
+		result.put("cate2No", cate2No); // 카테고리2
+		result.put("keyword", keyword); // 키워드
+		result.put("cList", cList); // 검색결과
+		result.put("searchSize", (cList == null ? 0 : cList.size())); // 검색 결과수
 		// return ResponseEntity.ok(cList);
 		return result;
 	}
