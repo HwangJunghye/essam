@@ -29,7 +29,16 @@ table {
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<%@ include file="../common/nav.jsp"%>
-	<section>
+<section>
+
+<div id="contents">
+	<div id="aside">
+		<div id="aside_area">
+			<%@ include file="../common/aside.jsp"%>
+		</div>
+	</div>
+	<div id="contents_area">
+<!--------- 본문 시작 -------------->
 
 		<!-- sList가 있으면 -->
 		<c:if test="${!empty sList}">
@@ -62,6 +71,10 @@ table {
 		<c:if test="${empty sList}">
 			<h3>수강생이 없습니다.</h3>
 		</c:if>
+		
+<!--------- 본문 끝 -------------->
+	</div>
+</div>
 	</section>
 
 

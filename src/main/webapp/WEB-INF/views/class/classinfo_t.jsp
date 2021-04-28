@@ -13,8 +13,19 @@
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 <section>
+<div id="contents">
+	<div id="aside">
+		<div id="aside_area">
+			<%@ include file="../common/aside.jsp"%>
+		</div>
+	</div>
+	<div id="contents_area">
+<!--------- 본문 시작 -------------->
 <h1>classinfo_t.jsp</h1>
-	
+
+<!--------- 본문 끝 -------------->
+	</div>
+</div>
 </section>
 <%@ include file="../common/footer.jsp" %>
 </body>

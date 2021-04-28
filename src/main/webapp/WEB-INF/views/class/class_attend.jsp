@@ -49,17 +49,16 @@ background: #E0E0E0;
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 
-<aside>
-<ul>
-<li>계정관리</li>
-<li>마이 클래스</li>
-</ul>
-</aside>
-
-
-
-
 <section>
+<div id="contents">
+	<div id="aside">
+		<div id="aside_area">
+			<%@ include file="../common/aside.jsp"%>
+		</div>
+	</div>
+	<div id="contents_area">
+<!--------- 본문 시작 -------------->
+
 
 <p class="clsTitle">${attendInfo.clsName}</p>
 <br/>
@@ -78,7 +77,10 @@ ${attendMsg}<br/>
 ${attendInfo.mbNickName}님의 출석률은 ${attendPercent}%입니다.<br/>
 앞으로도 꾸준히 출석해주세요^^<br/>
 </div>
-	
+
+<!--------- 본문 끝 -------------->
+	</div>
+</div>
 </section>
 <%@ include file="../common/footer.jsp" %>
 </body>

@@ -28,9 +28,7 @@ border: none;
 <section>
 <div id="contents">
 	<div id="aside">
-		<div id="aside_area">
-			<%@ include file="../common/aside.jsp"%>
-		</div>
+		<div id="aside_area"><%@ include file="../common/aside.jsp"%></div>
 	</div>
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->

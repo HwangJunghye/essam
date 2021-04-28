@@ -43,6 +43,16 @@ cursor: pointer;
 <%@ include file="../common/nav.jsp" %>
 
 <section>
+<div id="contents">
+	<div id="aside">
+		<div id="aside_area">
+			<%@ include file="../common/aside.jsp"%>
+		</div>
+	</div>
+	<div id="contents_area">
+<!--------- 본문 시작 -------------->
+
+
 <form action="update" method="post" enctype="multipart/form-data">
 <!-- 클래스 정보 수정 페이지 -->
 <c:if test="${!empty clsInfo}">
@@ -136,10 +146,10 @@ cursor: pointer;
 	<input type="submit" class="btn" value="등록">
 	
 	</form>
-	<script type="text/javascript">
-	
-	
-	</script>
+
+	<!--------- 본문 끝 -------------->
+	</div>
+</div>
 </section>
 <%@ include file="../common/footer.jsp" %>
 
