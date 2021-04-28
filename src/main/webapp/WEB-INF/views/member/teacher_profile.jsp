@@ -53,6 +53,7 @@
 					</div>
 					<div id="detail_box3" style="width:720px; height:304px; text-align:left;">
 						${teacherInfo.teacherDetail}
+						<!-- <div id="contents" style="min-height:900px;"> -->
 					</div>
 					<div id="button_box4" style="width:720px; height:304px;">
 						<div id="update_button" style="width:149px; height:78px; float:right; position:relative; right:0px; top:0px;">
@@ -63,35 +64,6 @@
 				</div>
 			</div>
 		</c:if>
-		
-				<%-- <table align="left">
-					<tr>
-						<td>
-							<img src="${ctxPath}/getthumbnail?fileNo=${teacherInfo.fileNo}&width=150&height=100"><br/>
-						</td>
-						<td>
-							<tr>
-								<h5 style="font-weight: bold;">${teacherInfo.mbNickName}</h5>
-							</tr>
-							<tr>
-								<c:if test="${teacherInfo.teacherGrade==0}">
-									<h5 style="font-weight: bold;">마스터</h5>
-								</c:if>
-							</tr>
-							<tr>
-								<h6 style="font-weight: bold;">${teacherInfo.teacherIntro}</h6><br/><br/>
-							</tr>
-							<tr>
-								${teacherInfo.teacherDetail}<br/>
-							</tr>
-						</td>
-					</tr>
-					<tr>
-						<a href="${ctxPath}/teacher_profile/write">수정</a>
-						<a href="${ctxPath}/teacher_profile/delete">삭제</a>
-					</tr>
-				</table> --%>
-			
 <!--------- 본문 끝 -------------->
    </div>
 </div>

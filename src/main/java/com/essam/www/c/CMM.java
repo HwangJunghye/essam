@@ -103,26 +103,33 @@ public class CMM {
 		MultipartFile mFile = mReq.getFile("file");
 		// image : 1
 		// MemberBean loginData = (MemberBean)session.getAttribute("loginData");
+		// session 객체로 부터 mbId 가져옴
 		String mbId = ((MemberBean) mReq.getSession().getAttribute("loginData")).getMbId();
 		System.out.println(mbId);
+		// teacherBean에 mbid 저장
 		tb.setMbId(mbId);
-
+		// MemberDao에 mbId 가져가서 강사정보 요청
 		TeacherBean teacherInfo = mDao.getTeacherProfile(mbId);
-
-		if (mFile != null) {
+		
+		if (mFile != null) { // 서버에 저장된 프로필이미지파일이 있으면
+			// FileMM.saveFile()에 파라미터(mReq,mFile,1) 넘겨 fileNo 가져옴
 			String fileNo = fm.saveFile(mReq, mFile, 1);
+			// teacherBean에 가져온 fileNo 저장
 			tb.setFileNo(fileNo);
 		}
 
 		log.info(tb.toString());
+		// mDao.teacherProfileUpdate()에 TeacherBean 넘겨 수정요청
 		boolean result = mDao.teacherProfileUpdate(tb);
-		
+		// 강사정보에 fileNo가 있고 서버에 저장된 프로필이미지파일이 있으면
 		if (teacherInfo.getFileNo() != null && mFile != null) {
+			// 서버에 저장된 프로필이미지파일 삭제요청
 			fm.deleteFile(teacherInfo.getFileNo(), request);
 		}
-		
+		// mav에 viewName을 /teacher_profile로 지정
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/teacher_profile");
+		// mav 반환
 		return mav;
 	}
 
@@ -159,7 +166,7 @@ public class CMM {
 				}else {
 					System.out.println("서버에 저장된 이미지파일 삭제 실패");
 				}
-			}else {
+			}else { // 강사프로필에 fileNo가 없다면
 				// 삭제한(정확히는 update한) 정보를 mav에 담기
 				mav.addObject("teacherInfo", teacherInfo);
 				// teacher_profile.jsp로 이동하기 위해 viewname 지정
