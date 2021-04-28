@@ -50,7 +50,7 @@ public class BMM {
 	
 	/**
 	 * 클래스 리스트 가져오기
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	public List<ClassBean> getClassList(String str, String mbId) {
 		List<ClassBean> cList = null;
@@ -65,37 +65,80 @@ public class BMM {
 		return cList;
 	}	
 	/**
-	 * 클래스 정보 가져오기
-	 * Author : 고연미
+	 * 클래스소개 이동
+	 * @Author 고연미 on 28/04/2021
 	 */
 	public ModelAndView goClassInfo(String clsNo) {
 		mav = new ModelAndView();
 		
-		if(clsNo == null) {
+		//클래스번호가 없으면 메인으로 이동
+		if(StringUtils.isEmpty(clsNo)) {
 			mav.setViewName("redirect:/");			
 		} else {
-			//클래스 정보 가져와 mav에 담기
+			//클래스정보 가져와 bean에 담기
 			ClassBean cb = bDao.getClassInfo(clsNo);
 			
-			if(cb != null) {
-				//클래스 수강신청인원 가져와 cb에 담기
+			//가져온 클래스정보가 있으면
+			if(!ObjectUtils.isEmpty(cb)) {
+				//클래스 수강신청인원 가져와 bean에 담기
 				cb.setClsRegiCnt(bDao.getClassRegiCnt(clsNo));
 			}
 			mav.addObject("classInfo", cb);
 			
 			//강사 정보 가져와 mav에 담기 (MemberMM)
-			//TeacherBean tb = bDao.getTeacherProfile(cb.getMbId());
+			//TeacherBean tb = mDao.getTeacherProfile(cb.getMbId());
 			//mav.addObject("teacherProfile", tb);
 			
-			//커리큘럼 정보 가져와 mav에 담기
+			//커리큘럼 리스트 가져와 mav에 담기 (CurriculumMM)
+			//List<CurriculumBean> crList = crDao.getCurriculumLIst(clsNo)
+			//mav.addObject("curriList", crList);
 			
 			mav.setViewName("class/classinfo_main");			
 		}
 		return mav;
 	}
 	/**
+	 * 클래스소개 이동 (관계자용)
+	 * @Author 고연미 on 28/04/2021
+	 */
+	public ModelAndView goClassClassInfo(String clsNo, HttpSession session) {
+		mav = new ModelAndView();
+		//세션에서 mbId 가져오기
+		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
+		
+		//클래스번호나 로그인데이터가 없으면 메인으로 이동
+		if(StringUtils.isEmpty(clsNo) || ObjectUtils.isEmpty(loginData)) {
+			mav.setViewName("redirect:/");			
+		} else {
+			//클래스정보 가져와 bean에 담기
+			ClassBean cb = bDao.getClassInfo(clsNo);
+			
+			//가져온 클래스정보가 있으면
+			if(!ObjectUtils.isEmpty(cb)) {
+				//클래스 수강신청인원 가져와 bean에 담기
+				cb.setClsRegiCnt(bDao.getClassRegiCnt(clsNo));
+			}
+			mav.addObject("classInfo", cb);
+			
+			//강사 정보 가져와 mav에 담기 (MemberMM)
+			//TeacherBean tb = mDao.getTeacherProfile(cb.getMbId());
+			//mav.addObject("teacherProfile", tb);
+			
+			//커리큘럼 리스트 가져와 mav에 담기 (CurriculumMM)
+			//List<CurriculumBean> crList = crDao.getCurriculumLIst(clsNo)
+			//mav.addObject("curriList", crList);
+			
+			//회원타입 별 뷰페이지 분기
+			if(loginData.getMbType() == 2)
+				mav.setViewName("class/classinfo_t");	//강사
+			else
+				mav.setViewName("class/classinfo_s");	//학생
+		}
+		return mav;
+	}
+	/**
 	 * 수강신청
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	@Transactional
 	public ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
@@ -119,7 +162,7 @@ public class BMM {
 	}
 	/**
 	 * 게시판 목록 가져오기
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	public ModelAndView goBoardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
 		
@@ -181,7 +224,7 @@ public class BMM {
 	}
 	/**
 	 * Paging
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	private String getPaging(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
 		//전체 글 갯수 가져오기
@@ -195,7 +238,7 @@ public class BMM {
 	}
 	/**
 	 * 게시글 등록/수정 이동
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	public ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) {
 		mav = new ModelAndView();
@@ -234,7 +277,7 @@ public class BMM {
 	}
 	/**
 	 * 게시글 등록/수정
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	@Transactional
 	public ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
@@ -315,7 +358,7 @@ public class BMM {
 	}
 	/**
 	 * 게시글 읽기
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	public ModelAndView boardRead(String clsBrdNo, Integer pageNum, HttpServletRequest request) {
 		
@@ -368,7 +411,7 @@ public class BMM {
 	}
 	/**
 	 * 조회수 추가
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	@Transactional
 	private void addBrdView(String clsBrdNo, String mbId) {
@@ -380,7 +423,7 @@ public class BMM {
 	}
 	/**
 	 * 수정/삭제 버튼 생성
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	private String makeHtmlBtnUpdate(BoardBean board, Integer pageNum, HttpServletRequest request) {
 		String ctxPath = request.getContextPath();
@@ -397,7 +440,7 @@ public class BMM {
 	}
 	/**
 	 * 게시글 삭제
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	@Transactional
 	public ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) {
@@ -471,7 +514,7 @@ public class BMM {
 	}
 	/**
 	 * 댓글 목록 삭제
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	@Transactional
 	private boolean deleteReplyList(String clsBrdNo, HttpServletRequest request) {
@@ -500,7 +543,7 @@ public class BMM {
 	}
 	/**
 	 * (게시글 수정시) 파일 삭제 : 파일 삭제 후 파일목록 반환
-	 * Author : 고연미
+	 * @Author 고연미 on 28/04/2021
 	 */
 	@Transactional
 	public List<FileBean> delBrdFile(String fileNo, String clsBrdNo, HttpServletRequest request) {
@@ -520,7 +563,7 @@ public class BMM {
 }
 /**
  * 게시판 목록 내림차순 정렬
- * Author : 고연미
+ * @Author 고연미 on 28/04/2021
  * Comparator : 새로운 정렬기준으로 객체를 정렬하는 인터페이스
  */
 class BListDecending implements Comparator<BoardBean> {

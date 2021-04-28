@@ -31,7 +31,7 @@
 		SELECT COUNT(*) FROM STUDENT 
 		WHERE clsNo=#{clsNo}
 	</select>
-	<select id="hasClassJoin">
+	<select id="hasClassJoin" resultType="int">
 		SELECT COUNT(*) FROM STUDENT 
 		WHERE clsNo=#{clsNo} AND mbId=#{mbId} AND ROWNUM=1	
 	</select>

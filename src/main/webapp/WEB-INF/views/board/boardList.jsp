@@ -72,7 +72,7 @@
 		</table>
 		</div>
 		<!-- 페이징 -->
-		${paging}<br><br>
+		${paging}<br><br><br><br>
 
 	<!---------- 본문 끝 ---------->
 	</div>

@@ -58,13 +58,13 @@
 					</c:if> --%>
 					<!-- 첨부파일 출력 영역 -->
 					<div><span id="result" style="font-size:12px;color:red;"></span>
-						<ul id="attachment"></ul>
+						<ul id="attachment" style="list-style-type:circle;"></ul>
 					</div>
 					<p><br><input type="file" name="files" id="files" multiple/></p></td>
 			</tr>
 			</table><br>
 			<p><button>등록</button> <input type="button" value="이전으로" onClick="history.back();"></p>
-			</form><br><br>
+			</form><br><br><br><br>
 		</div>
 		
 		<script>

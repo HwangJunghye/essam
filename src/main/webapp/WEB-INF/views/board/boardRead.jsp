@@ -47,12 +47,14 @@
 				<td colspan=2 align="left">
 					<c:set var="files" value="${boardData.filesInfo}" />
 					<c:if test="${!empty files}">
-						<c:forEach var="file" items="${files}">
+						<ul style="list-style-type:circle;">
+						<c:forEach var="file" items="${files}"><li>
 							<c:if test="${file.fileTypeNo == 1}"><i class="far fa-file-image"></i></c:if>
 							<c:if test="${file.fileTypeNo == 2}"><i class="far fa-file-video"></i></c:if>
 							<c:if test="${file.fileTypeNo == 3}"><i class="far fa-file-alt"></i></c:if>
-							<a href="${ctxPath}/download?fileNo=${file.fileNo}">${file.origFileName}</a><br>
+							<a href="${ctxPath}/download?fileNo=${file.fileNo}">${file.origFileName}</a></li>
 						</c:forEach>
+						</ul>
 					</c:if></td>
 			</tr>
 			</table>
@@ -63,7 +65,7 @@
 				<td align="right"><button type="button" id="goList" onclick="location.href='${ctxPath}/class/boardlist?clsNo=${boardData.clsNo}&clsBrdType=${boardData.clsBrdType}&pageNum=${pageNum}';">목록</button></td>
 			</tr>
 			</table></p>
-			<br>
+			<br><br><br><br>
 		</div>
 
 	<!---------- 본문 끝 ---------->
