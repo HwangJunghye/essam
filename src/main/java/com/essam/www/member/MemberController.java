@@ -83,6 +83,12 @@ public class MemberController {
 		return mav;
 	}
 	
+	// (MM08)비밀번호 변경 실행(ajax)
+	@PostMapping(value = "/changepassword")
+	@ResponseBody Map<String,String> changePassword(HttpSession session, String mbPwd, String newMbPwd){
+		return mm.changePassword(session,mbPwd,newMbPwd);
+	}
+	
 	// (MM17+MM19)클래스관리이동 + 내 클래스 목록 가져오기
 	@RequestMapping(value = "/myclass_t")
 	ModelAndView goMyclass_t(HttpSession session) {

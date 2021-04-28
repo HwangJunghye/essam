@@ -68,4 +68,10 @@
 	<insert id="putTeacher" parameterType="String">
 		INSERT INTO TEACHER(MBID,TEACHERGRADE) VALUES(#{mbId}, 0)
 	</insert>
+	
+		<update id="changePassword">
+		UPDATE MEMBER 
+		SET MBPWD = #{mbPwd} 
+		WHERE MBID = #{mbId}
+	</update>
 </mapper>

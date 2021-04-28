@@ -21,4 +21,7 @@ public interface IMemberDao {
 
 	void putTeacher(String mbId);
 	
+	boolean changePassword(@Param("mbId") String mbId, @Param("mbPwd") String mbPwd);
+
+	
 }

@@ -14,12 +14,5 @@ public class EController {
 	@Autowired
 	private EMM em;
 
-	/**
-	 * 비밀번호 변경 실행(ajax)
-	 * 
-	 * */
-	@PostMapping(value = "/changepassword")
-	@ResponseBody Map<String,String> changePassword(HttpSession session, String mbPwd, String newMbPwd){
-		return em.changePassword(session,mbPwd,newMbPwd);
-	}
+
 }
