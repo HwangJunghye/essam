@@ -171,9 +171,9 @@ public class ClassMM {
 		}
 		
 		if(updatedOrNot) { //등록(수정) 성공시
-			mav.setViewName("class/classinfo_t"); //.jsp
+			mav.setViewName("redirect:/class/classinfo_t?clsNo="+cb.getClsNo()); //.jsp
 		}else { //등록(수정) 실패시
-			mav.setViewName("class/class_wirte"); //.jsp
+			mav.setViewName("redirect:class/class_wirte"); //.jsp
 		}
 		return mav;
 	}
