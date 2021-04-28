@@ -87,9 +87,11 @@ header {
 	align-content: center;
 }
 .dropdown-menu-wrap {
+	z-index: 20;
 	position: relative;
 }
 .dropdown-sub-wrap { /* 서브메뉴 위치 absolute */
+	z-index: 20;
 	position: absolute;
 }
 .dropdown-menu-wrap .dropdown-sub { /* 서브메뉴 숨기기 */
@@ -102,7 +104,6 @@ header {
 
 /* 메뉴 요소 설정 */
 .dropdown-main,.dropdown-sub { /* 메뉴 크기 및 내용 정렬 */
-	z-index: 2;
 	margin: 0;
 	padding: 0;
 	width: 100px;
