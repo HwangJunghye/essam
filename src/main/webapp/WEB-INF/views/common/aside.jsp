@@ -22,11 +22,11 @@
 					<li><a href="${ctxPath}/myclass_s">마이 클래스</a>
 					<!-- 2차 메뉴 -->
 					<ul>
-						<li><a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
-						<li><a href="${ctxPath}/class/curriculum?clsNo=${clsNo}">커리큘럼</a></li>
-						<li><a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=2&pageNum=1">과제</a></li>
-						<li><a href="${ctxPath}/class/attend?clsNo=${clsNo}">출석현황</a></li>
-						<li><a href="${ctxPath}/class/classinfo?clsNo=${clsNo}">클래스소개</a></li>
+						<li><a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
+						<li><a href="${ctxPath}/class/curriculum?clsNo=${param.clsNo}">커리큘럼</a></li>
+						<li><a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=2&pageNum=1">과제</a></li>
+						<li><a href="${ctxPath}/class/attend?clsNo=${param.clsNo}">출석현황</a></li>
+						<li><a href="${ctxPath}/class/classinfo?clsNo=${param.clsNo}">클래스소개</a></li>
 					</ul>
 					</li>
 				</ul>
@@ -48,11 +48,11 @@
 							
 								<!-- 3차 메뉴 -->
 								<ul>
-									<li><a href="${ctxPath}/class/classinfo/write?clsNo=${clsNo}">클래스 수정</a></li>
-									<li><a href="${ctxPath}/class/curriculum?clsNo=${clsNo}">커리큘럼</a></li>
-									<li><a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
-									<li><a href="${ctxPath}/class/boardlist?clsNo=${clsNo}&clsBrdType=2&pageNum=1">과제</a></li>
-									<li><a href="${ctxPath}/class/studentlist?clsNo=${clsNo}">학생</a></li>
+									<li><a href="${ctxPath}/class/classinfo/write?clsNo=${param.clsNo}">클래스 수정</a></li>
+									<li><a href="${ctxPath}/class/curriculum?clsNo=${param.clsNo}">커리큘럼</a></li>
+									<li><a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
+									<li><a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=2&pageNum=1">과제</a></li>
+									<li><a href="${ctxPath}/class/studentlist?clsNo=${param.clsNo}">학생</a></li>
 								</ul>
 							</li>
 						</ul>
