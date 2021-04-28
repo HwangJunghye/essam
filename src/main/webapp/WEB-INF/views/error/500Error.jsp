@@ -17,7 +17,7 @@
 	<%@ include file="../common/nav.jsp"%>
 	<section>
 	<h1>${errText}</h1>
-	존재하지 않는 페이지입니다.
+	잘못된 파라미터입니다.
 	</section>
 	<%@ include file="../common/footer.jsp"%>
 </body>
