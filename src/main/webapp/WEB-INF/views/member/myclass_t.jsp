@@ -64,7 +64,7 @@ color: #828282;
 	<!-- clsInfo가 있으면 -->
 	<c:if test="${!empty clsInfo}">
 		<c:forEach var="cInfo" items="${clsInfo}">
-			<div class="clsList" onclick="location.href='${ctxPath}/class/classinfo?clsNo=${sInfo.clsNo}'">
+			<div class="clsList" onclick="location.href='${ctxPath}/class/classinfo?clsNo=${cInfo.clsNo}'">
 				<p class="clsCate">${cInfo.cate1Name}> ${cInfo.cate2Name}</p>
 				<span class="clsTitle">${cInfo.clsName}</span> <span class="clsLimit">(${cInfo.clsRegiCnt}/${cInfo.clsLimit})</span>
 				<p class="clsIntro">${cInfo.clsIntro}</p>
