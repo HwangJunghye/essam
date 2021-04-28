@@ -26,6 +26,14 @@ border: none;
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 <section>
+<div id="contents">
+	<div id="aside">
+		<div id="aside_area">
+			<%@ include file="../common/aside.jsp"%>
+		</div>
+	</div>
+	<div id="contents_area">
+<!--------- 본문 시작 -------------->
 
 <form action="getstatistic" method="post">
 조회기간: <input type="date" id="startDate"> ~ <input type="date" id="endDate"><br/>
@@ -55,6 +63,10 @@ border: none;
 </div>
 
 </form>
+
+<!--------- 본문 끝 -------------->
+	</div>
+</div>
 </section>
 <%@ include file="../common/footer.jsp" %>
 

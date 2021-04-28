@@ -14,7 +14,15 @@
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 <section>
-<h1>teacher_profile_write.jsp</h1>
+<div id="contents">
+	<div id="aside">
+		<div id="aside_area">
+			<%@ include file="../common/aside.jsp"%>
+		</div>
+	</div>
+	<div id="contents_area">
+<!--------- 본문 시작 -------------->
+
 <form action="update" method="post" enctype="multipart/form-data">
 	강사닉네임 ${sessionScope.loginData.mbNickName}<br>
 	한줄소개 <input type="text" name="teacherIntro" value="${teacherInfo.teacherIntro}"/><br>
@@ -22,9 +30,10 @@
 	프로필사진 <input type="file" name="file" accept="image/*" /><br>
 	<input type="submit" value="등록" />
 </form>
+<!--------- 본문 끝 -------------->
+	</div>
+</div>
 </section>
 <%@ include file="../common/footer.jsp" %>
-
-
 </body>
 </html>
