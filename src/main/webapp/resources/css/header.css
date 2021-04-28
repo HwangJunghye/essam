@@ -102,6 +102,7 @@ header {
 
 /* 메뉴 요소 설정 */
 .dropdown-main,.dropdown-sub { /* 메뉴 크기 및 내용 정렬 */
+	z-index: 2;
 	margin: 0;
 	padding: 0;
 	width: 100px;
