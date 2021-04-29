@@ -5,6 +5,9 @@
 function headerReady(params) {
     let fMsg = params.fMsg;
     let ctxPath = params.ctxPath;
+    if(params.modal!=''){
+    	$('#moaModal').modal('show');
+    }
     // alert창 출력
     if (fMsg != '') {
         alert(fMsg);
