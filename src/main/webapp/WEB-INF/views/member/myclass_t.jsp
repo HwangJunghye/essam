@@ -46,6 +46,13 @@ font-size: 16px;
 line-height: 19px;
 color: #828282;
 }
+#msgbox{
+width: 530px;
+height: 120px;
+margin:auto;
+float:center;
+border: double 2px #3566A2;
+}
 
 </style>
 <body>
@@ -60,24 +67,32 @@ color: #828282;
 		</div>
 	</div>
 	<div id="contents_area">
-	
+<!--------- 본문 시작 -------------->
 	<!-- clsInfo가 있으면 -->
 	<c:if test="${!empty clsInfo}">
-		<c:forEach var="cInfo" items="${clsInfo}">
+		<table>
+		<tr>
+		<c:forEach items="${clsInfo}" varStatus="state" var="cInfo">
+			<td>	
 			<div class="clsList" onclick="location.href='${ctxPath}/class/classinfo?clsNo=${cInfo.clsNo}'">
 				<p class="clsCate">${cInfo.cate1Name}> ${cInfo.cate2Name}</p>
 				<span class="clsTitle">${cInfo.clsName}</span> <span class="clsLimit">(${cInfo.clsRegiCnt}/${cInfo.clsLimit})</span>
 				<p class="clsIntro">${cInfo.clsIntro}</p>
-			</div>
+			</div>		
+			</td>
+			<c:if test="${state.index%2==1}">
+				</tr>
+			</c:if>
 		</c:forEach>
+		</table>
 	</c:if>
 	
 	
 	<!-- clsInfo가 없으면 -->
 	<c:if test="${empty clsInfo}">
-	 <p>마이 클래스가 없습니다.</p>
+		<div id="msgbox"><p>마이 클래스가 없습니다.</p></div>
 	</c:if>
-
+<!--------- 본문 끝 -------------->
 	</div>
 </div>
 </section>
