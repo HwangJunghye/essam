@@ -65,6 +65,8 @@
 				<td align="right"><button type="button" id="goList" onclick="location.href='${ctxPath}/class/boardlist?clsNo=${boardData.clsNo}&clsBrdType=${boardData.clsBrdType}&pageNum=${pageNum}';">목록</button></td>
 			</tr>
 			</table></p>
+			<%@ include file="../board/replyList.jsp" %>
+			
 			<br><br><br><br>
 		</div>
 
