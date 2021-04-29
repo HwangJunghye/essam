@@ -95,7 +95,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to test</h5>
+          <h5 class="modal-title" id="exampleModalLabel">로그인</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">x</span>
           </button>
@@ -103,13 +103,15 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
         <div class="modal-body">
 	        <!-- 로그인 form 삽입 -->
 	        <form action="${ctxPath}/access" method="post">
-				아이디 <input type="text" name="mbId" id="mbId" required/><br>
+				아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="mbId" id="mbId" required/><br>
+				<br>
 				비밀번호 <input type="text" name="mbPwd" required/><br>
-				<input type="submit" value="로그인"/><br>
+				<br>
+				<i class="fas fa-user-graduate">&nbsp;</i><input type="submit" value="로그인"/><br>
 				<a herf="#">비밀번호를 잊으셨나요?</a><br>
 				<br>
 				<h7>아직 e-쌤 회원이 아니신가요?</h7><br>
-				<a href="${ctxPath}/join">회원가입하기</a>
+				<a href="${ctxPath}/join"><i class="far fa-arrow-alt-circle-right"></i>회원가입하기</a>
 			</form>
         </div>
         <div class="modal-footer">
