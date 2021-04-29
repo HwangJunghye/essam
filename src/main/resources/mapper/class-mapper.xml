@@ -23,8 +23,11 @@
 	</select>
 	
 	<insert id="classClassinfoInsert" parameterType="classbean" >
+		<selectKey keyProperty="clsNo" resultType="String" order="BEFORE">
+			SELECT TO_CHAR(CLASS_SEQ.NEXTVAL) FROM DUAL
+		</selectKey>
 	INSERT INTO CLASS(CLSNO, MBID, FILENO,CATE1NO,CATE2NO,CLSNAME, CLSOPENDATE, CLSLIMIT, CLSINTRO, CLSDESC, CLSPRICE, CLSKEYWORD,ZOOMLINK, ZOOMPWD)
-	VALUES(CLASS_SEQ.NEXTVAL, #{mbId},#{fileNo},#{cate1No}, #{cate2No}, #{clsName},DEFAULT,#{clsLimit},#{clsIntro},#{clsDesc},#{clsPrice},#{clsKeyword}, #{zoomLink}, #{zoomPwd}	)
+	VALUES(#{clsNo}, #{mbId},#{fileNo},#{cate1No}, #{cate2No}, #{clsName},DEFAULT,#{clsLimit},#{clsIntro},#{clsDesc},#{clsPrice},#{clsKeyword}, #{zoomLink}, #{zoomPwd}	)
 	</insert>
 	
 	<update id="classClassinfoUpdate" parameterType="classbean" >

@@ -57,7 +57,7 @@ public class ClassMM {
 		float attendPercent = (attendDay/totalDay)*100;
 		
 		
-		if(attendPercent<=80) {
+		if(attendPercent>=80) {
 			mav.addObject("attendMsg","정말 최고예요! (>ㅁ<)b ");
 		}else if(attendPercent>=60 && attendPercent<80) {
 			mav.addObject("attendMsg","노력하고 있군요~ ('ㅁ') ");

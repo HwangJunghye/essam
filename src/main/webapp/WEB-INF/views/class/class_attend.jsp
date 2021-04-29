@@ -8,16 +8,21 @@
 <style type="text/css">
 
 .clsTitle{
+width:600px;
+height:50px;
 font-weight: bold;
-font-size: 24px;
+font-size: 22px;
 line-height: 28px;
+margin-left:120px;
+margin-top:40px;
+text-align:left;
 }
 
 .line{
 width: 960px;
 height: 0px;
 border: 2px solid #3566A2;
-left:20px;
+margin-left:20px;
 }
 
 #attendResult{
@@ -67,9 +72,9 @@ text-align: right;
 <!--------- 본문 시작 -------------->
 
 <div class="clsTitle">
-<p>${attendInfo.clsName}</p>
+${attendInfo.clsName}
 </div>
-<br/>
+
 <hr class="line">
 <br/>
 
@@ -82,12 +87,12 @@ text-align: right;
 <td>회</td>
 </tr>
 <tr>
-<td class="a_object">출   석:</td>
+<td class="a_object">출&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;석:</td>
 <td>${attendInfo.attendDay}</td>
 <td>회</td>
 </tr>
 <tr>
-<td class="a_object">결   석:</td>
+<td class="a_object">결&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;석:</td>
 <td>${attendInfo.absenceDay}</td>
 <td>회</td>
 </tr>
