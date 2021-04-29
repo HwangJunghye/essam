@@ -122,7 +122,7 @@ public class CMM {
 		// mDao.teacherProfileUpdate()에 TeacherBean 넘겨 수정요청
 		boolean result = mDao.teacherProfileUpdate(tb);
 		// 강사정보에 fileNo가 있고 서버에 저장된 프로필이미지파일이 있으면
-		if (teacherInfo.getFileNo() != null && mFile != null) {
+		if (tb.getFileNo() != null && mFile != null) {
 			// 서버에 저장된 프로필이미지파일 삭제요청
 			fm.deleteFile(teacherInfo.getFileNo(), request);
 		}
