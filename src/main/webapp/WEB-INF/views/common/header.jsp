@@ -32,7 +32,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 <script src="${ctxPath}/resources/js/header.js"></script>
 <script>
 	$(function(){
-		headerReady({fMsg:'${fMsg}', ctxPath:'${ctxPath}'});
+		headerReady({fMsg:'${fMsg}', ctxPath:'${ctxPath}',modal:"${modal}"});
 	}); // ready End
 </script>
 </head>
