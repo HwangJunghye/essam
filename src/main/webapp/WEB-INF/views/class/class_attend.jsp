@@ -17,25 +17,32 @@ line-height: 28px;
 width: 960px;
 height: 0px;
 border: 2px solid #3566A2;
+left:20px;
 }
 
 #attendResult{
 width: 490px;
 height: 110px;
 display: inline-block;
-border: 2px double #3566A2;
+border: outset 3px #3566A2;
 text-align: center;
 font-size: 18px;
 line-height: 21px;
 }
 
-aside{
-float:left;
-top:150px;
-left:0;
-width: 158px;
-height: 814px;
-background: #E0E0E0;
+#a_table{
+width:400px;
+height:300px;
+float: center;
+margin:auto;
+font-size: 18px;
+line-height: 21px;
+text-align: center;
+}
+
+.a_object{
+width:100px;
+text-align: right;
 }
 
 </style>
@@ -59,23 +66,42 @@ background: #E0E0E0;
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->
 
-
-<p class="clsTitle">${attendInfo.clsName}</p>
+<div class="clsTitle">
+<p>${attendInfo.clsName}</p>
+</div>
 <br/>
 <hr class="line">
 <br/>
-<div>
-전체수업: ${attendInfo.totalDay} 회 <br/>
-출 석: ${attendInfo.attendDay} 회 <br/>
-결 석: ${attendInfo.absenceDay} 회 <br/>
-</div>
+
+
+
+<table id="a_table">
+<tr>
+<td class="a_object">전체수업:</td>
+<td>${attendInfo.totalDay}</td>
+<td>회</td>
+</tr>
+<tr>
+<td class="a_object">출   석:</td>
+<td>${attendInfo.attendDay}</td>
+<td>회</td>
+</tr>
+<tr>
+<td class="a_object">결   석:</td>
+<td>${attendInfo.absenceDay}</td>
+<td>회</td>
+</tr>
+</table>
+
+
 <br/>
 <br/>
 <br/>
+
 <div id="attendResult">
-${attendMsg}<br/>
-${attendInfo.mbNickName}님의 출석률은 ${attendPercent}%입니다.<br/>
-앞으로도 꾸준히 출석해주세요^^<br/>
+<p> ${attendMsg} </p>
+<p>${attendInfo.mbNickName}님의 출석률은 ${attendPercent}%입니다.</p>
+<p>앞으로도 꾸준히 출석해주세요^^</p>
 </div>
 
 <!--------- 본문 끝 -------------->
