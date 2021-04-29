@@ -29,25 +29,10 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/header.css">
+<script src="${ctxPath}/resources/js/header.js"></script>
 <script>
 	$(function(){
-		// alert창 출력
-		let fMsg = '${fMsg}';
-		if(fMsg !=''){
-			alert(fMsg);
-		}
-		
-		// 로그아웃 버튼 클릭시 로그아웃(post) 실행
-		$('#logout').on('click',function(){
-			// form 태그 생성
-			let $logoutForm = $('<form>');
-			$logoutForm.attr('action','${ctxPath}/logout');
-			$logoutForm.attr('method','post');
-			// body에 추가
-			$logoutForm.appendTo('body');
-			// 전송(로그아웃 실행)
-			$logoutForm.submit();
-		}); // on End
+		headerReady({fMsg:'${fMsg}', ctxPath:'${ctxPath}'});
 	}); // ready End
 </script>
 </head>
@@ -134,10 +119,6 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
     </div>
   </div>
 
-<script>
-$("#moaModal").on('shown.bs.modal', function () {
-    $("#mbId").focus();
-});
-</script>
+
 </body>
 </html>
