@@ -70,13 +70,14 @@ public class MemberMM {
 //				String referer = request.getHeader("Referer");
 //				mav.setViewName("redirect:"+ referer);
 			} else { // 비밀번호 불일치시
-				mav.setViewName("redirect:/login"); // 로그인 페이지로
+				mav.setViewName("redirect:/"); // 로그인 페이지로
 				rattr.addFlashAttribute("fMsg", "로그인 실패");
 				rattr.addFlashAttribute("modal", "모달창띄우기");
 			}
 		} else { // 아이디가 없는 경우
-			mav.setViewName("redirect:/login"); // 로그인 페이지로
+			mav.setViewName("redirect:/"); // 로그인 페이지로
 			rattr.addFlashAttribute("fMsg", "로그인 실패");
+			rattr.addFlashAttribute("modal", "모달창띄우기");
 		}
 		return mav;
 	}
