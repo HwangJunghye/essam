@@ -12,18 +12,20 @@
 </head>
 <style>
 .clsList{
-width: 530px;
+margin:30px;
+width: 420px;
 height: 120px;
 background: #FFFFFF;
 box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.25);
 }
-
 .clsCate{
 font-style: normal;
 font-weight: normal;
 font-size: 16px;
 line-height: 19px;
 color: #828282;
+text-align:left;
+margin:15px;
 }
 .clsTitle{
 font-style: normal;
@@ -53,7 +55,7 @@ height: 120px;
 margin:200px;
 padding:auto;
 float:center;
-border: outset 3px #3566A2;
+border: outset 3px #9E3C7E;
 }
 
 #msg{
