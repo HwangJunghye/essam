@@ -24,12 +24,12 @@
  
 		<table class="container">
 		<tr>
-			<td align="left" style="padding:20px 0;"><h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
+			<td align="left" style="padding:20px 0;">
+				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
 				<hr class="hr_${mbColor}"></td>
 		</tr></table>
 
 		<div class="container">
-
 			<table width="86%" align="center" class="tbl_brd01">
 			<tr>
 				<td colspan=3 align="left">[${boardData.clsBrdNo}] ${boardData.clsBrdTitle}</td>

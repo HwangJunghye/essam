@@ -24,9 +24,11 @@
 	
 		<table class="container">
 		<tr>
-			<td align="left" style="padding:20px 0;"><h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
+			<td align="left" style="padding:20px 0;">
+				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
 				<hr class="hr_${mbColor}"></td>
 		</tr></table>
+		
 		<table class="container">
 		<tr><td></td>
 			<td align="left">전체 : ${totalNum} 건</td>
@@ -37,7 +39,7 @@
 			<td></td></tr>
 		</table>
 		<div class="container">
-		<table class='table table-hover' style='background-color: white;' width=760>
+		<table class='table table-hover' style="background-color:white;">
 		<thead>
 		<tr>
 			<th>번호</th>
