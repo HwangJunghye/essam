@@ -78,6 +78,9 @@ public class FileMM {
 
 		String upPath = mReq.getSession().getServletContext().getRealPath("/") + "upload/";
 		String origFileName = mFile.getOriginalFilename();
+		if (origFileName == null || origFileName.equals("")) {
+			return null;
+		}
 		String sysFileName = System.currentTimeMillis() + origFileName;
 		String contentType = mFile.getContentType();
 		log.info("upPath : " + upPath);
