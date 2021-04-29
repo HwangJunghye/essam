@@ -26,23 +26,30 @@ public class ClassMM {
 	private IMemberDao mDao;	
 	@Autowired
 	private IClassDao cDao;	
-	// (CM01)공지사항 쓰기, 수정페이지 이동	
-	// (CM02)클래스 소개 이동(관계자용)	
-	// (CM03+CM04)과제 목록 페이지 이동 + 과제 목록 가져오기		
-	// (CM05+CM06)과제 상세 페이지 이동 + 과제 상세 가져오기
-	// (CM07)댓글 목록 가져오기(ajax)	
-	// (CM08)댓글 등록(ajax)	
-	// (CM09)댓글 수정(ajax)	
-	// (CM10)댓글 삭제(ajax)		
-	// (CM11)과제 수정,등록	
-	// (CM12)과제 삭제
-	// (CM11)공지사항 수정, 등록	
-	// (CM12)공지사항 삭제
-	// (CM19+CM04)공지사항 목록 페이지 이동 + 공지사항 목록 가져오기	
-	// (CM20+CM06)공지사항 상세 페이지 이동 + 공지사항 상세 가져오기	
 	
+	//**********고연미**********//
+	// (CM01)클래스 소개 이동(관계자용)
+	// (CM02+CM03)게시판(공지사항/과제) 목록 페이지 이동 + 게시판 목록 가져오기	
+	// (CM04)게시판 목록 내림차순 정렬
+	// (CM05)게시판 목록 페이징
+	// (CM06+CM07)게시판(공지사항/과제) 상세 페이지 이동 + 과제 상세 가져오기
+	// (CM08)조회수 추가
+	// (CM09)수정/삭제 버튼 생성
+	// (CM10)게시판(공지사항/과제) 등록/수정 페이지 이동
+	// (CM11)게시판(공지사항/과제) 등록/수정
+	// (CM12)(수정시)Ajax 첨부파일 리스트 가져오기
+	// (CM13)(수정시)Ajax 첨부파일 삭제
+	// (CM14)게시글(공지사항/과제) 삭제
+	// (CM15)게시글 댓글 목록 삭제
 	
-	// (CM13+CM14)출석 현황 이동 + 출석현황 가져오기
+	//**********임다영**********//
+	// (CM16)댓글 목록 가져오기(ajax)	
+	// (CM17)댓글 등록(ajax)	
+	// (CM18)댓글 수정(ajax)	
+	// (CM19)댓글 삭제(ajax)	
+		
+	
+	// (CM20+CM21)출석 현황 이동 + 출석현황 가져오기
 	public ModelAndView goAttend(HttpServletRequest request, String clsNo) {
 		ModelAndView mav = new ModelAndView();
 		MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
@@ -81,7 +88,7 @@ public class ClassMM {
 		return mav;
 	}
 		
-	// (CM15+CM16)학생목록 이동 + 학생목록 가져오기
+	// (CM22+CM23)학생목록 이동 + 학생목록 가져오기
 	public ModelAndView goStudentList(String clsNo) {
 		ModelAndView mav = new ModelAndView();
 		List<StudentBean> sList = null;
@@ -96,7 +103,7 @@ public class ClassMM {
 		return mav;
 	}
 		
-	// (CM17+CM18)학생정보보기 이동 + 학생정보 가져오기
+	// (CM24+CM25)학생정보보기 이동 + 학생정보 가져오기
 	public ModelAndView goStudentInfo(String mbId, String clsNo) {
 		ModelAndView mav = new ModelAndView();
 		StudentBean sInfo = cDao.getStudentInfo(clsNo,mbId);
@@ -122,7 +129,7 @@ public class ClassMM {
 		return mav;
 	}
 		
-	// (CM21)클래스 등록, 수정하기 페이지 이동
+	// (CM26)클래스 등록, 수정하기 페이지 이동
 	public ModelAndView goClassInfoWrite(String clsNo) {
 		ModelAndView mav = new ModelAndView();
 		ClassBean clsInfo = new ClassBean();
@@ -138,7 +145,7 @@ public class ClassMM {
 		return mav;
 	}
 	
-	// (CM22)클래스 등록, 수정하기
+	// (CM27)클래스 등록, 수정하기
 	@Transactional
 	public ModelAndView classClassinfoUpdate(MultipartHttpServletRequest mReq, HttpServletRequest request, ClassBean cb) {
 		ModelAndView mav = new ModelAndView();
