@@ -129,7 +129,9 @@
 
 
 <script>
-function checkemail(){
+//이메일 정규식
+
+/* function checkemail(){
 	let mbId = $('#mbId').val();
 	
 	//영문자로 시작,그다음 영숫자 또는 .이 하나이상온다.그다음 @,그다음에 영문자 또는 .이 하나이상 온다.
@@ -161,9 +163,18 @@ function checkemail(){
 					$('#result').text('서버 통신 실패');
 				});
 			}
-		}); // on End
-		
-	}); // ready End
+		}); // on End */
+	//비밀번호 정규식
+	/* 1. 암호:
+
+	조건1. 6~20 영문 대소문자
+
+	조건2. 최소 1개의 숫자 혹은 특수 문자를 포함해야 함
+
+	/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/
+
+	}); // ready End */
+	
 </script>
 </section>
 	<%@ include file="../common/footer.jsp" %>
