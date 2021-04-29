@@ -49,11 +49,21 @@ color: #828282;
 #msgbox{
 width: 530px;
 height: 120px;
-margin:auto;
+margin:200px;
+padding:auto;
 float:center;
-border: double 2px #3566A2;
+border: outset 3px #9E3C7E;
 }
 
+#msg{
+width:500px;
+height:100px;
+font-style: bold;
+font-weight: normal;
+font-size: 24px;
+margin:20px;
+padding:auto;
+}
 </style>
 <body>
 
@@ -90,7 +100,7 @@ border: double 2px #3566A2;
 	
 	<!-- clsInfo가 없으면 -->
 	<c:if test="${empty clsInfo}">
-		<div id="msgbox"><p>마이 클래스가 없습니다.</p></div>
+		<div id="msgbox"><div id="msg">마이 클래스가 없습니다.</div></div>
 	</c:if>
 <!--------- 본문 끝 -------------->
 	</div>
