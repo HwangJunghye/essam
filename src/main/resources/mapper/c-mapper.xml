@@ -11,7 +11,7 @@
 	
 	<update id="teacherProfileUpdate" parameterType="teacherbean">
 		UPDATE TEACHER 
-		SET FILENO=#{fileNo}, TEACHERINTRO=#{teacherIntro}, TEACHERDETAIL=#{teacherDetail} 
+		SET <if test="fileNo!=null">FILENO=#{fileNo},</if> TEACHERINTRO=#{teacherIntro}, TEACHERDETAIL=#{teacherDetail} 
 		WHERE MBID=#{mbId}
 	</update>
 	
