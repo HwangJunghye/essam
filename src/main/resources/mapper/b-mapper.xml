@@ -19,12 +19,8 @@
 		WHERE S.MBID=#{mbId}
 	</select>
 	<select id="getClassInfo" resultType="classbean">
-		SELECT CLASS.*, CATE1.CATE1NAME, CATE2.CATE2NAME
-		FROM CLASS
-			LEFT JOIN CATE1
-			ON CLASS.CATE1NO = CATE1.CATE1NO
-			LEFT JOIN CATE2
-			ON CLASS.CATE2NO = CATE2.CATE2NO
+		SELECT *
+		FROM V_CLASSBEAN
 		WHERE CLSNO=#{clsNo} AND ROWNUM=1
 	</select>
 	<select id="getClassRegiCnt" resultType="int">
