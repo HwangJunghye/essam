@@ -46,16 +46,16 @@
 	
 	<select id="getMyClassList" resultType="classbean">
 		SELECT * 
-		FROM V_CLASSBEAN 
-		WHERE MBID IN 
+		FROM V_CLASSBEAN
 		<if test="mbtype==2">
-		(#{mbid})
+		WHERE MBID=#{mbid}
 		</if>
 		<if test="mbtype==1">
+		WHERE CLSNO IN
 			(
-				SELECT C.MBID
+				SELECT C.CLSNO
 				FROM CLASS C
-				LEFT JOIN (
+				JOIN (
 					SELECT STUDENT.CLSNO CLSNO
 					FROM STUDENT
 					WHERE STUDENT.MBID = #{mbid}
