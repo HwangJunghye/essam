@@ -42,7 +42,7 @@ table {
 
 		<!-- sList가 있으면 -->
 		<c:if test="${!empty sList}">
-			<h3>${clsInfo.clsName}</h3>
+			<div>${clsInfo.clsName}</div> 
 			<br>
 			<hr class="line">
 			<br>
@@ -61,7 +61,7 @@ table {
 						<td>${sInfo.regiStartDate}</td>
 						<td>${sInfo.attendDay}</td>
 						<td>/</td>
-						<td>${sInfo.totalDay}</td>
+						<td class="totalDay">${sInfo.totalDay}</td>
 					</tr>
 				</c:forEach>
 			</table>
