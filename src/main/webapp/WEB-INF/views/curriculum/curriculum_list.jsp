@@ -25,7 +25,6 @@
 
 		<!-- curriInfo가 있으면 -->
 		<c:if test="${!empty curriInfo}">
-	
 			<table class="container">
 				<tr>
 					<td align="left" style="padding:20px 0;">
@@ -53,11 +52,17 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<c:if test="${mbType==2}">
+				<button type="button" onclick="location.href='${ctxPath}/class/curriculum/write'">등록</button>
+			</c:if>
 		</c:if>
 
 		<!-- curriInfo가 없으면 -->
 		<c:if test="${empty curInfo}">
 			<h3>등록된 커리큘럼이 없습니다.</h3>
+			<c:if test="${mbType==2}">
+				<button type="button" onclick="location.href='${ctxPath}/class/curriculum/write'">등록</button>
+			</c:if>
 		</c:if>
 		
 <!--------- 본문 끝 -------------->

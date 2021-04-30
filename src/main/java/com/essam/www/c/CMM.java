@@ -184,9 +184,16 @@ public class CMM {
 //커리큘럼------------------------------------------------------------------
 
 //클래스 커리큘럼 이동 + 커리큘럼 목록 가져오기
-	public ModelAndView getClassCurriculumLIst(String clsNo) {
+	public ModelAndView getClassCurriculumList(HttpSession session, String clsNo) {
 		ModelAndView mav = new ModelAndView();
 		List<CurriculumBean> curriInfo = null;
+		
+		// 세션에서 로그인 데이터를 MemberBean에 담기
+		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+		// MemberBean으로 부터 mbType을 가져옴
+		String mbType = loginData.getMbType() + "";
+		// 가져온 정보를 mav에 넣기
+		mav.addObject("mbType", mbType);
 		
 		curriInfo = mDao.getCurriculumList(clsNo);
 		if (curriInfo != null) { // 커리큘럼 정보가 있다면
@@ -202,9 +209,33 @@ public class CMM {
 		return mav;
 	}
 
+	//커리큘럼 상세정보 보기 이동 + 커리큘럼 상세정보 가져오기
+	public ModelAndView getClassCurriculumRead(HttpSession session, String clsNo, String curNo) {
+		ModelAndView mav = new ModelAndView();
+		CurriculumBean curriInfo = null;
+		
+		// 세션에서 로그인 데이터를 MemberBean에 담기
+		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+		// MemberBean으로 부터 mbType을 가져옴
+		String mbType = loginData.getMbType() + "";
+		// 가져온 정보를 mav에 넣기
+		mav.addObject("mbType", mbType);
+		
+		curriInfo = mDao.getCurriculumRead(clsNo, curNo);
+		if (curriInfo != null) { // 커리큘럼 상세정보가 있다면
+			// 가져온 정보를 mav에 넣기
+			mav.addObject("curriInfo", curriInfo);
+			// curriculum_detail.jsp로 이동하기 위해 viewname 지정
+			mav.setViewName("curriculum/curriculum_detail"); // 커리큘럼 상세정보 보기 페이지로
+		} else { // 등록된 커리큘럼 상세정보가 없다면
+			mav.setViewName("curriculum/curriculum_detail"); // 커리큘럼 상세정보 보기 페이지로
+			mav.addObject("msg", "등록된 커리큘럼 상세정보가 없습니다");
+		}
+		return mav;
+	}
 
-//커리큘럼 상세정보 보기 이동
-//커리큘럼 상세정보 가져오기
+
+
 //동영상 페이지 이동
 //동영상 제목,시작일,종료일 가져오기
 //커리큘럼 등록 이동

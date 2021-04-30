@@ -78,16 +78,22 @@ public class CController {
 
 //클래스 커리큘럼 이동 + 커리큘럼 목록 가져오기
 	@RequestMapping(value = "/class/curriculum")
-	ModelAndView goClassCurriculum(String clsNo) {
-		ModelAndView mav = mm.getClassCurriculumLIst(clsNo);
+	ModelAndView goClassCurriculum(HttpSession session, String clsNo) {
+		ModelAndView mav = mm.getClassCurriculumList(session, clsNo);
 		mav.addObject("navtext", "커리큘럼");
 		return mav; 
 	}
 
+//커리큘럼 상세정보 보기 이동 + 커리큘럼 상세정보 가져오기
+	@RequestMapping(value = "/class/curriculum/read")
+	ModelAndView goClassCurriculumRead(HttpSession session, String clsNo, String curNo) {
+		ModelAndView mav = mm.getClassCurriculumRead(session, clsNo, curNo);
+		mav.addObject("navtext", "커리큘럼 상세정보");
+		return mav; 
+	}
+	
+	
 
-
-//커리큘럼 상세정보 보기 이동
-//커리큘럼 상세정보 가져오기
 //동영상 페이지 이동
 //동영상 제목,시작일,종료일 가져오기
 //커리큘럼 등록 이동
