@@ -15,17 +15,6 @@ width: 960px;
 height: 0px;
 border: 2px solid #9E3C7E;
 }
-.btn{
-width: 64px;
-height: 32px;
-background: #9E3C7E;
-box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
-border-radius: 10px;
-color: #FFFFFF;
-text-align: center;
-border: none;
-cursor: pointer;
-}
 .contents1{
 width:300px;
 height:280px;
@@ -48,7 +37,17 @@ text-align: right;
 .item_contents{
 text-align:left;
 }
-
+input[type="button"]{
+width: 70px;
+height: 36px;
+background: #9E3C7E;
+box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+color: #FFFFFF;
+text-align: center;
+border: none;
+cursor: pointer;
+}
 </style>
 <body>
 <%@ include file="../common/header.jsp" %>
@@ -74,7 +73,7 @@ text-align:left;
 <table class="contents1">
 <th colspan="2" class="tableTitle">기본정보</th>
 <tr>
-<td class="item">이름:</td>
+<td class="item">이&emsp;름:</td>
 <td class="item_contents">&emsp;${mInfo.mbName}</td>
 </tr>
 <tr>
@@ -90,7 +89,7 @@ text-align:left;
 <td class="item_contents">&emsp;${sInfo.regiStartDate}</td>
 </tr>
 <tr>
-<td class="item">주소:</td>
+<td class="item">주&emsp;소:</td>
 <td class="item_contents">&emsp;${mInfo.mbAddr}</td>
 </tr>
 </table>
@@ -106,14 +105,14 @@ text-align:left;
 <td colspan="2">${sInfo.attendDay}/${sInfo.totalDay}</td>
 </tr>
 <tr>
-<td>출석률:</td>
+<td>출&nbsp;석&nbsp;률:</td>
 <td class="item_contents">${attendPercent}%</td>
 </tr>
 </table>
 <br/>
 <br/>
 <br/>
-<input type="button" class="btn" value="학생목록" onclick="history.back(-1);">
+<input type="button" value="학생목록" onclick="history.back(-1);">
 
 <!--------- 본문 끝 -------------->
 	</div>

@@ -55,7 +55,7 @@ height: 120px;
 margin:200px;
 padding:auto;
 float:center;
-border: outset 3px #9E3C7E;
+border: outset 3px #3566A2;
 }
 
 #msg{

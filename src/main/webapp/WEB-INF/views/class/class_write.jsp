@@ -10,22 +10,15 @@
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
 <style>
-
-.clsTitle{
-font-weight: bold;
-font-size: 24px;
-line-height: 28px;
-}
-
 .line{
 width: 960px;
 height: 0px;
 border: 2px solid #9E3C7E;
 }
 
-.btn{
-width: 64px;
-height: 32px;
+input[type="button"]{
+width: 70px;
+height: 36px;
 background: #9E3C7E;
 box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
 border-radius: 10px;
@@ -35,6 +28,17 @@ border: none;
 cursor: pointer;
 }
 
+input[type="submit"]{
+width: 70px;
+height: 36px;
+background: #9E3C7E;
+box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+color: #FFFFFF;
+text-align: center;
+border: none;
+cursor: pointer;
+}
 
 </style>
 
@@ -56,8 +60,13 @@ cursor: pointer;
 <form action="update" method="post" enctype="multipart/form-data">
 <!-- 클래스 정보 수정 페이지 -->
 <c:if test="${!empty clsInfo}">
-<div class="clsTitle">${clsInfo.clsName}</div>
-<hr class="line">
+		<table class="container">
+		<tr>
+			<td align="left" style="padding:20px 0;">
+				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsInfo.clsName}</span></h6>
+				<hr class="hr_${mbColor}"></td>
+		</tr>
+		</table>
 <br/>
 카테고리1:
 		<input type="radio" name="cate1No" value="1" ${clsInfo.cate1No==1?'checked':''} required/>유아

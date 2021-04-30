@@ -6,18 +6,6 @@
 <html>
 <head>
 <style type="text/css">
-
-.clsTitle{
-width:600px;
-height:50px;
-font-weight: bold;
-font-size: 22px;
-line-height: 28px;
-margin-left:120px;
-margin-top:40px;
-text-align:left;
-}
-
 .line{
 width: 960px;
 height: 0px;
@@ -70,14 +58,13 @@ text-align: right;
 	</div>
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->
-
-<div class="clsTitle">
-${attendInfo.clsName}
-</div>
-
-<hr class="line">
-<br/>
-
+		<table class="container">
+		<tr>
+			<td align="left" style="padding:20px 0;">
+				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${attendInfo.clsName}</span></h6>
+				<hr class="hr_${mbColor}"></td>
+		</tr>
+		</table>
 
 
 <table id="a_table">
@@ -97,7 +84,6 @@ ${attendInfo.clsName}
 <td>회</td>
 </tr>
 </table>
-
 
 <br/>
 <br/>

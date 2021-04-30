@@ -10,16 +10,30 @@
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
 <style>
-.btn{
-width: 64px;
-height: 32px;
+input[type="button"]{
+width: 70px;
+height: 36px;
 background: #3566A2;
 box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
 border-radius: 10px;
 color: #FFFFFF;
 text-align: center;
 border: none;
+cursor: pointer;
 }
+
+input[type="reset"]{
+width: 70px;
+height: 36px;
+background: #3566A2;
+box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+color: #FFFFFF;
+text-align: center;
+border: none;
+cursor: pointer;
+}
+
 </style>
 <body>
 
