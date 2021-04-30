@@ -90,27 +90,55 @@ cursor: pointer;
 	<input type="radio" name="cate2No" value="8" ${clsInfo.cate1No==8?'checked':''}/>기타
 </td>
 </tr>
-<tr></tr>
 
-	클래스명: <input type="text" name="clsName" value="${clsInfo.clsName}" required/>
-	<br/>
-	클래스 정원: <input type="number" name="clsLimit" value="${clsInfo.clsLimit}" required/> (명)
-	<br/>
-	커버이미지: <input type="file" name="file" value="${clsInfo.fileNo}" >
-	<br/>
-	한줄 소개:<input type="text" name="clsIntro" value="${clsInfo.clsIntro}" required/>
-	<br/>
-	상세 소개:<textarea cols="50" rows="10" name="clsDesc" value="${clsInfo.clsDesc}" required/></textarea>
-	<br/>
-	가격:<input type="number" name="clsPrice" value="${clsInfo.clsPrice}"> (/월)
-	<br/>
-	키워드:<input type="text" name="clsKeyword" value="${clsInfo.clsKeyword}">
-	<br/>
-	zoom링크:<input type="text" name="zoomLink" value="${clsInfo.zoomLink}">
-	<br/>
-	zoom비밀번호:<input type="text" name="zoomPwd" value="${clsInfo.zoomPwd}">
+<tr>
+<td>클래스명:</td>
+<td><input type="text" name="clsName" value="${clsInfo.clsName}" required/>
+</td>
+</tr>
+
+<tr>
+<td>클래스 정원:</td>
+<td> <input type="number" name="clsLimit" value="${clsInfo.clsLimit}" required/> (명)</td>
+</tr>
+
+<tr>
+<td>커버이미지:</td>
+<td><input type="file" name="file" value="${clsInfo.fileNo}" ></td>
+</tr>
+
+<tr>
+<td>한줄 소개:</td>
+<td><input type="text" name="clsIntro" value="${clsInfo.clsIntro}" required/>
+</td>
+</tr>
+
+<tr>
+<td>상세 소개:</td>
+<td><textarea cols="50" rows="10" name="clsDesc" value="${clsInfo.clsDesc}" required/>
+</td>
+</tr>
+
+<tr>
+<td>가격:</td>
+<td><input type="number" name="clsPrice" value="${clsInfo.clsPrice}"> (/월)</td>
+</tr>
+
+<tr>
+<td>키워드:</td>
+<td><input type="text" name="clsKeyword" value="${clsInfo.clsKeyword}"></td>
+</tr>
+<tr>
+<td>zoom링크:</td>
+<td><input type="text" name="zoomLink" value="${clsInfo.zoomLink}"></td>
+</tr>
+<tr>
+<td>zoom비밀번호:</td>
+<td><input type="text" name="zoomPwd" value="${clsInfo.zoomPwd}">
+	</td>
+</tr>
 	
-	</table>
+</table>
 	<br/>
 	<br/>
 
