@@ -17,8 +17,6 @@ public interface IBDao {
 
 	ClassBean getClassInfo(String clsNo);
 
-	int getClassRegiCnt(String clsNo);
-
 	boolean classJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
 
 	ArrayList<BoardBean> getBoardList(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType, @Param("pageNum") Integer pageNum);
@@ -52,5 +50,9 @@ public interface IBDao {
 	boolean delBrdView(String clsBrdNo);
 
 	int hasClassJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
+
+	boolean addClsView(@Param("clsNo") String clsNo, @Param("sessionId") String sessionId, @Param("mbId") String mbId);
+
+	int getClsViewCnt(@Param("clsNo") String clsNo, @Param("sessionId") String sessionId);
 
 }

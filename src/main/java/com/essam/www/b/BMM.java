@@ -66,10 +66,12 @@ public class BMM {
 	}	
 	/**
 	 * 클래스소개 이동
+	 * @param request 
 	 * @Author 고연미 on 28/04/2021
 	 */
-	public ModelAndView goClassInfo(String clsNo) {
+	public ModelAndView goClassInfo(String clsNo, HttpServletRequest request) {
 		mav = new ModelAndView();
+		String sessionId, mbId = null;
 		
 		//클래스번호가 없으면 메인으로 이동
 		if(StringUtils.isEmpty(clsNo)) {
@@ -78,10 +80,21 @@ public class BMM {
 			//클래스정보 가져와 bean에 담기
 			ClassBean cb = bDao.getClassInfo(clsNo);
 			
-			//가져온 클래스정보가 있으면
+			//가져온 클래스정보가 있으면 조회수 추가
 			if(!ObjectUtils.isEmpty(cb)) {
-				//클래스 수강신청인원 가져와 bean에 담기
-				cb.setClsRegiCnt(bDao.getClassRegiCnt(clsNo));
+				//loginData가 있으면
+				if(!ObjectUtils.isEmpty(request.getSession().getAttribute("loginData"))) {
+					//mbId 가져오기
+					MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
+					mbId = loginData.getMbId();
+				} 
+				sessionId = request.getSession().getId();
+				//같은 sessionId와 clsNo가 등록된 데이터가 없으면
+				if(bDao.getClsViewCnt(clsNo, sessionId) < 1) {
+					//조회수 추가
+					if(!bDao.addClsView(clsNo, sessionId, mbId))
+						logger.info("클래스 조회수 추가 실패.");					
+				}
 			}
 			mav.addObject("classInfo", cb);
 			
@@ -103,6 +116,7 @@ public class BMM {
 	 */
 	public ModelAndView goClassClassInfo(String clsNo, HttpSession session) {
 		mav = new ModelAndView();
+		String sessionId, mbId = null;
 		//세션에서 mbId 가져오기
 		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
 		
@@ -112,11 +126,21 @@ public class BMM {
 		} else {
 			//클래스정보 가져와 bean에 담기
 			ClassBean cb = bDao.getClassInfo(clsNo);
-			
-			//가져온 클래스정보가 있으면
+
+			//가져온 클래스정보가 있으면 조회수 추가
 			if(!ObjectUtils.isEmpty(cb)) {
-				//클래스 수강신청인원 가져와 bean에 담기
-				cb.setClsRegiCnt(bDao.getClassRegiCnt(clsNo));
+				//loginData가 있으면
+				if(!ObjectUtils.isEmpty(session.getAttribute("loginData"))) {
+					//mbId 가져오기
+					mbId = loginData.getMbId();
+				} 
+				sessionId = session.getId();
+				//같은 sessionId와 clsNo가 등록된 데이터가 없으면
+				if(bDao.getClsViewCnt(clsNo, sessionId) < 1) {
+					//조회수 추가
+					if(!bDao.addClsView(clsNo, sessionId, mbId))
+						logger.info("클래스 조회수 추가 실패.");					
+				}
 			}
 			mav.addObject("classInfo", cb);
 			

@@ -7,9 +7,9 @@
 
 	<select id="getClassListNew" resultType="classbean">
 	<![CDATA[
-		SELECT /*+INDEX_DESC(CLASS PK_CLASS)*/ ROWNUM RN, CLASS.*
-		FROM CLASS
-		WHERE ROWNUM<=5
+		SELECT /*+INDEX_DESC(CLASS PK_CLASS)*/ ROWNUM RN, V.*
+		FROM V_CLASSBEAN V
+		WHERE ROWNUM<=5 ORDER BY CLSOPENDATE DESC
 	]]>
 	</select>
 	<select id="getClassListMy" resultType="classbean" parameterType="string">
@@ -22,10 +22,6 @@
 		SELECT *
 		FROM V_CLASSBEAN
 		WHERE CLSNO=#{clsNo} AND ROWNUM=1
-	</select>
-	<select id="getClassRegiCnt" resultType="int">
-		SELECT COUNT(*) FROM STUDENT 
-		WHERE clsNo=#{clsNo}
 	</select>
 	<select id="hasClassJoin" resultType="int">
 		SELECT COUNT(*) FROM STUDENT 
@@ -134,5 +130,14 @@
 		DELETE FROM CLS_BRD_VIEW
 		WHERE CLSBRDNO=#{clsBrdNo}	
 	</delete>
-	
+	<insert id="addClsView">
+		INSERT INTO CLS_VIEW 
+			(clsNo, sessionId, mbId, clsViewDate)
+		VALUES
+			(#{clsNo}, #{sessionId}, #{mbId}, SYSDATE)
+	</insert>
+	<select id="getClsViewCnt" resultType="int">
+		SELECT COUNT(*) FROM CLS_VIEW
+		WHERE CLSNO=#{clsNo} AND sessionId=#{sessionId}
+	</select>
 </mapper>
