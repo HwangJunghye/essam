@@ -84,7 +84,7 @@ width:350px;
 		</tr>
 		</table>
 </c:if>
-
+<input type="hidden" name="clsNo" value="${param.clsNo}">
 <table id="inputTable">
 <tr>
 <td class="object_name">카테고리1:</td>
