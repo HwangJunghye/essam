@@ -39,9 +39,7 @@ text-align: center;
 border: none;
 cursor: pointer;
 }
-
 </style>
-
 <body>
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
@@ -55,10 +53,8 @@ cursor: pointer;
 	</div>
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->
-
-
 <form action="update" method="post" enctype="multipart/form-data">
-<!-- 클래스 정보 수정 페이지 -->
+<!-- 클래스 정보 있으면 클래스이름 출력 -->
 <c:if test="${!empty clsInfo}">
 		<table class="container">
 		<tr>
@@ -67,25 +63,35 @@ cursor: pointer;
 				<hr class="hr_${mbColor}"></td>
 		</tr>
 		</table>
-<br/>
-카테고리1:
-		<input type="radio" name="cate1No" value="1" ${clsInfo.cate1No==1?'checked':''} required/>유아
-		<input type="radio" name="cate1No" value="2" ${clsInfo.cate1No==2?'checked':''}/>초등
-		<input type="radio" name="cate1No" value="3" ${clsInfo.cate1No==3?'checked':''}/>중등
-		<input type="radio" name="cate1No" value="4" ${clsInfo.cate1No==4?'checked':''}/>고등
-		<input type="radio" name="cate1No" value="5" ${clsInfo.cate1No==5?'checked':''}/>특목
-		<input type="radio" name="cate1No" value="6" ${clsInfo.cate1No==6?'checked':''}/>기타
-	<br/>
-카테고리2:
-		<input type="radio" name="cate2No" value="1" ${clsInfo.cate1No==1?'checked':''} required/>국어
-		<input type="radio" name="cate2No" value="2" ${clsInfo.cate1No==2?'checked':''}/>영어
-		<input type="radio" name="cate2No" value="3" ${clsInfo.cate1No==3?'checked':''}/>수학
-		<input type="radio" name="cate2No" value="4" ${clsInfo.cate1No==4?'checked':''}/>과학
-		<input type="radio" name="cate2No" value="5" ${clsInfo.cate1No==5?'checked':''}/>논술
-		<input type="radio" name="cate2No" value="6" ${clsInfo.cate1No==6?'checked':''}/>독서
-		<input type="radio" name="cate2No" value="7" ${clsInfo.cate1No==7?'checked':''}/>입시컨설팅
-		<input type="radio" name="cate2No" value="8" ${clsInfo.cate1No==8?'checked':''}/>기타
-	<br/>
+</c:if>
+
+<table>
+<tr>
+<td>카테고리1:</td>
+<td>
+	<input type="radio" name="cate1No" value="1" ${clsInfo.cate1No==1?'checked':''} required/>유아
+	<input type="radio" name="cate1No" value="2" ${clsInfo.cate1No==2?'checked':''}/>초등
+	<input type="radio" name="cate1No" value="3" ${clsInfo.cate1No==3?'checked':''}/>중등
+	<input type="radio" name="cate1No" value="4" ${clsInfo.cate1No==4?'checked':''}/>고등
+	<input type="radio" name="cate1No" value="5" ${clsInfo.cate1No==5?'checked':''}/>특목
+	<input type="radio" name="cate1No" value="6" ${clsInfo.cate1No==6?'checked':''}/>기타
+</td>
+</tr>
+<tr>
+<td>카테고리2:</td>
+<td>
+	<input type="radio" name="cate2No" value="1" ${clsInfo.cate1No==1?'checked':''} required/>국어
+	<input type="radio" name="cate2No" value="2" ${clsInfo.cate1No==2?'checked':''}/>영어
+	<input type="radio" name="cate2No" value="3" ${clsInfo.cate1No==3?'checked':''}/>수학
+	<input type="radio" name="cate2No" value="4" ${clsInfo.cate1No==4?'checked':''}/>과학
+	<input type="radio" name="cate2No" value="5" ${clsInfo.cate1No==5?'checked':''}/>논술
+	<input type="radio" name="cate2No" value="6" ${clsInfo.cate1No==6?'checked':''}/>독서
+	<input type="radio" name="cate2No" value="7" ${clsInfo.cate1No==7?'checked':''}/>입시컨설팅
+	<input type="radio" name="cate2No" value="8" ${clsInfo.cate1No==8?'checked':''}/>기타
+</td>
+</tr>
+<tr></tr>
+
 	클래스명: <input type="text" name="clsName" value="${clsInfo.clsName}" required/>
 	<br/>
 	클래스 정원: <input type="number" name="clsLimit" value="${clsInfo.clsLimit}" required/> (명)
@@ -103,60 +109,23 @@ cursor: pointer;
 	zoom링크:<input type="text" name="zoomLink" value="${clsInfo.zoomLink}">
 	<br/>
 	zoom비밀번호:<input type="text" name="zoomPwd" value="${clsInfo.zoomPwd}">
-	<br/>
-	<br/>
-</c:if>
-
-
-
-<!-- 클래스 신규 등록 페이지 -->
-<c:if test="${empty clsInfo}">
-	카테고리1:
-		<input type="radio" name="cate1No" value="1" required/>유아
-		<input type="radio" name="cate1No" value="2"/>초등
-		<input type="radio" name="cate1No" value="3"/>중등
-		<input type="radio" name="cate1No" value="4"/>고등
-		<input type="radio" name="cate1No" value="5"/>특목
-		<input type="radio" name="cate1No" value="6"/>기타
-	<br/>
-	카테고리2:
-		<input type="radio" name="cate2No" value="1" required/>국어
-		<input type="radio" name="cate2No" value="2"/>영어
-		<input type="radio" name="cate2No" value="3"/>수학
-		<input type="radio" name="cate2No" value="4"/>과학
-		<input type="radio" name="cate2No" value="5"/>논술
-		<input type="radio" name="cate2No" value="6"/>독서
-		<input type="radio" name="cate2No" value="7"/>입시컨설팅
-		<input type="radio" name="cate2No" value="8"/>기타
-	<br/>
-	클래스명: <input type="text" name="clsName" required/>
-	<br/>
-	클래스 정원: <input type="number" name="clsLimit" required/> (명)
-	<br/>
-	커버이미지: <input type="file" name="file">	
-	<br/>
-	한줄 소개:<input type="text" name="clsIntro" required/>
-	<br/>
-	상세 소개:<textarea cols="50" rows="10" name="clsDesc" required/></textarea>
-	<br/>
-	가격:<input type="number" name="clsPrice"> (/월)
-	<br/>
-	키워드:<input type="text" name="clsKeyword">
-	<br/>
-	zoom링크:<input type="text" name="zoomLink">
-	<br/>
-	zoom비밀번호:<input type="text" name="zoomPwd">
-	<br/>
-	<br/>
-	</c:if>
 	
-	
+	</table>
+	<br/>
+	<br/>
+
 	<input type="button" class="btn" value="취소" onclick="history.back(-1);">
 	<input type="submit" class="btn" value="등록">
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 	
 	</form>
-
-	<!--------- 본문 끝 -------------->
+<!--------- 본문 끝 -------------->
 	</div>
 </div>
 </section>
