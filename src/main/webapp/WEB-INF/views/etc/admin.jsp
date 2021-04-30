@@ -10,6 +10,20 @@
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
 <style>
+
+#chooseCondition{
+width: 480px;
+height: 200px;
+margin-left:150px;
+margin-top:40px;
+}
+#btnArea{
+width: 480px;
+height: 70px;
+margin-left:150px;
+text-align:center;
+}
+
 input[type="button"]{
 width: 70px;
 height: 36px;
@@ -33,6 +47,15 @@ text-align: center;
 border: none;
 cursor: pointer;
 }
+#chartArea{
+width:760px;
+height:415px;
+margin-left:150px;
+border:solid 3px black;
+}
+.condition{
+text-align:left;
+}
 
 </style>
 <body>
@@ -48,27 +71,40 @@ cursor: pointer;
 <!--------- 본문 시작 -------------->
 
 <form action="getstatistic" method="post">
-조회기간: <input type="date" id="startDate"> ~ <input type="date" id="endDate"><br/>
-조회대상:
-<input type="radio" name="searchTarget" value="class" checked required/>클래스
-<input type="radio" name="searchTarget" value="teacher" />강사
-<input type="radio" name="searchTarget" value="student" />수강생
-<br/>
-필터1: 
-<input type="radio" name="filter1" value="all" checked required/>전체
-<input type="radio" name="filter1" value="category" />카테고리
-<br/>
-필터2:
-<input type="radio" name="filter2" value="total" checked required/>총
-<input type="radio" name="filter2" value="new" />신규
-<br/>
-<br/>
-<input type="reset" class="btn" id="reset" value="초기화">
-<input type="button" class="btn" id="showChart" value="조회">
-<br/>
-<br/>
 
-<div id="warning">텍스트 표시 영역</div>
+<table id="chooseCondition">
+<tr>
+<td>조회기간:</td>&emsp;
+<td><input type="date" id="startDate"> ~ <input type="date" id="endDate"></td>
+</tr>
+<tr>
+<td>조회대상:</td>
+<td class="condition">&emsp;
+<input type="radio" name="searchTarget" value="class" checked required/>클래스&emsp;
+<input type="radio" name="searchTarget" value="teacher" />강사&emsp;&emsp;&emsp;
+<input type="radio" name="searchTarget" value="student" />수강생
+</td>
+</tr>
+<tr>
+<td>필&ensp;터&ensp;1:</td>
+<td class="condition">&emsp;
+<input type="radio" name="filter1" value="all" checked required/>전체&emsp;&emsp;
+<input type="radio" name="filter1" value="category" />카테고리
+</td>
+</tr>
+<td>필&ensp;터&ensp;2:</td>
+<td class="condition">&emsp;
+<input type="radio" name="filter2" value="total" checked required/>총&emsp;&emsp;&emsp;
+<input type="radio" name="filter2" value="new" />신규
+</td>
+</tr>
+</table>
+<br/>
+<div id="btnArea">
+<input type="reset" class="btn" id="reset" value="초기화">&emsp;
+<input type="button" class="btn" id="showChart" value="조회">
+</div>
+<br/>
 
 <div id="chartArea">
 차트 표시 영역
