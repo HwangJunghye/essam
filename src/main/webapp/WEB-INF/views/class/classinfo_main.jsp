@@ -36,11 +36,11 @@
 				<td align="left" style="padding:20px 0;">
 				<img src="${ctxPath}/getimage?fileNo=${classInfo.fileNo}">
 				<p>
-				카테고리 : ${classInfo.cate1Name} > ${classInfo.cate2Name}<br/>
-				클래스명 : ${classInfo.clsName}<br/>
-				정원 : <fmt:formatNumber value="${classInfo.clsLimit}" type="number"/> 명<br/>
-				한줄 소개 : ${classInfo.clsIntro}<br/>
-				상세 소개 : ${classInfo.clsDesc}<br/></p>
+				<i class="far fa-caret-square-right"></i> 카테고리 : ${classInfo.cate1Name} > ${classInfo.cate2Name}<br/>
+				<i class="far fa-caret-square-right"></i> 클래스명 : ${classInfo.clsName}<br/>
+				<i class="far fa-caret-square-right"></i> 정원 : <fmt:formatNumber value="${classInfo.clsLimit}" type="number"/> 명<br/>
+				<i class="far fa-caret-square-right"></i> 한줄 소개 : ${classInfo.clsIntro}<br/><br>
+				<span style="white-space:pre-wrap;word-break:break-all;">${classInfo.clsDesc}</span><br/></p>
 				</td>
 			</tr>
 			</table><br>
@@ -70,7 +70,7 @@
 						<div id="intro_box2" style="width:720px; height:60px; text-align:left; padding:10px 0px 0px;">
 							<h6 style="font-weight: bold;">${teacherInfo.teacherIntro}</h6>
 						</div>
-						<div id="detail_box3" style="width:720px; height:304px; text-align:left;">
+						<div id="detail_box3" style="width:720px; height:304px; text-align:left; white-space:pre-wrap;word-break:break-all;">
 							${teacherInfo.teacherDetail}
 							<!-- <div id="contents" style="min-height:900px;"> -->
 						</div>
