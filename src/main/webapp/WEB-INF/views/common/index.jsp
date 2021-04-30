@@ -13,8 +13,8 @@
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 <section>
-<div id="contents">
-	
+<div id="contents"><br><br>
+	<ul>
 	<!-- 수강중인 클래스가 있으면 -->
 	<c:if test="${!empty myList}">
 		<li>수강중인 클래스
@@ -22,13 +22,13 @@
 		<c:forEach var="eclass" items="${myList}">
 			<tr>
 				<td>번호:${eclass.clsNo}</td>
-				<td>클래스명:<a href="">${eclass.clsName}</a></td>
+				<td>클래스명:<a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}">${eclass.clsName}</a></td>
 				<td>${eclass.mbId}</td>
 			</tr>
 		</c:forEach>
 		</table></li>
 	</c:if>
-	
+	<br>
 	<li>New 클래스 
 	<table>
 	<c:if test="${empty nList}">
@@ -38,12 +38,15 @@
 		<c:forEach var="eclass" items="${nList}">
 			<tr>
 				<td>번호:${eclass.clsNo}</td>
-				<td>클래스명:<a href="">${eclass.clsName}</a></td>
+				<td>클래스명:<a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}">${eclass.clsName}</a></td>
 				<td>${eclass.mbId}</td>
 			</tr>
 		</c:forEach>
 	</c:if>
 	</table></li>
+	<br>
+	<li>Hot 클래스 </li>
+	</ul>
 </div>
 </section>
 
