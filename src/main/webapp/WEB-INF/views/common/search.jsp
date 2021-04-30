@@ -19,6 +19,7 @@
 			<div id="cls-list">
 			</div>
 		</div>
+		<br/><br/><br/><br/>
 	</section>
 	<%@ include file="../common/footer.jsp"%>
 
