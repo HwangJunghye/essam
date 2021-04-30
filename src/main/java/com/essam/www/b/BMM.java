@@ -61,6 +61,9 @@ public class BMM {
 		case "new":
 			cList = bDao.getClassListNew();
 			break;
+		case "hot":
+			cList = bDao.getClassListHot();
+			break;
 		case "my":
 			cList = bDao.getClassListMy(mbId);
 			break;

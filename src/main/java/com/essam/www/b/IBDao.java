@@ -12,6 +12,8 @@ import com.essam.www.bean.FileBean;
 public interface IBDao {
 
 	List<ClassBean> getClassListNew();
+	
+	List<ClassBean> getClassListHot();
 
 	List<ClassBean> getClassListMy(String mbId);
 

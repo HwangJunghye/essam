@@ -12,9 +12,14 @@
 		WHERE ROWNUM<=5 ORDER BY CLSOPENDATE DESC
 	]]>
 	</select>
+	<select id="getClassListHot" resultType="classbean">
+	<![CDATA[
+		select * FROM V_CLASSBEAN WHERE CLSNO IN (SELECT * FROM V_HOTCLSNO WHERE ROWNUM<=5)
+	]]>	
+	</select>
 	<select id="getClassListMy" resultType="classbean" parameterType="string">
-		SELECT C.clsNo,C.clsName,C.mbId 
-		FROM CLASS C 
+		SELECT C.* 
+		FROM V_CLASSBEAN C 
 			JOIN STUDENT S ON C.clsNo=S.clsNo 
 		WHERE S.MBID=#{mbId}
 	</select>

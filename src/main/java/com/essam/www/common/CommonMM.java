@@ -36,6 +36,7 @@ public class CommonMM {
 	public ModelAndView goIndex(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		List<ClassBean> cList = null;
+		List<ClassBean> hList = null;
 
 		// My 클래스 정보 가져오기 (학생 로그인인 경우)
 		MemberBean loginData = new MemberBean();
@@ -53,6 +54,10 @@ public class CommonMM {
 		cList = bm.getClassList("new", "");
 		// 가져온 정보를 mav "nList" 에 넣기
 		mav.addObject("nList", cList);
+		// hot 클래스 정보 가져오기
+		hList = bm.getClassList("hot", "");
+		// 가져온 정보를 mav "nList" 에 넣기
+		mav.addObject("hList", hList);
 
 		// index.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("common/index"); // .jsp

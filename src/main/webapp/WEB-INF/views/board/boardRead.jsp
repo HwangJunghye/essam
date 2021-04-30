@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
-<% //Author : 고연미 %>
+<% //@Author 고연미 %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,8 +43,8 @@
 				<td colspan=3 align="left" style="white-space:pre-wrap;word-break:break-all;">${boardData.clsBrdContent}</td>
 			</tr>
 			<tr>
-				<td align="left">첨부파일</td>
-				<td colspan=2 align="left">
+				<td align="left" class="align-middle">첨부파일</td>
+				<td colspan=2 align="left" class="align-middle">
 					<c:set var="files" value="${boardData.filesInfo}" />
 					<c:if test="${!empty files}">
 						<ul style="list-style-type:circle;">
