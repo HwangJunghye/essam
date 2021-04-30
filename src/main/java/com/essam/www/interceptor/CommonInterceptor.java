@@ -1,5 +1,7 @@
 package com.essam.www.interceptor;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,16 +22,32 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		String servletPath = request.getServletPath(); // 서블릿 주소
 		String indexPath = request.getContextPath() + "/"; // 인덱스 주소
-		int rdFlag = -1; // 인덱스로 이동해야 하는 지 여부
+		log.info("preHandler Call : " + servletPath); // 현재 서블릿 주소 출력
 
-		// System.out.println("preHandler Call : " + request.getServletPath());
-		log.info("preHandler Call : " + servletPath);
-		// 로그인 검증이나 권한 검증시 여기에 코드 추가
+		int rdFlag = this.getAuthFlag(servletPath, request);
 
+		if (rdFlag != -1) { // 서비스 권한이 존재하지 않는 경우
+			// 다른 페이지로 리다이렉트 및 메세지 설정
+			return this.sendAuthMessage(rdFlag, request, response, indexPath);
+		}
+		return true;
+
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		// log.info("postHandle Call : " + request.getServletPath());
+		super.postHandle(request, response, handler, modelAndView);
+	}
+
+	/**
+	 * 권한에 대해서 작업할 내용을 판정
+	 */
+	private int getAuthFlag(String servletPath, HttpServletRequest request) {
 		// 로그인 정보 가져오기
 		MemberBean mb = (MemberBean) request.getSession().getAttribute("loginData");
-		if (mb == null) {
-			// 로그아웃 상태인 경우
+		if (mb == null) { // 로그아웃 상태인 경우
 			log.info("user status : logout");
 			switch (servletPath) {
 			// 회원타입 검증에 있는 URL도 추가할 것.
@@ -51,11 +69,9 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 				// 어떤 url 추가해야 할지 정리 필요.
 				// 개발 단계이기 때문에 로그인이 반드시 필요한 항목 외에는 주석처리함
 				// 이 위에 case문 추가
-				rdFlag = 0; // 로그인이 필요합니다
-				break;
+				return 0; // 로그인이 필요합니다
 			}
-		} else {
-			// 로그인 상태인 경우
+		} else { // 로그인 상태인 경우
 			log.info("user status : login(" + mb.getMbId() + ")");
 
 			// 회원타입에 따른 작업
@@ -64,50 +80,49 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 				switch (servletPath) {
 				case "/class/classinfo/update":
 					// 주소 추가 필요
-					rdFlag = 1; // 권한이 존재하지 않습니다(학생회원)
-					break;
+					return 1; // 권한이 존재하지 않습니다(학생회원)
 				}
 			} else if (mb.getMbType() == 2) {
 				// 교사회원인 경우
 				switch (servletPath) {
 				case "/classjoin":
 					// 주소 추가 필요
-					rdFlag = 2; // 권한이 존재하지 않습니다(교사회원)
+					return 2; // 권한이 존재하지 않습니다(교사회원)
 				}
 			} else {
 				// 관리자인 경우
 			}
 		}
-
-		if (rdFlag != -1) { // 리다이렉트가 필요한 경우
-			FlashMap fMap = new FlashMap();
-			switch (rdFlag) {
-			case 0:// 로그인이 필요한 경우
-				fMap.put("fMsg", "로그인이 필요합니다");
-				break;
-			case 1:// 권한이 존재하지 않는 경우(rdFlag : 1(학생) or 2(강사) or 3(관리자)
-			case 2:
-			case 3:
-				fMap.put("fMsg", "권한이 존재하지 않습니다");
-				break;
-			default:
-				fMap.put("fMsg", "올바르지 않은 값");
-				break;
-			}
-			FlashMapManager fMapManager = RequestContextUtils.getFlashMapManager(request);
-			fMapManager.saveOutputFlashMap(fMap, request, response);
-			response.sendRedirect(indexPath);
-			return false;
-		}
-
-		return true; // 다른 페이지로 이동할 경우 false 리턴
-
+		return -1; // 권한 사용가능
 	}
 
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		log.info("postHandle Call : " + request.getServletPath());
-		super.postHandle(request, response, handler, modelAndView);
+	/**
+	 * 권한에 따라서 메세지 출력 및 리다이렉트
+	 */
+	private boolean sendAuthMessage(int rdFlag, HttpServletRequest request, HttpServletResponse response,
+			String indexPath) throws IOException {
+		FlashMap fMap = new FlashMap();
+		switch (rdFlag) {
+		case 0:// 로그인이 필요한 경우
+			fMap.put("modal", "modal open");
+			fMap.put("fMsg", "로그인이 필요합니다");
+			break;
+		case 1:// 권한이 존재하지 않는 경우(rdFlag : 1(학생) or 2(강사) or 3(관리자)
+			fMap.put("fMsg", "권한이 존재하지 않습니다(현재 권한 : 학생회원)");
+			break;
+		case 2:
+			fMap.put("fMsg", "권한이 존재하지 않습니다(현재 권한 : 강사회원)");
+			break;
+		case 3:
+			fMap.put("fMsg", "권한이 존재하지 않습니다(현재 권한 : 관리자)");
+			break;
+		default:
+			fMap.put("fMsg", "올바르지 않은 값");
+			break;
+		}
+		FlashMapManager fMapManager = RequestContextUtils.getFlashMapManager(request);
+		fMapManager.saveOutputFlashMap(fMap, request, response);
+		response.sendRedirect(indexPath);
+		return false;
 	}
 }
