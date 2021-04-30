@@ -176,14 +176,53 @@ public class CMM {
 		}else { // DB에 UPDATE 실패하면
 			throw new CommonException("DB에 UPDATE 실패 예외발생");
 		}	
-	}	
+	}
+
+
+
+//커리큘럼------------------------------------------------------------------
+
+//클래스 커리큘럼 이동
+	public ModelAndView goClassCurriculum(HttpSession session, String clsNo) {
+		ModelAndView mav = new ModelAndView();
+		TeacherBean teacherInfo = null;
+		// 세션에서 로그인 데이터를 MemberBean에 담기
+		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+		// MemberBean으로 부터 mbId, mbType을 가져옴
+		String mbId = loginData.getMbId();
+		// System.out.println("mbId");
+		String mbType = loginData.getMbType() + "";
+		// 강사회원(mbType==2)인지 확인하기
+		if (mbType.equals("2")) { // 회원타입이 강사라면
+			// getTeacherProfile()에 mbId 넘겨 강사프로필데이터 가져오기 dao에 요청
+			teacherInfo = mDao.getTeacherProfile(mbId);
+			if (teacherInfo != null) { // 강사프로필 정보가 있다면
+				// 가져온 정보를 mav에 넣기
+				mav.addObject("teacherInfo", teacherInfo);
+				// teacher_profile.jsp로 이동하기 위해 viewname 지정
+				mav.setViewName("member/teacher_profile"); // 강사프로필 페이지로
+				return mav;
+			} else { // 강사프로필 정보가 없다면(정상적인 경우 강사프로필 정보가 없는 경우는 없음)
+				// mav.setViewName("member/teacher_profile"); //강사프로필 페이지로
+				// mav.addObject("msg", "등록된 강사프로필 정보가 없습니다");
+				// rattr.addFlashAttribute("fMsg", "등록된 강사프로필 정보가 없습니다");
+				throw new CommonException("teacher 테이블 teacherGrade 예외발생");
+			}
+		}	
+		return mav;
+	}
+
+//커리큘럼 목록 가져오기
+//커리큘럼 상세정보 보기 이동
+//커리큘럼 상세정보 가져오기
+//동영상 페이지 이동
+//동영상 제목,시작일,종료일 가져오기
+//커리큘럼 등록 이동
+//커리큘럼 등록
+//커리큘럼 수정 이동
+//커리큘럼 수정
+
 }
-
-
-
-
-
-
 
 
 
