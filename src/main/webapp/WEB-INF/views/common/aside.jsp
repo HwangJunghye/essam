@@ -45,7 +45,7 @@
 						<!-- 2차 메뉴 -->
 						<c:if test="${!empty param.clsNo}">
 						<ul class="second_menu">
-							<li class="second_item"><a href="${ctxPath}/class/classinfo/write?clsNo=${param.clsNo}">클래스 수정</a></li>
+							<li class="second_item"><a href="${ctxPath}/class/classinfo?clsNo=${param.clsNo}">클래스 소개</a></li>
 							<li class="second_item"><a href="${ctxPath}/class/curriculum?clsNo=${param.clsNo}">커리큘럼</a></li>
 							<li class="second_item"><a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
 							<li class="second_item"><a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=2&pageNum=1">과제</a></li>

@@ -24,7 +24,13 @@
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->
 
-		<div class="container" style="background-color:#fffff;"><br>
+		<table class="container">
+		<tr>
+			<td align="left" style="padding:20px 0;">
+				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${classInfo.clsName}</span></h6>
+				<hr class="hr_${mbColor}"></td>
+		</tr></table>
+		<div class="container" style="background-color:#fffff;">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 			  <li class="nav-item" role="presentation">
 			    <a class="nav-link active" href="#info_cls" >클래스소개</a>
@@ -92,7 +98,7 @@
 			...<br>
 			<table align="right">
 			<tr><td align="right"><a href="#nav_area"><i class="far fa-arrow-alt-circle-up"></i> Top</a></td></tr>
-			</table><br>
+			</table><br><br><br><br><br>
 			</div>
 		</div>
 

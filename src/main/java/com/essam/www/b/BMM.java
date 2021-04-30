@@ -133,7 +133,7 @@ public class BMM {
 			mav.addObject("classInfo", cb);
 
 			//mav에 네비타이틀 추가
-			mav.addObject("navtext", "클래스 > "+ cb.getClsName());
+			mav.addObject("navtext", "마이 클래스 > 클래스 소개");
 			
 			//강사 정보 가져와 mav에 담기 (MemberMM)
 			TeacherBean tb = mDao.getTeacherProfile(cb.getMbId());

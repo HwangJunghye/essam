@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
 <% //@Author 고연미 %>
 <!DOCTYPE html>
@@ -8,6 +9,7 @@
 <meta charset="UTF-8">
 <title>e-쌤</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
+<link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/class.css">
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
@@ -25,11 +27,22 @@
 		<table class="container">
 		<tr>
 			<td align="left" style="padding:20px 0;">
-				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
+				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${classInfo.clsName}</span></h6>
 				<hr class="hr_${mbColor}"></td>
 		</tr></table>
-		
-<h1>classinfo_t.jsp</h1>
+		<table class="container">
+		<tr>
+			<td align="left">
+			<img src="${ctxPath}/getimage?fileNo=${classInfo.fileNo}">
+			<p>
+			<i class="far fa-caret-square-right"></i> 카테고리 : ${classInfo.cate1Name} > ${classInfo.cate2Name}<br/>
+			<i class="far fa-caret-square-right"></i> 클래스명 : ${classInfo.clsName}<br/>
+			<i class="far fa-caret-square-right"></i> 정원 : <fmt:formatNumber value="${classInfo.clsLimit}" type="number"/> 명<br/>
+			<i class="far fa-caret-square-right"></i> 한줄 소개 : ${classInfo.clsIntro}<br/><br>
+			<span style="white-space:pre-wrap;word-break:break-all;">${classInfo.clsDesc}</span><br/></p>
+			</td>
+		</tr>
+		</table><br><br><br><br><br>
 
 <!--------- 본문 끝 -------------->
 	</div>

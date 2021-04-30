@@ -87,7 +87,7 @@
 			...<br>
 			<table align="right">
 			<tr><td align="right"><a href="#nav_area"><i class="far fa-arrow-alt-circle-up"></i> Top</a></td></tr>
-			</table><br>
+			</table><br><br><br><br><br>
 			</div>
 		</div>
 	</div>
