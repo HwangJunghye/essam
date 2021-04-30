@@ -11,6 +11,19 @@
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/class.css">
 </head>
+<style>
+input[type="button"]{
+width: 70px;
+height: 36px;
+background: #9E3C7E;
+box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+color: #FFFFFF;
+text-align: center;
+border: none;
+cursor: pointer;
+}
+</style>
 <body>
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
@@ -42,7 +55,12 @@
 			<span style="white-space:pre-wrap;word-break:break-all;">${classInfo.clsDesc}</span><br/></p>
 			</td>
 		</tr>
-		</table><br><br><br><br><br>
+		</table>
+		<input type="button" class="btn" value="수정" onclick="location.href='${ctxPath}/class/classinfo/write?clsNo=${param.clsNo}'">
+		
+		
+		
+		<br><br><br><br><br>
 
 <!--------- 본문 끝 -------------->
 	</div>
