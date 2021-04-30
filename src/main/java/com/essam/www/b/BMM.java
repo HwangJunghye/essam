@@ -29,6 +29,7 @@ import com.essam.www.bean.FileBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.ReplyBean;
 import com.essam.www.bean.TeacherBean;
+import com.essam.www.c.ICDao;
 import com.essam.www.constant.Constant;
 import com.essam.www.d.IDDao;
 import com.essam.www.eclass.Paging;
@@ -45,11 +46,13 @@ public class BMM {
 	private FileMM fm;
 	@Autowired
 	private IDDao DDao;
+	@Autowired
+	private ICDao mDao;
 	
 	ModelAndView mav;
 	
 	/**
-	 * 클래스 리스트 가져오기
+	 * (메인) 클래스 리스트 가져오기
 	 * @Author 고연미 on 28/04/2021
 	 */
 	public List<ClassBean> getClassList(String str, String mbId) {
@@ -97,10 +100,12 @@ public class BMM {
 				}
 			}
 			mav.addObject("classInfo", cb);
+			//mav에 네비타이틀 추가
+			mav.addObject("navtext", "클래스 > "+ cb.getClsName());
 			
 			//강사 정보 가져와 mav에 담기 (MemberMM)
-			//TeacherBean tb = mDao.getTeacherProfile(cb.getMbId());
-			//mav.addObject("teacherProfile", tb);
+			TeacherBean tb = mDao.getTeacherProfile(cb.getMbId());
+			mav.addObject("teacherInfo", tb);
 			
 			//커리큘럼 리스트 가져와 mav에 담기 (CurriculumMM)
 			//List<CurriculumBean> crList = crDao.getCurriculumLIst(clsNo)
@@ -116,7 +121,6 @@ public class BMM {
 	 */
 	public ModelAndView goClassClassInfo(String clsNo, HttpSession session) {
 		mav = new ModelAndView();
-		String sessionId, mbId = null;
 		//세션에서 mbId 가져오기
 		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
 		
@@ -126,27 +130,14 @@ public class BMM {
 		} else {
 			//클래스정보 가져와 bean에 담기
 			ClassBean cb = bDao.getClassInfo(clsNo);
-
-			//가져온 클래스정보가 있으면 조회수 추가
-			if(!ObjectUtils.isEmpty(cb)) {
-				//loginData가 있으면
-				if(!ObjectUtils.isEmpty(session.getAttribute("loginData"))) {
-					//mbId 가져오기
-					mbId = loginData.getMbId();
-				} 
-				sessionId = session.getId();
-				//같은 sessionId와 clsNo가 등록된 데이터가 없으면
-				if(bDao.getClsViewCnt(clsNo, sessionId) < 1) {
-					//조회수 추가
-					if(!bDao.addClsView(clsNo, sessionId, mbId))
-						logger.info("클래스 조회수 추가 실패.");					
-				}
-			}
 			mav.addObject("classInfo", cb);
+
+			//mav에 네비타이틀 추가
+			mav.addObject("navtext", "클래스 > "+ cb.getClsName());
 			
 			//강사 정보 가져와 mav에 담기 (MemberMM)
-			//TeacherBean tb = mDao.getTeacherProfile(cb.getMbId());
-			//mav.addObject("teacherProfile", tb);
+			TeacherBean tb = mDao.getTeacherProfile(cb.getMbId());
+			mav.addObject("teacherInfo", tb);
 			
 			//커리큘럼 리스트 가져와 mav에 담기 (CurriculumMM)
 			//List<CurriculumBean> crList = crDao.getCurriculumLIst(clsNo)
@@ -171,15 +162,18 @@ public class BMM {
 		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
 		String mbId= loginData.getMbId();
 		
-		//수강신청 내역이 있는지 검사
-		if(bDao.hasClassJoin(clsNo, mbId) == 1)
-			rattr.addFlashAttribute("fMsg","이미 수강 신청한 클래스입니다.");
-		else {			
-			if(bDao.classJoin(clsNo, mbId)) 
-				rattr.addFlashAttribute("fMsg","수강신청이 완료되었습니다.");
-			else
-				rattr.addFlashAttribute("fMsg","수강신청에 실패하였습니다. 다시 이용해주세요.");			
-		}
+		if(loginData.getMbType() == 1) {
+			//수강신청 내역이 있는지 검사
+			if(bDao.hasClassJoin(clsNo, mbId) == 1)
+				rattr.addFlashAttribute("fMsg","이미 수강 중인 클래스입니다.");
+			else {			
+				if(bDao.classJoin(clsNo, mbId)) 
+					rattr.addFlashAttribute("fMsg","수강신청이 완료되었습니다.");
+				else
+					rattr.addFlashAttribute("fMsg","수강신청에 실패하였습니다. 다시 이용해주세요.");			
+			}
+		} else 
+			rattr.addFlashAttribute("fMsg","학생 계정으로 로그인 후 이용해주세요!");
 		
 		mav.setViewName("redirect:/myclass_s");
 		return mav;

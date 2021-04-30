@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+#classInfo_area1 {
+	flex: 7;
+	background-color: #ffffff;
+	text-align: center;
+/*	border: 2px solid black;	 div 구분용 */
+}
+#classInfo_area2 {
+	flex: 1;
+	background-color: #ffffff;
+	text-align: center;
+/*	border: 2px solid black;	 div 구분용 */
+}
+#box_clsJoin {
+	position:fixed; _position:absolute; _z-index:-1;
+	overflow:hidden;
+	top:250px;
+}
