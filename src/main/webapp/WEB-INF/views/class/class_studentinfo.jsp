@@ -25,6 +25,18 @@ table {
 	height: 0px;
 	border: 2px solid #9E3C7E;
 }
+.listArea{
+height: 20px;
+}
+
+.attendDay{
+text-align:right;
+}
+.totalDay{
+text-align:left;
+
+}
+
 </style>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -42,11 +54,15 @@ table {
 
 		<!-- sList가 있으면 -->
 		<c:if test="${!empty sList}">
-			<div>${clsInfo.clsName}</div> 
-			<br>
-			<hr class="line">
-			<br>
-
+	
+			<table class="container">
+				<tr>
+					<td align="left" style="padding:20px 0;">
+						<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsInfo.clsName}</span></h6>
+						<hr class="hr_${mbColor}"></td>
+				</tr>
+			</table>
+			
 			<table>
 				<tr>
 					<th>닉네임</th>
@@ -54,12 +70,13 @@ table {
 					<th>등록일</th>
 					<th colspan="3">출결현황(출석일/총수업일)</th>
 				</tr>
+			
 				<c:forEach var="sInfo" items="${sList}">
-					<tr onclick="location.href='${ctxPath}/class/studentinfo?mbId=${sInfo.mbId}&clsNo=${sInfo.clsNo}'">
+					<tr class="listArea" onclick="location.href='${ctxPath}/class/studentinfo?mbId=${sInfo.mbId}&clsNo=${sInfo.clsNo}'">
 						<td>${sInfo.mbNickName}</td>
 						<td>${sInfo.mbId}</td>
 						<td>${sInfo.regiStartDate}</td>
-						<td>${sInfo.attendDay}</td>
+						<td class="attendDay">${sInfo.attendDay}</td>
 						<td>/</td>
 						<td class="totalDay">${sInfo.totalDay}</td>
 					</tr>

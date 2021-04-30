@@ -26,6 +26,29 @@ text-align: center;
 border: none;
 cursor: pointer;
 }
+.contents1{
+width:300px;
+height:280px;
+margin:auto;
+}
+.contents2{
+width:300px;
+height:200px;
+margin:auto;
+}
+th{
+font-style: bold;
+font-weight: normal;
+font-size: 20px;
+border: outset 3px #9E3C7E;
+}
+.item{
+text-align: right;
+}
+.item_contents{
+text-align:left;
+}
+
 </style>
 <body>
 <%@ include file="../common/header.jsp" %>
@@ -40,20 +63,55 @@ cursor: pointer;
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->
 
-<h1>${sInfo.clsName}</h1><br/>
-<hr class="line"><br/>
+		<table class="container">
+		<tr>
+			<td align="left" style="padding:20px 0;">
+				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${sInfo.clsName}</span></h6>
+				<hr class="hr_${mbColor}"></td>
+		</tr>
+		</table>
+
+<table class="contents1">
+<th colspan="2" class="tableTitle">기본정보</th>
+<tr>
+<td class="item">이름:</td>
+<td class="item_contents">&emsp;${mInfo.mbName}</td>
+</tr>
+<tr>
+<td class="item">닉네임:</td>
+<td class="item_contents">&emsp;${sInfo.mbNickName}</td>
+</tr>
+<tr>
+<td class="item">이메일:</td>
+<td class="item_contents">&emsp;${sInfo.mbId}</td>
+</tr>
+<tr>
+<td class="item">등록일:</td>
+<td class="item_contents">&emsp;${sInfo.regiStartDate}</td>
+</tr>
+<tr>
+<td class="item">주소:</td>
+<td class="item_contents">&emsp;${mInfo.mbAddr}</td>
+</tr>
+</table>
 <br/>
-기본정보<br/>
-이름 : ${mInfo.mbName}<br/>
-닉네임:${sInfo.mbNickName} <br/>
-이메일:${sInfo.mbId}<br/>
-등록일:${sInfo.regiStartDate}<br/>
-주소:${mInfo.mbAddr}<br/><br/>
-
-
-출석현황<br/>
-출석일수/총수업일수: ${sInfo.attendDay}  / ${sInfo.totalDay} <br/>
-출석률: ${attendPercent}%<br/>
+<br/>
+<br/>
+<table class="contents2">
+<th colspan="2" class="tableTitle">출석현황</th>
+<tr>
+<td colspan="2">출석일수 / 총수업일수</td>
+</tr>
+<tr>
+<td colspan="2">${sInfo.attendDay}/${sInfo.totalDay}</td>
+</tr>
+<tr>
+<td>출석률:</td>
+<td class="item_contents">${attendPercent}%</td>
+</tr>
+</table>
+<br/>
+<br/>
 <br/>
 <input type="button" class="btn" value="학생목록" onclick="history.back(-1);">
 
