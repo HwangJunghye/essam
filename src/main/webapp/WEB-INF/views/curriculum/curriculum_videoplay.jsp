@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>동영상 강의</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
 <body>
@@ -23,8 +23,7 @@
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->
 
-<h1>class_curriculum.jsp</h1>
-
+<h1>curriculum_videoplay.jsp</h1>
 
 <!--------- 본문 끝 -------------->
 	</div>

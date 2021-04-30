@@ -2,6 +2,7 @@ package com.essam.www.c;
 
 import java.util.List;
 
+import com.essam.www.bean.CurriculumBean;
 import com.essam.www.bean.TeacherBean;
 
 public interface ICDao {
@@ -11,4 +12,7 @@ public interface ICDao {
 	boolean teacherProfileUpdate(TeacherBean tb);
 
 	boolean teacherInfoDelete(String mbId);
+
+	List<CurriculumBean> getCurriculumList(String clsNo);
+
 }

@@ -6,10 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>동영상 강의</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 </head>
 <body>
+
 
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
@@ -23,7 +24,8 @@
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->
 
-<h1>videoplay.jsp</h1>
+<h1>curriculum_zoom_update.jsp</h1>
+
 
 <!--------- 본문 끝 -------------->
 	</div>

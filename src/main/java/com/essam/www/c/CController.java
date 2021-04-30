@@ -78,8 +78,8 @@ public class CController {
 
 //클래스 커리큘럼 이동
 	@RequestMapping(value = "/class/curriculum")
-	ModelAndView goClassCurriculum(HttpSession session, String clsNo) {
-		ModelAndView mav = mm.goClassCurriculum(session, clsNo);
+	ModelAndView goClassCurriculum(String clsNo) {
+		ModelAndView mav = mm.goClassCurriculum(clsNo);
 		mav.addObject("navtext", "커리큘럼");
 		return mav; 
 	}

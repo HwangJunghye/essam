@@ -20,4 +20,8 @@
 		SET FILENO=NULL, TEACHERINTRO=NULL, TEACHERDETAIL=NULL 
 		WHERE MBID=#{mbId}
 	</update>
+	
+	<select id="getCurriculumList" resultType="curriculumbean">
+		SELECT * FROM CURRI WHERE CLSNO=#{clsNo}
+	</select>
 </mapper>
