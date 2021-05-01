@@ -46,7 +46,7 @@ cursor: pointer;
 		<table class="container">
 		<tr>
 			<td align="left">
-			<img src="${ctxPath}/getimage?fileNo=${classInfo.fileNo}">
+			<img src="${ctxPath}/getimage?fileNo=${classInfo.fileNo}" style="margin-bottom:30px;">
 			<p>
 			<i class="far fa-caret-square-right"></i> 카테고리 : ${classInfo.cate1Name} > ${classInfo.cate2Name}<br/>
 			<i class="far fa-caret-square-right"></i> 클래스명 : ${classInfo.clsName}<br/>
@@ -55,7 +55,7 @@ cursor: pointer;
 			<span style="white-space:pre-wrap;word-break:break-all;">${classInfo.clsDesc}</span><br/></p>
 			</td>
 		</tr>
-		</table>
+		</table><br><br>
 		<input type="button" class="btn" value="수정" onclick="location.href='${ctxPath}/class/classinfo/write?clsNo=${param.clsNo}'">
 		
 		

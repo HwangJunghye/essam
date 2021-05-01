@@ -20,14 +20,14 @@ header {
 	flex: 1;
 }
 #nav_area2 {	/* 카테고리 영역 */
-	flex: 2;
+	flex: 4;
 }
 #nav_area3 {	/* 검색 영역 */
 	flex: 1;
 	text-align: right;
 }
 #nav_area4 {	/* 회원메뉴 영역 */
-	flex: 1;
+	flex: 2;
 	text-align: right;
 }
 #nav_cate1 {	/* 카테고리 */
@@ -48,18 +48,6 @@ header {
 	display:inline-block;
 	vertical-align:middle;
 	border-radius :3px;
-}
-#btn_src {			/* 검색버튼 */
-	height:30px !important;
-	width:50px !important;
-	color:#fff !important;
-	font-size: 15px !important;
-	margin: 0px !important;
-	padding:0px !important;
-	text-align: center !important;
-	border: none !important;
-	border-radius:10px !important;
-	background-color:#8DBDC4 !important;
 }
 #btn_src_div1 {		/* 검색버튼 div 1 */
 	line-height:70px;
@@ -82,7 +70,7 @@ header {
 }
 .dropdown-wrap { /* dropdown 가로정렬 */
 	display: flex;
-	margin:15px 0px 15px 0px;
+	margin:16px 0px 14px 0px;
 	justify-content: center;
 	align-content: center;
 }
@@ -92,7 +80,16 @@ header {
 }
 .dropdown-sub-wrap { /* 서브메뉴 위치 absolute */
 	z-index: 20;
+	text-decoration: none; /* 밑줄 X */
 	position: absolute;
+  	list-style: none;
+	background-color: #fff; 
+	-webkit-background-clip: padding-box; 
+	background-clip: padding-box; 
+	border: 1px solid #ccc; 
+	border: 1px solid rgba(0, 0, 0, .15); 
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175); 
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
 .dropdown-menu-wrap .dropdown-sub { /* 서브메뉴 숨기기 */
 	/* background-color: white; */
@@ -103,7 +100,7 @@ header {
 }
 
 /* 메뉴 요소 설정 */
-.dropdown-main,.dropdown-sub { /* 메뉴 크기 및 내용 정렬 */
+.dropdown-main { /* 메뉴 크기 및 내용 정렬 */
 	margin: 0;
 	padding: 0;
 	width: 100px;
@@ -115,17 +112,32 @@ header {
 	justify-content: center;
 	align-items: center;            
 }
+.dropdown-sub { /* 메뉴 크기 및 내용 정렬 */
+	margin: 0;
+	padding: 0;
+	width: 100px;
+	height: 34px;
+	text-decoration: none; /* 밑줄 X */
+	font-size: 16px;
+		
+	/* 요소 내용 가운데 정렬*/
+	display: flex;
+	justify-content: center;
+	align-items: center;            
+}
 .dropdown-menu-wrap .dropdown-main { /* 메인메뉴 */
 	background-color: white;
 }
 .dropdown-menu-wrap:hover .dropdown-main { /* 메인메뉴(hover) */
-	background-color: gray;
+	background-color: #f4edd8;
+	border-top-left-radius: 10px; 
+	border-top-right-radius: 10px; 
 }
 .dropdown-sub { /* 서브메뉴 */
 	background-color: white;
 }
 .dropdown-sub:hover { /* 서브메뉴(hover)*/
-	background-color: yellow;
+	background-color: #eee;
 }
 
 /* 로그인 모달창영역 */

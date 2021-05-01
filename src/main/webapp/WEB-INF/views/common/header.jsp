@@ -48,7 +48,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 					<a href="${ctxPath}/search?cate1No=${state.index}"><div class="dropdown-main">${item}</div></a>
 					<div class="dropdown-sub-wrap">
 						<c:forEach items="<%=Constant.cate2Name%>" begin="1" varStatus="state2" var="item2">
-						<a href="${ctxPath}/search?cate1No=${state.index}&cate2No=${state2.index}"><div class="dropdown-sub">${item2}</div></a>
+						<a href="${ctxPath}/search?cate1No=${state.index}&cate2No=${state2.index}"><div class="dropdown-sub">&nbsp;${item2}&nbsp;</div></a>
 						</c:forEach>
 					</div>
 				</div>
@@ -60,9 +60,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
     			<table>
 				<tr>
 					<td align="right"><input type="search" name="keyword" id="input_txt_src" placeholder="검색어" /></td>
-					<td align="left"><button type="submit" class="btn btn-primary btn-sm">검색 <i class="fas fa-search"></i></button>
-						<!-- bootstrap과의 css 충돌로 인해 div 사용 -->
-						<!-- <div id="btn_src_div1"><div id="btn_src_div2"><input type="submit" id="btn_src" value="검색" /></div></div> --></td>
+					<td align="left"><button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-search"></i></button>
 				</tr>
 				</table>
 			</form>

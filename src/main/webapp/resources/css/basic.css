@@ -34,14 +34,26 @@ section {
 /* section body > aside 		>> aside_area  : aside 메뉴 영역 
 				> contents_area 			   : 본문(contents) 영역 */
 #aside {
-	flex: 1;
-	background-color: #e0e0e0;
+	flex: 2;
+	/* background-color: #e0e0e0; */
 }
 #aside_area {
+	width:220px;
 	padding:20px 2px 20px 2px;
+	/* z-index: 18; */
+	text-decoration: none; /* 밑줄 X */
+	position: absolute;
+  	list-style: none;
+	background-color: #fff; 
+	-webkit-background-clip: padding-box; 
+	background-clip: padding-box; 
+	border: 1px solid #ccc; 
+	border: 1px solid rgba(0, 0, 0, .15); 
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175); 
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
 #contents_area {
-	flex: 7;
+	flex: 9;
 	background-color: #ffffff;
 	text-align: center;
 /*	border: 2px solid black;	 div 구분용 */

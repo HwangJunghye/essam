@@ -24,9 +24,9 @@
 		<table style="width:100%"><tr>	
 		<c:forEach var="eclass" items="${myList}">
 			<td align="center">
-			<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:160px;">
+			<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:190px;">
 				<table>
-				<tr><td><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="margin-bottom:10px;"></a></td></tr>
+				<tr><td><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="width:170px;height:100px;margin-bottom:10px;"></a></td></tr>
 				<tr><td>${eclass.mbNickName}</td></tr>
 				<tr><td><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></td></tr>
 				</table>
@@ -50,9 +50,9 @@
 		<table style="width:100%;"><tr>	
 		<c:forEach var="eclass" items="${nList}">
 			<td align="center">
-			<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:160px;">
+			<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:190px;">
 				<table>
-				<tr><td><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="margin-bottom:10px;"></a></td></tr>
+				<tr><td><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="width:170px;height:100px;margin-bottom:10px;"></a></td></tr>
 				<tr><td>${eclass.mbNickName}</td></tr>
 				<tr><td><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></td></tr>
 				</table>
@@ -76,9 +76,9 @@
 		<table style="width:100%"><tr>	
 		<c:forEach var="eclass" items="${hList}">
 			<td align="center">
-			<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:160px;">
+			<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:190px;">
 				<table>
-				<tr><td><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="margin-bottom:10px;"></a></td></tr>
+				<tr><td><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="width:170px;height:100px;margin-bottom:10px;"></a></td></tr>
 				<tr><td>${eclass.mbNickName}</td></tr>
 				<tr><td><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></td></tr>
 				</table>
