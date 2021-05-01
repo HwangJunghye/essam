@@ -179,8 +179,10 @@ public class ClassMM {
 		
 		if(updatedOrNot) { //등록(수정) 성공시
 			mav.setViewName("redirect:/class/classinfo_t?clsNo="+cb.getClsNo()); //.jsp
+			System.out.println("클래스 수정/등록 성공");
 		}else { //등록(수정) 실패시
 			mav.setViewName("redirect:class/class_wirte"); //.jsp
+			System.out.println("클래스 수정/등록 실패");
 		}
 		return mav;
 	}

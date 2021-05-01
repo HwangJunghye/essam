@@ -84,6 +84,8 @@ width:350px;
 		</tr>
 		</table>
 </c:if>
+
+<c:if test="${!empty clsInfo}">
 <input type="hidden" name="clsNo" value="${param.clsNo}">
 <table id="inputTable">
 <tr>
@@ -158,6 +160,86 @@ width:350px;
 	</td>
 </tr>
 </table>
+</c:if>
+
+<c:if test="${empty clsInfo}">
+<table id="inputTable">
+<tr>
+<td class="object_name">카테고리1:</td>
+<td class="object_con">&emsp;
+	<input type="radio" name="cate1No" value="1" required/>유아&nbsp;
+	<input type="radio" name="cate1No" value="2"/>초등&nbsp;
+	<input type="radio" name="cate1No" value="3"/>중등&nbsp;
+	<input type="radio" name="cate1No" value="4"/>고등&nbsp;
+	<input type="radio" name="cate1No" value="5"/>특목&nbsp;
+	<input type="radio" name="cate1No" value="6"/>기타
+</td>
+</tr>
+<tr>
+<td class="object_name">카테고리2:</td>
+<td class="object_con">&emsp;
+	<input type="radio" name="cate2No" value="1" required/>국어&nbsp;
+	<input type="radio" name="cate2No" value="2"/>영어&nbsp;
+	<input type="radio" name="cate2No" value="3"/>수학&nbsp;
+	<input type="radio" name="cate2No" value="4"/>과학&nbsp;
+	<input type="radio" name="cate2No" value="5"/>논술&nbsp;
+	<input type="radio" name="cate2No" value="6"/>독서&nbsp;
+	<input type="radio" name="cate2No" value="7"/>입시컨설팅&nbsp;
+	<input type="radio" name="cate2No" value="8"/>기타
+</td>
+</tr>
+
+<tr>
+<td class="object_name">클래스명:</td>
+<td class="object_con">&emsp;<input type="text" name="clsName" required/>
+</td>
+</tr>
+
+<tr>
+<td class="object_name">클래스 정원:</td>
+<td class="object_con">&emsp;<input type="number" name="clsLimit" required/> (명)</td>
+</tr>
+
+<tr>
+<td class="object_name">커버이미지:</td>
+<td class="object_con">&emsp;<input type="file" name="file"></td>
+</tr>
+
+<tr>
+<td class="object_name">한줄 소개:</td>
+<td class="object_con">&emsp;<input type="text" name="clsIntro" required/>
+</td>
+</tr>
+
+<tr>
+<td class="object_name">상세 소개:</td>
+<td class="object_con">&emsp;<textarea cols="45" rows="8" name="clsDesc" required></textarea>
+</td>
+</tr>
+
+<tr>
+<td class="object_name">가격:</td>
+<td class="object_con">&emsp;<input type="number" name="clsPrice" > (/월)</td>
+</tr>
+
+<tr>
+<td class="object_name">키워드:</td>
+<td class="object_con">&emsp;<input type="text" name="clsKeyword"></td>
+</tr>
+<tr>
+<td class="object_name">zoom링크:</td>
+<td class="object_con">&emsp;<input type="text" name="zoomLink"></td>
+</tr>
+<tr>
+<td class="object_name">zoom비밀번호:</td>
+<td class="object_con">&emsp;<input type="text" name="zoomPwd">
+	</td>
+</tr>
+</table>
+</c:if>
+
+
+
 	<br/>
 	<br/>
 	<input type="button" class="btn" value="취소" onclick="history.back(-1);">
