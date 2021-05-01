@@ -11,6 +11,8 @@
 <body>
 
 	<div id="aside_menu">
+		&nbsp;<i class="far fa-grin-beam"></i> <span style="font-weight: bold;">${sessionScope.loginData.mbNickName}</span> 님!<br>
+		&nbsp;(${sessionScope.loginData.mbId})<hr>
 		<!-- 로그인 상태 -->
 		<c:if test="${!empty sessionScope.loginData}">
 			<!-- 학생인 경우 -->
@@ -86,6 +88,7 @@
 			</c:if>
 			
 		</c:if>
+		<br><br><br>
 	</div>
 <script>
 

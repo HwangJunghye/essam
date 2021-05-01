@@ -48,9 +48,7 @@ public class BMM {
 	private IDDao DDao;
 	@Autowired
 	private ICDao mDao;
-	
-	ModelAndView mav;
-	
+		
 	/**
 	 * (메인) 클래스 리스트 가져오기
 	 * @Author 고연미 on 28/04/2021
@@ -76,7 +74,7 @@ public class BMM {
 	 * @Author 고연미 on 28/04/2021
 	 */
 	public ModelAndView goClassInfo(String clsNo, HttpServletRequest request) {
-		mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		String sessionId, mbId = null;
 		
 		//클래스번호가 없으면 메인으로 이동
@@ -123,7 +121,7 @@ public class BMM {
 	 * @Author 고연미 on 28/04/2021
 	 */
 	public ModelAndView goClassClassInfo(String clsNo, HttpSession session) {
-		mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		//세션에서 mbId 가져오기
 		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
 		
@@ -160,7 +158,7 @@ public class BMM {
 	 */
 	@Transactional
 	public ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
-		mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		//세션에서 mbId 가져오기
 		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
 		String mbId= loginData.getMbId();
@@ -196,7 +194,7 @@ public class BMM {
 			pageNum = (Integer)redirectMap.get("pageNum");  
 		}
 	    
-		mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		//pageNum이 null이면 1로 세팅
 		pageNum = (pageNum==null)? 1 : pageNum;
 		
@@ -262,7 +260,7 @@ public class BMM {
 	 * @Author 고연미 on 28/04/2021
 	 */
 	public ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) {
-		mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		//pageNum이 null이면 1로 세팅
 		pageNum = (pageNum==null)? 1 : pageNum;
 		
@@ -302,7 +300,7 @@ public class BMM {
 	 */
 	@Transactional
 	public ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
-		mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		boolean result = false;		//게시판 저장 결과
 		int fileTypeNo = 0;			//파일타입번호
 		String clsBrdNo = null;		//글번호
@@ -396,7 +394,7 @@ public class BMM {
 			throw new CommonException("[오류] 페이지를 리로드할 수 없습니다.\n\n메인화면으로 이동합니다.");
 		}
 	
-		mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		//게시글정보 가져와 bean에 담기
 		BoardBean board = bDao.getBoardRead(clsBrdNo);	
 		//가져온 게시글정보가 있으면
@@ -465,7 +463,7 @@ public class BMM {
 	 */
 	@Transactional
 	public ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) {
-		mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		boolean result = false;		
 		//게시글정보 가져와 bean에 담기
 		BoardBean board = bDao.getBoardRead(clsBrdNo);	

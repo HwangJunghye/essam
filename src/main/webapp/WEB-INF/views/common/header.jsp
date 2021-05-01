@@ -39,7 +39,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 <body>
 <header>
 	<div id="nav_area">
-		<div id="nav_area1"><a href="${ctxPath}/"><img alt="essamLogo" src="${ctxPath}/resources/images/essamlogo.png" style="width:90px; height:90px;"></a></div>
+		<div id="nav_area1"><a href="${ctxPath}/"><img alt="essamLogo" src="${ctxPath}/resources/images/essamlogo.png" style="height:75px;"></a></div>
 		<div id="nav_area2">
 			<!-- 드롭다운 메뉴 -->
 			<div class="dropdown-wrap">
