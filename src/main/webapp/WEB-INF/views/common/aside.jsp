@@ -43,7 +43,7 @@
 					<li class="main_item"><a href="${ctxPath}/class/classinfo/write">클래스 개설</a></li>
 					<li class="main_item" id="main"><a href="${ctxPath}/myclass_t">마이 클래스</a>
 						<!-- 2차 메뉴 -->
-						<c:if test="${!empty param.clsNo}">
+						<c:if test="${!empty param.clsNo || !empty clsNo}">
 						<ul class="second_menu">
 							<li class="second_item"><a href="${ctxPath}/class/classinfo?clsNo=${param.clsNo}">클래스 소개</a></li>
 							<li class="second_item"><a href="${ctxPath}/class/curriculum?clsNo=${param.clsNo}">커리큘럼</a></li>

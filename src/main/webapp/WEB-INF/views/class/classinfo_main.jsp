@@ -19,7 +19,8 @@
 	<!---------- 본문 시작 ---------->
 	
 	<div id="classInfo_area1">
-		<div class="container" style="background-color:#fffff;"><br>
+		<div class="container" style="background-color:#fffff;">
+			<img src="${ctxPath}/getimage?fileNo=${classInfo.fileNo}" style="margin-bottom:30px;"><br>
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 			  <li class="nav-item" role="presentation">
 			    <a class="nav-link active" href="#info_cls" >클래스소개</a>
@@ -34,13 +35,11 @@
 			<table id="info_cls">
 			<tr>
 				<td align="left" style="padding:20px 0;">
-				<img src="${ctxPath}/getimage?fileNo=${classInfo.fileNo}">
-				<p>
 				<i class="far fa-caret-square-right"></i> 카테고리 : ${classInfo.cate1Name} > ${classInfo.cate2Name}<br/>
 				<i class="far fa-caret-square-right"></i> 클래스명 : ${classInfo.clsName}<br/>
 				<i class="far fa-caret-square-right"></i> 정원 : <fmt:formatNumber value="${classInfo.clsLimit}" type="number"/> 명<br/>
 				<i class="far fa-caret-square-right"></i> 한줄 소개 : ${classInfo.clsIntro}<br/><br>
-				<span style="white-space:pre-wrap;word-break:break-all;">${classInfo.clsDesc}</span><br/></p>
+				<span style="white-space:pre-wrap;word-break:break-all;">${classInfo.clsDesc}</span><br/>
 				</td>
 			</tr>
 			</table><br>

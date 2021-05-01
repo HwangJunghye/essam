@@ -455,7 +455,7 @@ public class BMM {
 		sb.append("<input type='hidden' name='clsNo' value='"+ board.getClsNo() +"'>\n");
 		sb.append("<input type='hidden' name='pageNum' value='"+ pageNum +"'>\n");
 		sb.append("<input type='submit' value='수정'> ");
-		sb.append("<input type='button' value='삭제' onclick=\"location.href='"+ ctxPath +"/class/boarddelete?clsBrdNo="+ board.getClsBrdNo() +"&pageNum="+ pageNum +"';\">\n");
+		sb.append("<input type='button' value='삭제' onclick=\"cfmDelBrd()\">\n");
 		sb.append("</form>");
 		return sb.toString();
 	}

@@ -69,6 +69,15 @@
 			
 			<br><br><br><br>
 		</div>
+		
+		<script>
+		function cfmDelBrd() {
+			let msg = confirm('게시글을 정말 삭제하시겠습니까?'); 
+			if(msg) {
+				location.href="${ctxPath}/class/boarddelete?clsBrdNo=${boardData.clsBrdNo}&pageNum=${pageNum}";
+			}
+		}
+		</script>
 
 	<!---------- 본문 끝 ---------->
 	</div>
