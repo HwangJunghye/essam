@@ -67,7 +67,7 @@
 			</table></p>
 			<%@ include file="../board/replyList.jsp" %>
 			
-			<br><br><br><br>
+			<br><br><br><br> 
 		</div>
 		
 		<script>

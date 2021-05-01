@@ -457,7 +457,7 @@ public class BMM {
 		sb.append("<input type='submit' value='수정'> ");
 		sb.append("<input type='button' value='삭제' onclick=\"cfmDelBrd()\">\n");
 		sb.append("</form>");
-		return sb.toString();
+		return sb.toString(); 
 	}
 	/**
 	 * 게시글 삭제

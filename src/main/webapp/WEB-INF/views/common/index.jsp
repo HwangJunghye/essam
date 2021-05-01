@@ -43,7 +43,7 @@
 	<c:if test="${empty nList}">
 		<table style="width:90%" align="center">
 		<tr>
-			<td align="left">등록된 New 클래스 정보가 없습니다.</td>
+			<td align="left">등록된 New 클래스 정보가 없습니다. </td>
 		</tr></table>
 	</c:if>
 	<c:if test="${!empty nList}">

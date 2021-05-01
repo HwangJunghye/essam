@@ -14,7 +14,7 @@
 	</select>
 	<select id="getClassListHot" resultType="classbean">
 	<![CDATA[
-		SELECT * FROM V_CLASSBEAN 
+		SELECT * FROM V_CLASSBEAN  
 		WHERE CLSNO IN (SELECT * FROM V_HOTCLSNO WHERE ROWNUM<=5)
 	]]>
 	</select>
