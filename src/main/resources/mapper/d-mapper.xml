@@ -46,8 +46,11 @@
 	</select>
 	
 	<insert id="addReply">
-		INSERT INTO CLS_BRD_REP (clsBrdRepNo, clsBrdNo, mbId, fileNo, clsBrdRepDate, clsBrdRepContent)
-		VALUES (#{clsBrdRepNo}, #{clsBrdNo}, #{mbId}, #{fileNo}, #{clsBrdRepDate}, #{clsBrdRepContent})
+		INSERT INTO CLS_BRD_REP 
+		(clsBrdRepNo, clsBrdNo, mbId, fileNo, clsBrdRepDate, clsBrdRepContent)
+		VALUES 
+		(CLS_BRD_REP_SEQ.NEXTVAL, #{clsBrdNo}, #{mbId}, #{fileNo}, SYSDATE, 
+																#{clsBrdRepContent})
 	</insert>
 	
 	<select id="getReply" resultType="replybean">

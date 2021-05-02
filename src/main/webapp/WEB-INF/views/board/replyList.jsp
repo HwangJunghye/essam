@@ -17,7 +17,9 @@
 		// 폼의 일부 데이터만 저장
 	 	let formData = new FormData();
 		formData.append("clsBrdNo", bNo);
-		//formData.append("fileNo", $('#file').val());
+		formData.append($('#file')[0].files[0], $('#file'));
+		
+		/* formData.append("fileNo", $('#file')); */
 		formData.append("clsBrdRepContent", $('#clsBrdRepContent').val());
 		console.log("formData === ", formData);
 
@@ -25,7 +27,8 @@
 			//댓글등록
 			$.ajax({
 				url: "${ctxPath}/class/addreply",
-				method: "post",
+				processData: false,   //urlencoded(쿼리스트링 형식) 처리 금지
+			    contentType: false,
 				type: "post",
 				data : formData,
 				dataType : 'json'
