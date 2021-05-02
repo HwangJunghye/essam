@@ -84,7 +84,7 @@ width:350px;
 		</tr>
 		</table>
 </c:if>
-
+<!-- 클래스 정보 있으면 클래스 수정 -->
 <c:if test="${!empty clsInfo}">
 <input type="hidden" name="clsNo" value="${param.clsNo}">
 <table id="inputTable">
@@ -161,7 +161,7 @@ width:350px;
 </tr>
 </table>
 </c:if>
-
+<!-- 클래스 정보 없으면 클래스 등록 -->
 <c:if test="${empty clsInfo}">
 <table id="inputTable">
 <tr>
