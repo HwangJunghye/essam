@@ -28,6 +28,8 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="shortcut icon" href="${ctxPath}/resources/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="${ctxPath}/resources/images/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/header.css">
 <script src="${ctxPath}/resources/js/header.js"></script>
 <script>

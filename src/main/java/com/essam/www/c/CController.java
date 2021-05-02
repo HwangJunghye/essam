@@ -92,13 +92,19 @@ public class CController {
 		return mav; 
 	}
 	
+//커리큘럼 등록 이동하기 
+	@RequestMapping(value = "/class/curriculum/write")
+	ModelAndView goClassCurriculumWrite(String clsNo) throws CommonException {
+		ModelAndView mav = mm.classCurriculumAdd(clsNo);
+		mav.addObject("navtext", "커리큘럼 등록/수정");
+		return mav; //.jsp
+	}
+	
 	
 
 //동영상 페이지 이동
 //동영상 제목,시작일,종료일 가져오기
-//커리큘럼 등록 이동
 //커리큘럼 등록
-//커리큘럼 수정 이동
 //커리큘럼 수정
 
 

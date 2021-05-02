@@ -205,6 +205,7 @@ public class CMM {
 		} else { // 등록된 커리큘럼 정보가 없다면
 			mav.setViewName("curriculum/curriculum_list"); // 커리큘럼보기 페이지로
 			mav.addObject("msg", "등록된 커리큘럼 정보가 없습니다");
+			mav.addObject("clsNo", clsNo);
 		}
 		return mav;
 	}
@@ -234,13 +235,42 @@ public class CMM {
 		return mav;
 	}
 
+	//커리큘럼 등록 이동
+	public ModelAndView classCurriculumAdd(String clsNo) throws CommonException {
+		ModelAndView mav = new ModelAndView();
+		CurriculumBean curriInfo = null;
+		curriInfo = mDao.getCurriculumAdd(clsNo);
+		//int curTypeNo = curriInfo.getCurTypeNo();
+		int curTypeNo = 2;
+		//System.out.println("curTypeNo");
+		
+		if (curriInfo != null) { // 커리큘럼 정보가 있다면(수정뷰)
+			if(curTypeNo == 1) { // 커리큘럼타입이 동영상이면, curTypeNo=1 : 동영상, curTypeNo=2 : 실시간
+				// 가져온 정보를 mav에 넣기
+				mav.addObject("curriInfo", curriInfo);
+				// curriculum_write.jsp로 이동하기 위해 viewname 지정
+				mav.setViewName("curriculum/curriculum_write"); // 커리큘럼 등록, 수정 페이지로
+			}else if(curTypeNo == 2) { //커리큘럼타입이 실시간이면
+				// 가져온 정보를 mav에 넣기
+				mav.addObject("curriInfo", curriInfo);
+				// curriculum_write.jsp로 이동하기 위해 viewname 지정
+				mav.setViewName("curriculum/curriculum_write"); // 커리큘럼 등록, 수정 페이지로
+			}else { // 커리큐럼타입이 1 또는 2가 아닌 경우(정상적인 경우는 1 또는 2)
+				throw new CommonException("커리큘럼타입 예외발생");	
+			}
+		}else { // 커리큘럼 정보가 없다면(등록뷰)
+			mav.setViewName("curriculum/curriculum_write"); // 커리큘럼 등록, 수정 페이지로
+			mav.addObject("msg", "등록된 커리큘럼 정보가 없습니다");
+		}
+		return mav;
+	}
+
 
 
 //동영상 페이지 이동
 //동영상 제목,시작일,종료일 가져오기
-//커리큘럼 등록 이동
+
 //커리큘럼 등록
-//커리큘럼 수정 이동
 //커리큘럼 수정
 
 }

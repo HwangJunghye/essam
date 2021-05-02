@@ -26,7 +26,7 @@
 		<table class="container">
 		<tr>
 			<td align="left" style="padding:20px 0;">
-				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${curriInfo.clsNo}</span></h6>
+				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${curriInfo.clsName}</span></h6>
 				<hr class="hr_${mbColor}"></td>
 		</tr>
 		</table>

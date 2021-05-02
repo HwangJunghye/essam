@@ -53,15 +53,15 @@
 				</c:forEach>
 			</table>
 			<c:if test="${mbType==2}">
-				<button type="button" onclick="location.href='${ctxPath}/class/curriculum/write'">등록</button>
+				<button type="button" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${curriInfo.clsNo}'">등록</button>
 			</c:if>
 		</c:if>
 
 		<!-- curriInfo가 없으면 -->
-		<c:if test="${empty curInfo}">
+		<c:if test="${empty curriInfo}">
 			<h3>등록된 커리큘럼이 없습니다.</h3>
 			<c:if test="${mbType==2}">
-				<button type="button" onclick="location.href='${ctxPath}/class/curriculum/write'">등록</button>
+				<button type="button" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}'">등록</button>
 			</c:if>
 		</c:if>
 		

@@ -26,6 +26,10 @@
 	</select>
 	
 	<select id="getCurriculumRead" resultType="curriculumbean">
-		SELECT * FROM CURRI WHERE CLSNO=#{clsNo} AND CURNO=#{curNo}
+		SELECT * FROM V_CURRI WHERE CLSNO=#{clsNo} AND CURNO=#{curNo}
+	</select>
+	
+	<select id="getCurriculumAdd" resultType="curriculumbean">
+		SELECT * FROM V_CURRI WHERE CLSNO=#{clsNo}
 	</select>
 </mapper>

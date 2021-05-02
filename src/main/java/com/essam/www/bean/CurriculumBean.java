@@ -20,5 +20,5 @@ public class CurriculumBean {
 	private String curDisc;         //커리큘럼 설명 NCLOB
 	private int curIsCancel;        //휴강처리여부 NUMBER
 	private String curCancelReason; //휴강사유 NCOLB
-	
+	private String clsName;         //클래스명 NVARCHAR 2
 }

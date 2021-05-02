@@ -17,4 +17,6 @@ public interface ICDao {
 
 	CurriculumBean getCurriculumRead(String clsNo, String curNo);
 
+	CurriculumBean getCurriculumAdd(String clsNo);
+
 }
