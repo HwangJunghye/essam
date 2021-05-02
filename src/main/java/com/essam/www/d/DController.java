@@ -39,7 +39,9 @@ public class DController {
 	//댓글 목록 가져오기(ajax)
 	@RequestMapping(value="/class/getreplylist")
 	@ResponseBody List<ReplyBean> getReplyList(String clsBrdNo){
+		System.out.println("clsBrdNo =====> "+ clsBrdNo);
 		List<ReplyBean> rList = dm.getReplyList(clsBrdNo);
+		System.out.println("rList ====> "+ rList.size());
 		return rList;
 	}
 	//댓글 등록(ajax)	
