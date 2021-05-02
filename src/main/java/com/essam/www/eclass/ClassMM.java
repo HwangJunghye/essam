@@ -186,4 +186,15 @@ public class ClassMM {
 		}
 		return mav;
 	}
+
+	// (CM28)클래스 삭제
+	public ModelAndView classDelete(String clsNo) {
+		//클래스 수강중인 인원이 있으면 클래스 삭제 불가 메시지 띄우기
+		//클래스 수강중인 인원이 없으면 클래스 삭제 가능
+		
+		//클래스 삭제 완료시 클래스 관리 페이지로 이동
+		return null;
+	}
+	
+	
 }

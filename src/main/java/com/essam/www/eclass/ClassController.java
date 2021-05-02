@@ -37,8 +37,7 @@ public class ClassController {
 	// (CM16)댓글 목록 가져오기(ajax)	
 	// (CM17)댓글 등록(ajax)	
 	// (CM18)댓글 수정(ajax)	
-	// (CM19)댓글 삭제(ajax)	
-	
+	// (CM19)댓글 삭제(ajax)
 	
 	
 	// (CM20+CM21)출석 현황 이동 + 출석현황 가져오기
@@ -73,6 +72,12 @@ public class ClassController {
 	@PostMapping(value = "/class/classinfo/update")
 	ModelAndView classClassinfoUpdate(MultipartHttpServletRequest mReq, HttpServletRequest request, ClassBean cb) {
 		ModelAndView mav = cm.classClassinfoUpdate(mReq, request, cb);
+		return mav;
+		}
+	// (CM28)클래스 삭제
+	@RequestMapping(value = "/class/deleteclass")
+	ModelAndView classDelete(String clsNo) {
+		ModelAndView mav = cm.classDelete(clsNo);
 		return mav;
 		}
 }
