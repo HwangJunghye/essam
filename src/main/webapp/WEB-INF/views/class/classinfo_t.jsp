@@ -57,7 +57,7 @@ cursor: pointer;
 		</tr>
 		</table><br><br>
 		<input type="button" class="btn" value="수정" onclick="location.href='${ctxPath}/class/classinfo/write?clsNo=${param.clsNo}'">
-		
+		<input type="button" class="btn" value="삭제" onclick="location.href='${ctxPath}/class/deleteclass?clsNo=${param.clsNo}'">
 		
 		
 		<br><br><br><br><br>
