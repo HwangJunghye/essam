@@ -47,6 +47,7 @@ public class DController {
 	//댓글 등록(ajax)	
 	@RequestMapping(value = "/class/addreply")
 	@ResponseBody List<ReplyBean> addReply(ReplyBean rb, MultipartHttpServletRequest mReq){
+		System.out.println("여기 오나 ==============>"+ rb.getClsBrdNo());
 		List<ReplyBean> rList = dm.addReply(rb,mReq);
 		return rList;
 	}
