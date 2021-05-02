@@ -40,8 +40,8 @@ section {
 #aside_area {
 	width:220px;
 	padding:20px 2px 20px 2px;
-	/* z-index: 18; */
-	text-decoration: none; /* 밑줄 X */
+	/* 새로 추가 */
+	text-decoration: none !important; /* 밑줄 X */
 	position: absolute;
   	list-style: none;
 	background-color: #fff; 

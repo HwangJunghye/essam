@@ -1,8 +1,20 @@
 @charset "UTF-8";
 
 .second_menu{
-visibility:hidden;
+visibility:visible;
 }
 .third_menu{
 visibility:hidden;
+}
+ul.main_menu li {
+	list-style: none;
+    padding: 5px 0px 5px 0px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eeeeee;
+}
+ul.main_menu li a {
+	text-decoration: none; /* 밑줄 X */
+}
+ul.main_menu li:hover {
+	background-color: #efefef;
 }

@@ -1,13 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css"
-	href="${ctxPath}/resources/css/nav.css">
+<link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/aside.css">
 <body>
 
 	<div id="aside_menu">
@@ -20,10 +18,10 @@
 				
 				<!-- 1차 메뉴 -->
 				<ul class="main_menu">
-					<li class="main_item"><a href="${ctxPath}/mypage">계정관리</a></li>
+					<li class="main_item"><a href="${ctxPath}/mypage">계정 관리</a></li>
 					<li class="main_item" id="main"><a href="${ctxPath}/myclass_s">마이 클래스</a>
 						<!-- 2차 메뉴 -->
-						<c:if test="${!empty param.clsNo}">
+						<c:if test="${!empty param.clsNo || !empty clsNo || !empty boardData.clsNo}"> 
 						<ul class="second_menu">
 							<li class="second_item"><a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
 							<li class="second_item"><a href="${ctxPath}/class/curriculum?clsNo=${param.clsNo}">커리큘럼</a></li>
@@ -88,10 +86,11 @@
 			</c:if>
 			
 		</c:if>
-		<br><br><br>
+		<br>
 	</div>
 <script>
-
+/* $(function() {
+	$(".second_menu").show();
 	$("#main").hover(function(){
 		
 		$(".second_menu").css('visibility','visible');
@@ -100,13 +99,15 @@
 		$(".second_menu").css('visibility','hidden');
 	});
 	
-$("#second").hover(function(){
+	$("#second").hover(function(){
 		
 		$(".third_menu").css('visibility','visible');
 		
 	}, function(){
 		$(".third_menu").css('visibility','hidden');
 	});
+	
+}); */
 </script>
 </body>
 </html>
