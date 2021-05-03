@@ -200,7 +200,7 @@ public class ClassMM {
 	public ModelAndView classDelete(String clsNo, RedirectAttributes rattr) {
 		ModelAndView mav = new ModelAndView();
 		// getClassInfo()에 clsNo 넘겨 클래스 정보 가져오기
-		ClassBean  classInfo = bDao.getClassInfo(clsNo);
+		ClassBean  classInfo = bDao.getClassInfo(clsNo); //파일 통합후 bDao-->cDao 변경요망
 		String fileNo = classInfo.getFileNo();
 		int clsRegiCnt =classInfo.getClsRegiCnt();
 		
