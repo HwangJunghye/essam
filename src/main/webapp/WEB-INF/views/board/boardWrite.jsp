@@ -66,7 +66,7 @@
 					<p><br><input type="file" name="files" id="files" multiple/></p></td>
 			</tr>
 			</table><br>
-			<p><button>등록</button> <input type="button" value="이전으로" onClick="history.back();"></p>
+			<p><button class='btn_normal_t'>등록</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="이전으로" onClick="history.back();" class='btn_normal_t w100'></p>
 			</form><br><br><br><br>
 		</div>
 		

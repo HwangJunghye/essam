@@ -33,7 +33,7 @@
 
 		<div class="container">
 			<table width="86%" align="center" class="tbl_brd01">
-			<tr>
+			<tr style="background-color:#eeeeee;">
 				<td colspan=3 align="left">[${boardData.clsBrdNo}] ${boardData.clsBrdTitle}</td>
 			</tr>
 			<tr>
@@ -64,7 +64,7 @@
 			<table width="86%" align="center">
 			<tr>
 				<td align="left">${btnUpdate}</td>
-				<td align="right"><button type="button" id="goList" onclick="location.href='${ctxPath}/class/boardlist?clsNo=${boardData.clsNo}&clsBrdType=${boardData.clsBrdType}&pageNum=${pageNum}';">목록</button></td>
+				<td align="right"><button type="button" id="goList" onclick="location.href='${ctxPath}/class/boardlist?clsNo=${boardData.clsNo}&clsBrdType=${boardData.clsBrdType}&pageNum=${pageNum}';" class='btn_normal_t'>목록</button></td>
 			</tr>
 			</table></p>
 			<%@ include file="../board/replyList.jsp" %>

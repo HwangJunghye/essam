@@ -36,7 +36,7 @@
 			<td align="left">전체 : ${totalNum} 건</td>
 			<td align="right">
 				<c:if test="${sessionScope.loginData.mbType==2}">
-					<button type="button" onclick="location.href='${ctxPath}/class/goboardwrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}';">글쓰기 <i class="fas fa-pencil-alt"></i></button>
+					<button type="button" onclick="location.href='${ctxPath}/class/goboardwrite?clsNo=${clsNo}&clsBrdType=${clsBrdType}';" class='btn_normal_t w100'>글쓰기 <i class="fas fa-pencil-alt"></i></button>
 				</c:if></td>
 			<td></td></tr>
 		</table>

@@ -58,7 +58,21 @@ section {
 	text-align: center;
 /*	border: 2px solid black;	 div 구분용 */
 }
-
+/* 일반 버튼 - 강사 */
+.btn_normal_t {
+	width: 70px;
+	height: 36px;
+	background: #9E3C7E;
+	box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	color: #FFFFFF;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+}
+.w100 {
+	width: 100px;
+}
 /* 검색 영역 */
 #cls-list{
 	margin:auto;
@@ -80,6 +94,13 @@ section {
 	width:800px;
 	height:500px;	
 }
+.tbl_brd01 tr {
+	border-bottom: 2px solid #eeeeee;
+} 
+.tbl_brd01 td {
+	padding:10px;
+	line-height:30px;
+} 
 
 /* 클래스 영역 */
 .hr_t_color {
