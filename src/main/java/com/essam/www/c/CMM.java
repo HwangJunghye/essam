@@ -203,8 +203,9 @@ public class CMM {
 			mav.setViewName("curriculum/curriculum_list"); // 커리큘럼보기 페이지로
 			//return mav;
 		} else { // 등록된 커리큘럼 정보가 없다면
+			String msg = "등록된 커리큘럼 정보가 없습니다.";
 			mav.setViewName("curriculum/curriculum_list"); // 커리큘럼보기 페이지로
-			mav.addObject("msg", "등록된 커리큘럼 정보가 없습니다");
+			mav.addObject("msg", msg);
 			mav.addObject("clsNo", clsNo);
 		}
 		return mav;
