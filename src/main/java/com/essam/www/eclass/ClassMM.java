@@ -206,12 +206,12 @@ public class ClassMM {
 		
 		if(clsRegiCnt>=1){//클래스 clsRegiCnt 있으면 클래스 삭제 불가 메시지 띄우기 ->클래스 소개 화면으로 이동
 			rattr.addFlashAttribute("fMsg", "수강 중인 회원이 있어 클래스를 삭제할 수 없습니다.");
-			mav.setViewName("redirect:/member/myclass_t");
+			mav.setViewName("redirect:/myclass_t");
 		}else{//클래스 clsRegiCnt 없으면 클래스 삭제 진행
-			
+			//
 			rattr.addFlashAttribute("fMsg", "클래스 삭제 성공!");
 			//클래스 삭제 완료시 클래스 관리 페이지로 이동
-			mav.setViewName("redirect:/member/myclass_t");
+			mav.setViewName("redirect:/myclass_t");
 		}
 		return mav;
 	}
