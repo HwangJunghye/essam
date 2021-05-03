@@ -12,22 +12,18 @@
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 
 <style>
-      p.a {
-        cursor: pointer;
-        font-weight: bold;
+      .dong_div {
+        margin: 0 auto;
+      }
+      .sil_div {
+      	margin: 0 auto;
       }
 </style>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-  $(document).ready( function() {
-    $( 'p.a' ).click( function() {
-      $( 'p.b' ).toggle( 'slow' );
-    });
-  });
-</script>
-</head>
-<body>
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
 <section>
@@ -39,19 +35,47 @@
 	</div>
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->
-
-
 <h1>curriculum_write.jsp</h1>
-<p class="a">Click to toggle</p>
-<p class="b">Lorem ipsum dolor.</p>
+
 ${msg}<br/><br/><br/>
-<h1>Good Morning!!!</h1>
+
+	<input type="radio" name="chk" id="dong" checked>동영상
+	<input type="radio" name="chk" id="sil">실시간
+	
+	<div class="dong_div" id="dong_div">
+		<table width=200 height=100 border=2>
+			<tr>
+				<td> 동영상 영역 </td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="sil_div" id="sil_div">
+		<table width=200 height=100 border=2>
+			<tr>
+				<td> 실시간 영역 </td>
+			</tr>
+		</table>
+	</div>
+
 <!--------- 본문 끝 -------------->
 	</div>
 </div>
 </section>
 <%@ include file="../common/footer.jsp" %>
 
-
+<script>
+$(function() {
+   $('#sil_div').hide();
+   $('#dong').on("click",function() {
+      $('#dong_div').show();
+      $('#sil_div').hide();      
+   });
+   $('#sil').on("click",function() {
+      $('#dong_div').hide();
+      $('#sil_div').show();      
+   });
+})
+</script>
 </body>
 </html>
