@@ -35,7 +35,7 @@
 			<c:if test="${sessionScope.loginData.mbType==2}">
 			<!-- 1차 메뉴 -->
 				<ul class="main_menu">
-					<li class="main_item"><a href="${ctxPath}/mypage">계정관리</a></li>
+					<li class="main_item"><a href="${ctxPath}/mypage">계정 관리</a></li>
 					<li class="main_item"><a href="${ctxPath}/teacher_profile">프로필 관리</a></li>
 					<li class="main_item"><a href="${ctxPath}/class/classinfo/write">클래스 개설</a></li>
 					<li class="main_item" id="main"><a href="${ctxPath}/myclass_t">마이 클래스</a></li>

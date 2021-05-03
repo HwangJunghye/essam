@@ -66,22 +66,22 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 			</form>
 		</div>
 		<div id="nav_area4"><p class="text-center" style="margin-top:28px"><h6><span style="font-weight: bold;">
+			<!-- 로그아웃 상태 -->
 			<c:if test="${empty sessionScope.loginData}">
-				<!-- 로그아웃 상태 -->
 				<a href="#" data-toggle="modal" data-target="#moaModal">로그인</a>&nbsp;&nbsp;
 				<a href="${ctxPath}/join">회원가입</a>
 			</c:if> 
+			<!-- 로그인 상태 -->
 			<c:if test="${!empty sessionScope.loginData}">
-				<!-- 로그인 상태 -->
+				<!-- 학생인 경우 -->
 				<c:if test="${sessionScope.loginData.mbType==1}">
-					<!-- 학생인 경우 -->
-					학생로그인
+					<a id="mypage" href="${ctxPath}/myclass_s">마이클래스</a>
 				</c:if>
+				<!-- 강사인 경우 -->
 				<c:if test="${sessionScope.loginData.mbType==2}">
-					<!-- 강사인 경우 -->
-					강사로그인
+					<a id="mypage" href="${ctxPath}/myclass_t">마이클래스</a>
 				</c:if>
-				&nbsp;&nbsp;<a id="mypage" href="${ctxPath}/mypage">마이페이지</a>
+				&nbsp;&nbsp;<a id="mypage" href="${ctxPath}/mypage">계정관리</a>
 				&nbsp;&nbsp;<a id="logout" href="#">로그아웃</a>
 			</c:if></span></h6></p>
 		</div>

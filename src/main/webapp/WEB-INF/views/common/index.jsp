@@ -40,7 +40,7 @@
 
 	<table style="width:90%" align="center">
 	<tr>
-		<td align="left"><i class="far fa-hand-peace"></i><span style="font-weight: bold;"> New 클래스</span></td>
+		<td align="left"><i class="fas fa-angle-double-right"></i><span style="font-weight: bold;"> New 클래스</span></td>
 	</tr></table><br>
 	<c:if test="${empty nList}">
 		<table style="width:90%" align="center">
@@ -66,7 +66,7 @@
 	
 	<table style="width:90%" align="center">
 	<tr>
-		<td align="left"><i class="fas fa-hand-peace"></i><span style="font-weight: bold;"> Hot 클래스</span></td>
+		<td align="left"><i class="fas fa-angle-double-right"></i><span style="font-weight: bold;"> Hot 클래스</span></td>
 	</tr></table><br>
 	<c:if test="${empty hList}">
 		<table style="width:90%" align="center">
