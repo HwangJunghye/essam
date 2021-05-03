@@ -14,12 +14,15 @@
 	function addReply(){
 		let bNo = "${boardData.clsBrdNo}";	//글번호
 		console.log("bNo == ", bNo);
-		// 폼의 일부 데이터만 저장
-	 	let formData = new FormData();
-		formData.append("clsBrdNo", bNo);
-		formData.append($('#file')[0].files[0], $('#file'));
+		//FormData : js 지원 객체이므로 jQ객체($('#frm'))를 사용할수없다.
+		//js 객체로 파일 저장
+		let $obj = $("#file");
+		let files = $obj[0].files;
 		
-		/* formData.append("fileNo", $('#file')); */
+		//폼의 일부 데이터만 저장
+	 	let formData = new FormData();
+		formData.append("clsBrdNo", bNo);		
+		formData.append("file", files[0]);
 		formData.append("clsBrdRepContent", $('#clsBrdRepContent').val());
 		console.log("formData === ", formData);
 
@@ -33,11 +36,25 @@
 				data : formData,
 				dataType : 'json'
 			}).done((result)=>{
-				let add = result;	//첨부파일 리스트
-				$('#add').text('댓글등록성공');
-				//printAttachment(replylist);  //가져온 정보를 화면에 출력
+				$('#add').text('댓글등록 성공');
+				//console.log(result);
+				
+				let str = "<table>";
+				//댓글 리스트 리로드
+				$.each(result, function(index, reply) {
+					str += "<tr>";
+					str += "<td>"+ reply.mbNickName +"</td>";
+					str += "<td>"+ reply.clsBrdRepContent +"</td>";
+					str += "<td>"+ reply.clsBrdRepDate +"</td>";
+					str += "</tr>";
+				});	
+				str += "</table>";
+
+				$('#rTable').html(str);
+				$('#clsBrdRepContent').val('');
+				$('#clsBrdRepContent').focus();
 			}).fail(function(err) {
-				$('#add').text('댓글등록실패');
+				$('#add').text('댓글등록 실패');
 			});
 		}
 	}
@@ -93,7 +110,7 @@ $(function() {
 	});	
  --%>
 	<section>
-		<!-- 댓글등록 화면에 출력 -->
+		<!-- 댓글등록 화면에 출력 --><span id="add"></span>
 		<form id="frmReply" action="${ctxPath}/class/addreply" method="post" enctype="multipart/form-data">
 			<table>
 			<tr>
@@ -115,6 +132,7 @@ $(function() {
 			</tr>
 			</table>
 		</form>
+		<div id="rTable"></div>
 	</section>
 
 
