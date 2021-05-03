@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>클래스 관리> 마이 클래스</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
+<link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
+<link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 </head>
 <style>
 .clsList{
