@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -196,7 +197,7 @@ public class CMM {
 		mav.addObject("mbType", mbType);
 		
 		curriInfo = mDao.getCurriculumList(clsNo);
-		if (curriInfo != null) { // 커리큘럼 정보가 있다면
+		if (!ObjectUtils.isEmpty(curriInfo)) { // 커리큘럼 정보가 있다면
 			// 가져온 정보를 mav에 넣기
 			mav.addObject("curriInfo", curriInfo);
 			// class_curriculum_read.jsp로 이동하기 위해 viewname 지정
