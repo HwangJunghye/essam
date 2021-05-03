@@ -97,7 +97,7 @@ public class CController {
 	@RequestMapping(value = "/class/curriculum/write")
 	ModelAndView goClassCurriculumWrite(String clsNo, String clsName) throws CommonException {
 		ModelAndView mav = mm.classCurriculumAdd(clsNo);
-		mav.addObject("navtext", "커리큘럼 등록/수정");
+		mav.addObject("navtext", "커리큘럼 등록");
 		mav.addObject("clsName", clsName);
 		return mav; //.jsp
 	}

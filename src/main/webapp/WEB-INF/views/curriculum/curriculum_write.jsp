@@ -45,10 +45,11 @@
 	
 	<div id="wrap_dong_div" style="width:100%; height:100%; backbround:lightgray; position:relative;">
 
-		<input type="radio" name="chk" id="dong" checked>동영상
-		<input type="radio" name="chk" id="sil">실시간
+		
 		
 		<form action="/class/curriculum/write" method="post" enctype="multipart/form-data">
+			<input type="radio" name="curTypeNo" id="dong" value="1" checked>동영상
+			<input type="radio" name="curTypeNo" id="sil" value="2">실시간
 			<div class="dong_div" id="dong_div" style="width:900px; height:600px; margin:0 auto;">
 				<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
 					<tr>
@@ -101,6 +102,14 @@
 					<tr>
 						<th>설명</th>
 						<td><textarea name="curDisc"></textarea></td>
+					</tr>
+					<tr>
+						<th>줌링크</th>
+						<td><textarea name="zoomLink"></textarea></td>
+					</tr>
+					<tr>
+						<th>줌비밀번호</th>
+						<td><textarea name="zoomPwd"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan=2><input type="submit" class="btn_normal_t" value="등록" /></td>

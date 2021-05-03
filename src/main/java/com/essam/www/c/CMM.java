@@ -243,17 +243,14 @@ public class CMM {
 		ModelAndView mav = new ModelAndView();
 		CurriculumBean curriInfo = null;
 		curriInfo = mDao.getCurriculumAdd(clsNo);
-		//int curTypeNo = curriInfo.getCurTypeNo();
-		int curTypeNo = 2;
-		//System.out.println("curTypeNo");
 		
 		if (curriInfo != null) { // 커리큘럼 정보가 있다면(수정뷰)
-			if(curTypeNo == 1) { // 커리큘럼타입이 동영상이면, curTypeNo=1 : 동영상, curTypeNo=2 : 실시간
+			if(curriInfo.getCurTypeNo() == 1) { // 커리큘럼타입이 동영상이면, curTypeNo=1 : 동영상, curTypeNo=2 : 실시간
 				// 가져온 정보를 mav에 넣기
 				mav.addObject("curriInfo", curriInfo);
 				// curriculum_write.jsp로 이동하기 위해 viewname 지정
 				mav.setViewName("curriculum/curriculum_write"); // 커리큘럼 등록, 수정 페이지로
-			}else if(curTypeNo == 2) { //커리큘럼타입이 실시간이면
+			}else if(curriInfo.getCurTypeNo() == 2) { //커리큘럼타입이 실시간이면
 				// 가져온 정보를 mav에 넣기
 				mav.addObject("curriInfo", curriInfo);
 				// curriculum_write.jsp로 이동하기 위해 viewname 지정
