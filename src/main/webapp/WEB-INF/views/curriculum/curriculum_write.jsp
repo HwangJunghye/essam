@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>커리큘럼 등록</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
@@ -35,27 +35,79 @@
 	</div>
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->
-<h1>curriculum_write.jsp</h1>
-
-${msg}<br/><br/><br/>
-
-	<input type="radio" name="chk" id="dong" checked>동영상
-	<input type="radio" name="chk" id="sil">실시간
+	<table class="container">
+		<tr>
+			<td align="left" style="padding:20px 0;">
+				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
+				<hr class="hr_${mbColor}"></td>
+		</tr>
+	</table>
 	
-	<div class="dong_div" id="dong_div">
-		<table width=200 height=100 border=2>
-			<tr>
-				<td> 동영상 영역 </td>
-			</tr>
-		</table>
-	</div>
-	
-	<div class="sil_div" id="sil_div">
-		<table width=200 height=100 border=2>
-			<tr>
-				<td> 실시간 영역 </td>
-			</tr>
-		</table>
+	<div id="wrap_dong_div" style="width:100%; height:100%; backbround:lightgray; position:relative;">
+
+		<input type="radio" name="chk" id="dong" checked>동영상
+		<input type="radio" name="chk" id="sil">실시간
+		
+		<form action="/class/curriculum/write" method="post" enctype="multipart/form-data">
+			<div class="dong_div" id="dong_div" style="width:900px; height:600px; margin:0 auto;">
+				<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
+					<tr>
+						<th>제목</th>
+						<td><input type="text" name="curTitle" required /></td>
+					</tr>
+					<tr>
+						<th>동영상파일</th>
+						<td><input type="file" name="file" accept="video/mp4" required /></td>
+					</tr>
+					<tr>
+						<th>재생시작일</th>
+						<td>
+							<input type="date" name="curStartDate" min="1900-01-01" max="2100-12-31" required /> 
+						</td>
+					</tr>
+					<tr>
+						<th>재생종료일</th>
+						<td>
+							<input type="date" name="curEndDate" min="1900-01-01" max="2100-12-31" required /> 
+						</td>
+					</tr>
+					<tr>
+						<th>설명</th>
+						<td><textarea name="curDisc"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan=2><input type="submit" class="btn_normal_t" value="등록" /></td>
+					</tr>
+				</table>
+			</div>
+			<div class="sil_div" id="sil_div" style="width:900px; height:300px; margin:0 auto;">
+				<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
+					<tr>
+						<th>제목</th>
+						<td><input type="text" name="curTitle" required /></td>
+					</tr>
+					<tr>
+						<th>시작일시</th>
+						<td>
+							<input type="datetime-local" name="curStartDate" min="1900-01-01" max="2100-12-31" required /> 
+						</td>
+					</tr>
+					<tr>
+						<th>종료일시</th>
+						<td>
+							<input type="datetime-local" name="curEndDate" min="1900-01-01" max="2100-12-31" required /> 
+						</td>
+					</tr>
+					<tr>
+						<th>설명</th>
+						<td><textarea name="curDisc"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan=2><input type="submit" class="btn_normal_t" value="등록" /></td>
+					</tr>
+				</table>
+			</div>
+		</form>
 	</div>
 
 <!--------- 본문 끝 -------------->

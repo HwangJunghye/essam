@@ -63,7 +63,7 @@
 		<c:if test="${empty curriInfo}">
 			<h3>${msg}</h3>
 			<c:if test="${mbType==2}">
-				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}'">등록</button>
+				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}&clsName=${clsName}'">등록</button>
 			</c:if>
 		</c:if>
 		
