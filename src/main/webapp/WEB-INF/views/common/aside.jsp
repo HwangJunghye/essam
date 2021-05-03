@@ -20,18 +20,18 @@
 				<ul class="main_menu">
 					<li class="main_item"><a href="${ctxPath}/mypage">계정 관리</a></li>
 					<li class="main_item" id="main"><a href="${ctxPath}/myclass_s">마이 클래스</a>
+					</li>
+				</ul>
 						<!-- 2차 메뉴 -->
 						<c:if test="${!empty param.clsNo || !empty clsNo || !empty boardData.clsNo}"> 
 						<ul class="second_menu">
-							<li class="second_item"><a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
-							<li class="second_item"><a href="${ctxPath}/class/curriculum?clsNo=${param.clsNo}">커리큘럼</a></li>
-							<li class="second_item"><a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=2&pageNum=1">과제</a></li>
-							<li class="second_item"><a href="${ctxPath}/class/attend?clsNo=${param.clsNo}">출석현황</a></li>
-							<li class="second_item"><a href="${ctxPath}/class/classinfo?clsNo=${param.clsNo}">클래스소개</a></li>
+							<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
+							<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/curriculum?clsNo=${param.clsNo}">커리큘럼</a></li>
+							<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=2&pageNum=1">과제</a></li>
+							<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/attend?clsNo=${param.clsNo}">출석현황</a></li>
+							<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/classinfo?clsNo=${param.clsNo}">클래스소개</a></li>
 						</ul>
 						</c:if>
-					</li>
-				</ul>
 			</c:if>
 			
 			<!-- 강사인 경우 -->

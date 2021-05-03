@@ -7,14 +7,23 @@ visibility:visible;
 visibility:hidden;
 }
 ul.main_menu li {
+	list-style-type: circle;
+    padding: 5px 0px 2px 0px;
+    margin-top: 5px;
+    border-bottom: 2px solid #eeeeee;
+    font-weight:bold;
+}
+ul.second_menu li {
 	list-style: none;
-    padding: 5px 0px 5px 0px;
+    padding: 5px 0px 2px 0px;
     margin-bottom: 5px;
     border-bottom: 2px solid #eeeeee;
+    font-weight:bold;
 }
 ul.main_menu li a {
 	text-decoration: none; /* 밑줄 X */
 }
-ul.main_menu li:hover {
+ul.main_menu li:hover,
+ul.second_menu li:hover {
 	background-color: #efefef;
 }
