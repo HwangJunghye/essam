@@ -201,14 +201,15 @@ public class CMM {
 			mav.addObject("curriInfo", curriInfo);
 			// class_curriculum_read.jsp로 이동하기 위해 viewname 지정
 			mav.setViewName("curriculum/curriculum_list"); // 커리큘럼보기 페이지로
-			//return mav;
+			return mav;
 		} else { // 등록된 커리큘럼 정보가 없다면
 			String msg = "등록된 커리큘럼 정보가 없습니다.";
 			mav.setViewName("curriculum/curriculum_list"); // 커리큘럼보기 페이지로
 			mav.addObject("msg", msg);
 			mav.addObject("clsNo", clsNo);
+			return mav;
 		}
-		return mav;
+		
 	}
 
 	//커리큘럼 상세정보 보기 이동 + 커리큘럼 상세정보 가져오기

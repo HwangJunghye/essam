@@ -78,9 +78,10 @@ public class CController {
 
 //클래스 커리큘럼 이동 + 커리큘럼 목록 가져오기
 	@RequestMapping(value = "/class/curriculum")
-	ModelAndView goClassCurriculum(HttpSession session, String clsNo) {
+	ModelAndView goClassCurriculum(HttpSession session, String clsNo, String clsName) {
 		ModelAndView mav = mm.getClassCurriculumList(session, clsNo);
 		mav.addObject("navtext", "커리큘럼");
+		mav.addObject("clsName", clsName);
 		return mav; 
 	}
 
