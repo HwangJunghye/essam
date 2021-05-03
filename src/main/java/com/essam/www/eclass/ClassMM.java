@@ -11,10 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.essam.www.b.IBDao;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.StudentBean;
+import com.essam.www.bean.TeacherBean;
+import com.essam.www.exception.CommonException;
 import com.essam.www.file.FileMM;
 import com.essam.www.member.IMemberDao;
 
@@ -26,6 +30,10 @@ public class ClassMM {
 	private IMemberDao mDao;	
 	@Autowired
 	private IClassDao cDao;	
+	
+	
+	@Autowired
+	private IBDao bDao; //통합 후 삭제해야 할것.
 	
 	//**********고연미**********//
 	// (CM01)클래스 소개 이동(관계자용)
@@ -189,12 +197,23 @@ public class ClassMM {
 
 	// (CM28)클래스 삭제
 	@Transactional
-	public ModelAndView classDelete(String clsNo) {
-		//클래스 수강중인 인원이 있으면 클래스 삭제 불가 메시지 띄우기
-		//클래스 수강중인 인원이 없으면 클래스 삭제 가능
+	public ModelAndView classDelete(String clsNo, RedirectAttributes rattr) {
+		ModelAndView mav = new ModelAndView();
+		// getClassInfo()에 clsNo 넘겨 클래스 정보 가져오기
+		ClassBean  classInfo = bDao.getClassInfo(clsNo);
+		String fileNo = classInfo.getFileNo();
+		int clsRegiCnt =classInfo.getClsRegiCnt();
 		
-		//클래스 삭제 완료시 클래스 관리 페이지로 이동
-		return null;
+		if(clsRegiCnt>=1){//클래스 clsRegiCnt 있으면 클래스 삭제 불가 메시지 띄우기 ->클래스 소개 화면으로 이동
+			rattr.addFlashAttribute("fMsg", "수강 중인 회원이 있어 클래스를 삭제할 수 없습니다.");
+			mav.setViewName("redirect:/member/myclass_t");
+		}else{//클래스 clsRegiCnt 없으면 클래스 삭제 진행
+			
+			rattr.addFlashAttribute("fMsg", "클래스 삭제 성공!");
+			//클래스 삭제 완료시 클래스 관리 페이지로 이동
+			mav.setViewName("redirect:/member/myclass_t");
+		}
+		return mav;
 	}
 	
 	

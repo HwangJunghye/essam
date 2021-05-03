@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.essam.www.bean.ClassBean;
 
@@ -76,8 +77,8 @@ public class ClassController {
 		}
 	// (CM28)클래스 삭제
 	@RequestMapping(value = "/class/deleteclass")
-	ModelAndView classDelete(String clsNo) {
-		ModelAndView mav = cm.classDelete(clsNo);
+	ModelAndView classDelete(String clsNo, RedirectAttributes rattr) {
+		ModelAndView mav = cm.classDelete(clsNo, rattr);
 		return mav;
 		}
 }
