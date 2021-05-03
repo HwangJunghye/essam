@@ -23,7 +23,7 @@
 			</ul>
 			<!-- 클래스 소개 -->
 			<table id="info_cls">
-			<tr>
+			<tr> 
 				<td align="left" style="padding:20px 0;">
 				<i class="far fa-caret-square-right"></i> 카테고리 : ${classInfo.cate1Name} > ${classInfo.cate2Name}<br/>
 				<i class="far fa-caret-square-right"></i> 클래스명 : ${classInfo.clsName}<br/>
