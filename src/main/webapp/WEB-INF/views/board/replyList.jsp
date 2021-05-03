@@ -34,26 +34,35 @@
 				dataType : 'json'
 			}).done((result)=>{
 				let add = result;	//첨부파일 리스트
-				console.log("add = ",add);
+				$('#add').text('댓글등록성공');
 				//printAttachment(replylist);  //가져온 정보를 화면에 출력
 			}).fail(function(err) {
-				$('#result').text('댓글등록실패');
+				$('#add').text('댓글등록실패');
 			});
 		}
 	}
-
-</script>
-
-	<%--  //댓글목록가져오기
+	</script>
+<%--  //댓글목록가져오기
 	let bNo = "${boardData.clsBrdNo}";	//글번호
-	
+		console.log("bNo == ", bNo);
+		// 폼의 일부 데이터만 저장
+	 	let formData = new FormData();
+		formData.append("clsBrdNo", bNo);
+		formData.append($('#file')[0].files[0], $('#file'));
+		
+		/* formData.append("fileNo", $('#file')); */
+		formData.append("clsBrdRepContent", $('#clsBrdRepContent').val());
+		console.log("formData === ", formData);
+		
 	$(function() {
 		if(bNo != "") {
 			
 			$.ajax({
 				url: "${ctxPath}/class/getreplylist",
-				method: "get",
-				data : {clsBrdNo : bNo},
+				processData: false,   //urlencoded(쿼리스트링 형식) 처리 금지
+			    contentType: false,
+			    type: "post",
+				data : formData,
 				dataType : 'json'
 			}).done((result)=>{
 				console.log("rList = ",result);
@@ -62,8 +71,9 @@
 				$('#result').text('댓글 리스트를 가져올 수 없습니다');
 			});
 		}
-	});
-	
+	})  --%>
+
+	<%--
 //댓글 수정하기
 $(function() {
 		if(bNo != "") {
