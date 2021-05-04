@@ -20,36 +20,36 @@ public interface IBDao {
 	ClassBean getClassInfo(String clsNo);
 
 	boolean classJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
-
-	ArrayList<BoardBean> getBoardList(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType, @Param("pageNum") Integer pageNum);
-
-	int getBoardFileCnt(String clsBrdNo);
-
-	BoardBean getBoardRead(String clsBrdNo);
-
-	int getBoardCount(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType);
-
-	List<FileBean> getBoardFiles(String clsBrdNo);
-
-	String getClassName(String clsNo);
-
-	boolean boardUpdate(BoardBean board);
-
-	boolean boardInsert(BoardBean board);
-
-	boolean brdFileInsert(@Param("clsBrdNo") String clsBrdNo, @Param("fileNo") String fileNo);
-
-	boolean deleteBrdFile(String fileNo);
-
-	boolean deleteBrd(String clsBrdNo);
-
-	boolean deleteReplyList(String clsBrdNo);
-
-	int getBrdViewId(@Param("clsBrdNo") String clsBrdNo, @Param("mbId") String mbId);
-
-	void addBrdView(@Param("clsBrdNo") String clsBrdNo, @Param("mbId") String mbId);
-
-	boolean delBrdView(String clsBrdNo);
+//
+//	ArrayList<BoardBean> getBoardList(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType, @Param("pageNum") Integer pageNum);
+//
+//	int getBoardFileCnt(String clsBrdNo);
+//
+//	BoardBean getBoardRead(String clsBrdNo);
+//
+//	int getBoardCount(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType);
+//
+//	List<FileBean> getBoardFiles(String clsBrdNo);
+//
+//	String getClassName(String clsNo);
+//
+//	boolean boardUpdate(BoardBean board);
+//
+//	boolean boardInsert(BoardBean board);
+//
+//	boolean brdFileInsert(@Param("clsBrdNo") String clsBrdNo, @Param("fileNo") String fileNo);
+//
+//	boolean deleteBrdFile(String fileNo);
+//
+//	boolean deleteBrd(String clsBrdNo);
+//
+//	boolean deleteReplyList(String clsBrdNo);
+//
+//	int getBrdViewId(@Param("clsBrdNo") String clsBrdNo, @Param("mbId") String mbId);
+//
+//	void addBrdView(@Param("clsBrdNo") String clsBrdNo, @Param("mbId") String mbId);
+//
+//	boolean delBrdView(String clsBrdNo);
 
 	int hasClassJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
 

@@ -39,4 +39,107 @@
 	</update>
 	
 	
+	<!-- @Author 고연미 -->
+	<select id="getClassInfo" resultType="classbean">
+		SELECT *
+		FROM V_CLASSBEAN
+		WHERE CLSNO=#{clsNo} AND ROWNUM=1
+	</select>	
+	<select id="getBoardList" resultType="boardbean">
+	<![CDATA[
+      SELECT * FROM (
+        SELECT
+		  /*+INDEX_DESC(C PK_CLS_BRD)*/ ROW_NUMBER() OVER(ORDER BY C.clsbrdno+0 DESC) RN,
+		  C.clsBrdNo,
+		  C.clsBrdTitle,
+		  TO_CHAR(C.clsBrdDate,'YYYY.MM.DD') clsBrdDate,
+		  NVL(V.clsBrdViewS, 0) clsBrdView,
+          mbNickName
+		FROM
+		  CLS_BRD C
+		  LEFT OUTER JOIN (SELECT CLSBRDNO, COUNT(*) clsBrdViewS FROM CLS_BRD_VIEW GROUP BY CLSBRDNO) V
+		  	   ON C.CLSBRDNO = V.CLSBRDNO
+          JOIN MEMBER M ON C.MBID=M.MBID
+		WHERE C.clsNo=#{clsNo} AND C.clsBrdType=#{clsBrdType})
+	  WHERE RN BETWEEN #{pageNum}*10-9 AND #{pageNum}*10
+	]]>
+	</select>
+	<select id="getBoardCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM CLS_BRD 
+		WHERE clsNo=#{clsNo} AND clsBrdType=#{clsBrdType}
+	</select>
+	<select id="getBoardFileCnt" resultType="int">
+		SELECT COUNT(*) 
+		FROM BRD_FILE 
+		WHERE clsBrdNo=#{clsBrdNo}	
+	</select>
+	<select id="getBoardRead" resultType="boardbean">
+		SELECT 
+		  mbNickName,
+		  C.*,
+		  NVL(V.clsBrdViewS, 0) clsBrdView
+		FROM CLS_BRD C 
+		  LEFT OUTER JOIN (SELECT CLSBRDNO, COUNT(*) clsBrdViewS FROM CLS_BRD_VIEW GROUP BY CLSBRDNO) V
+		  		ON C.CLSBRDNO = V.CLSBRDNO
+		  JOIN MEMBER M ON C.MBID=M.MBID 
+		WHERE C.clsBrdNo=#{clsBrdNo} AND ROWNUM=1
+	</select>
+	<select id="getBoardFiles" resultType="filebean">
+		SELECT * FROM BRD_FILE B
+		  LEFT OUTER JOIN TB_FILE T ON B.fileNo=T.fileNo 
+		WHERE B.clsBrdNo=#{clsBrdNo}
+	</select>
+	<select id="getClassName" resultType="string">
+		SELECT clsName FROM CLASS 
+		WHERE CLSNO=#{clsNo} AND ROWNUM=1
+	</select>
+	<update id="boardUpdate">
+		UPDATE CLS_BRD SET
+			 clsNo=#{clsNo},
+			 clsBrdType=#{clsBrdType},
+			 mbId=#{mbId},
+			 clsBrdTitle=#{clsBrdTitle},
+			 clsBrdContent=#{clsBrdContent}
+		WHERE clsBrdNO=#{clsBrdNo}
+	</update>
+	<insert id="boardInsert">
+		<selectKey keyProperty="clsBrdNo" resultType="String" order="BEFORE">
+			SELECT TO_CHAR(CLS_BRD_SEQ.NEXTVAL) FROM DUAL
+		</selectKey>
+		INSERT INTO CLS_BRD 
+			(CLSBRDNO, clsNo, clsBrdType, mbId, clsBrdTitle, clsBrdContent, clsBrdDate)
+		VALUES
+			(#{clsBrdNo}, #{clsNo}, #{clsBrdType}, #{mbId}, #{clsBrdTitle}, #{clsBrdContent}, SYSDATE)		
+	</insert>
+	<insert id="brdFileInsert">
+		INSERT INTO BRD_FILE 
+			(clsBrdNo, fileNo)
+		VALUES 
+			(#{clsBrdNo}, #{fileNo})
+	</insert>
+	<delete id="deleteBrdFile">
+		DELETE FROM BRD_FILE
+		WHERE FILENO = #{fileNo}		
+	</delete>
+	<delete id="deleteBrd">
+		DELETE FROM CLS_BRD
+		WHERE CLSBRDNO = #{clsBrdNo}		
+	</delete>
+	<delete id="deleteReplyList">
+		DELETE FROM CLS_BRD_REP
+		WHERE CLSBRDNO = #{clsBrdNo}	
+	</delete>
+	<select id="getBrdViewId" resultType="int">
+		SELECT COUNT(*) FROM CLS_BRD_VIEW
+		WHERE CLSBRDNO=#{clsBrdNo} AND MBID=#{mbId} AND ROWNUM=1
+	</select>
+	<insert id="addBrdView">
+		INSERT INTO CLS_BRD_VIEW 
+		VALUES (#{clsBrdNo}, #{mbId})
+	</insert>
+	<delete id="delBrdView">
+		DELETE FROM CLS_BRD_VIEW
+		WHERE CLSBRDNO=#{clsBrdNo}	
+	</delete>
 </mapper>

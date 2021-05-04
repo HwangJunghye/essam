@@ -36,7 +36,7 @@ public class BController {
 	private IBDao bDao;
 	
 	/**
-	 * 클래스소개 이동
+	 * [CO05] 클래스소개 이동
 	 * @Author 고연미 on 28/04/2021
 	 */
 	@RequestMapping(value = "/classinfo")
@@ -44,15 +44,11 @@ public class BController {
 		return bm.goClassInfo(clsNo, request);
 	}
 	/**
-	 * 클래스소개 이동 (관계자용)
+	 * [CM01] 클래스소개 이동 (관계자용)
 	 * @Author 고연미 on 28/04/2021
 	 */
-	@RequestMapping(value = "/class/classinfo")
-	ModelAndView goClassClassInfo(String clsNo, HttpSession session) {
-		return bm.goClassClassInfo(clsNo, session);
-	}
 	/**
-	 * 수강신청
+	 * [MM07] 수강신청
 	 * @Author 고연미 on 28/04/2021
 	 */
 	@RequestMapping(value = "/classjoin")
@@ -60,65 +56,31 @@ public class BController {
 		return bm.classJoin(clsNo, session, rattr);
 	}
 	/**
-	 * 게시판 리스트
+	 * [CM02] 게시판 리스트 이동
 	 * @Author 고연미 on 28/04/2021
 	 */
-	@RequestMapping(value = "/class/boardlist")
-	ModelAndView boardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
-		return bm.goBoardList(clsNo, clsBrdType, pageNum, request);		
-		// ControllerAdvide 안쓰고 예외처리
-		// try {
-		// 	 bm.goBoardList(clsNo, clsBrdType, pageNum);
-		// } catch(CommonException err){
-		// 		예외가 발생한 경우
-		// }
-	}
 	/**
-	 * 게시판 글쓰기/수정 이동
+	 * [CM10] 게시판 글쓰기/수정 이동
 	 * @Author 고연미 on 28/04/2021
 	 */
-	@RequestMapping(value = "/class/goboardwrite")
-	ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) {
-		return bm.goBoardWrite(clsNo, clsBrdType, clsBrdNo, pageNum);		
-	}
 	/**
-	 * 게시판 글쓰기/수정
+	 * [CM11] 게시판 글쓰기/수정
 	 * @Author 고연미 on 28/04/2021
 	 */
-	@PostMapping(value = "/class/boardwrite")
-	ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
-		return bm.boardWrite(board, mReq, request, rattr);		
-	}
 	/**
-	 * 게시판 글읽기
+	 * [CM06] 게시판 글읽기
 	 * @Author 고연미 on 28/04/2021
 	 */
-	@RequestMapping(value = "/class/boardread")
-	ModelAndView boardRead(String clsBrdNo, Integer pageNum, HttpServletRequest request) {
-		return bm.boardRead(clsBrdNo, pageNum, request);
-	}
 	/**
-	 * 게시판 글 삭제
+	 * [CM14] 게시판 글 삭제
 	 * @Author 고연미 on 28/04/2021
 	 */
-	@RequestMapping(value = "/class/boarddelete")
-	ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) {
-		return bm.boardDelete(clsBrdNo, pageNum, request, rattr);
-	}
 	/**
-	 * (ajax) 첨부파일 리스트 가져오기
+	 * [CM12] (ajax) 첨부파일 리스트 가져오기
 	 * @Author 고연미 on 28/04/2021
 	 */
-	@RequestMapping(value = "/class/getfilelist")
-	@ResponseBody List<FileBean> getFileList(String clsBrdNo) {
-		return bDao.getBoardFiles(clsBrdNo);
-	}
 	/**
-	 * (ajax) 첨부파일 삭제
+	 * [CM13] (ajax) 첨부파일 삭제
 	 * @Author 고연미 on 28/04/2021
 	 */
-	@PostMapping(value = "/class/delbrdfile")
-	@ResponseBody List<FileBean> delBrdFile(String fileNo, String clsBrdNo, HttpServletRequest request) {
-		return bm.delBrdFile(fileNo, clsBrdNo, request);
-	}
 }

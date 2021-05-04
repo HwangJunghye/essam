@@ -1,10 +1,13 @@
 package com.essam.www.eclass;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
+import com.essam.www.bean.FileBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.StudentBean;
 
@@ -21,5 +24,37 @@ public interface IClassDao {
 	boolean classClassinfoInsert(ClassBean cb);
 
 	String getFileNo(String clsNo);
+	
+	//@Author 고연미
+	ClassBean getClassInfo(String clsNo);
+	
+	ArrayList<BoardBean> getBoardList(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType, @Param("pageNum") Integer pageNum);
 
+	int getBoardFileCnt(String clsBrdNo);
+
+	BoardBean getBoardRead(String clsBrdNo);
+
+	int getBoardCount(@Param("clsNo") String clsNo, @Param("clsBrdType") Integer clsBrdType);
+
+	List<FileBean> getBoardFiles(String clsBrdNo);
+
+	String getClassName(String clsNo);
+	
+	boolean boardUpdate(BoardBean board);
+
+	boolean boardInsert(BoardBean board);
+
+	boolean brdFileInsert(@Param("clsBrdNo") String clsBrdNo, @Param("fileNo") String fileNo);
+
+	boolean deleteBrdFile(String fileNo);
+
+	boolean deleteBrd(String clsBrdNo);
+
+	boolean deleteReplyList(String clsBrdNo);
+
+	int getBrdViewId(@Param("clsBrdNo") String clsBrdNo, @Param("mbId") String mbId);
+
+	void addBrdView(@Param("clsBrdNo") String clsBrdNo, @Param("mbId") String mbId);
+
+	boolean delBrdView(String clsBrdNo);
 }

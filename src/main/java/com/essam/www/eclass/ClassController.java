@@ -1,5 +1,7 @@
 package com.essam.www.eclass;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,32 +9,70 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
+import com.essam.www.bean.FileBean;
 
 @Controller
 public class ClassController {
 	@Autowired
 	private ClassMM cm;
+	@Autowired
+	private IClassDao cDao;	
 	
 	//**********고연미**********//
 	// (CM01)클래스 소개 이동(관계자용)
+	@RequestMapping(value = "/class/classinfo")
+	ModelAndView goClassClassInfo(String clsNo, HttpSession session) {
+		return cm.goClassClassInfo(clsNo, session);
+	}
 	// (CM02+CM03)게시판(공지사항/과제) 목록 페이지 이동 + 게시판 목록 가져오기	
-	// (CM04)게시판 목록 내림차순 정렬
-	// (CM05)게시판 목록 페이징
+	@RequestMapping(value = "/class/boardlist")
+	ModelAndView boardList(String clsNo, Integer clsBrdType, Integer pageNum, HttpServletRequest request) {
+		return cm.goBoardList(clsNo, clsBrdType, pageNum, request);		
+		// ControllerAdvide 안쓰고 예외처리
+		// try {
+		// 	 cm.goBoardList(clsNo, clsBrdType, pageNum);
+		// } catch(CommonException err){
+		// 		예외가 발생한 경우
+		// }
+	}
 	// (CM06+CM07)게시판(공지사항/과제) 상세 페이지 이동 + 과제 상세 가져오기
-	// (CM08)조회수 추가
-	// (CM09)수정/삭제 버튼 생성
+	@RequestMapping(value = "/class/boardread")
+	ModelAndView boardRead(String clsBrdNo, Integer pageNum, HttpServletRequest request) {
+		return cm.boardRead(clsBrdNo, pageNum, request);
+	}
 	// (CM10)게시판(공지사항/과제) 등록/수정 페이지 이동
+	@RequestMapping(value = "/class/goboardwrite")
+	ModelAndView goBoardWrite(String clsNo, Integer clsBrdType, String clsBrdNo, Integer pageNum) {
+		return cm.goBoardWrite(clsNo, clsBrdType, clsBrdNo, pageNum);		
+	}
 	// (CM11)게시판(공지사항/과제) 등록/수정
+	@PostMapping(value = "/class/boardwrite")
+	ModelAndView boardWrite(BoardBean board, MultipartHttpServletRequest mReq, HttpServletRequest request, RedirectAttributes rattr) {
+		return cm.boardWrite(board, mReq, request, rattr);		
+	}
 	// (CM12)(수정시)Ajax 첨부파일 리스트 가져오기
+	@RequestMapping(value = "/class/getfilelist")
+	@ResponseBody List<FileBean> getFileList(String clsBrdNo) {
+		return cDao.getBoardFiles(clsBrdNo);
+	}
 	// (CM13)(수정시)Ajax 첨부파일 삭제
+	@PostMapping(value = "/class/delbrdfile")
+	@ResponseBody List<FileBean> delBrdFile(String fileNo, String clsBrdNo, HttpServletRequest request) {
+		return cm.delBrdFile(fileNo, clsBrdNo, request);
+	}
 	// (CM14)게시글(공지사항/과제) 삭제
-	// (CM15)게시글 댓글 목록 삭제
+	@RequestMapping(value = "/class/boarddelete")
+	ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) {
+		return cm.boardDelete(clsBrdNo, pageNum, request, rattr);
+	}
 	
 	//**********임다영**********//
 	// (CM16)댓글 목록 가져오기(ajax)	
