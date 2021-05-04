@@ -11,10 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.essam.www.bean.MemberBean;
+import com.essam.www.bean.TeacherBean;
+import com.essam.www.exception.CommonException;
 
 @Controller
 public class MemberController {
@@ -26,11 +29,7 @@ public class MemberController {
 	// (MM09)계정관리 이동	
 	// (MM10)회원정보 수정 실행	
 	// (MM11)회원정보 가져오기   
-	//**********조  참**********//
-	// (MM12+MM13)교사프로필 이동 + 교사프로필 가져오기
-	// (MM14)교사프로필 동록, 수정 이동
-	// (MM15)교사프로필 등록,수정
-	// (MM16)교사프로필 삭제하기
+
 
 	// (MM01)로그인 이동
 	@RequestMapping(value = "/login")
@@ -88,6 +87,62 @@ public class MemberController {
 	@PostMapping(value = "/changepassword")
 	@ResponseBody Map<String,String> changePassword(HttpSession session, String mbPwd, String newMbPwd){
 		return mm.changePassword(session,mbPwd,newMbPwd);
+	}
+	
+	
+	
+	
+	// (MM12+MM13)교사프로필 이동 + 교사프로필 가져오기
+	/**
+	 * 교사프로필 이동 + 교사프로필 가져오기 goTeacherProfile()
+	 * @param session
+	 * @return ModelAndView
+	 * @throws CommonException
+	 */
+	@RequestMapping(value = "/teacher_profile")
+	ModelAndView goTeacherProfile(HttpSession session) throws CommonException {
+		ModelAndView mav = mm.getTeacherProfile(session);
+		mav.addObject("navtext", "교사프로필");
+		return mav; 
+	}
+	
+	// (MM14)교사프로필 동록, 수정 이동
+	/**
+	 * 교사프로필 등록, 수정 이동하기 goTeacherProfileWrite()
+	 * @param session
+	 * @return ModelAndView
+	 */
+	@RequestMapping(value = "/teacher_profile/write")
+	ModelAndView goTeacherProfileWrite(HttpSession session) {
+		ModelAndView mav = mm.getTeacherProfileWrite(session);
+		mav.addObject("navtext", "교사프로필 등록/수정");
+		return mav; //.jsp
+	}
+	
+	// (MM15)교사프로필 등록,수정
+	/**
+	 * 교사프로필 등록, 수정 teacherProfileUpdate()
+	 * @param mReq
+	 * @return ModelAndView
+	 */
+	@PostMapping(value = "/teacher_profile/update")
+	ModelAndView teacherProfileUpdate(MultipartHttpServletRequest mReq, TeacherBean tb, HttpServletRequest request) {
+		ModelAndView mav = mm.teacherProfileUpdate(mReq, tb, request);
+		return mav;
+	}
+	
+	// (MM16)교사프로필 삭제하기
+	/**
+	 * 교사프로필 삭제하기 teacherProfileDelete
+	 * @param HttpSession
+	 * @param HttpServletRequest
+	 * @return ModelAndView
+	 * @throws CommonException
+	 */
+	@RequestMapping(value = "/teacher_profile/delete")
+	ModelAndView teacherProfileDelete(HttpSession session, HttpServletRequest request) throws CommonException {
+		ModelAndView mav = mm.teacherProfileDelete(session, request);
+		return mav; 
 	}
 	
 	// (MM17+MM19)클래스관리이동 + 내 클래스 목록 가져오기

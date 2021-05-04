@@ -69,9 +69,27 @@
 		INSERT INTO TEACHER(MBID,TEACHERGRADE) VALUES(#{mbId}, 0)
 	</insert>
 	
-		<update id="changePassword">
+	<update id="changePassword">
 		UPDATE MEMBER 
 		SET MBPWD = #{mbPwd} 
 		WHERE MBID = #{mbId}
 	</update>
+	
+	<select id="getTeacherProfile" resultType="teacherbean">
+		SELECT TEACHER.*, MEMBER.MBNICKNAME FROM TEACHER LEFT JOIN MEMBER 
+		ON TEACHER.MBID=MEMBER.MBID WHERE TEACHER.MBID=#{mbId}
+	</select>
+	
+	<update id="teacherProfileUpdate" parameterType="teacherbean">
+		UPDATE TEACHER 
+		SET <if test="fileNo!=null">FILENO=#{fileNo},</if> TEACHERINTRO=#{teacherIntro}, TEACHERDETAIL=#{teacherDetail} 
+		WHERE MBID=#{mbId}
+	</update>
+	
+	<update id="teacherInfoDelete" >
+		UPDATE TEACHER 
+		SET FILENO=NULL, TEACHERINTRO=NULL, TEACHERDETAIL=NULL 
+		WHERE MBID=#{mbId}
+	</update>
+	
 </mapper>

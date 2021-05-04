@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
+import com.essam.www.bean.TeacherBean;
 
 public interface IMemberDao {
 	// member-mapper 사용
@@ -22,6 +23,12 @@ public interface IMemberDao {
 	void putTeacher(String mbId);
 	
 	boolean changePassword(@Param("mbId") String mbId, @Param("mbPwd") String mbPwd);
+	
+	TeacherBean getTeacherProfile(String mbId);
+
+	boolean teacherProfileUpdate(TeacherBean tb);
+
+	boolean teacherInfoDelete(String mbId);
 
 	
 }
