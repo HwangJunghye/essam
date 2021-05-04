@@ -76,7 +76,13 @@
 		function cfmDelBrd() {
 			let msg = confirm('게시글을 정말 삭제하시겠습니까?'); 
 			if(msg) {
-				location.href="${ctxPath}/class/boarddelete?clsBrdNo=${boardData.clsBrdNo}&pageNum=${pageNum}";
+				// GET 방식
+				// location.href="${ctxPath}/class/boarddelete?clsBrdNo=${boardData.clsBrdNo}&pageNum=${pageNum}";
+				// POST 방식
+				let delForm = $('<form>',{action:'${ctxPath}/class/boarddelete',method:'post'});
+				$('<input>',{type:'text', name:'clsBrdNo', value:'${boardData.clsBrdNo}'}).appendTo(delForm);
+				$('<input>',{type:'text', name:'pageNum', value:'${pageNum}'}).appendTo(delForm);
+				delForm.appendTo('body').submit();
 			}
 		}
 		</script>
