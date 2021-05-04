@@ -54,7 +54,7 @@
 						</tr>
 					</c:forEach>
 				</table>
-			<c:if test="${mbType==2}">
+			<c:if test="${sessionScope.loginData.mbType==2}">
 				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${curriInfo.clsNo}'">등록</button>
 			</c:if>
 		</c:if>
@@ -62,8 +62,8 @@
 		<!-- curriInfo가 없으면 -->
 		<c:if test="${empty curriInfo}">
 			<h3>${msg}</h3>
-			<c:if test="${mbType==2}">
-				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}&clsName=${clsName}'">등록</button>
+			<c:if test="${sessionScope.loginData.mbType==2}">
+				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}'">등록</button>
 			</c:if>
 		</c:if>
 		

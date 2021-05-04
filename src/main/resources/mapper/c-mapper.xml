@@ -22,7 +22,7 @@
 	</update>
 	
 	<select id="getCurriculumList" resultType="curriculumbean">
-		SELECT * FROM CURRI WHERE CLSNO=#{clsNo}
+		SELECT * FROM V_CURRI WHERE CLSNO=#{clsNo}
 	</select>
 	
 	<select id="getCurriculumRead" resultType="curriculumbean">

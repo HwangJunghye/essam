@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.essam.www.bean.CurriculumBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.TeacherBean;
 import com.essam.www.exception.CommonException;
@@ -76,16 +77,14 @@ public class CController {
 
 //커리큘럼------------------------------------------------------------------
 
-//클래스 커리큘럼 이동 + 커리큘럼 목록 가져오기
+	//클래스 커리큘럼 이동 + 커리큘럼 목록 가져오기
 	@RequestMapping(value = "/class/curriculum")
-	ModelAndView goClassCurriculum(HttpSession session, String clsNo, String clsName) {
-		ModelAndView mav = mm.getClassCurriculumList(session, clsNo);
-		mav.addObject("navtext", "커리큘럼");
-		mav.addObject("clsName", clsName);
+	ModelAndView goClassCurriculum(String clsNo) {
+		ModelAndView mav = mm.getClassCurriculumList(clsNo);
 		return mav; 
 	}
 
-//커리큘럼 상세정보 보기 이동 + 커리큘럼 상세정보 가져오기
+	//커리큘럼 상세정보 보기 이동 + 커리큘럼 상세정보 가져오기
 	@RequestMapping(value = "/class/curriculum/read")
 	ModelAndView goClassCurriculumRead(HttpSession session, String clsNo, String curNo) {
 		ModelAndView mav = mm.getClassCurriculumRead(session, clsNo, curNo);
@@ -93,21 +92,55 @@ public class CController {
 		return mav; 
 	}
 	
-//커리큘럼 등록 이동하기 
+	//커리큘럼 등록 이동하기 
 	@RequestMapping(value = "/class/curriculum/write")
-	ModelAndView goClassCurriculumWrite(String clsNo, String clsName) throws CommonException {
-		ModelAndView mav = mm.classCurriculumAdd(clsNo);
+	ModelAndView goClassCurriculumWrite(String clsNo) {
+		ModelAndView mav = mm.goClassCurriculumWrite(clsNo);
+		return mav; //.jsp
+	}
+	
+	//커리큘럼 등록
+	@RequestMapping(value = "/class/curriculum/add")
+	ModelAndView classCurriculumAdd(String clsNo, String clsName) throws CommonException {
+		ModelAndView mav = mm.goClassCurriculumWrite(clsNo);
 		mav.addObject("navtext", "커리큘럼 등록");
 		mav.addObject("clsName", clsName);
 		return mav; //.jsp
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+//	//커리큘럼 수정 이동
+//	@RequestMapping(value = "/class/curriculum/update")
+//	ModelAndView goClassCurriculumUpdate(String clsNo, String clsName) throws CommonException {
+//		ModelAndView mav = mm.goClassCurriculumUpdate(clsNo);
+//		mav.addObject("navtext", "커리큘럼 등록");
+//		mav.addObject("clsName", clsName);
+//		return mav; //.jsp
+//	}
+//	
+//	//커리큘럼 수정
+//	@RequestMapping(value = "/class/curriculum/update_server")
+//	ModelAndView classCurriculumUpdateServer(String clsNo, String clsName) throws CommonException {
+//		ModelAndView mav = mm.ClassCurriculumUpdateServer(clsNo);
+//		mav.addObject("navtext", "커리큘럼 등록");
+//		mav.addObject("clsName", clsName);
+//		return mav; //.jsp
+//	}
+	
+	
 
 //동영상 페이지 이동
 //동영상 제목,시작일,종료일 가져오기
-//커리큘럼 등록
-//커리큘럼 수정
+//커리큘럼 삭제
+
+
 
 
 

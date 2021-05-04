@@ -49,6 +49,7 @@
 		
 		<form action="/class/curriculum/write" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="curTypeNo" value="1">
+			<input type="hidden" name="clsNo" value="${clsNo}">
 			<div class="dong_div" id="dong_div" style="width:900px; height:600px; margin:0 auto;">
 				<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
 					<tr>
@@ -84,6 +85,7 @@
 		
 		<form action="/class/curriculum/write" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="curTypeNo" value="2">
+			<input type="hidden" name="clsNo" value="${clsNo}">
 			<div class="sil_div" id="sil_div" style="width:900px; height:300px; margin:0 auto;">
 				<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
 					<tr>

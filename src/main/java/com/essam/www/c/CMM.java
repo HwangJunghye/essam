@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.essam.www.bean.CurriculumBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.TeacherBean;
+import com.essam.www.eclass.IClassDao;
 import com.essam.www.exception.CommonException;
 import com.essam.www.file.FileMM;
 
@@ -28,6 +29,9 @@ import lombok.extern.log4j.Log4j;
 public class CMM {
 	@Autowired
 	private ICDao mDao;
+	
+	@Autowired
+	private IClassDao cDao;
 
 	@Autowired
 	private FileMM fm;
@@ -185,16 +189,16 @@ public class CMM {
 //커리큘럼------------------------------------------------------------------
 
 //클래스 커리큘럼 이동 + 커리큘럼 목록 가져오기
-	public ModelAndView getClassCurriculumList(HttpSession session, String clsNo) {
+	public ModelAndView getClassCurriculumList(String clsNo) {
 		ModelAndView mav = new ModelAndView();
 		List<CurriculumBean> curriInfo = null;
 		
-		// 세션에서 로그인 데이터를 MemberBean에 담기
-		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
-		// MemberBean으로 부터 mbType을 가져옴
-		String mbType = loginData.getMbType() + "";
-		// 가져온 정보를 mav에 넣기
-		mav.addObject("mbType", mbType);
+//		// 세션에서 로그인 데이터를 MemberBean에 담기
+//		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+//		// MemberBean으로 부터 mbType을 가져옴
+//		String mbType = loginData.getMbType() + "";
+//		// 가져온 정보를 mav에 넣기
+//		mav.addObject("mbType", mbType);
 		
 		curriInfo = mDao.getCurriculumList(clsNo);
 		if (!ObjectUtils.isEmpty(curriInfo)) { // 커리큘럼 정보가 있다면
@@ -202,12 +206,16 @@ public class CMM {
 			mav.addObject("curriInfo", curriInfo);
 			// class_curriculum_read.jsp로 이동하기 위해 viewname 지정
 			mav.setViewName("curriculum/curriculum_list"); // 커리큘럼보기 페이지로
+			mav.addObject("navtext", "커리큘럼");
 			return mav;
 		} else { // 등록된 커리큘럼 정보가 없다면
 			String msg = "등록된 커리큘럼 정보가 없습니다.";
 			mav.setViewName("curriculum/curriculum_list"); // 커리큘럼보기 페이지로
-			mav.addObject("msg", msg);
+			//mav에 클래스명 추가
+			mav.addObject("clsName", cDao.getClassName(clsNo));
 			mav.addObject("clsNo", clsNo);
+			mav.addObject("msg", msg);
+			mav.addObject("navtext", "커리큘럼");
 			return mav;
 		}
 		
@@ -239,7 +247,18 @@ public class CMM {
 	}
 
 	//커리큘럼 등록 이동
-	public ModelAndView classCurriculumAdd(String clsNo) throws CommonException {
+	public ModelAndView goClassCurriculumWrite(String clsNo) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("navtext", "마이클래스> 커리큘럼 등록");
+		mav.addObject("clsNo", clsNo);
+		//mav에 클래스명 추가
+		mav.addObject("clsName", cDao.getClassName(clsNo));
+		mav.setViewName("curriculum/curriculum_write");
+		return mav;
+	}
+	
+	//커리큘럼 등록
+	public ModelAndView ClassCurriculumAdd(String clsNo) throws CommonException {
 		ModelAndView mav = new ModelAndView();
 		CurriculumBean curriInfo = null;
 		curriInfo = mDao.getCurriculumAdd(clsNo);
