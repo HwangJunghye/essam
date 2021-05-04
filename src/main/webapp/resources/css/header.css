@@ -146,3 +146,23 @@ header {
 	width: 200px;
 	text-align: center;
 }
+
+#exampleModalLabel{
+text-align:center;	
+}
+#loginModal{
+	text-align:center;
+	float:center;
+}
+
+#loginModal>input[type="submit"]{
+	width: 250px;
+	height: 36px;
+	background: #3566A2;
+	box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	color: #FFFFFF;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+}
