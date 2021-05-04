@@ -209,6 +209,27 @@ public class ClassMM {
 			mav.setViewName("redirect:/myclass_t");
 		}else{//클래스 clsRegiCnt 없으면 클래스 삭제 진행
 			//
+			/*
+			클래스 삭제시 필요한 과정
+				-> 1-1 게시판 글 및 댓글 삭제
+				- 게시글 DB 가져오기
+				for(게시글 목록){
+					- 댓글 목록 DB 가져오기
+					for(댓글 목록){
+					- 댓글의 첨부파일 삭제
+					- 댓글 DB 삭제
+					}
+				- 게시글 첨부파일 삭제
+				- 게시글 DB 삭제
+				}
+				-> 1-2 커리큘럼 삭제
+				- 커리큘럼 목록 가져오기
+				- 커리큘럼의 파일(동영상) 삭제
+				- 커리큘럼 DB 삭제
+				->  2  클래스 삭제
+				- 클래스 이미지 삭제
+				- 클래스 DB 삭제
+			 */
 			rattr.addFlashAttribute("fMsg", "클래스 삭제 성공!");
 			//클래스 삭제 완료시 클래스 관리 페이지로 이동
 			mav.setViewName("redirect:/myclass_t");
