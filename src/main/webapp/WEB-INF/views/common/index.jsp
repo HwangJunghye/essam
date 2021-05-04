@@ -13,7 +13,7 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
-<%@ include file="../common/nav.jsp" %>
+<%@ include file="../common/main_cover.jsp" %>
 <section>
 <div id="contents">
 	<div id="classInfo_area2"><br><br>

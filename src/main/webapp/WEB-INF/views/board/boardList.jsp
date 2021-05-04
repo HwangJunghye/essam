@@ -64,7 +64,7 @@
 				<c:forEach var="board" items="${bList}">
 					<tr class='prod'>
 						<td>${board.clsBrdNo}</td>
-						<td><a href="${ctxPath}/class/boardread?clsBrdNo=${board.clsBrdNo}&pageNum=${param.pageNum}">${board.clsBrdTitle}</a></td>
+						<td><a href="${ctxPath}/class/boardread?clsNo=${clsNo}&clsBrdNo=${board.clsBrdNo}&pageNum=${param.pageNum}">${board.clsBrdTitle}</a></td>
 						<td>${board.mbNickName}</td>
 						<td>${board.clsBrdDate}</td>
 						<td><c:if test="${board.clsBrdfileCnt > 0}"><i class="fas fa-save" style="width:24px;color:#666;"></i><%-- <img src="${ctxPath}/resources/images/icon_file.jfif" width=20> --%></c:if></td>
