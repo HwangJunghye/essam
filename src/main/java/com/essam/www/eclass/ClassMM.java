@@ -522,24 +522,7 @@ public class ClassMM {
 		cDao.deleteReply(clsBrdRepNo, mb.getMbId());
 		return cDao.getReplyList(clsBrdNo);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	// (CM20+CM21)출석 현황 이동 + 출석현황 가져오기
 	public ModelAndView goAttend(HttpServletRequest request, String clsNo) {
 		ModelAndView mav = new ModelAndView();

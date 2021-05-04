@@ -53,8 +53,7 @@ public class DMM {
 
 		return mav;
 	}
-//	회원정보 수정 실행
-
+	//	회원정보 수정 실행
 	public ModelAndView memberUpdate(MemberBean mb, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
@@ -80,43 +79,4 @@ public class DMM {
 		mav.setViewName("redirect:/mypage");
 		return mav;
 	}
-	//댓글 목록 가져오기(ajax)	
-	public List<ReplyBean> getReplyList(String clsBrdNo) {
-		List<ReplyBean> rList = DDao.getReplyList(clsBrdNo);
-		return rList;
-	}
-	//댓글 등록(ajax)
-	public List<ReplyBean> addReply(ReplyBean rb, MultipartHttpServletRequest mReq) {
-		MultipartFile file = mReq.getFile("file");
-		MemberBean mb = (MemberBean)mReq.getSession().getAttribute("loginData");
-		rb.setMbId(mb.getMbId());
-		if(file != null) {
-			rb.setFileNo(fm.saveFile(mReq, file, 3));
-		}
-		DDao.addReply(rb);
-		return DDao.getReplyList(rb.getClsBrdNo());
-	}
-	//댓글 수정(ajax)	
-
-	public List<ReplyBean> updateReply(ReplyBean rb, MultipartHttpServletRequest mReq) {
-		MemberBean mb = (MemberBean)mReq.getSession().getAttribute("loginData");
-		rb.setMbId(mb.getMbId());
-		MultipartFile file = mReq.getFile("file");
-		if(file != null) {
-			rb.setFileNo(fm.saveFile(mReq, file, 3));
-			ReplyBean rBean = DDao.getReply(rb.getClsBrdRepNo());
-			fm.deleteFile(rBean.getFileNo(), mReq);
-		}
-		DDao.updateReply(rb);
-		return DDao.getReplyList(rb.getClsBrdNo());
-	}
-	//댓글 삭제(ajax)	
-	public List<ReplyBean> deleteReply(String clsBrdRepNo, HttpServletRequest req, String clsBrdNo) {
-		MemberBean mb = (MemberBean)req.getSession().getAttribute("loginData");
-		DDao.deleteReply(clsBrdRepNo, mb.getMbId());
-		
-		return DDao.getReplyList(clsBrdNo);
-	}
-	
-	
 }

@@ -18,21 +18,6 @@ public interface IDDao {
 	void deleteInterCate(@Param("mbId") String mbId, @Param ("tablenm")String tablenm);
 
 	int[] getinterCate(@Param("mbId") String mbId, @Param("tablenm")String tablenm);
-
-	List<ReplyBean> getReplyList(String clsBrdNo);
-
-	void addReply(ReplyBean rb);
-
-	ReplyBean getReply(String clsBrdRepNo);
-
-	void updateReply(ReplyBean rb);
-
-	void deleteReply(@Param("clsBrdRepNo") String clsBrdRepNo, @Param("mbId") String mbId);
-
-	
-
-
-
 }
 
 	

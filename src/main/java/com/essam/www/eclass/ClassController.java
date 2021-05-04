@@ -27,7 +27,6 @@ public class ClassController {
 	@Autowired
 	private IClassDao cDao;	
 	
-	//**********고연미**********//
 	// (CM01)클래스 소개 이동(관계자용)
 	@RequestMapping(value = "/class/classinfo")
 	ModelAndView goClassClassInfo(String clsNo, HttpSession session) {
