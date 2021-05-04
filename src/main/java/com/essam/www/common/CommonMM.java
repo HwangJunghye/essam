@@ -14,11 +14,11 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.essam.www.b.BMM;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.TeacherBean;
 import com.essam.www.constant.Constant;
+import com.essam.www.eclass.IClassDao;
 import com.essam.www.member.IMemberDao;
 
 @Service
@@ -29,6 +29,8 @@ public class CommonMM {
 	private ICommonDao coDao;
 	@Autowired
 	private IMemberDao mDao;
+	@Autowired
+	private IClassDao cDao;	
 //	검색페이지 이동	
 //	검색 결과 가져오기(ajax)	
 
@@ -168,7 +170,7 @@ public class CommonMM {
 			mav.setViewName("redirect:/");			
 		} else {
 			//클래스정보 가져와 bean에 담기
-			ClassBean cb = coDao.getClassInfo(clsNo);
+			ClassBean cb = cDao.getClassInfo(clsNo);
 			
 			//가져온 클래스정보가 있으면 조회수 추가
 			if(!ObjectUtils.isEmpty(cb)) {
