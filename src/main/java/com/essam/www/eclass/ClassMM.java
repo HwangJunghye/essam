@@ -15,11 +15,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.essam.www.b.IBDao;
 import com.essam.www.bean.ClassBean;
+import com.essam.www.bean.FileBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.StudentBean;
 import com.essam.www.bean.TeacherBean;
 import com.essam.www.exception.CommonException;
 import com.essam.www.file.FileMM;
+import com.essam.www.file.IFileDao;
 import com.essam.www.member.IMemberDao;
 
 @Service
@@ -30,7 +32,6 @@ public class ClassMM {
 	private IMemberDao mDao;	
 	@Autowired
 	private IClassDao cDao;	
-	
 	
 	@Autowired
 	private IBDao bDao; //통합 후 삭제해야 할것.
@@ -70,7 +71,6 @@ public class ClassMM {
 		float attendDay = (float)attendInfo.getAttendDay();
 		float totalDay = (float)attendInfo.getTotalDay();
 		float attendPercent = (attendDay/totalDay)*100;
-		
 		
 		if(attendPercent>=80) {
 			mav.addObject("attendMsg","정말 최고예요! (>ㅁ<)b ");
@@ -161,7 +161,7 @@ public class ClassMM {
 		cb.setMbId(loginData.getMbId());
 		boolean updatedOrNot = true;
 		MultipartFile mFile = mReq.getFile("file");
-		String fileNo =null;
+		String fileNo=null;
 		
 		//새로 등록할 클래스 이미지의 fileNo 
 		if(mFile!=null) {	
@@ -171,8 +171,8 @@ public class ClassMM {
 		}
 		
 		//기존에 올려져 있던 fileNo 가져오기 (기존파일 삭제를 위해서...)
-		if(cb.getClsNo()!=null && mFile!=null) {//clsNo가 null이 아니라면 DB로 가서 기존 클래스 정보의 fileNo를 가져옴
-			fileNo = cDao.getFileNo(cb.getFileNo()); 	
+		if(cb.getClsNo()!=null && cb.getFileNo()!=null) {//clsNo가 null이 아니라면 DB로 가서 기존 클래스 정보의 fileNo를 가져옴
+			fileNo = cDao.getFileNo(cb.getClsNo()); 
 		}
 												
 		if(cb.getClsNo()!=null){//clsNo가 있다면 --> 수정(UPDATE) SQL문 실행

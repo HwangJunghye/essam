@@ -19,7 +19,7 @@
 	</select>
 	
 	<select id="getFileNo" resultType="classbean">
-		SELECT FILENO FROM CLASS WHERE FILENO=#{fileNo} AND ROWNUM=1
+		SELECT FILENO FROM CLASS WHERE CLSNO=#{clsNo} AND ROWNUM=1
 	</select>
 	
 	<insert id="classClassinfoInsert" parameterType="classbean" >
@@ -32,7 +32,7 @@
 	
 	<update id="classClassinfoUpdate" parameterType="classbean" >
 		UPDATE CLASS SET 
-			FILENO=#{fileNo}, CATE1NO=#{cate1No}, CATE2NO=#{cate2No}, CLSNAME=#{clsName},   
+			<if test="fileNo!=null">FILENO=#{fileNo},</if> CATE1NO=#{cate1No}, CATE2NO=#{cate2No}, CLSNAME=#{clsName},   
 			CLSLIMIT=#{clsLimit}, CLSINTRO=#{clsIntro}, CLSDESC=#{clsDesc}, CLSPRICE=#{clsPrice}, CLSKEYWORD=#{clsKeyword}, 
 			ZOOMLINK=#{zoomLink}, ZOOMPWD=#{zoomPwd}		
 		WHERE CLSNO=#{clsNo}

@@ -128,7 +128,7 @@ width:350px;
 
 <tr>
 <td class="object_name">커버이미지:</td>
-<td class="object_con">&emsp;<input type="file" name="file" value="${clsInfo.fileNo}" >${clsInfo.fileNo}</td>
+<td class="object_con">&emsp;<input type="file" name="file"></td>
 </tr>
 
 <tr>
