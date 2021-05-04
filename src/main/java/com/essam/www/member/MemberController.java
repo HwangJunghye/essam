@@ -30,7 +30,7 @@ public class MemberController {
 		return mm.classJoin(clsNo, session, rattr);
 	}
 	//**********임다영**********//
-	// (MM09)계정관리 이동	
+	// (MM09)계정관리 이동
 	// (MM10)회원정보 수정 실행	
 	// (MM11)회원정보 가져오기   
 

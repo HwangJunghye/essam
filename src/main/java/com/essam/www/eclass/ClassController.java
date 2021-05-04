@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.FileBean;
+import com.essam.www.bean.ReplyBean;
 
 @Controller
 public class ClassController {
@@ -73,13 +74,33 @@ public class ClassController {
 	ModelAndView boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) {
 		return cm.boardDelete(clsBrdNo, pageNum, request, rattr);
 	}
-	
-	//**********임다영**********//
-	// (CM16)댓글 목록 가져오기(ajax)	
-	// (CM17)댓글 등록(ajax)	
+	// (CM16)댓글 목록 가져오기(ajax)
+	@RequestMapping(value="/class/getreplylist")
+	@ResponseBody List<ReplyBean> getReplyList(String clsBrdNo){
+		System.out.println("clsBrdNo =====> "+ clsBrdNo);
+		List<ReplyBean> rList = cm.getReplyList(clsBrdNo);
+		System.out.println("rList ====> "+ rList.size());
+		return rList;
+	}
+	// (CM17)댓글 등록(ajax)
+	@RequestMapping(value = "/class/addreply")
+	@ResponseBody List<ReplyBean> addReply(ReplyBean rb, MultipartHttpServletRequest mReq){
+		System.out.println("여기 오나 ==============>"+ rb.getClsBrdNo());
+		List<ReplyBean> rList = cm.addReply(rb,mReq);
+		return rList;
+	}
 	// (CM18)댓글 수정(ajax)	
+	@RequestMapping(value = "/class/updatereply")
+	@ResponseBody List<ReplyBean> updateReply(ReplyBean rb, MultipartHttpServletRequest mReq){
+		List<ReplyBean> rList = cm.updateReply(rb, mReq);
+		return rList;
+	}
 	// (CM19)댓글 삭제(ajax)
-	
+	@RequestMapping(value = "/deletereply")
+	@ResponseBody List<ReplyBean> deleteReply(String clsBrdRepNo, HttpServletRequest req, String clsBrdNo){
+		List<ReplyBean> rList = cm.deleteReply(clsBrdRepNo, req, clsBrdNo);
+		return rList;
+	}
 	
 	// (CM20+CM21)출석 현황 이동 + 출석현황 가져오기
 	@RequestMapping(value = "/class/attend")

@@ -35,41 +35,11 @@ public class MemberMM {
 	// (MM02)회원가입 이동-해당없음
 	// (MM04)로그아웃-해당없음
 
-	/**
-	 * (MM07)수강신청
-	 * @Author 고연미 on 28/04/2021
-	 */
-	@Transactional
-	public ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
-		ModelAndView mav = new ModelAndView();
-		//세션에서 mbId 가져오기
-		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
-		String mbId= loginData.getMbId();
-		
-		if(loginData.getMbType() == 1) {
-			//수강신청 내역이 있는지 검사
-			if(mDao.hasClassJoin(clsNo, mbId) == 1)
-				rattr.addFlashAttribute("fMsg","이미 수강 중인 클래스입니다.");
-			else {			
-				if(mDao.classJoin(clsNo, mbId)) 
-					rattr.addFlashAttribute("fMsg","수강신청이 완료되었습니다.");
-				else
-					rattr.addFlashAttribute("fMsg","수강신청에 실패하였습니다. 다시 이용해주세요.");			
-			}
-		} else 
-			rattr.addFlashAttribute("fMsg","학생 계정으로 로그인 후 이용해주세요!");
-		
-		mav.setViewName("redirect:/myclass_s");
-		return mav;
-	}
-
 	// (MM09)계정관리 이동
 	// (MM10)회원정보 수정 실행
 	// (MM11)회원정보 가져오기
 	
 	
-	
-
 	// (MM03)이메일 중복체크(ajax)
 	public Map<String, String> checkEmail(String mbId) {
 		Map<String, String> hMap = new HashMap<>();
@@ -81,7 +51,6 @@ public class MemberMM {
 		}
 		return hMap;
 	}
-
 	// (MM05)로그인 실행
 	public ModelAndView access(MemberBean mb, HttpServletRequest request, RedirectAttributes rattr) {
 		ModelAndView mav = new ModelAndView();
@@ -115,7 +84,6 @@ public class MemberMM {
 		}
 		return mav;
 	}
-
 	// (MM06)회원가입 실행
 	public ModelAndView memberJoin(MemberBean mb, RedirectAttributes rattr) {
 		ModelAndView mav = new ModelAndView();
@@ -149,7 +117,33 @@ public class MemberMM {
 		}
 		return mav;
 	}
-
+	/**
+	 * (MM07)수강신청
+	 * @Author 고연미 on 28/04/2021
+	 */
+	@Transactional
+	public ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
+		ModelAndView mav = new ModelAndView();
+		//세션에서 mbId 가져오기
+		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
+		String mbId= loginData.getMbId();
+		
+		if(loginData.getMbType() == 1) {
+			//수강신청 내역이 있는지 검사
+			if(mDao.hasClassJoin(clsNo, mbId) == 1)
+				rattr.addFlashAttribute("fMsg","이미 수강 중인 클래스입니다.");
+			else {			
+				if(mDao.classJoin(clsNo, mbId)) 
+					rattr.addFlashAttribute("fMsg","수강신청이 완료되었습니다.");
+				else
+					rattr.addFlashAttribute("fMsg","수강신청에 실패하였습니다. 다시 이용해주세요.");			
+			}
+		} else 
+			rattr.addFlashAttribute("fMsg","학생 계정으로 로그인 후 이용해주세요!");
+		
+		mav.setViewName("redirect:/myclass_s");
+		return mav;
+	}
 	// (MM08)비밀번호 변경 실행(ajax)
 	@Transactional
 	public Map<String, String> changePassword(HttpSession session, String mbPwd, String newMbPwd) {
@@ -166,7 +160,6 @@ public class MemberMM {
 			map.put("msg", "회원정보가 존재하지 않습니다.");
 			return map;
 		}
-
 		// 비밀번호 인코더 불러오기
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -223,9 +216,8 @@ public class MemberMM {
 		return mav;
 	}
 	
-	// (MM14)교사프로필 동록, 수정 이동
 	/**
-	 * 교사프로필 등록, 수정 이동하기 getTeacherProfileWrite()
+	 * (MM14)교사프로필 등록, 수정 이동하기 getTeacherProfileWrite()
 	 * @param session
 	 * @return ModelAndView
 	 */
@@ -247,9 +239,8 @@ public class MemberMM {
 		return mav;
 	}
 	
-	// (MM15)교사프로필 등록,수정
 	/**
-	 *  교사프로필 등록, 수정 teacherProfileUpdate()
+	 * (MM15)교사프로필 등록, 수정 teacherProfileUpdate()
 	 * @param MultipartHttpServletRequest
 	 * @param TeacherBeanb
 	 * @param HttpServletRequest
@@ -291,10 +282,9 @@ public class MemberMM {
 		// mav 반환
 		return mav;
 	}
-	
-	// (MM16)교사프로필 삭제하기
+
 	/**
-	 *  교사프로필 삭제하기 teacherProfileDelete()
+	 *  (MM16)교사프로필 삭제하기 teacherProfileDelete()
 	 *  @param HttpSession
 	 *  @param HttpServletRequest
 	 *  @throws CommonException

@@ -48,8 +48,7 @@ public class ClassMM {
 	private IMemberDao mDao;	
 	@Autowired
 	private IClassDao cDao;	
-	@Autowired
-	private IDDao DDao;
+
 		
 	/**
 	 * (CM01)클래스소개 이동 (관계자용)
@@ -466,7 +465,7 @@ public class ClassMM {
 	private boolean deleteReplyList(String clsBrdNo, HttpServletRequest request) {
 		boolean result = true;
 		//댓글리스트 가져오기
-		List<ReplyBean> rList = DDao.getReplyList(clsBrdNo);		
+		List<ReplyBean> rList = cDao.getReplyList(clsBrdNo);		
 		//댓글리스트 정보가 존재하면
 		if(!ObjectUtils.isEmpty(rList)) {
 			//댓글리스트 삭제
@@ -488,12 +487,58 @@ public class ClassMM {
 		return result;
 	}
 	
-	//**********임다영**********//
 	// (CM16)댓글 목록 가져오기(ajax)	
+	public List<ReplyBean> getReplyList(String clsBrdNo) {
+		List<ReplyBean> rList = cDao.getReplyList(clsBrdNo);
+		return rList;
+	}
 	// (CM17)댓글 등록(ajax)	
-	// (CM18)댓글 수정(ajax)	
-	// (CM19)댓글 삭제(ajax)	
-		
+	public List<ReplyBean> addReply(ReplyBean rb, MultipartHttpServletRequest mReq) {
+		MultipartFile file = mReq.getFile("file");
+		MemberBean mb = (MemberBean)mReq.getSession().getAttribute("loginData");
+		rb.setMbId(mb.getMbId());
+		if(file != null) {
+			rb.setFileNo(fm.saveFile(mReq, file, 3));
+		}
+		cDao.addReply(rb);
+		return cDao.getReplyList(rb.getClsBrdNo());
+	}
+	// (CM18)댓글 수정(ajax)			
+	public List<ReplyBean> updateReply(ReplyBean rb, MultipartHttpServletRequest mReq) {
+		MemberBean mb = (MemberBean)mReq.getSession().getAttribute("loginData");
+		rb.setMbId(mb.getMbId());
+		MultipartFile file = mReq.getFile("file");
+		if(file != null) {
+			rb.setFileNo(fm.saveFile(mReq, file, 3));
+			ReplyBean rBean = cDao.getReply(rb.getClsBrdRepNo());
+			fm.deleteFile(rBean.getFileNo(), mReq);
+		}
+		cDao.updateReply(rb);
+		return cDao.getReplyList(rb.getClsBrdNo());
+	}
+	// (CM19)댓글 삭제(ajax)
+	public List<ReplyBean> deleteReply(String clsBrdRepNo, HttpServletRequest req, String clsBrdNo) {
+		MemberBean mb = (MemberBean)req.getSession().getAttribute("loginData");
+		cDao.deleteReply(clsBrdRepNo, mb.getMbId());
+		return cDao.getReplyList(clsBrdNo);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// (CM20+CM21)출석 현황 이동 + 출석현황 가져오기
 	public ModelAndView goAttend(HttpServletRequest request, String clsNo) {

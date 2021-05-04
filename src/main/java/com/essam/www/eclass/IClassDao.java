@@ -9,10 +9,12 @@ import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.FileBean;
 import com.essam.www.bean.MemberBean;
+import com.essam.www.bean.ReplyBean;
 import com.essam.www.bean.StudentBean;
 
 public interface IClassDao {
 	// class-mapper.xml 사용
+	//@Author 황정혜	
 	ClassBean getMyClassList(String clsNo);
 	
 	List<StudentBean> getStudentList(String clsNo);
@@ -57,4 +59,15 @@ public interface IClassDao {
 	void addBrdView(@Param("clsBrdNo") String clsBrdNo, @Param("mbId") String mbId);
 
 	boolean delBrdView(String clsBrdNo);
+		
+	//@Author 임다영
+	List<ReplyBean> getReplyList(String clsBrdNo);
+
+	void addReply(ReplyBean rb);
+
+	ReplyBean getReply(String clsBrdRepNo);
+
+	void updateReply(ReplyBean rb);
+
+	void deleteReply(@Param("clsBrdRepNo") String clsBrdRepNo, @Param("mbId") String mbId);
 }
