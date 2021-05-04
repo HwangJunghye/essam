@@ -1,5 +1,6 @@
 package com.essam.www.eclass;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.essam.www.b.IBDao;
+import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
+import com.essam.www.bean.CurriculumBean;
 import com.essam.www.bean.FileBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.StudentBean;
@@ -199,6 +202,8 @@ public class ClassMM {
 	@Transactional
 	public ModelAndView classDelete(String clsNo, RedirectAttributes rattr) {
 		ModelAndView mav = new ModelAndView();
+		List<CurriculumBean> curriInfo = null;
+		ArrayList<BoardBean> boardList = null;
 		// getClassInfo()에 clsNo 넘겨 클래스 정보 가져오기
 		ClassBean  classInfo = bDao.getClassInfo(clsNo); //파일 통합후 bDao-->cDao 변경요망
 		String fileNo = classInfo.getFileNo();
@@ -208,29 +213,38 @@ public class ClassMM {
 			rattr.addFlashAttribute("fMsg", "수강 중인 회원이 있어 클래스를 삭제할 수 없습니다.");
 			mav.setViewName("redirect:/myclass_t");
 		}else{//클래스 clsRegiCnt 없으면 클래스 삭제 진행
-			//
-			/*
-			클래스 삭제시 필요한 과정
-				-> 1-1 게시판 글 및 댓글 삭제
-				- 게시글 DB 가져오기
-				for(게시글 목록){
-					- 댓글 목록 DB 가져오기
-					for(댓글 목록){
-					- 댓글의 첨부파일 삭제
-					- 댓글 DB 삭제
-					}
-				- 게시글 첨부파일 삭제
-				- 게시글 DB 삭제
-				}
-				
-				-> 1-2 커리큘럼 삭제
-				- 커리큘럼 목록 가져오기
-				- 커리큘럼의 파일(동영상) 삭제
-				- 커리큘럼 DB 삭제
-				->  2  클래스 삭제
-				- 클래스 이미지 삭제
-				- 클래스 DB 삭제
-			 */
+			
+//			클래스 삭제시 필요한 과정
+//				-> 1-1 게시판 글 및 댓글 삭제
+//				- 게시글 DB 가져오기
+//				for(게시글 목록){
+//					- 댓글 목록 DB 가져오기
+//					for(댓글 목록){
+//					- 댓글의 첨부파일 삭제
+//			fm.deleteFile(fileNo, request);
+//					- 댓글 DB 삭제
+//					}
+//				- 게시글 첨부파일 삭제
+//				- 게시글 DB 삭제
+//				}
+//				
+//				-> 1-2 커리큘럼 삭제
+//				- 커리큘럼 목록 가져오기
+//			curriInfo = mDao.getCurriculumList(clsNo);
+//				- 커리큘럼의 파일(동영상) 삭제
+//			fm.deleteFile(fileNo, request);
+//				- 커리큘럼 DB 삭제
+//			
+//				->  2  클래스 삭제
+//				- 클래스 이미지 삭제
+//			fm.deleteFile(fileNo, request);
+//				- 클래스 DB 삭제
+//			
+			
+			
+			
+			
+			
 			rattr.addFlashAttribute("fMsg", "클래스 삭제 성공!");
 			//클래스 삭제 완료시 클래스 관리 페이지로 이동
 			mav.setViewName("redirect:/myclass_t");
