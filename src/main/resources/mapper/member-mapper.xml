@@ -32,6 +32,36 @@
 			)
 	</insert>
 	
+	<select id="getMemberInfo" resultType="MemberBean">
+		SELECT * FROM MEMBER WHERE MBID=#{mbId}
+	</select>
+	
+	<update id="memberUpdate">
+		UPDATE MEMBER SET
+		mbNickname = #{mbNickName},	
+		mbTel = #{mbTel},
+		mbAddr = #{mbAddr},
+		mbBirth = #{mbBirth},
+		mbGender = #{mbGender}
+		WHERE
+		MBID=#{mbId}
+	</update>
+	
+	<delete id="deleteInterCate">
+		DELETE FROM ${tablenm} WHERE MBID=#{mbId}
+	</delete>
+	
+	<select id="getinterCate" resultType="int">
+		SELECT 
+		<if test='tablenm.equals("INTER_CATE1")'>
+		cate1No
+		</if>
+		<if test='tablenm.equals("INTER_CATE2")'>
+		cate2No
+		</if>
+		FROM ${tablenm} WHERE MBID=#{mbId}
+	</select>
+	
 	<insert id="putInterCate">
 		INSERT INTO ${tablenm} VALUES (#{mbid}, #{cateno})
 	</insert>

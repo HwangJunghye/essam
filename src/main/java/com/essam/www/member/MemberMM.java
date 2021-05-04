@@ -35,11 +35,6 @@ public class MemberMM {
 	// (MM02)회원가입 이동-해당없음
 	// (MM04)로그아웃-해당없음
 
-	// (MM09)계정관리 이동
-	// (MM10)회원정보 수정 실행
-	// (MM11)회원정보 가져오기
-	
-	
 	// (MM03)이메일 중복체크(ajax)
 	public Map<String, String> checkEmail(String mbId) {
 		Map<String, String> hMap = new HashMap<>();
@@ -69,9 +64,9 @@ public class MemberMM {
 				mav.setViewName("redirect:/"); // 메인으로
 				rattr.addFlashAttribute("fMsg", "로그인 성공");
 
-//				Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
-//				String referer = request.getHeader("Referer");
-//				mav.setViewName("redirect:"+ referer);
+				//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
+				//String referer = request.getHeader("Referer");
+				//mav.setViewName("redirect:"+ referer);
 			} else { // 비밀번호 불일치시
 				mav.setViewName("redirect:/"); // 로그인 페이지로
 				rattr.addFlashAttribute("fMsg", "로그인 실패");
@@ -177,8 +172,61 @@ public class MemberMM {
 			map.put("msg", "비밀번호 변경 실패");
 		}
 		return map;
-	}
+	}	
+	// (MM09+MM11)계정관리 이동 + 회원정보 가져오기
+	public ModelAndView goMypage(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+		MemberBean mb = mDao.getMemberInfo(loginData.getMbId());
+		mb.setMbBirth(mb.getMbBirth().substring(0,mb.getMbBirth().length()-9));
+		boolean[] cate1Chk = { false, false, false, false, false, false, false };
+		boolean[] cate2Chk = { false, false, false, false, false, false, false, false, false };
+		int[] cate1 = mDao.getinterCate(loginData.getMbId(), "INTER_CATE1");
+		int[] cate2 = mDao.getinterCate(loginData.getMbId(), "INTER_CATE2");
+		for(int c1 : cate1) {
+			cate1Chk[c1]=true;
+		}
+		for(int c2 : cate2) {
+			cate2Chk[c2]=true;
+		}
+		mb.setCate1No(cate1);
+		mb.setCate2No(cate2);
+		mav.setViewName("member/mypage");
+		mav.addObject("myInfo", mb);
+		mav.addObject("cate1Chk", cate1Chk);
+		mav.addObject("cate2Chk", cate2Chk);
+		mav.addObject("navtext", "마이페이지");
 
+		return mav;
+	}
+	
+	// (MM10)회원정보 수정 실행
+	public ModelAndView memberUpdate(MemberBean mb, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+		mb.setMbId(loginData.getMbId());
+		mDao.memberUpdate(mb);
+
+		// 관심카테고리1 저장
+		if (mb.getCate1No() != null) {
+			// 관심카테고리1 삭제
+			mDao.deleteInterCate(mb.getMbId(), "INTER_CATE1");
+			for (int cate1 : mb.getCate1No()) {
+				mDao.putInterCate(cate1, "INTER_CATE1", mb.getMbId());
+			}
+		}
+		// 관심카테고리2 저장
+		if (mb.getCate2No() != null) {
+			// 관심카테고리2 삭제
+			mDao.deleteInterCate(mb.getMbId(), "INTER_CATE2");
+			for (int cate2 : mb.getCate2No()) {
+				mDao.putInterCate(cate2, "INTER_CATE2", mb.getMbId());
+			}
+		}
+		mav.setViewName("redirect:/mypage");
+		return mav;
+	}
+	
 	// (MM12+MM13)교사프로필 이동 + 교사프로필 가져오기
 	/**
 	 * 교사프로필 가져오기 getTeacherProfile()

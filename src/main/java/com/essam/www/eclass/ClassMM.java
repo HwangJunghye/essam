@@ -33,7 +33,6 @@ import com.essam.www.bean.ReplyBean;
 import com.essam.www.bean.StudentBean;
 import com.essam.www.bean.TeacherBean;
 import com.essam.www.constant.Constant;
-import com.essam.www.d.IDDao;
 import com.essam.www.exception.CommonException;
 import com.essam.www.file.FileMM;
 import com.essam.www.member.IMemberDao;
@@ -185,7 +184,7 @@ public class ClassMM {
 		//게시글정보 가져와 bean에 담기
 		BoardBean board = cDao.getBoardRead(clsBrdNo);	
 		//가져온 게시글정보가 있으면
-//		if(board != null) {
+		//if(board != null) {
 		if(!ObjectUtils.isEmpty(board)) {
 			//첨부파일 정보 가져와 bean에 저장
 			board.setFilesInfo(cDao.getBoardFiles(clsBrdNo));

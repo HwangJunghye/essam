@@ -20,9 +20,15 @@ public interface IMemberDao {
 
 	void putInterCate (@Param("cateno") int cateno, @Param("tablenm") String tablenm, @Param("mbid") String mbid);
 
-	void putTeacher(String mbId);
+	void deleteInterCate(@Param("mbId") String mbId, @Param ("tablenm")String tablenm);
+
+	int[] getinterCate(@Param("mbId") String mbId, @Param("tablenm")String tablenm);
 	
+	boolean memberUpdate(MemberBean mb);
+
 	boolean changePassword(@Param("mbId") String mbId, @Param("mbPwd") String mbPwd);
+	
+	void putTeacher(String mbId);
 	
 	TeacherBean getTeacherProfile(String mbId);
 

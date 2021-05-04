@@ -23,18 +23,7 @@ import com.essam.www.exception.CommonException;
 public class MemberController {
 	@Autowired
 	private MemberMM mm;
-	//**********고연미**********//
-	// (MM07)수강신청 실행
-	@RequestMapping(value = "/classjoin")
-	ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
-		return mm.classJoin(clsNo, session, rattr);
-	}
-	//**********임다영**********//
-	// (MM09)계정관리 이동
-	// (MM10)회원정보 수정 실행	
-	// (MM11)회원정보 가져오기   
-
-
+	
 	// (MM01)로그인 이동
 	@RequestMapping(value = "/login")
 	ModelAndView goLogin() {
@@ -43,7 +32,6 @@ public class MemberController {
 		mav.setViewName("member/login");
 		return mav; // .jsp
 	}
-	
 	// (MM02)회원가입 이동
 	@RequestMapping(value = "/join")
 	ModelAndView goJoin() {
@@ -52,13 +40,11 @@ public class MemberController {
 		mav.setViewName("member/join");
 		return mav; // .jsp
 	}
-
 	// (MM03)이메일 중복체크(JSON 사용시 @ResponseBody 추가 해야 함)
 	@RequestMapping(value = "/checkemail")
 	@ResponseBody Map<String,String> checkEmail(String mbId){
 		return mm.checkEmail(mbId);
 	}
-
 	// (MM04)로그아웃
 	@PostMapping(value = "/logout")
 	ModelAndView logout(HttpSession session) {
@@ -69,13 +55,11 @@ public class MemberController {
 	    mav.setViewName("redirect:/");
 		return mav;
 	}
-	
 	// (MM05)로그인 실행
 	@PostMapping(value = "/access")
 	ModelAndView access(MemberBean mb,HttpServletRequest request, RedirectAttributes rattr) {
 		return mm.access(mb, request, rattr);
 	}
-	
 	// (MM06)회원가입 실행
 	@PostMapping(value = "/memberjoin")
 	ModelAndView memberJoin(MemberBean mb, RedirectAttributes rattr) {
@@ -86,15 +70,28 @@ public class MemberController {
 		ModelAndView mav = mm.memberJoin(mb, rattr);
 		return mav;
 	}
-	
+	// (MM07)수강신청 실행
+	@RequestMapping(value = "/classjoin")
+	ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
+		return mm.classJoin(clsNo, session, rattr);
+	}
 	// (MM08)비밀번호 변경 실행(ajax)
 	@PostMapping(value = "/changepassword")
 	@ResponseBody Map<String,String> changePassword(HttpSession session, String mbPwd, String newMbPwd){
 		return mm.changePassword(session,mbPwd,newMbPwd);
 	}
-	
-	
-	
+	// (MM09+MM11)계정관리 이동 + 회원정보 가져오기
+	@RequestMapping(value = "/mypage")
+	ModelAndView goMypage(HttpSession session) {
+		ModelAndView mav = mm.goMypage(session);
+		return mav;
+	}	
+	// (MM10)회원정보 수정 실행	
+	@RequestMapping(value = "/memberupdate")
+	ModelAndView memberUpdate(MemberBean mb, HttpSession session) {
+		ModelAndView mav = mm.memberUpdate(mb, session);	
+		return mav;
+	}
 	
 	// (MM12+MM13)교사프로필 이동 + 교사프로필 가져오기
 	/**
