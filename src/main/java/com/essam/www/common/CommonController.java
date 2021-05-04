@@ -16,8 +16,8 @@ public class CommonController {
 	private CommonMM comm;
 
 	/**
-	 * 메인 페이지 이동<br>
-	 * "/"
+	 * [CO01] 메인페이지 이동
+	 * @Author 고연미 on 28/04/2021
 	 */
 	@RequestMapping(value = "/")
 	ModelAndView goIndex(HttpServletRequest request) {
@@ -44,9 +44,13 @@ public class CommonController {
 			String keyword) {
 		return comm.getSearchList(pageSize, pageNo, cate1No, cate2No, keyword);
 	}
-
-//	new/hot 클래스목록 가져오기	
-//	클래스 소개 이동	
-//	클래스정보가져오기	
+	/**
+	 * [CO05] 클래스소개 이동
+	 * @Author 고연미 on 28/04/2021
+	 */
+	@RequestMapping(value = "/classinfo")
+	ModelAndView goClassInfo(String clsNo, HttpServletRequest request) {
+		return comm.goClassInfo(clsNo, request);
+	}
 
 }

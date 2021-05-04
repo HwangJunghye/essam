@@ -39,10 +39,6 @@ public class BController {
 	 * [CO05] 클래스소개 이동
 	 * @Author 고연미 on 28/04/2021
 	 */
-	@RequestMapping(value = "/classinfo")
-	ModelAndView goClassInfo(String clsNo, HttpServletRequest request) {
-		return bm.goClassInfo(clsNo, request);
-	}
 	/**
 	 * [CM01] 클래스소개 이동 (관계자용)
 	 * @Author 고연미 on 28/04/2021

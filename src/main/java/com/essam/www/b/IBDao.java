@@ -10,14 +10,14 @@ import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.FileBean;
 
 public interface IBDao {
-
-	List<ClassBean> getClassListNew();
-	
-	List<ClassBean> getClassListHot(); 
-
-	List<ClassBean> getClassListMy(String mbId);
-
-	ClassBean getClassInfo(String clsNo);
+//
+//	List<ClassBean> getClassListNew();
+//	
+//	List<ClassBean> getClassListHot(); 
+//
+//	List<ClassBean> getClassListMy(String mbId);
+//
+//	ClassBean getClassInfo(String clsNo);
 //
 //	boolean classJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
 //
@@ -52,9 +52,9 @@ public interface IBDao {
 //	boolean delBrdView(String clsBrdNo);
 //
 //	int hasClassJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
-
-	boolean addClsView(@Param("clsNo") String clsNo, @Param("sessionId") String sessionId, @Param("mbId") String mbId);
-
-	int getClsViewCnt(@Param("clsNo") String clsNo, @Param("sessionId") String sessionId);
+//
+//	boolean addClsView(@Param("clsNo") String clsNo, @Param("sessionId") String sessionId, @Param("mbId") String mbId);
+//
+//	int getClsViewCnt(@Param("clsNo") String clsNo, @Param("sessionId") String sessionId);
 
 }

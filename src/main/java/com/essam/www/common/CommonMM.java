@@ -6,32 +6,37 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.b.BMM;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
+import com.essam.www.bean.TeacherBean;
 import com.essam.www.constant.Constant;
+import com.essam.www.member.IMemberDao;
 
 @Service
 public class CommonMM {
-	@Autowired
-	private BMM bm; // b service class:고연미
+	private static final Logger logger = LoggerFactory.getLogger(CommonMM.class);
+	
 	@Autowired
 	private ICommonDao coDao;
-//	메인페이지로 이동	
-//	new/hot 클래스목록 가져오기	
+	@Autowired
+	private IMemberDao mDao;
 //	검색페이지 이동	
 //	검색 결과 가져오기(ajax)	
-//	클래스 소개 이동	
-//	클래스정보가져오기	
 
 	/**
-	 * 인덱스페이지로 이동<br>
+	 * (CO01)메인페이지로 이동<br>
 	 * 학생회원인 경우 마이클래스도 가져오기<br>
-	 * 공통적으로 new,hot 클래스 정보 가져오기
+	 * 공통적으로 new,hot 클래스 목록 가져오기
+	 * @Author 고연미 on 28/04/2021
 	 */
 	public ModelAndView goIndex(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -44,18 +49,18 @@ public class CommonMM {
 
 		if (loginData != null) {
 			if (loginData.getMbType() == 1) {
-				cList = bm.getClassList("my", loginData.getMbId());
+				cList = getClassList("my", loginData.getMbId());
 				// 가져온 정보를 mav "myList" 에 넣기
 				mav.addObject("myList", cList);
 			}
 		}
 
 		// new 클래스 정보 가져오기
-		cList = bm.getClassList("new", "");
+		cList = getClassList("new", "");
 		// 가져온 정보를 mav "nList" 에 넣기
 		mav.addObject("nList", cList);
 		// hot 클래스 정보 가져오기
-		hList = bm.getClassList("hot", "");
+		hList = getClassList("hot", "");
 		// 가져온 정보를 mav "nList" 에 넣기
 		mav.addObject("hList", hList);
 
@@ -64,6 +69,25 @@ public class CommonMM {
 
 		return mav;
 	}
+	/**
+	 * (CO02) 클래스 리스트 가져오기
+	 * @Author 고연미 on 28/04/2021
+	 */
+	public List<ClassBean> getClassList(String str, String mbId) {
+		List<ClassBean> cList = null;
+		switch(str) {
+		case "new":
+			cList = coDao.getClassListNew();
+			break;
+		case "hot":
+			cList = coDao.getClassListHot();
+			break;
+		case "my":
+			cList = coDao.getClassListMy(mbId);
+			break;
+		}
+		return cList;
+	}	
 
 	// 검색 페이지 이동
 	public ModelAndView goSearch(Integer cate1No, Integer cate2No, String keyword) {
@@ -131,4 +155,51 @@ public class CommonMM {
 		return result;
 	}
 
+	/**
+	 * (CO05, CO06)클래스소개 이동, 클래스정보 가져오기
+	 * @Author 고연미 on 28/04/2021
+	 */
+	public ModelAndView goClassInfo(String clsNo, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		String sessionId, mbId = null;
+		
+		//클래스번호가 없으면 메인으로 이동
+		if(StringUtils.isEmpty(clsNo)) {
+			mav.setViewName("redirect:/");			
+		} else {
+			//클래스정보 가져와 bean에 담기
+			ClassBean cb = coDao.getClassInfo(clsNo);
+			
+			//가져온 클래스정보가 있으면 조회수 추가
+			if(!ObjectUtils.isEmpty(cb)) {
+				//loginData가 있으면
+				if(!ObjectUtils.isEmpty(request.getSession().getAttribute("loginData"))) {
+					//mbId 가져오기
+					MemberBean loginData = (MemberBean)request.getSession().getAttribute("loginData");
+					mbId = loginData.getMbId();
+				} 
+				sessionId = request.getSession().getId();
+				//같은 sessionId와 clsNo가 등록된 데이터가 없으면
+				if(coDao.getClsViewCnt(clsNo, sessionId) < 1) {
+					//조회수 추가
+					if(!coDao.addClsView(clsNo, sessionId, mbId))
+						logger.info("클래스 조회수 추가 실패.");					
+				}
+			}
+			mav.addObject("classInfo", cb);
+			//mav에 네비타이틀 추가
+			mav.addObject("navtext", "클래스 > "+ cb.getClsName());
+			
+			//강사 정보 가져와 mav에 담기 (MemberMM)
+			TeacherBean tb = mDao.getTeacherProfile(cb.getMbId());
+			mav.addObject("teacherInfo", tb);
+			
+			//커리큘럼 리스트 가져와 mav에 담기 (CurriculumMM)
+			//List<CurriculumBean> crList = crDao.getCurriculumLIst(clsNo)
+			//mav.addObject("curriList", crList);
+			
+			mav.setViewName("class/classinfo_main");			
+		}
+		return mav;
+	}
 }

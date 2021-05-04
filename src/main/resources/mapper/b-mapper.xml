@@ -5,33 +5,4 @@
 
 <mapper namespace="com.essam.www.b.IBDao">
 
-	<select id="getClassListNew" resultType="classbean">
-	<![CDATA[
-		SELECT /*+INDEX_DESC(CLASS PK_CLASS)*/ ROWNUM RN, V.*
-		FROM V_CLASSBEAN V
-		WHERE ROWNUM<=5 ORDER BY CLSOPENDATE DESC
-	]]>
-	</select>
-	<select id="getClassListHot" resultType="classbean">
-	<![CDATA[
-		SELECT * FROM V_CLASSBEAN  
-		WHERE CLSNO IN (SELECT * FROM V_HOTCLSNO WHERE ROWNUM<=5)
-	]]>
-	</select>
-	<select id="getClassListMy" resultType="classbean" parameterType="string">
-		SELECT C.* 
-		FROM V_CLASSBEAN C 
-			JOIN STUDENT S ON C.clsNo=S.clsNo 
-		WHERE S.MBID=#{mbId}
-	</select>
-	<insert id="addClsView">
-		INSERT INTO CLS_VIEW 
-			(clsNo, sessionId, mbId, clsViewDate)
-		VALUES
-			(#{clsNo}, #{sessionId}, #{mbId}, SYSDATE)
-	</insert>
-	<select id="getClsViewCnt" resultType="int">
-		SELECT COUNT(*) FROM CLS_VIEW
-		WHERE CLSNO=#{clsNo} AND sessionId=#{sessionId}
-	</select>
 </mapper>
