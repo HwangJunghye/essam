@@ -115,31 +115,4 @@ public class BMM {
 		}
 		return mav;
 	}
-	/**
-	 * 수강신청
-	 * @Author 고연미 on 28/04/2021
-	 */
-	@Transactional
-	public ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
-		ModelAndView mav = new ModelAndView();
-		//세션에서 mbId 가져오기
-		MemberBean loginData = (MemberBean)session.getAttribute("loginData");
-		String mbId= loginData.getMbId();
-		
-		if(loginData.getMbType() == 1) {
-			//수강신청 내역이 있는지 검사
-			if(bDao.hasClassJoin(clsNo, mbId) == 1)
-				rattr.addFlashAttribute("fMsg","이미 수강 중인 클래스입니다.");
-			else {			
-				if(bDao.classJoin(clsNo, mbId)) 
-					rattr.addFlashAttribute("fMsg","수강신청이 완료되었습니다.");
-				else
-					rattr.addFlashAttribute("fMsg","수강신청에 실패하였습니다. 다시 이용해주세요.");			
-			}
-		} else 
-			rattr.addFlashAttribute("fMsg","학생 계정으로 로그인 후 이용해주세요!");
-		
-		mav.setViewName("redirect:/myclass_s");
-		return mav;
-	}
 }

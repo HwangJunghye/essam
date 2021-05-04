@@ -51,10 +51,6 @@ public class BController {
 	 * [MM07] 수강신청
 	 * @Author 고연미 on 28/04/2021
 	 */
-	@RequestMapping(value = "/classjoin")
-	ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
-		return bm.classJoin(clsNo, session, rattr);
-	}
 	/**
 	 * [CM02] 게시판 리스트 이동
 	 * @Author 고연미 on 28/04/2021

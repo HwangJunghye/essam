@@ -24,16 +24,6 @@
 			JOIN STUDENT S ON C.clsNo=S.clsNo 
 		WHERE S.MBID=#{mbId}
 	</select>
-	<select id="hasClassJoin" resultType="int">
-		SELECT COUNT(*) FROM STUDENT 
-		WHERE clsNo=#{clsNo} AND mbId=#{mbId} AND ROWNUM=1	
-	</select>
-	<insert id="classJoin">
-		INSERT INTO STUDENT 
-			(regiNo, clsNo, mbId, regiStartDate)
-		VALUES 
-			(STUDENT_SEQ.NEXTVAL, #{clsNo}, #{mbId}, DEFAULT)
-	</insert>
 	<insert id="addClsView">
 		INSERT INTO CLS_VIEW 
 			(clsNo, sessionId, mbId, clsViewDate)

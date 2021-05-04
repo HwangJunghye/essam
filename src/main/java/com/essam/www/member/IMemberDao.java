@@ -30,5 +30,9 @@ public interface IMemberDao {
 
 	boolean teacherInfoDelete(String mbId);
 
+	//@Author 고연미
+	int hasClassJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
+	
+	boolean classJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
 	
 }

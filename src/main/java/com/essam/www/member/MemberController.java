@@ -25,6 +25,10 @@ public class MemberController {
 	private MemberMM mm;
 	//**********고연미**********//
 	// (MM07)수강신청 실행
+	@RequestMapping(value = "/classjoin")
+	ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
+		return mm.classJoin(clsNo, session, rattr);
+	}
 	//**********임다영**********//
 	// (MM09)계정관리 이동	
 	// (MM10)회원정보 수정 실행	

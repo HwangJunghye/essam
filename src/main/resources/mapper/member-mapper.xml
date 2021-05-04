@@ -92,4 +92,15 @@
 		WHERE MBID=#{mbId}
 	</update>
 	
+	<!-- @Author 고연미 -->
+	<select id="hasClassJoin" resultType="int">
+		SELECT COUNT(*) FROM STUDENT 
+		WHERE clsNo=#{clsNo} AND mbId=#{mbId} AND ROWNUM=1	
+	</select>
+	<insert id="classJoin">
+		INSERT INTO STUDENT 
+			(regiNo, clsNo, mbId, regiStartDate)
+		VALUES 
+			(STUDENT_SEQ.NEXTVAL, #{clsNo}, #{mbId}, DEFAULT)
+	</insert>
 </mapper>
