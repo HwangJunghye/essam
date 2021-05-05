@@ -666,38 +666,37 @@ public class ClassMM {
 
 	// (CM28)클래스 삭제
 	@Transactional
-	public ModelAndView classDelete(String clsNo, RedirectAttributes rattr) {
+	public ModelAndView classDelete(String clsNo, HttpServletRequest request, RedirectAttributes rattr) {
 		ModelAndView mav = new ModelAndView();
-		
 		// getClassInfo()에 clsNo 넘겨 클래스 정보 가져오기
-		ClassBean  classInfo = cDao.getClassInfo(clsNo); //파일 통합후 bDao-->cDao 변경요망
+		ClassBean  classInfo = cDao.getClassInfo(clsNo);
 		String fileNo = classInfo.getFileNo();
 		int clsRegiCnt =classInfo.getClsRegiCnt();
 		
 		if(clsRegiCnt>=1){//클래스 clsRegiCnt 있으면 클래스 삭제 불가 메시지 띄우기 ->클래스 소개 화면으로 이동
 			rattr.addFlashAttribute("fMsg", "수강 중인 회원이 있어 클래스를 삭제할 수 없습니다.");
 			mav.setViewName("redirect:/myclass_t");
-		}else{//클래스 clsRegiCnt 없으면 클래스 삭제 진행			
-			ArrayList<BoardBean> boardList = null; //게시글 목록 가져올 때 사용
-			List<CurriculumBean> curriList = null; //커리큘럼 목록 가져올 때 사용
-						
+		}else{//클래스 clsRegiCnt 없으면 클래스 삭제 진행
+					
 				//1. 게시판 글 및 댓글 삭제(CM14이용)
 					//1-1. 게시글 목록 가져오기(CM03)
-					//boardList = cDao.getBoardList(clsNo, clsBrdType, pageNum);	
+					//ArrayList<BoardBean> boardList = cDao.getBoardList(clsNo, clsBrdType, pageNum);	
 					//1-2. 게시글 삭제하기(CM14)
 					//this.boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr);									
 			
 				 //2. 커리큘럼 삭제
 					//2-1. 커리큘럼 목록 가져오기
-					//curriList = crDao.getCurriculumList(clsNo);
+					//List<CurriculumBean> curriList = crDao.getCurriculumList(clsNo);
 					//2-2. 커리큘럼 삭제하기(CR11)
-					//boolean curriDelResult = crDao.classCurriculumDelete(clsNo);	
-			
+					//for(CurriculumBean crb : curriList){
+					//  	crDao.classCurriculumDelete(crb.getCurNo());		
+					//	}
+								
 				 //3.  클래스 삭제
-					//3-1. 클래스 이미지 삭제(FM06)			
-						//fm.deleteFile(fileNo, request);
-					//3-2. 클래스 DB 삭제
+					//3-1. 클래스 DB 삭제
 						if(cDao.classDelete(clsNo)){//삭제 성공시
+							//3-2. 클래스 이미지 삭제(FM06)			
+							fm.deleteFile(fileNo, request);
 							rattr.addFlashAttribute("fMsg", "클래스 삭제 성공!");
 							//클래스 삭제 완료시 클래스 관리 페이지로 이동
 							mav.setViewName("redirect:/myclass_t");		
@@ -707,8 +706,8 @@ public class ClassMM {
 							}
 		}
 		return mav;
-	}
-}
+	} //classDelete End
+}//Class End
 
 /**
  * (CM04)게시판 목록 내림차순 정렬

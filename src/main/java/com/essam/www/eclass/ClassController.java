@@ -137,8 +137,8 @@ public class ClassController {
 		}
 	// (CM28)클래스 삭제
 	@RequestMapping(value = "/class/deleteclass")
-	ModelAndView classDelete(String clsNo, RedirectAttributes rattr) {
-		ModelAndView mav = cm.classDelete(clsNo, rattr);
+	ModelAndView classDelete(String clsNo, HttpServletRequest request, RedirectAttributes rattr) {
+		ModelAndView mav = cm.classDelete(clsNo, request, rattr);
 		return mav;
 		}
 }

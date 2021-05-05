@@ -25,8 +25,10 @@ public interface IClassDao {
 
 	boolean classClassinfoInsert(ClassBean cb);
 
-	String getFileNo(String clsNo);
+	boolean classDelete(String clsNo);
 	
+	String getFileNo(String clsNo);
+		
 	//@Author 고연미
 	ClassBean getClassInfo(String clsNo);
 	
@@ -70,6 +72,4 @@ public interface IClassDao {
 	void updateReply(ReplyBean rb);
 
 	void deleteReply(@Param("clsBrdRepNo") String clsBrdRepNo, @Param("mbId") String mbId);
-
-	boolean classDelete(String clsNo);
 }
