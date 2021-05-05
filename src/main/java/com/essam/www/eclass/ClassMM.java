@@ -682,8 +682,9 @@ public class ClassMM {
 					//1-1. 게시글 목록 가져오기(CM03)
 					//ArrayList<BoardBean> boardList = cDao.getBoardList(clsNo, clsBrdType, pageNum);	
 					//1-2. 게시글 삭제하기(CM14)
-					//this.boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr);									
-			
+					//for(BoardBean bb : boardList) {
+					//		this.boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr);									
+					//		}
 				 //2. 커리큘럼 삭제
 					//2-1. 커리큘럼 목록 가져오기
 					//List<CurriculumBean> curriList = crDao.getCurriculumList(clsNo);
