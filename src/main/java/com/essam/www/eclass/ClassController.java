@@ -43,7 +43,7 @@ public class ClassController {
 		// 		예외가 발생한 경우
 		// }
 	}
-	// (CM06+CM07)게시판(공지사항/과제) 상세 페이지 이동 + 과제 상세 가져오기
+	// (CM06+CM07)게시판(공지사항/과제) 상세 페이지 이동 + 게시글 상세 가져오기
 	@RequestMapping(value = "/class/boardread")
 	ModelAndView boardRead(String clsBrdNo, Integer pageNum, HttpServletRequest request) {
 		return cm.boardRead(clsBrdNo, pageNum, request);

@@ -222,6 +222,7 @@ public class ClassMM {
 	@Transactional
 	private void addBrdView(String clsBrdNo, String mbId) {
 		int isViewCnt = 0;
+		//현 게시글에 해당 mbId 조회정보가 등록되어있는지 확인
 		isViewCnt = cDao.getBrdViewId(clsBrdNo, mbId);
 		if(isViewCnt < 1) {
 			cDao.addBrdView(clsBrdNo, mbId);
