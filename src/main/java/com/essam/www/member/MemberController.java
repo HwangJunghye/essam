@@ -29,10 +29,6 @@ public class MemberController {
 	ModelAndView classJoin(String clsNo, HttpSession session, RedirectAttributes rattr) {
 		return mm.classJoin(clsNo, session, rattr);
 	}
-	//**********임다영**********//
-	// (MM09)계정관리 이동
-	// (MM10)회원정보 수정 실행	
-	// (MM11)회원정보 가져오기   
 
 
 	// (MM01)로그인 이동
@@ -93,7 +89,19 @@ public class MemberController {
 		return mm.changePassword(session,mbPwd,newMbPwd);
 	}
 	
+	// (MM09+MM11)계정관리 이동 + 회원정보 가져오기
+	@RequestMapping(value = "/mypage")
+	ModelAndView goMypage(HttpSession session) {
+		ModelAndView mav = mm.goMypage(session);
+		return mav;
+	}
 	
+	//	(MM10)회원정보 수정 실행
+	@RequestMapping(value = "/memberupdate")
+	ModelAndView memberUpdate(MemberBean mb, HttpSession session) {
+		ModelAndView mav = mm.memberUpdate(mb, session);	
+		return mav;
+	}
 	
 	
 	// (MM12+MM13)교사프로필 이동 + 교사프로필 가져오기

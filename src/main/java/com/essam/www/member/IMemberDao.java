@@ -34,5 +34,11 @@ public interface IMemberDao {
 	int hasClassJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
 	
 	boolean classJoin(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
+
+	boolean memberUpdate(MemberBean mb);
+
+	void deleteInterCate(@Param("mbId") String mbId, @Param ("tablenm")String tablenm);
+
+	int[] getinterCate(@Param("mbId") String mbId, @Param("tablenm")String tablenm);
 	
 }

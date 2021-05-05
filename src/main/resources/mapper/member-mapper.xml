@@ -103,4 +103,30 @@
 		VALUES 
 			(STUDENT_SEQ.NEXTVAL, #{clsNo}, #{mbId}, DEFAULT)
 	</insert>
+	
+	<update id="memberUpdate">
+		UPDATE MEMBER SET
+		mbNickname = #{mbNickName},	
+		mbTel = #{mbTel},
+		mbAddr = #{mbAddr},
+		mbBirth = #{mbBirth},
+		mbGender = #{mbGender}
+		WHERE
+		MBID=#{mbId}
+	</update>
+	
+	<delete id="deleteInterCate">
+		DELETE FROM ${tablenm} WHERE MBID=#{mbId}
+	</delete>
+	
+	<select id="getinterCate" resultType="int">
+		SELECT 
+		<if test='tablenm.equals("INTER_CATE1")'>
+		cate1No
+		</if>
+		<if test='tablenm.equals("INTER_CATE2")'>
+		cate2No
+		</if>
+		FROM ${tablenm} WHERE MBID=#{mbId}
+	</select>
 </mapper>

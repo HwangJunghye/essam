@@ -11,13 +11,7 @@ import com.essam.www.bean.ReplyBean;
 
 public interface IDDao {
 
-	MemberBean getMemberInfo(String mbId);
 
-	boolean memberUpdate(MemberBean mb);
-
-	void deleteInterCate(@Param("mbId") String mbId, @Param ("tablenm")String tablenm);
-
-	int[] getinterCate(@Param("mbId") String mbId, @Param("tablenm")String tablenm);
 }
 
 	
