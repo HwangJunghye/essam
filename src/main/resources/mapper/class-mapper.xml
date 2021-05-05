@@ -37,6 +37,9 @@
 			ZOOMLINK=#{zoomLink}, ZOOMPWD=#{zoomPwd}		
 		WHERE CLSNO=#{clsNo}
 	</update>
+	<delete id="classDelete">
+		DELETE FROM CLASS WHERE CLSNO=#{clsNo}	
+	</delete>
 	
 	<!-- @Author 고연미 -->
 	<select id="getClassInfo" resultType="classbean">
