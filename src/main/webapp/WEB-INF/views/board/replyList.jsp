@@ -63,7 +63,7 @@
 				data : formData,
 				dataType : 'json'
 			}).done((result)=>{
-				$('#add').text('댓글등록 성공');
+				//$('#add').text('댓글등록 성공');
 				//console.log(result);
 						
 				displayRList(result);//댓글리스트 출력
@@ -71,7 +71,7 @@
 				$('#clsBrdRepContent').val('');
 				$('#clsBrdRepContent').focus();
 			}).fail(function(err) {
-				$('#add').text('댓글등록 실패');
+				//$('#add').text('댓글등록 실패');
 			});
 		}
 	}
