@@ -22,9 +22,9 @@
 					<div>${loginData.mbNickName}</div>
 					<div>첨부파일 :&nbsp;<i class="far fa-save"></i>&nbsp; <input
 						type="file" name="file" id="file"></div>
-					<div><textarea rows=3 cols=42 name="r_contents" id="r_contents"></textarea></div>
-					<div><input type="button" onclick="javascript:addReply();"
-						value="등록"> <input type="reset" value="취소"></div>
+					<textarea rows=3 cols=42 name="r_contents" id="r_contents"></textarea>
+					<input type="button" onclick="javascript:addReply();"
+						value="등록"> <input type="reset" value="취소">
 				</div>
 			</table>
 		</form>
@@ -47,10 +47,13 @@
 	
 	<script>
 //댓글등록하기
-let bNo = "${boardData.clsBrdNo}";
+let bNo = "${boardData.clsBrdNo}";  //글번호
+	console.log("bNo == ", bNo);
+let brNo = "${reply.clsBrdRepNo}";	//댓글번호
+	console.log("brNo == ", brNo);
+
 	function addReply(){
-			//글번호
-		console.log("bNo == ", bNo);
+		
 		//FormData : js 지원 객체이므로 jQ객체($('#frm'))를 사용할수없다.
 		//js 객체로 파일 저장
 		let $obj = $("#file");
@@ -105,7 +108,6 @@ let bNo = "${boardData.clsBrdNo}";
 	
 	function getReplyList(){
 		let replyurl = "${ctxPath}/class/getreplylist"; //mapping할 value
-
 			$.ajax({
 				url: replyurl,
 			    method: "get",
@@ -168,11 +170,7 @@ $(".fas fa-backspace").on("click", ".fas fa-backspace", function() {
 	}
 });
 
-//댓글 수정하기
-
-	let brNo = "${reply.clsBrdRepNo}";	//댓글번호
-		console.log("brNo == ", brNo);
-		
+//댓글 수정하기		
 		//폼의 일부 데이터만 저장
 	 	let formData = new FormData();
 		formData.append("clsBrdRepNo", brNo);		
@@ -180,12 +178,10 @@ $(".fas fa-backspace").on("click", ".fas fa-backspace", function() {
 		formData.append("clsBrdRepContent", $('#clsBrdRepContent').val());
 		console.log("formData === ", formData);
 		
-	$(function()
+	function updateReply(){
 		if(brNo != "") {
 			$.ajax({
 				url: "${ctxPath}/class/updatereply",
-				processData: false,   //urlencoded(쿼리스트링 형식) 처리 금지
-			    contentType: false,
 			    type: "post",
 				data : formData,
 				dataType : 'json'
@@ -195,7 +191,7 @@ $(".fas fa-backspace").on("click", ".fas fa-backspace", function() {
 				$('#update').text('댓글수정실패');
 			});
 		}
-	});	
+	};
 </script>
 
 	<!-- <div class="input-group">
