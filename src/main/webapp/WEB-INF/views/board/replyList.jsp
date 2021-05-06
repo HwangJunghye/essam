@@ -51,7 +51,6 @@
 	 	let formData = new FormData();
 		formData.append("clsBrdNo", bNo);		
 		formData.append("file", files[0]);
-		formData.append("clsBrdRepDate", files[0]);
 		formData.append("clsBrdRepContent", $('#clsBrdRepContent').val());
 
 		if(bNo != "") {
@@ -102,7 +101,7 @@
 	}
 	//댓글리스트 출력 함수
 	function displayRList(result) {
-		let str = "<table width='86%' align='center'>";
+		let str = "<table width='86%' align='center' class='table table-hover'>";
 		$.each(result, function(index, reply) {
 			console.log("reply mbId ==", reply.mbId);
 			console.log("loginData mbId ==", mi);
@@ -152,29 +151,6 @@ function isRDelete(clsBrdRepNo, clsBrdNo) {
 		});			
 	}
 }
-
-//댓글 수정하기		
-		//폼의 일부 데이터만 저장
-	 	let formData = new FormData();
-		formData.append("clsBrdRepNo", brNo);		
-		formData.append("fileNo", $('#fileNo').val());
-		formData.append("clsBrdRepContent", $('#r_contents').val());
-		console.log("formData === ", formData);
-		
-	function updateReply(){
-		if(brNo != "") {
-			$.ajax({
-				url: "${ctxPath}/class/updatereply",
-			    type: "post",
-				data : formData,
-				dataType : 'json'
-			}).done((result)=>{
-				console.log("update = ",update);
-			}).fail(function(err) {
-				$('#update').text('댓글수정실패');
-			});
-		}
-	};
 </script>
 
 </body>
