@@ -10,17 +10,17 @@
 		SELECT COUNT(*) FROM 
 		<!--searchTarget이 클래스인 경우 -->
 		<if test="searchTarget.equals('class')">
-		CLASS WHERE CLSOPENDATE BETWEEN STARTDATE AND ENDDATE GROUP BY CLSOPENDATE
+		CLASS WHERE CLSOPENDATE BETWEEN {startDate} AND {endDate} GROUP BY CLSOPENDATE ORDER BY CLSOPENDATE
 		</if>
 		
 		<!-- searchTarget이 강사인 경우 -->
 		<if test="searchTarget.equals('teacher')">
-		MEMBER WHERE (MBTYPE=2) AND (MBJOINDATE BETWEEN STARTDATE AND ENDDATE) GROUP BY MBJOINDATE
+		MEMBER WHERE (MBTYPE=2) AND (MBJOINDATE BETWEEN {startDate} AND {endDate}) GROUP BY MBJOINDATE ORDER BY MBJOINDATE
 		</if>
 		
 		<!-- searchTarget이 학생인 경우 -->
 		<if test="searchTarget.equals('student')">
-		MEMBER WHERE (MBTYPE=1) AND (MBJOINDATE BETWEEN STARTDATE AND ENDDATE) GROUP BY MBJOINDATE
+		MEMBER WHERE (MBTYPE=1) AND (MBJOINDATE BETWEEN {startDate} AND {endDate}) GROUP BY MBJOINDATE ORDER BY MBJOINDATE
 		</if>
 	</select>
 	
@@ -30,16 +30,16 @@
 		SELECT COUNT(*) FROM 
 		<!--searchTarget이 클래스인 경우 -->
 		<if test="searchTarget.equals('class')">
-		CLASS WHERE
+		CLASS WHERE  GROUP BY 
 		</if>
 		
 		<!-- searchTarget이 강사인 경우 -->
 		<if test="searchTarget.equals('teacher')">
-		MEMBER WHERE (MBTYPE=2) AND 
+		MEMBER WHERE (MBTYPE=2) AND  GROUP BY 
 		</if>
 		<!-- searchTarget이 학생인 경우 -->
 		<if test="searchTarget.equals('student')">
-		MEMBER WHERE (MBTYPE=1) AND 
+		MEMBER WHERE (MBTYPE=1) AND  GROUP BY 
 		</if>
 	</select>
 	
