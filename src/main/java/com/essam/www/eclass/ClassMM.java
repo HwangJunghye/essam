@@ -129,12 +129,8 @@ public class ClassMM {
         BListDecending bListDecending = new BListDecending();
         Collections.sort(bList, bListDecending);
  
-        for (BoardBean nb : bList) {
-            bListSort.add(nb);
-        }
-
 		//mav에 게시판 목록 정보 저장
-		mav.addObject("bList", bListSort);
+		mav.addObject("bList", bList);
 		//mav에 페이징 정보 저장
 		mav.addObject("paging", getPaging(clsNo, clsBrdType, pageNum, request));
 		//mav에 클래스넘버 추가
