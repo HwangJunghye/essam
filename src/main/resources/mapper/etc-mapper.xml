@@ -30,16 +30,16 @@
 		SELECT COUNT(*) FROM 
 		<!--searchTarget이 클래스인 경우 -->
 		<if test="searchTarget.equals('class')">
-		CLASS WHERE  GROUP BY 
+		CLASS WHERE  GROUP BY ORDER BY
 		</if>
 		
 		<!-- searchTarget이 강사인 경우 -->
 		<if test="searchTarget.equals('teacher')">
-		MEMBER WHERE (MBTYPE=2) AND  GROUP BY 
+		MEMBER WHERE (MBTYPE=2) AND  GROUP BY ORDER BY
 		</if>
 		<!-- searchTarget이 학생인 경우 -->
 		<if test="searchTarget.equals('student')">
-		MEMBER WHERE (MBTYPE=1) AND  GROUP BY 
+		MEMBER WHERE (MBTYPE=1) AND  GROUP BY ORDER BY
 		</if>
 	</select>
 	
