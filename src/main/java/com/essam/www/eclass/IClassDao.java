@@ -28,6 +28,8 @@ public interface IClassDao {
 	boolean classDelete(String clsNo);
 	
 	String getFileNo(String clsNo);
+	
+	List<BoardBean> getBListForDelete(String clsNo);
 		
 	//@Author 고연미
 	ClassBean getClassInfo(String clsNo);
@@ -72,4 +74,6 @@ public interface IClassDao {
 	void updateReply(ReplyBean rb);
 
 	void deleteReply(@Param("clsBrdRepNo") String clsBrdRepNo, @Param("mbId") String mbId);
+
+	
 }

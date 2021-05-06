@@ -51,7 +51,7 @@ public class ClassMM {
 	private IClassDao cDao;	
 	@Autowired
 	private ICurriculumDao crDao;
-
+ 
 		
 	/**
 	 * (CM01)클래스소개 이동 (관계자용)
@@ -678,19 +678,39 @@ public class ClassMM {
 			mav.setViewName("redirect:/myclass_t");
 		}else{//클래스 clsRegiCnt 없으면 클래스 삭제 진행
 					
-				//1. 게시판 글 및 댓글 삭제(CM14이용)
-					//1-1. 게시글 목록 가져오기(CM03)
-					//ArrayList<BoardBean> boardList = cDao.getBoardList(clsNo, clsBrdType, pageNum);	
-					//1-2. 게시글 삭제하기(CM14)
-					//for(BoardBean bb : boardList) {
-					//		this.boardDelete(String clsBrdNo, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr);									
-					//		}
+				//1. 게시판 글 및 댓글 삭제
+					//1-1. 게시글 목록 가져오기
+					List<BoardBean> boardList = cDao.getBListForDelete(clsNo);	
+					for(BoardBean bb : boardList) {
+						//1-2. 게시글 댓글 목록 가져오기
+						List<ReplyBean> replyList = cDao.getReplyList(bb.getClsBrdNo());
+						//1-3. 게시글 댓글 목록 삭제하기(CM15)
+						if(cDao.deleteReplyList(bb.getClsBrdNo())) {
+							//1-4.댓글 첨부파일 삭제
+							for(ReplyBean rb : replyList) {
+								//fileNo가 존재하는 경우 파일 삭제
+								if(!StringUtils.isEmpty(rb.getFileNo())){
+									fm.deleteFile(rb.getFileNo(), request);
+										}
+									} //1-4 for문 End
+								} //1-3 if문 End
+						//1-5. 게시글 DB삭제하기(CM14)
+						cDao.deleteBrd(bb.getClsBrdNo());
+						//1-6. 게시글 첨부파일 번호 가져오기(CM14 415라인 참조)
+						List<FileBean> fileList = cDao.getBoardFiles(bb.getClsBrdNo());
+						//1-7. 게시글 첨부파일 삭제(FM06)
+						for(FileBean fb : fileList) {
+							fm.deleteFile(fb.getFileNo(), request);
+						} //1-7 for문 End
+					}
+			
+			
 				 //2. 커리큘럼 삭제
-					//2-1. 커리큘럼 목록 가져오기
+					//2-1. 커리큘럼 목록 가져오기(CR02)
 					//List<CurriculumBean> curriList = crDao.getCurriculumList(clsNo);
 					//2-2. 커리큘럼 삭제하기(CR11)
 					//for(CurriculumBean crb : curriList){
-					//  	crDao.classCurriculumDelete(crb.getCurNo());		
+					// 	crDao.classCurriculumDelete(crb.getCurNo());		
 					//	}
 								
 				 //3.  클래스 삭제

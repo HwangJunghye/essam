@@ -37,6 +37,12 @@
 			ZOOMLINK=#{zoomLink}, ZOOMPWD=#{zoomPwd}		
 		WHERE CLSNO=#{clsNo}
 	</update>
+	
+	<select id="getBListForDelete" resultType="BoardBean">
+		SELECT * FROM BOARD WHERE CLSNO=#{clsNo}
+	</select>
+	
+	
 	<delete id="classDelete">
 		DELETE FROM CLASS WHERE CLSNO=#{clsNo}	
 	</delete>
