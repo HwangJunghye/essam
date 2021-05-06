@@ -14,7 +14,7 @@
 <script src="${ctxPath}/resources/js/mypage.js"></script>
 <style type="text/css">
 #center{
-	height: 200px;
+	height: 600px;
 	margin-left: auto;
     margin-right: auto;
 }
