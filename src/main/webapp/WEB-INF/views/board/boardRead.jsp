@@ -72,7 +72,7 @@
 			BoardBean bb = (BoardBean)request.getAttribute("boardData");
 			if(Constant.clsBrdHasReply[bb.getClsBrdType()]) {%>
 			<%@ include file="../board/replyList.jsp" %>
-			<%}	%>
+			<%}	%> 
 			
 			<br><br><br>
 		</div>
