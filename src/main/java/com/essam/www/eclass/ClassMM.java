@@ -694,15 +694,21 @@ public class ClassMM {
 										}
 									} //1-4 for문 End
 								} //1-3 if문 End
-						//1-5. 게시글 DB삭제하기(CM14)
+						//1-5. 조회수 정보 삭제
+						cDao.delBrdView(bb.getClsBrdNo()); 
+						//1-6. 게시글 DB삭제하기(CM14)
 						cDao.deleteBrd(bb.getClsBrdNo());
-						//1-6. 게시글 첨부파일 번호 가져오기(CM14 415라인 참조)
+						//1-7. 게시글 첨부파일 번호 가져오기(CM14 415라인 참조)
 						List<FileBean> fileList = cDao.getBoardFiles(bb.getClsBrdNo());
-						//1-7. 게시글 첨부파일 삭제(FM06)
+						//1-8. 게시글 첨부파일 삭제(FM06)
 						for(FileBean fb : fileList) {
-							fm.deleteFile(fb.getFileNo(), request);
-						} //1-7 for문 End
-					}
+							//BRD_FILE 정보 삭제
+							if(cDao.deleteBrdFile(fb.getFileNo())) {
+								//DB > TB_FILE 정보 삭제, 파일 삭제
+								fm.deleteFile(fb.getFileNo(), request);
+							}
+						} //1-8 for문 End
+					} //게시판 글 및 댓글 삭제 End
 			
 			
 				 //2. 커리큘럼 삭제
