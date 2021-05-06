@@ -39,9 +39,12 @@
 	</update>
 	
 	<select id="getBListForDelete" resultType="BoardBean">
-		SELECT * FROM BOARD WHERE CLSNO=#{clsNo}
+		SELECT * FROM CLS_BRD WHERE CLSNO=#{clsNo}
 	</select>
 	
+	<delete id="classViewDelete">
+		DELETE FROM CLS_VIEW WHERE CLSNO=#{clsNo}	
+	</delete>
 	
 	<delete id="classDelete">
 		DELETE FROM CLASS WHERE CLSNO=#{clsNo}	

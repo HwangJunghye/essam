@@ -694,7 +694,7 @@ public class ClassMM {
 										}
 									} //1-4 for문 End
 								} //1-3 if문 End
-						//1-5. 조회수 정보 삭제
+						//1-5. 게시글 조회수 정보 삭제
 						cDao.delBrdView(bb.getClsBrdNo()); 
 						//1-6. 게시글 첨부파일 번호 가져오기(CM14 415라인 참조)
 						List<FileBean> fileList = cDao.getBoardFiles(bb.getClsBrdNo());
@@ -720,9 +720,11 @@ public class ClassMM {
 					//	}
 								
 				 //3.  클래스 삭제
-					//3-1. 클래스 DB 삭제
+					//3-1. 클래스 조회수 정보 삭제
+					cDao.classViewDelete(clsNo);
+					//3-2. 클래스 DB 삭제
 						if(cDao.classDelete(clsNo)){//삭제 성공시
-							//3-2. 클래스 이미지 삭제(FM06)			
+							//3-3. 클래스 이미지 삭제(FM06)			
 							fm.deleteFile(fileNo, request);
 							rattr.addFlashAttribute("fMsg", "클래스 삭제 성공!");
 							//클래스 삭제 완료시 클래스 관리 페이지로 이동

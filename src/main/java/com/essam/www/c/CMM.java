@@ -258,35 +258,79 @@ public class CMM {
 	}
 	
 	//커리큘럼 등록
-	public ModelAndView ClassCurriculumAdd(String clsNo) throws CommonException {
+	public ModelAndView ClassCurriculumAdd(MultipartHttpServletRequest mReq, CurriculumBean cb, HttpServletRequest request, RedirectAttributes rattr) throws CommonException {
+		ModelAndView mav = new ModelAndView();
+		boolean result = false;  //게시판 저장 결과
+		int fileTypeNo = 2;      //파일타입번호 2(동영상)
+		String curNo = null;	 //커리큘럼번호
+		//int pageNum = Integer.parseInt(mReq.getParameter("pageNum"));
+		
+		//커리큘럼 등록 성공하면
+		if(mDao.classCurriculumAdd(cb)) {
+			result = true;
+			curNo = cb.getCurNo();
+		}
+		log.info("커리큘럼등록 성공여부 : " + result);	
+		
+		//커리큘럼 등록 성공하고, 첨부한 동영상파일이 있다면
+		if(result && mReq.getFiles("file").get(0).getSize() != 0) {
+			//파일 가져오기
+			MultipartFile file = mReq.getFile("file");
+			
+			//여러개일 경우 한개씩 서버에 저장 for each
+			
+			log.info("file name= "+ file.getOriginalFilename());
+			//파일 저장 => fileNo 반환
+			String fileNo = fm.saveFile(mReq, file, fileTypeNo);
+			
+			if(fileNo != null) {
+				//DB에 파일정보 저장
+				if(mDao.curFileInsert(curNo, fileNo)) {
+					log.info("file 저장 후 curri 테이블에 fileNo 저장 완료.");
+				}
+			}else {
+				log.info("file 저장 후 curri 테이블에 fileNo 저장 실패.");
+			}
+			
+		}
+		if(result) {
+			rattr.addFlashAttribute("fMsg", "커리큘럼을 등록하였습니다.");
+			mav.setViewName("redirect:/class/curriculum?clsNo=" + cb.getClsNo());
+		}else {
+			rattr.addFlashAttribute("fMsg", "커리큘럼 등록을 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
+			//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
+			String referer = request.getHeader("Referer");
+			//view 페이지 ㅣ설정
+			mav.setViewName("redirect:" + referer);
+		}
+		//rattr에 커리큘럼번호 추가
+		//rattr.addFlashAttribute("curNo", curNo);
+		//rattr에 페이지 넘버 추가
+		//rattr.addFlashAttribute("pageNum", pageNum);
+		
+		
+		return mav;
+	}
+
+	//동영상 페이지 이동
+	public ModelAndView goClassVideoPlay(String clsNo, String curNo) {
 		ModelAndView mav = new ModelAndView();
 		CurriculumBean curriInfo = null;
-		curriInfo = mDao.getCurriculumAdd(clsNo);
 		
-		if (curriInfo != null) { // 커리큘럼 정보가 있다면(수정뷰)
-			if(curriInfo.getCurTypeNo() == 1) { // 커리큘럼타입이 동영상이면, curTypeNo=1 : 동영상, curTypeNo=2 : 실시간
-				// 가져온 정보를 mav에 넣기
-				mav.addObject("curriInfo", curriInfo);
-				// curriculum_write.jsp로 이동하기 위해 viewname 지정
-				mav.setViewName("curriculum/curriculum_write"); // 커리큘럼 등록, 수정 페이지로
-			}else if(curriInfo.getCurTypeNo() == 2) { //커리큘럼타입이 실시간이면
-				// 가져온 정보를 mav에 넣기
-				mav.addObject("curriInfo", curriInfo);
-				// curriculum_write.jsp로 이동하기 위해 viewname 지정
-				mav.setViewName("curriculum/curriculum_write"); // 커리큘럼 등록, 수정 페이지로
-			}else { // 커리큐럼타입이 1 또는 2가 아닌 경우(정상적인 경우는 1 또는 2)
-				throw new CommonException("커리큘럼타입 예외발생");	
-			}
-		}else { // 커리큘럼 정보가 없다면(등록뷰)
-			mav.setViewName("curriculum/curriculum_write"); // 커리큘럼 등록, 수정 페이지로
-			mav.addObject("msg", "등록된 커리큘럼 정보가 없습니다");
-		}
+		curriInfo = mDao.getCurriculumRead(clsNo, curNo);
+		
+		mav.addObject("navtext", "마이클래스> 커리큘럼> 동영상");
+		mav.addObject("clsNo", clsNo);
+		mav.addObject("curriInfo", curriInfo);
+		//mav에 클래스명 추가
+		mav.addObject("clsName", cDao.getClassName(clsNo));
+		mav.setViewName("curriculum/curriculum_videoplay");
 		return mav;
 	}
 
 
 
-//동영상 페이지 이동
+
 //동영상 제목,시작일,종료일 가져오기
 
 //커리큘럼 등록
@@ -294,7 +338,24 @@ public class CMM {
 
 }
 
-
+//if (curriInfo != null) { // 커리큘럼 정보가 있다면(수정뷰)
+//	if(curriInfo.getCurTypeNo() == 1) { // 커리큘럼타입이 동영상이면, curTypeNo=1 : 동영상, curTypeNo=2 : 실시간
+//		// 가져온 정보를 mav에 넣기
+//		mav.addObject("curriInfo", curriInfo);
+//		// curriculum_write.jsp로 이동하기 위해 viewname 지정
+//		mav.setViewName("curriculum/curriculum_write"); // 커리큘럼 등록, 수정 페이지로
+//	}else if(curriInfo.getCurTypeNo() == 2) { //커리큘럼타입이 실시간이면
+//		// 가져온 정보를 mav에 넣기
+//		mav.addObject("curriInfo", curriInfo);
+//		// curriculum_write.jsp로 이동하기 위해 viewname 지정
+//		mav.setViewName("curriculum/curriculum_write"); // 커리큘럼 등록, 수정 페이지로
+//	}else { // 커리큐럼타입이 1 또는 2가 아닌 경우(정상적인 경우는 1 또는 2)
+//		throw new CommonException("커리큘럼타입 예외발생");	
+//	}
+//}else { // 커리큘럼 정보가 없다면(등록뷰)
+//	mav.setViewName("curriculum/curriculum_write"); // 커리큘럼 등록, 수정 페이지로
+//	mav.addObject("msg", "등록된 커리큘럼 정보가 없습니다");
+//}
 
 
 
