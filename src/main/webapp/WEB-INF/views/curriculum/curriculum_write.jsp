@@ -47,7 +47,7 @@
 		<input type="radio" name="curTypeNo" id="dong" value="1" checked>동영상
 		<input type="radio" name="curTypeNo" id="sil" value="2">실시간
 		
-		<form action="/class/curriculum/write" method="post" enctype="multipart/form-data">
+		<form action="${ctxPath}/class/curriculum/add" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="curTypeNo" value="1">
 			<input type="hidden" name="clsNo" value="${clsNo}">
 			<div class="dong_div" id="dong_div" style="width:900px; height:600px; margin:0 auto;">
@@ -83,7 +83,7 @@
 			</div>
 		</form>
 		
-		<form action="/class/curriculum/write" method="post" enctype="multipart/form-data">
+		<form action="${ctxPath}/class/curriculum/add" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="curTypeNo" value="2">
 			<input type="hidden" name="clsNo" value="${clsNo}">
 			<div class="sil_div" id="sil_div" style="width:900px; height:300px; margin:0 auto;">

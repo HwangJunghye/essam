@@ -101,14 +101,22 @@ public class CController {
 	
 	//커리큘럼 등록
 	@RequestMapping(value = "/class/curriculum/add")
-	ModelAndView classCurriculumAdd(String clsNo, String clsName) throws CommonException {
-		ModelAndView mav = mm.goClassCurriculumWrite(clsNo);
-		mav.addObject("navtext", "커리큘럼 등록");
-		mav.addObject("clsName", clsName);
+	ModelAndView classCurriculumAdd(MultipartHttpServletRequest mReq, CurriculumBean cb, HttpServletRequest request, RedirectAttributes rattr) {
+		ModelAndView mav = mm.ClassCurriculumAdd(mReq, cb, request, rattr);
+		return mav; //.jsp
+	}
+	
+	//동영상 페이지 이동
+	@RequestMapping(value = "/class/videoplay")
+	ModelAndView goClassVideoPlay(String clsNo, String curNo) {
+		ModelAndView mav = mm.goClassVideoPlay(clsNo, curNo);
 		return mav; //.jsp
 	}
 	
 	
+	
+	
+	//동영상 제목,시작일,종료일 가져오기
 	
 	
 	
@@ -136,8 +144,7 @@ public class CController {
 	
 	
 
-//동영상 페이지 이동
-//동영상 제목,시작일,종료일 가져오기
+
 //커리큘럼 삭제
 
 

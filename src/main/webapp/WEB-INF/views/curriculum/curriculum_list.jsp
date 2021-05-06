@@ -50,12 +50,18 @@
 							<td>${cInfo.curTitle}</td>
 							<td>${cInfo.curStartDate}</td>
 							<td>${cInfo.curEndDate}</td>
-							<td>참여아이콘</td>
+							<c:if test="${cInfo.curTypeNo==1}">
+								<td><a href="${ctxPath}/class/videoplay?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}">참여아이콘</a></td>
+							</c:if>
+							<c:if test="${cInfo.curTypeNo==2}">
+								<td><a href="${ctxPath}/curriculum/zoomlink">참여아이콘</a></td>
+							</c:if>
+							
 						</tr>
 					</c:forEach>
 				</table>
 			<c:if test="${sessionScope.loginData.mbType==2}">
-				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${curriInfo.clsNo}'">등록</button>
+				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${curriInfo[0].clsNo}'">등록</button>
 			</c:if>
 		</c:if>
 

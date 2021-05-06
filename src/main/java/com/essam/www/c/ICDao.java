@@ -2,6 +2,8 @@ package com.essam.www.c;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.essam.www.bean.CurriculumBean;
 import com.essam.www.bean.TeacherBean;
 
@@ -15,8 +17,10 @@ public interface ICDao {
 
 	List<CurriculumBean> getCurriculumList(String clsNo);
 
-	CurriculumBean getCurriculumRead(String clsNo, String curNo);
+	CurriculumBean getCurriculumRead(@Param("clsNo")String clsNo, @Param("curNo")String curNo);
 
-	CurriculumBean getCurriculumAdd(String clsNo);
+	boolean classCurriculumAdd(CurriculumBean cb);
+
+	boolean curFileInsert(@Param("curNo") String curNo,@Param("fileNo") String fileNo);
 
 }

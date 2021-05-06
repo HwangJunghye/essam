@@ -29,7 +29,23 @@
 		SELECT * FROM V_CURRI WHERE CLSNO=#{clsNo} AND CURNO=#{curNo}
 	</select>
 	
-	<select id="getCurriculumAdd" resultType="curriculumbean">
-		SELECT * FROM V_CURRI WHERE CLSNO=#{clsNo}
-	</select>
+	<insert id="classCurriculumAdd">
+		<selectKey keyProperty="curNo" resultType="String" order="BEFORE">
+			SELECT TO_CHAR(CURRI_SEQ.NEXTVAL) FROM DUAL
+		</selectKey>
+		INSERT INTO CURRI 
+			(CURNO, CLSNO, CURTYPENO, FILENO, CURTITLE, CURSTARTDATE, CURENDDATE, CURDISC) 
+		VALUES
+			(#{curNo}, #{clsNo}, #{curTypeNo}, #{fileNo}, #{curTitle}, TO_DATE(#{curStartDate} || ' 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(#{curEndDate} || ' 23:59:59', 'YYYY-MM-DD HH24:MI:SS'), #{curDisc})
+	</insert>
+	<update id="curFileInsert">
+		UPDATE CURRI
+		SET FILENO = #{fileNo}
+		WHERE CURNO = #{curNo}
+	</update>
+	
+	
+	
+	
+	
 </mapper>
