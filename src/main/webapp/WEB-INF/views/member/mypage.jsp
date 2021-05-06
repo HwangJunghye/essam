@@ -21,6 +21,9 @@
 .object{
 	text-align: left;
 }
+#mTable{
+	height: 100px;
+}
 
 </style>
 </head>
@@ -127,8 +130,9 @@
 				&nbsp;<input type="checkbox" name="cate2No" value="8" ${cate2Chk[8]?'checked':''}/>기타	
 			</td>
 		</tr>
+		<br>
 		<tr>
-			<th colspan="2">
+			<th colspan="2" id="mTable">
 				<input type="submit" class="${mbColor}" value="정보수정" />
 				<input type="reset" class="${mbColor}" value="취소" />
 			</th>
