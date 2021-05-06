@@ -29,7 +29,7 @@ public class EtcController {
 				
 	// (EM02)통계 가져오기(ajax)	
 	@RequestMapping(value = "/getstatistic")
-	@ResponseBody String getStatistic(AdminBean ab) {
+	@ResponseBody Map<String,Object> getStatistic(AdminBean ab) {
 		return em.getStatistic(ab);	
 	}
 

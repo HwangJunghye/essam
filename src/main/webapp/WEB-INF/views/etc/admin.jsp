@@ -58,7 +58,6 @@ border:solid 3px black;
 .condition{
 text-align:left;
 }
-
 </style>
 <body>
 
@@ -82,22 +81,16 @@ text-align:left;
 <tr>
 <td>조회대상:</td>
 <td class="condition">&emsp;
-<input type="radio" name="searchTarget" value="class" checked required/>클래스&emsp;
+<input type="radio" name="searchTarget" value="class" checked required/>클래스&emsp;&emsp;
 <input type="radio" name="searchTarget" value="teacher" />강사&emsp;&emsp;&emsp;
 <input type="radio" name="searchTarget" value="student" />수강생
 </td>
 </tr>
 <tr>
-<td>필&ensp;터&ensp;1:</td>
+<td>필&ensp;터:</td>
 <td class="condition">&emsp;
-<input type="radio" name="filter1" value="all" checked required/>전체&emsp;&emsp;
-<input type="radio" name="filter1" value="category" />카테고리
-</td>
-</tr>
-<td>필&ensp;터&ensp;2:</td>
-<td class="condition">&emsp;
-<input type="radio" name="filter2" value="total" checked required/>총&emsp;&emsp;&emsp;
-<input type="radio" name="filter2" value="new" />신규
+<input type="radio" name="filter" value="total" checked required/>전체&emsp;&emsp;&emsp;
+<input type="radio" name="filter" value="new" />신규
 </td>
 </tr>
 </table>
@@ -135,14 +128,13 @@ $(function(){
 		let startDate = $("#startDate").val();
 		let endDate = $("#endDate").val();
 		let searchTarget = $(":input:radio[name=searchTarget]:checked").val();
-		let filter1 = $(":input:radio[name=filter1]:checked").val();
-		let filter2 = $(":input:radio[name=filter2]:checked").val();
+		let filter = $(":input:radio[name=filter]:checked").val();
 		
 		
 		//차트 조회 ajax요청
 		$.ajax({
 				url:'${ctxPath}/getstatistic',
-				data:{startDate:startDate,endDate:endDate,searchTarget:searchTarget,filter1:filter1,filter2:filter2},
+				data:{startDate:startDate,endDate:endDate,searchTarget:searchTarget,filter:filter},
 				method: 'post',
 				dataType:'json'
 			}).done(function(data){

@@ -1,5 +1,7 @@
 package com.essam.www.etc;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,8 @@ public class EtcMM {
 	}
 	
 	// (EM02)통계 가져오기(ajax)
-	public String getStatistic(AdminBean ab) {
-		String statistic = eDao.getStatistic(ab);
+	public Map<String, Object> getStatistic(AdminBean ab) {
+		Map<String, Object> statistic = eDao.getStatistic(ab);
 		return statistic;
 	}	
 }
