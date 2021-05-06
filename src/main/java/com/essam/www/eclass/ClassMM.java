@@ -127,7 +127,7 @@ public class ClassMM {
 		/* clsBrdNo 기준 내림차순 정렬하기*/
 		List<BoardBean> bListSort = new ArrayList<>();
         BListDecending bListDecending = new BListDecending();
-        Collections.sort(bList, bListDecending);
+        Collections.sort(bList, bListDecending); 
  
 		//mav에 게시판 목록 정보 저장
 		mav.addObject("bList", bList);
