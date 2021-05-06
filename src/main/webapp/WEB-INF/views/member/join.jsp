@@ -23,6 +23,16 @@
 		width:100%;
 		height:100px;
 	}
+input[type="submit"], input[type="button"], input[type="reset"]{
+	width: 70px;
+	height: 36px;
+	box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	color: #FFFFFF;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
@@ -121,9 +131,9 @@
 		</td>
 	</tr>
 	<tr>
-		<th colspan="2">
-			<input type="submit" value="회원가입" />
-			<input type="reset" value="취소" />
+		<th colspan="2" id="joinBtn">
+			<input type="submit" class="${mbColor}" value="회원가입" />
+			<input type="reset" class="${mbColor}" value="취소" />
 		</th>
 	</tr>
 </table> 
