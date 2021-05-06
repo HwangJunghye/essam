@@ -34,7 +34,12 @@ public class EtcMM {
 	
 	// (EM02)통계 가져오기(ajax)
 	public Map<String, Object> getStatistic(AdminBean ab) {
-		Map<String, Object> statistic = eDao.getStatistic(ab);
+		Map<String, Object> statistic = null;
+		if(ab.getFilter()=="total") { //필터를 전체로 설정했을 때	
+			statistic = eDao.getTotalStatistic(ab);	
+		}else if(ab.getFilter()=="new"){ //필터를 신규로 설정했을 때
+			statistic = eDao.getNewStatistic(ab);	
+		}		
 		return statistic;
 	}	
 }
