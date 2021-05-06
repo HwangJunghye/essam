@@ -18,7 +18,7 @@
 		<table width="86%" align="center">
 		<tr>
 			<td>${loginData.mbNickName}</td>
-			<td>첨부파일 :	<input type="file" name="file" id="file"></td>
+			<td>첨부파일 :<i class='fas fa-save' style='color:#666;'>	<input type="file" name="file" id="file"></td>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
