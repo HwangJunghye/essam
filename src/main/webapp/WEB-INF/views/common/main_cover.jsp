@@ -27,26 +27,26 @@
 					<!--가로--> 
 					<img id="btn1" class="d-block w-100" src="${ctxPath}/resources/images/main_img7.jpg?auto=compress&cs=tinysrgb&h=280&w=1400" alt="First slide">
 					<div class="carousel-caption d-none d-md-block">
-					<h1>Why e-쌤 ?!!</h1>
+					<h1><span style="font-weight: bold;">Why e-쌤 ?!!</span></h1>
 					<p>&nbsp;</p></div>
 				</div>
 				<div class="carousel-item">
 					<img id="btn2" class="d-block w-100" src="${ctxPath}/resources/images/main_img2.jpg?auto=compress&cs=tinysrgb&h=280&w=1400" alt="Second slide">
 					<div class="carousel-caption d-none d-md-block">
-					<h4><span style="font-weight: bold;">언제나, 어디서나</span></h4>
-					<p><h5>Private Lesson Only for you</h5></p></div>
+					<h3><span style="font-weight: bold;">언제나, 어디서나</span></h3>
+					<p><h4>Private Lesson Only for you</h4></p></div>
 				</div>
 				<div class="carousel-item">
 		            <img id="btn3" class="d-block w-100" src="${ctxPath}/resources/images/main_img11.jpg?auto=compress&cs=tinysrgb&h=280&w=1400" alt="Third slide">
 					<div class="carousel-caption d-none d-md-block">
-					<h4><span style="font-weight: bold;">나를 성장시키는 힘</span></h4>
-					<p><h5>Make your Turning Point in your LIfe!</h5></p></div>
+					<h3><span style="font-weight: bold;">나를 성장시키는 힘</span></h3>
+					<p><h4>Make your Turning Point in your LIfe!</h4></p></div>
 		        </div>
 				<div class="carousel-item">
 		            <img id="btn4" class="d-block w-100" src="${ctxPath}/resources/images/main_img4.jpg?auto=compress&cs=tinysrgb&h=280&w=1400" alt="fourth slide">
 					<div class="carousel-caption d-none d-md-block">
-					<h4><span style="font-weight: bold;">e-쌤과 함께라면 가능합니다.</span></h4>
-					<p><h5>We can make it, with e-Ssam!</h5></p></div>
+					<h3><span style="font-weight: bold;">e-쌤과 함께라면 가능합니다.</span></h3>
+					<p><h4>We can make it, with e-Ssam!</h4></p></div>
 		        </div>
 				<!-- / 슬라이드 쇼 끝 -->
 				
