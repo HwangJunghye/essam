@@ -12,6 +12,17 @@
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/mypage.css">
 <script src="${ctxPath}/resources/js/mypage.js"></script>
+<style type="text/css">
+#center{
+	height: 200px;
+	margin-left: auto;
+    margin-right: auto;
+}
+.object{
+	text-align: left;
+}
+
+</style>
 </head>
 
 <body>
@@ -30,8 +41,7 @@
 <!--------- 본문 시작 -------------->
 
 	<form action="memberupdate" method="post">  
-	<table class="center">
-		
+	<table id="center">
 		<tr>
 			<th class="object">회원타입</th>
 			<td class="object_con">&emsp;${myInfo.mbType == 1?"학생":"강사"}</td>
