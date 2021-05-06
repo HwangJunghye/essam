@@ -19,9 +19,10 @@
 			enctype="multipart/form-data">
 			<table>
 				<div>
+					<div>${boradData.clsBrdRepDate}</div>
 					<div>${loginData.mbNickName}</div>
 					<div>첨부파일 :&nbsp;<i class="far fa-save"></i>&nbsp; <input
-						type="file" name="file" id="file"></div>
+						type="file" name="file" id="file"></div><br>
 					<textarea rows=3 cols=42 name="r_contents" id="r_contents"></textarea>
 					<input type="button" onclick="javascript:addReply();"
 						value="등록"> <input type="reset" value="취소">
@@ -63,6 +64,7 @@ let brNo = "${reply.clsBrdRepNo}";	//댓글번호
 	 	let formData = new FormData();
 		formData.append("clsBrdNo", bNo);		
 		formData.append("file", files[0]);
+		formData.append("clsBrdRepDate", files[0]);
 		formData.append("clsBrdRepContent", $('#r_contents').val());
 		console.log("formData === ", formData);
 
@@ -175,7 +177,7 @@ $(".fas fa-backspace").on("click", ".fas fa-backspace", function() {
 	 	let formData = new FormData();
 		formData.append("clsBrdRepNo", brNo);		
 		formData.append("fileNo", $('#fileNo').val());
-		formData.append("clsBrdRepContent", $('#clsBrdRepContent').val());
+		formData.append("clsBrdRepContent", $('#r_contents').val());
 		console.log("formData === ", formData);
 		
 	function updateReply(){
