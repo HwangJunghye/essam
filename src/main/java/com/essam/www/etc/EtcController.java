@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.essam.www.bean.AdminBean;
 import com.essam.www.bean.MemberBean;
 
 @Controller
-public class EtcController {
+public class EtcController extends TextWebSocketHandler {
 	@Autowired
 	private EtcMM em;
 	// (EM01)관리자 페이지 이동
@@ -32,5 +34,4 @@ public class EtcController {
 	@ResponseBody Map<String,Object> getStatistic(AdminBean ab) {
 		return em.getStatistic(ab);	
 	}
-
 }
