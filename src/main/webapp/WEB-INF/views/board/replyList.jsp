@@ -52,7 +52,7 @@ let bNo = "${boardData.clsBrdNo}";  //글번호
 let brNo = "${reply.clsBrdRepNo}";	//댓글번호
 	console.log("brNo == ", brNo);
 
-	function addReply(){
+	function addReply(){ 
 		
 		//FormData : js 지원 객체이므로 jQ객체($('#frm'))를 사용할수없다.
 		//js 객체로 파일 저장
