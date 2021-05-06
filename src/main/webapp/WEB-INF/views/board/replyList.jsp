@@ -102,7 +102,7 @@
 	}
 	//댓글리스트 출력 함수
 	function displayRList(result) {
-		let str = "<table width='86%' align='center'>";
+		let str = "<table width='86%' align='center' class='table table-hover'>";
 		$.each(result, function(index, reply) {
 			console.log("reply mbId ==", reply.mbId);
 			console.log("loginData mbId ==", mi);
