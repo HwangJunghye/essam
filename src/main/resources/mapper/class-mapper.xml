@@ -194,7 +194,7 @@
 	</update>
 	
 	<delete id="deleteReply">
-		DELETE FROM cls_brd_rep WHERE MBID=#{mbId} AND CLSBRDNO=#{clsBrdNo}
+		DELETE FROM cls_brd_rep WHERE MBID=#{mbId} AND CLSBRDREPNO=#{clsBrdRepNo}
 	</delete>
 	
 </mapper>

@@ -518,6 +518,9 @@ public class ClassMM {
 	// (CM19)댓글 삭제(ajax)
 	public List<ReplyBean> deleteReply(String clsBrdRepNo, HttpServletRequest req, String clsBrdNo) {
 		MemberBean mb = (MemberBean)req.getSession().getAttribute("loginData");
+		System.out.println("clsBrdNo =====> "+ clsBrdNo);
+		System.out.println("clsBrdRepNo =====> "+ clsBrdRepNo);
+		System.out.println("mbId =====> "+ mb.getMbId());
 		cDao.deleteReply(clsBrdRepNo, mb.getMbId());
 		return cDao.getReplyList(clsBrdNo);
 	}

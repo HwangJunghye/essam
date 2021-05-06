@@ -12,41 +12,40 @@
 </style>
 </head>
 <body>
-	<section>
 		<!-- 댓글등록 -->
 		<span id="add"></span>
-		<form id="frmReply" action="${ctxPath}/class/addreply" method="post"
-			enctype="multipart/form-data">
-			<table>
-				<div>
-					<div>${boradData.clsBrdRepDate}</div>
-					<div>${loginData.mbNickName}</div>
-					<div>첨부파일 :&nbsp;<i class="far fa-save"></i>&nbsp; <input
-						type="file" name="file" id="file"></div><br>
-					<textarea rows=3 cols=42 name="r_contents" id="r_contents"></textarea>
-					<input type="button" onclick="javascript:addReply();"
-						value="등록"> <input type="reset" value="취소">
-				</div>
-			</table>
+		<form id="frmReply" action="${ctxPath}/class/addreply" method="post" enctype="multipart/form-data">
+		<table width="86%" align="center">
+		<tr>
+			<td>${loginData.mbNickName}</td>
+			<td>첨부파일 :	<input type="file" name="file" id="file"></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan=2><textarea rows=3 cols=80 name="clsBrdRepContent" id="clsBrdRepContent"></textarea></td>
+			<td><input type="button" onclick="javascript:addReply();" value="등록"> <input type="reset" value="취소"></td>
+		</tr>
+		</table>
 		</form>
 
 		<!-- 댓글리스트 -->
-	 	<table id="rTable">
-	 	<c:forEach var="reply" items="${rList}">
+	 	<span id="rTable">
+	 	<%-- <c:forEach var="reply" items="${rList}">
 			<tr>
 				<td>${reply.mbNickName}</td>
 				<td><a href="${ctxPath}/download?fileNo=${reply.fileNo}"><i class="fas fa-save" style="width:24px;color:#666;"></i></a></td>
 				<td>${reply.clsBrdRepContent}</td>
 				<td>${reply.clsBrdRepDate}</td>
 			</tr>
-			</c:forEach>
-		</table>
+		</c:forEach> --%>
+		</span>
 	</section>
 
 	<!-- 댓글 form 넣기 스토리보드 12번 -->
 	<div id="replyArea"></div>
 	
 	<script>
+	
 //댓글등록하기
 let bNo = "${boardData.clsBrdNo}";  //글번호
 	console.log("bNo == ", bNo);
@@ -65,8 +64,7 @@ let brNo = "${reply.clsBrdRepNo}";	//댓글번호
 		formData.append("clsBrdNo", bNo);		
 		formData.append("file", files[0]);
 		formData.append("clsBrdRepDate", files[0]);
-		formData.append("clsBrdRepContent", $('#r_contents').val());
-		console.log("formData === ", formData);
+		formData.append("clsBrdRepContent", $('#clsBrdRepContent').val());
 
 		if(bNo != "") {
 			//댓글등록
@@ -81,7 +79,7 @@ let brNo = "${reply.clsBrdRepNo}";	//댓글번호
 				$('#add').text('댓글등록 성공');
 				//console.log(result);
 				
-				let str = "<table>";
+				let str = "<table width='86%' align='center'>";
 				//댓글 리스트 리로드
 				$.each(result, function(index, reply) {
 					str += "<tr>";
@@ -89,14 +87,14 @@ let brNo = "${reply.clsBrdRepNo}";	//댓글번호
 					str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
 					str += "<td>"+ reply.clsBrdRepContent +"</td>";
 					str += "<td>"+ reply.clsBrdRepDate +"</td>";
-					str += "<td><a href='${ctxPath}/deletereply?clsBrdRepNo="+ reply.clsBrdRepNo +"&clsBrdNo="+ ${boardData.clsBrdNo} +"'><i class='fas fa-backspace'></i></a></td>";
+					str += "<td><a href='${ctxPath}/deletereply?clsBrdRepNo="+ reply.clsBrdRepNo +"&clsBrdNo="+ reply.clsBrdNo +"'><i class='fas fa-backspace'></i></a></td>";
 					str += "</tr>";
 				});	
 				str += "</table>";
 
 				$('#rTable').html(str);
-				$('#r_contents').val('');
-				$('#r_contents').focus();
+				$('#clsBrdRepContent').val('');
+				$('#clsBrdRepContent').focus();
 			}).fail(function(err) {
 				$('#add').text('댓글등록 실패');
 			});
@@ -110,41 +108,39 @@ let brNo = "${reply.clsBrdRepNo}";	//댓글번호
 	
 	function getReplyList(){
 		let replyurl = "${ctxPath}/class/getreplylist"; //mapping할 value
-			$.ajax({
-				url: replyurl,
-			    method: "get",
-				data : {clsBrdNo : bNo},
-				dataType : 'json'
-			}).done((result)=>{
-				console.log("rList = ",result);
-					$(result).each(function(){
-						let str = "<table>";
-						$.each(result, function(index, reply) {
-							str += "<tr>";
-							str += "<td>"+ reply.mbNickName +"</td>";
-							str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
-							str += "<td>"+ reply.clsBrdRepContent +"</td>";
-							str += "<td>"+ reply.clsBrdRepDate +"</td>";
-							str += "<td><a href='${ctxPath}/deletereply?clsBrdRepNo="+ reply.clsBrdRepNo +"&clsBrdNo="+ ${boardData.clsBrdNo} +"'><i class='fas fa-backspace'></i></a></td>";
-							str += "</tr>";
-						});	
-						str += "</table>";
-						$('#rTable').html(str);
-						$('#clsBrdRepContent').val('');
-				
-					})
-			}).fail(function(err) {
-				$('#result').text('댓글 리스트를 가져올 수 없습니다');
-				})
+		$.ajax({
+			url: replyurl,
+		    method: "get",
+			data : {clsBrdNo : bNo},
+			dataType : 'json'
+		}).done((result)=>{
+			console.log("rList = ",result);
+			let str = "<table width='86%' align='center'>";
+			$.each(result, function(index, reply) {
+				str += "<tr>";
+				str += "<td>"+ reply.mbNickName +"</td>";
+				str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
+				str += "<td>"+ reply.clsBrdRepContent +"</td>";
+				str += "<td>"+ reply.clsBrdRepDate +"</td>";
+				str += "<td><a href='${ctxPath}/deletereply?clsBrdRepNo="+ reply.clsBrdRepNo +"&clsBrdNo="+ reply.clsBrdNo +"'><i class='fas fa-backspace'></i></a></td>";
+				str += "</tr>";
+			});	
+			str += "</table>";
+			$('#rTable').html(str);
+			$('#clsBrdRepContent').val('');
+			$('#clsBrdRepContent').focus();
+		}).fail(function(err) {
+			$('#rTable').text('댓글 리스트를 가져올 수 없습니다');
+		})
 	}
 	
-function getFormatDate(date){
-	let year = date.getFullYear();
-	let month = (1+date.getMonth());
-	month = month >= 10 ? month : '0' + month;
-	let day = date.getDate();
-	day = day >= 10 ? day : '0' + day;
-	return year + '-' + month + '-' + day;
+	function getFormatDate(date){
+		let year = date.getFullYear();
+		let month = (1+date.getMonth());
+		month = month >= 10 ? month : '0' + month;
+		let day = date.getDate();
+		day = day >= 10 ? day : '0' + day;
+		return year + '-' + month + '-' + day;
 	}
 
 //댓글 삭제
