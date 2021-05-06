@@ -488,6 +488,9 @@ public class ClassMM {
 	// (CM16)댓글 목록 가져오기(ajax)	
 	public List<ReplyBean> getReplyList(String clsBrdNo) {
 		List<ReplyBean> rList = cDao.getReplyList(clsBrdNo);
+		/* clsBrdRepNo 기준 내림차순 정렬하기*/
+        RListDecending rListDecending = new RListDecending();
+        Collections.sort(rList, rListDecending); 
 		return rList;
 	}
 	// (CM17)댓글 등록(ajax)	
@@ -499,7 +502,7 @@ public class ClassMM {
 			rb.setFileNo(fm.saveFile(mReq, file, 3));
 		}
 		cDao.addReply(rb);
-		return cDao.getReplyList(rb.getClsBrdNo());
+		return getReplyList(rb.getClsBrdNo());
 	}
 	// (CM18)댓글 수정(ajax)			
 	public List<ReplyBean> updateReply(ReplyBean rb, MultipartHttpServletRequest mReq) {
@@ -512,7 +515,7 @@ public class ClassMM {
 			fm.deleteFile(rBean.getFileNo(), mReq);
 		}
 		cDao.updateReply(rb);
-		return cDao.getReplyList(rb.getClsBrdNo());
+		return getReplyList(rb.getClsBrdNo());
 	}
 	// (CM19)댓글 삭제(ajax)
 	public List<ReplyBean> deleteReply(String clsBrdRepNo, HttpServletRequest req, String clsBrdNo) {
@@ -521,7 +524,7 @@ public class ClassMM {
 		System.out.println("clsBrdRepNo =====> "+ clsBrdRepNo);
 		System.out.println("mbId =====> "+ mb.getMbId());
 		cDao.deleteReply(clsBrdRepNo, mb.getMbId());
-		return cDao.getReplyList(clsBrdNo);
+		return getReplyList(clsBrdNo);
 	}
 		
 	// (CM20+CM21)출석 현황 이동 + 출석현황 가져오기
@@ -746,6 +749,21 @@ class BListDecending implements Comparator<BoardBean> {
     public int compare(BoardBean a, BoardBean b) {
         Integer temp1 = Integer.parseInt(a.getClsBrdNo());
         Integer temp2 = Integer.parseInt(b.getClsBrdNo());   
+        //compareTo : 두개의 값을 비교하여 int로 반환(크다(1), 같다(0), 작다(-1))
+        return temp2.compareTo(temp1);
+    } 
+}
+/**
+ * (CM04)댓글 목록 내림차순 정렬
+ * @Author 고연미 on 06/05/2021
+ * Comparator : 새로운 정렬기준으로 객체를 정렬하는 인터페이스
+ */
+class RListDecending implements Comparator<ReplyBean> {
+ 
+    @Override
+    public int compare(ReplyBean a, ReplyBean b) {
+        Integer temp1 = Integer.parseInt(a.getClsBrdRepNo());
+        Integer temp2 = Integer.parseInt(b.getClsBrdRepNo());   
         //compareTo : 두개의 값을 비교하여 int로 반환(크다(1), 같다(0), 작다(-1))
         return temp2.compareTo(temp1);
     } 
