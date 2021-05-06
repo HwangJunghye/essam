@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.essam.www.bean.AdminBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 
@@ -29,5 +30,9 @@ public class EtcMM {
 		return mav;
 	}
 	
-	// (EM02)통계 가져오기(ajax)	
+	// (EM02)통계 가져오기(ajax)
+	public String getStatistic(AdminBean ab) {
+		String statistic = eDao.getStatistic(ab);
+		return statistic;
+	}	
 }

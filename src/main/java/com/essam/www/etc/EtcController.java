@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.essam.www.bean.AdminBean;
 import com.essam.www.bean.MemberBean;
 
 @Controller
@@ -28,11 +29,8 @@ public class EtcController {
 				
 	// (EM02)통계 가져오기(ajax)	
 	@RequestMapping(value = "/getstatistic")
-	@ResponseBody String getStatistic() {
-		
-		
-	// return em.getStatistic();	
-		return null;
+	@ResponseBody String getStatistic(AdminBean ab) {
+		return em.getStatistic(ab);	
 	}
 
 }

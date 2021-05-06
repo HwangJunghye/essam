@@ -5,4 +5,8 @@
 
 <mapper namespace="com.essam.www.etc.IEtcDao">
 
+	<select id="getStatistic" resultType="String">
+		SELECT * FROM CLASS WHERE CLSNO=#{clsNo}
+	</select>
+	
 </mapper>
