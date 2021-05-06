@@ -18,19 +18,14 @@
 		<form id="frmReply" action="${ctxPath}/class/addreply" method="post"
 			enctype="multipart/form-data">
 			<table>
-				<tr>
-					<td>${loginData.mbNickName}</td>
-				</tr>
-				<tr>
-					<td>첨부파일 :&nbsp;<i class="far fa-save"></i>&nbsp; <input
-						type="file" name="file" id="file"></td>
-				</tr>
-
-				<tr>
-					<td><textarea rows=3 cols=42 name="r_contents" id="r_contents"></textarea></td>
-					<td><input type="button" onclick="javascript:addReply();"
-						value="등록"> <input type="reset" value="취소"></td>
-				</tr>
+				<div>
+					<div>${loginData.mbNickName}</div>
+					<div>첨부파일 :&nbsp;<i class="far fa-save"></i>&nbsp; <input
+						type="file" name="file" id="file"></div>
+					<textarea rows=3 cols=42 name="r_contents" id="r_contents"></textarea>
+					<input type="button" onclick="javascript:addReply();"
+						value="등록"> <input type="reset" value="취소">
+				</div>
 			</table>
 		</form>
 
@@ -52,10 +47,13 @@
 	
 	<script>
 //댓글등록하기
-let bNo = "${boardData.clsBrdNo}";
+let bNo = "${boardData.clsBrdNo}";  //글번호
+	console.log("bNo == ", bNo);
+let brNo = "${reply.clsBrdRepNo}";	//댓글번호
+	console.log("brNo == ", brNo);
+
 	function addReply(){
-			//글번호
-		console.log("bNo == ", bNo);
+		
 		//FormData : js 지원 객체이므로 jQ객체($('#frm'))를 사용할수없다.
 		//js 객체로 파일 저장
 		let $obj = $("#file");
@@ -86,9 +84,10 @@ let bNo = "${boardData.clsBrdNo}";
 				$.each(result, function(index, reply) {
 					str += "<tr>";
 					str += "<td>"+ reply.mbNickName +"</td>";
-					str += "<td><a href='${ctxPath}/download?fileNo=${reply.fileNo}'><i class='fas fa-save' style='width:24px;color:#666;'></i></a>" + reply.fileNo +"</td>";
+					str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
 					str += "<td>"+ reply.clsBrdRepContent +"</td>";
 					str += "<td>"+ reply.clsBrdRepDate +"</td>";
+					str += "<td><a href='${ctxPath}/deletereply?clsBrdRepNo="+ reply.clsBrdRepNo +"&clsBrdNo="+ ${boardData.clsBrdNo} +"'><i class='fas fa-backspace'></i></a></td>";
 					str += "</tr>";
 				});	
 				str += "</table>";
@@ -109,7 +108,6 @@ let bNo = "${boardData.clsBrdNo}";
 	
 	function getReplyList(){
 		let replyurl = "${ctxPath}/class/getreplylist"; //mapping할 value
-
 			$.ajax({
 				url: replyurl,
 			    method: "get",
@@ -122,9 +120,10 @@ let bNo = "${boardData.clsBrdNo}";
 						$.each(result, function(index, reply) {
 							str += "<tr>";
 							str += "<td>"+ reply.mbNickName +"</td>";
-							str += "<td><a href='${ctxPath}/download?fileNo=${reply.fileNo}'><i class='fas fa-save' style='width:24px;color:#666;'></i></a>" + reply.fileNo +"</td>";
+							str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
 							str += "<td>"+ reply.clsBrdRepContent +"</td>";
 							str += "<td>"+ reply.clsBrdRepDate +"</td>";
+							str += "<td><a href='${ctxPath}/deletereply?clsBrdRepNo="+ reply.clsBrdRepNo +"&clsBrdNo="+ ${boardData.clsBrdNo} +"'><i class='fas fa-backspace'></i></a></td>";
 							str += "</tr>";
 						});	
 						str += "</table>";
@@ -146,11 +145,32 @@ function getFormatDate(date){
 	return year + '-' + month + '-' + day;
 	}
 
-//댓글 수정하기
+//댓글 삭제
+$(".fas fa-backspace").on("click", ".fas fa-backspace", function() {
+	if(bNo != bNo)
+		return;
 
-	let brNo = "${reply.clsBrdRepNo}";	//댓글번호
-		console.log("brNo == ", brNo);
-		
+	let msg = confirm('해당 댓글을 정말 삭제하시겠습니까?'); 
+	if(msg) {
+		console.log("삭제 댓글 : "+ $(this).data("#rTable"));
+		const param = {
+			rTable: $(this).data("clsBrdRepContent"),  	// 삭제할 댓글번호
+			clsBrdNo: bNo  						// 글번호. 나머지 첨부파일 정보 반환 
+		};					
+		$.ajax({
+			url: "${ctxPath}/deletereply",
+			method: "post",
+			data: param,
+			dataType : 'json'
+		}).done((result)=> {
+			console.log("dreplyList = ",result);
+		}).fail(function(err) {
+			$('#result').text('서버와 통신할 수 없습니다');
+		});	
+	}
+});
+
+//댓글 수정하기		
 		//폼의 일부 데이터만 저장
 	 	let formData = new FormData();
 		formData.append("clsBrdRepNo", brNo);		
@@ -158,13 +178,10 @@ function getFormatDate(date){
 		formData.append("clsBrdRepContent", $('#clsBrdRepContent').val());
 		console.log("formData === ", formData);
 		
-	$(function() {
-	
+	function updateReply(){
 		if(brNo != "") {
 			$.ajax({
 				url: "${ctxPath}/class/updatereply",
-				processData: false,   //urlencoded(쿼리스트링 형식) 처리 금지
-			    contentType: false,
 			    type: "post",
 				data : formData,
 				dataType : 'json'
@@ -174,7 +191,7 @@ function getFormatDate(date){
 				$('#update').text('댓글수정실패');
 			});
 		}
-	});	
+	};
 </script>
 
 	<!-- <div class="input-group">
