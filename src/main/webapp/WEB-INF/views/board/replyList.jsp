@@ -153,7 +153,7 @@ function isRDelete(clsBrdRepNo, clsBrdNo) {
 	}
 }
 
-//댓글 수정하기		
+/* //댓글 수정하기		
 		//폼의 일부 데이터만 저장
 	 	let formData = new FormData();
 		formData.append("clsBrdRepNo", brNo);		
@@ -174,7 +174,7 @@ function isRDelete(clsBrdRepNo, clsBrdNo) {
 				$('#update').text('댓글수정실패');
 			});
 		}
-	};
+	}; */
 </script>
 
 </body>
