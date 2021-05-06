@@ -1,3 +1,4 @@
+<%@page import="com.essam.www.bean.BoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -67,9 +68,13 @@
 				<td align="right"><button type="button" id="goList" onclick="location.href='${ctxPath}/class/boardlist?clsNo=${boardData.clsNo}&clsBrdType=${boardData.clsBrdType}&pageNum=${pageNum}';" class='btn_normal_t'>목록</button></td>
 			</tr>
 			</table></p>
+			<%//댓글이 있는 게시판이면 댓글목록 표시
+			BoardBean bb = (BoardBean)request.getAttribute("boardData");
+			if(Constant.clsBrdHasReply[bb.getClsBrdType()]) {%>
 			<%@ include file="../board/replyList.jsp" %>
+			<%}	%>
 			
-			<br><br><br><br> 
+			<br><br><br>
 		</div>
 		
 		<script>
