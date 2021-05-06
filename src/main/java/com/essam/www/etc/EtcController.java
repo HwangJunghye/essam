@@ -27,9 +27,12 @@ public class EtcController {
 	}
 				
 	// (EM02)통계 가져오기(ajax)	
-	//@RequestMapping(value = "/getstatistic")
-	//String getStatistic() {
-	// return null;	
-	//}
+	@RequestMapping(value = "/getstatistic")
+	@ResponseBody String getStatistic() {
+		
+		
+	// return em.getStatistic();	
+		return null;
+	}
 
 }

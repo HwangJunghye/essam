@@ -111,6 +111,14 @@ text-align:left;
 <div id="chartArea">
 차트 표시 영역
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 </form>
 
