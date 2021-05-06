@@ -47,10 +47,8 @@
 	<script>
 	
 //댓글등록하기
-let bNo = "${boardData.clsBrdNo}";  //글번호
+	let bNo = "${boardData.clsBrdNo}";  //글번호
 	console.log("bNo == ", bNo);
-let brNo = "${reply.clsBrdRepNo}";	//댓글번호
-	console.log("brNo == ", brNo);
 
 	function addReply(){ 
 		
@@ -78,21 +76,9 @@ let brNo = "${reply.clsBrdRepNo}";	//댓글번호
 			}).done((result)=>{
 				$('#add').text('댓글등록 성공');
 				//console.log(result);
-				
-				let str = "<table width='86%' align='center'>";
-				//댓글 리스트 리로드
-				$.each(result, function(index, reply) {
-					str += "<tr>";
-					str += "<td>"+ reply.mbNickName +"</td>";
-					str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
-					str += "<td>"+ reply.clsBrdRepContent +"</td>";
-					str += "<td>"+ reply.clsBrdRepDate +"</td>";
-					str += "<td><a href='${ctxPath}/deletereply?clsBrdRepNo="+ reply.clsBrdRepNo +"&clsBrdNo="+ reply.clsBrdNo +"'><i class='fas fa-backspace'></i></a></td>";
-					str += "</tr>";
-				});	
-				str += "</table>";
+						
+				displayRList(result);//댓글리스트 출력
 
-				$('#rTable').html(str);
 				$('#clsBrdRepContent').val('');
 				$('#clsBrdRepContent').focus();
 			}).fail(function(err) {
@@ -101,7 +87,7 @@ let brNo = "${reply.clsBrdRepNo}";	//댓글번호
 		}
 	}
 
-//댓글목록가져오기	
+//댓글목록 가져오기	
 	$(document).ready(function() {
 		getReplyList();
 	});
@@ -114,26 +100,31 @@ let brNo = "${reply.clsBrdRepNo}";	//댓글번호
 			data : {clsBrdNo : bNo},
 			dataType : 'json'
 		}).done((result)=>{
-			console.log("rList = ",result);
-			let str = "<table width='86%' align='center'>";
-			$.each(result, function(index, reply) {
-				str += "<tr>";
-				str += "<td>"+ reply.mbNickName +"</td>";
-				str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
-				str += "<td>"+ reply.clsBrdRepContent +"</td>";
-				str += "<td>"+ reply.clsBrdRepDate +"</td>";
-				str += "<td><a href='${ctxPath}/deletereply?clsBrdRepNo="+ reply.clsBrdRepNo +"&clsBrdNo="+ reply.clsBrdNo +"'><i class='fas fa-backspace'></i></a></td>";
-				str += "</tr>";
-			});	
-			str += "</table>";
-			$('#rTable').html(str);
+			console.log("rList = ",result);		
+			
+			displayRList(result);//댓글리스트 출력
+			
 			$('#clsBrdRepContent').val('');
 			$('#clsBrdRepContent').focus();
 		}).fail(function(err) {
 			$('#rTable').text('댓글 리스트를 가져올 수 없습니다');
 		})
 	}
-	
+	//댓글리스트 출력 함수
+	function displayRList(result) {
+		let str = "<table width='86%' align='center'>";
+		$.each(result, function(index, reply) {
+			str += "<tr>";
+			str += "<td>"+ reply.mbNickName +"</td>";
+			str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
+			str += "<td>"+ reply.clsBrdRepContent +"</td>";
+			str += "<td>"+ reply.clsBrdRepDate +"</td>";
+			str += "<td><a href='#' onclick='javascript:isRDelete("+ reply.clsBrdRepNo +","+ reply.clsBrdNo +");'><i class='fas fa-backspace'></i></a></td>";
+			str += "</tr>";
+		});	
+		str += "</table>";
+		$('#rTable').html(str);		
+	}
 	function getFormatDate(date){
 		let year = date.getFullYear();
 		let month = (1+date.getMonth());
@@ -144,29 +135,27 @@ let brNo = "${reply.clsBrdRepNo}";	//댓글번호
 	}
 
 //댓글 삭제
-$(".fas fa-backspace").on("click", ".fas fa-backspace", function() {
-	if(bNo != bNo)
-		return;
-
+function isRDelete(clsBrdRepNo, clsBrdNo) {
 	let msg = confirm('해당 댓글을 정말 삭제하시겠습니까?'); 
-	if(msg) {
-		console.log("삭제 댓글 : "+ $(this).data("#rTable"));
-		const param = {
-			rTable: $(this).data("clsBrdRepContent"),  	// 삭제할 댓글번호
-			clsBrdNo: bNo  						// 글번호. 나머지 첨부파일 정보 반환 
-		};					
+	const paramD = {
+			clsBrdRepNo: clsBrdRepNo,
+			clsBrdNo: clsBrdNo
+		}
+	if(msg) {			
 		$.ajax({
 			url: "${ctxPath}/deletereply",
 			method: "post",
-			data: param,
+			data: paramD,
 			dataType : 'json'
 		}).done((result)=> {
 			console.log("dreplyList = ",result);
+			
+			displayRList(result);//댓글리스트 출력
 		}).fail(function(err) {
 			$('#result').text('서버와 통신할 수 없습니다');
-		});	
+		});			
 	}
-});
+}
 
 //댓글 수정하기		
 		//폼의 일부 데이터만 저장
