@@ -119,7 +119,9 @@
 			str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
 			str += "<td>"+ reply.clsBrdRepContent +"</td>";
 			str += "<td>"+ reply.clsBrdRepDate +"</td>";
+			if(reply.mbId == ${loginData.mbId}){
 			str += "<td><a href='#' onclick='javascript:isRDelete("+ reply.clsBrdRepNo +","+ reply.clsBrdNo +");'><i class='fas fa-backspace'></i></a></td>";
+			}
 			str += "</tr>";
 		});	
 		str += "</table>";
