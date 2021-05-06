@@ -30,25 +30,15 @@
 
 		<!-- 댓글리스트 -->
 	 	<span id="rTable">
-	 	<%-- <c:forEach var="reply" items="${rList}">
-			<tr>
-				<td>${reply.mbNickName}</td>
-				<td><a href="${ctxPath}/download?fileNo=${reply.fileNo}"><i class="fas fa-save" style="width:24px;color:#666;"></i></a></td>
-				<td>${reply.clsBrdRepContent}</td>
-				<td>${reply.clsBrdRepDate}</td>
-			</tr>
-		</c:forEach> --%>
 		</span>
-	</section>
 
-	<!-- 댓글 form 넣기 스토리보드 12번 -->
-	<div id="replyArea"></div>
-	
 	<script>
 	
 //댓글등록하기
 	let bNo = "${boardData.clsBrdNo}";  //글번호
 	console.log("bNo == ", bNo);
+	let mi = "${loginData.mbId}";  //글번호
+	console.log("login mbId == ", mi);
 
 	function addReply(){ 
 		
@@ -114,13 +104,17 @@
 	function displayRList(result) {
 		let str = "<table width='86%' align='center'>";
 		$.each(result, function(index, reply) {
+			console.log("reply mbId ==", reply.mbId);
+			console.log("loginData mbId ==", mi);
 			str += "<tr>";
 			str += "<td>"+ reply.mbNickName +"</td>";
 			str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
 			str += "<td>"+ reply.clsBrdRepContent +"</td>";
 			str += "<td>"+ reply.clsBrdRepDate +"</td>";
-			if(reply.mbId == ${loginData.mbId}){
-			str += "<td><a href='#' onclick='javascript:isRDelete("+ reply.clsBrdRepNo +","+ reply.clsBrdNo +");'><i class='fas fa-backspace'></i></a></td>";
+			//str += "<td><a href='#' onclick='javascript:isRDelete("+ reply.clsBrdRepNo +","+ reply.clsBrdNo +");'><i class='fas fa-backspace'></i></a></td>";
+
+			if(reply.mbId == mi){
+				str += "<td><a href='#' onclick='javascript:isRDelete("+ reply.clsBrdRepNo +","+ reply.clsBrdNo +");'><i class='fas fa-backspace'></i></a></td>";
 			}
 			str += "</tr>";
 		});	
@@ -182,16 +176,6 @@ function isRDelete(clsBrdRepNo, clsBrdNo) {
 		}
 	};
 </script>
-
-	<!-- <div class="input-group">
-  <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-  <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
-</div>
-<br>
-<div class="form-floating">
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-  <label for="floatingTextarea2">Comments</label>
-</div> -->
 
 </body>
 </html>
