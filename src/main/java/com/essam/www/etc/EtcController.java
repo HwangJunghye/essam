@@ -19,7 +19,7 @@ import com.essam.www.bean.AdminBean;
 import com.essam.www.bean.MemberBean;
 
 @Controller
-public class EtcController extends TextWebSocketHandler {
+public class EtcController {
 	@Autowired
 	private EtcMM em;
 	// (EM01)관리자 페이지 이동
