@@ -1,5 +1,8 @@
 package com.essam.www.common;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +17,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.TeacherBean;
@@ -145,6 +149,8 @@ public class CommonMM {
 		}
 
 		List<ClassBean> cList = coDao.getSearchList((pageSize==null?20:pageSize), pageNo, cate1No, cate2No, keywords);
+		CListDecending cListDecending = new CListDecending();
+		Collections.sort(cList, cListDecending);
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("pageNo", pageNo); // 페이지 번호
 		result.put("pageSize", pageSize); // 검색하는 페이지의 크기
@@ -203,5 +209,16 @@ public class CommonMM {
 			mav.setViewName("class/classinfo_main");			
 		}
 		return mav;
+	}
+}
+
+// List<ClassBean> 내림차순 정렬
+class CListDecending implements Comparator<ClassBean>{
+	@Override
+	public int compare(ClassBean a, ClassBean b) {
+		String aClsNo = a.getClsNo();
+		String bClsNo = b.getClsNo();
+		
+		return bClsNo.compareTo(aClsNo);
 	}
 }
