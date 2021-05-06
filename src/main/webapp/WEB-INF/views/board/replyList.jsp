@@ -22,7 +22,7 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td colspan=2><textarea rows=3 cols=80 name="clsBrdRepContent" id="clsBrdRepContent"></textarea></td>
+			<td colspan=2><textarea rows=3 cols=100 name="clsBrdRepContent" id="clsBrdRepContent"></textarea></td>
 			<td><input type="button" onclick="javascript:addReply();" value="등록"> <input type="reset" value="취소"></td>
 		</tr>
 		</table>
@@ -107,7 +107,7 @@
 			console.log("reply mbId ==", reply.mbId);
 			console.log("loginData mbId ==", mi);
 			str += "<tr>";
-			str += "<td>"+ reply.mbNickName +"</td>";
+			str += "<td style='white-space:nowrap'>"+ reply.mbNickName +"</td>";
 			str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
 			str += "<td>"+ reply.clsBrdRepContent +"</td>";
 			str += "<td>"+ reply.clsBrdRepDate +"</td>";
