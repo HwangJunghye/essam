@@ -10,68 +10,15 @@
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
-<style type="text/css">
-	.center{
-	
-		margin: auto;
-		width: 600px;
-		height:650px;
-	}
-	td{
-		padding : 5px;
-	}
-	.modal-table{
-		display:table;
-		position:relative;
-		width:100%;
-		height:100px;
-	}
-	.object{
-	width:150px;
-	text-align:right;
-	}
-	.object_con{
-	text-align:left;
-	}
-	
-	input[type="submit"]{
-	width: 70px;
-	height: 36px;
-	box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
-	border-radius: 10px;
-	color: #FFFFFF;
-	text-align: center;
-	border: none;
-	cursor: pointer;
-	}
-	input[type="button"]{
-	width: 70px;
-	height: 36px;
-	box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
-	border-radius: 10px;
-	color: #FFFFFF;
-	text-align: center;
-	border: none;
-	cursor: pointer;
-	}
-	input[type="reset"]{
-	width: 70px;
-	height: 36px;
-	box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
-	border-radius: 10px;
-	color: #FFFFFF;
-	text-align: center;
-	border: none;
-	cursor: pointer;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/mypage.css">
 <script src="${ctxPath}/resources/js/mypage.js"></script>
-
 </head>
+
 <body>
 
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/nav.jsp" %>
+
 <section>
 <div id="contents">
 	<div id="aside">
@@ -182,6 +129,7 @@
 	</div>
 </div>
 </section>
+
 <%@ include file="../common/footer.jsp" %>
 
 <script type="text/javascript">
