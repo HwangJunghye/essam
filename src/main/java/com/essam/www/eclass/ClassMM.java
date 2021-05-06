@@ -34,7 +34,6 @@ import com.essam.www.bean.StudentBean;
 import com.essam.www.bean.TeacherBean;
 import com.essam.www.constant.Constant;
 import com.essam.www.curriculum.ICurriculumDao;
-import com.essam.www.d.IDDao;
 import com.essam.www.exception.CommonException;
 import com.essam.www.file.FileMM;
 import com.essam.www.member.IMemberDao;
