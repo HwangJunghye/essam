@@ -12,12 +12,49 @@
 </style>
 </head>
 <body>
+	<section>
+		<!-- 댓글등록 -->
+		<span id="add"></span>
+		<form id="frmReply" action="${ctxPath}/class/addreply" method="post"
+			enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td>${loginData.mbNickName}</td>
+				</tr>
+				<tr>
+					<td>첨부파일 :&nbsp;<i class="far fa-save"></i>&nbsp; <input
+						type="file" name="file" id="file"></td>
+				</tr>
+
+				<tr>
+					<td><textarea rows=3 cols=42 name="r_contents" id="r_contents"></textarea></td>
+					<td><input type="button" onclick="javascript:addReply();"
+						value="등록"> <input type="reset" value="취소"></td>
+				</tr>
+			</table>
+		</form>
+
+		<!-- 댓글리스트 -->
+	 	<table id="rTable">
+	 	<c:forEach var="reply" items="${rList}">
+			<tr>
+				<td>${reply.mbNickName}</td>
+				<td><a href="${ctxPath}/download?fileNo=${reply.fileNo}"><i class="fas fa-save" style="width:24px;color:#666;"></i></a></td>
+				<td>${reply.clsBrdRepContent}</td>
+				<td>${reply.clsBrdRepDate}</td>
+			</tr>
+			</c:forEach>
+		</table>
+	</section>
+
 	<!-- 댓글 form 넣기 스토리보드 12번 -->
 	<div id="replyArea"></div>
+	
 	<script>
 //댓글등록하기
+let bNo = "${boardData.clsBrdNo}";
 	function addReply(){
-		let bNo = "${boardData.clsBrdNo}";	//글번호
+			//글번호
 		console.log("bNo == ", bNo);
 		//FormData : js 지원 객체이므로 jQ객체($('#frm'))를 사용할수없다.
 		//js 객체로 파일 저장
@@ -28,7 +65,7 @@
 	 	let formData = new FormData();
 		formData.append("clsBrdNo", bNo);		
 		formData.append("file", files[0]);
-		formData.append("clsBrdRepContent", $('#clsBrdRepContent').val());
+		formData.append("clsBrdRepContent", $('#r_contents').val());
 		console.log("formData === ", formData);
 
 		if(bNo != "") {
@@ -49,7 +86,7 @@
 				$.each(result, function(index, reply) {
 					str += "<tr>";
 					str += "<td>"+ reply.mbNickName +"</td>";
-					str += "<td>"+ reply.fileNo +"</td>";
+					str += "<td><a href='${ctxPath}/download?fileNo=${reply.fileNo}'><i class='fas fa-save' style='width:24px;color:#666;'></i></a>" + reply.fileNo +"</td>";
 					str += "<td>"+ reply.clsBrdRepContent +"</td>";
 					str += "<td>"+ reply.clsBrdRepDate +"</td>";
 					str += "</tr>";
@@ -57,64 +94,49 @@
 				str += "</table>";
 
 				$('#rTable').html(str);
-				$('#clsBrdRepContent').val('');
-				$('#clsBrdRepContent').focus();
+				$('#r_contents').val('');
+				$('#r_contents').focus();
 			}).fail(function(err) {
 				$('#add').text('댓글등록 실패');
 			});
 		}
 	}
 
-//댓글목록가져오기
+//댓글목록가져오기	
 	$(document).ready(function() {
 		getReplyList();
 	});
-		
+	
 	function getReplyList(){
 		let replyurl = "${ctxPath}/class/getreplylist"; //mapping할 value
-		let reply_bNo = "${boardData.clsBrdNo}"; //글번호
 
 			$.ajax({
-				url: replyurl+reply_bNo,
-				processData: false,   //urlencoded(쿼리스트링 형식) 처리 금지
-			    contentType: false,
+				url: replyurl,
 			    method: "get",
-				data : {clsBrdNo : reply_bNo},
+				data : {clsBrdNo : bNo},
 				dataType : 'json'
 			}).done((result)=>{
-				let comments = "";
-				if(result.length < 1){
-					comments = "등록된 댓글이 없습니다.";
-				}else{
-					$(result).each(function(){
-						comments +='<br/>';
-						comments +='<strong>';
-						comments +='작성자 : ' + this.mbId;
-						comments +='</strong>';
-						comments +='작성날짜 : ' + this.clsBrdRepDate;
-						comments +='<br/> <p>';
-						comments +='댓글내용 : ';
-						comments +=this.clsBrdRepContent;
-						comments +='</p>';
-						comments +='<br/>';
-						comments +='<button type="button" class="btn btn-outline-success" id="replyUpdateBtn"';
-						comments +='data-clsBrdRepNo='+this.clsBrdRepNo+'>'
-						comments +='댓글수정';
-						comments +='</button>';
-						comments +='<button type="button" class="btn btn-outline-success" id="replyDeleteBtn"';
-						comments +='data-clsBrdRepNo='+this.clsBrdRepNo+'>';
-						comments +='댓글삭제';
-						comments +='</button>';
-						comments +='<br/>';
-					});
-				};
-					$("#replylist").html(comments);
 				console.log("rList = ",result);
-				//printReply(result);  //가져온 정보를 화면에 출력
+					$(result).each(function(){
+						let str = "<table>";
+						$.each(result, function(index, reply) {
+							str += "<tr>";
+							str += "<td>"+ reply.mbNickName +"</td>";
+							str += "<td><a href='${ctxPath}/download?fileNo=${reply.fileNo}'><i class='fas fa-save' style='width:24px;color:#666;'></i></a>" + reply.fileNo +"</td>";
+							str += "<td>"+ reply.clsBrdRepContent +"</td>";
+							str += "<td>"+ reply.clsBrdRepDate +"</td>";
+							str += "</tr>";
+						});	
+						str += "</table>";
+						$('#rTable').html(str);
+						$('#clsBrdRepContent').val('');
+				
+					})
 			}).fail(function(err) {
 				$('#result').text('댓글 리스트를 가져올 수 없습니다');
-			})
+				})
 	}
+	
 function getFormatDate(date){
 	let year = date.getFullYear();
 	let month = (1+date.getMonth());
@@ -139,7 +161,6 @@ function getFormatDate(date){
 	$(function() {
 	
 		if(brNo != "") {
-			
 			$.ajax({
 				url: "${ctxPath}/class/updatereply",
 				processData: false,   //urlencoded(쿼리스트링 형식) 처리 금지
@@ -149,47 +170,12 @@ function getFormatDate(date){
 				dataType : 'json'
 			}).done((result)=>{
 				console.log("update = ",update);
-				//printReply(result);  //가져온 정보를 화면에 출력
 			}).fail(function(err) {
 				$('#update').text('댓글수정실패');
 			});
 		}
 	});	
 </script>
-	<section>
-		<!-- 댓글등록 -->
-		<span id="add"></span>
-		<form id="frmReply" action="${ctxPath}/class/addreply" method="post"
-			enctype="multipart/form-data">
-			<table>
-				<tr>
-					<td>${loginData.mbNickName}</td>
-				</tr>
-				<tr>
-					<td>첨부파일 :&nbsp;<i class="far fa-save"></i>&nbsp; <input
-						type="file" name="file"></td>
-				</tr>
-
-				<tr>
-					<td><textarea rows=3 cols=42 name="r_contents" id="r_contents"></textarea></td>
-					<td><input type="button" onclick="javascript:addReply();"
-						value="등록"> <input type="reset" value="취소"></td>
-				</tr>
-			</table>
-		</form>
-
- 	<!-- 댓글리스트 -->
-		<table>
-			<tr>
-				<td>${reply.mbNickName}</td>
-				<td>${reply.fileNo}</td>
-				<td>${reply.clsBrdRepContent}</td>
-				<td>${reply.clsBrdRepDate}</td>
-			</tr>
-		</table>
-	</section>
-
-
 
 	<!-- <div class="input-group">
   <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
