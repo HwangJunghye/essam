@@ -125,10 +125,9 @@ public class ClassMM {
 		}
 		
 		/* clsBrdNo 기준 내림차순 정렬하기*/
-		List<BoardBean> bListSort = new ArrayList<>();
         BListDecending bListDecending = new BListDecending();
         Collections.sort(bList, bListDecending); 
- 
+
 		//mav에 게시판 목록 정보 저장
 		mav.addObject("bList", bList);
 		//mav에 페이징 정보 저장
@@ -747,6 +746,6 @@ class BListDecending implements Comparator<BoardBean> {
         Integer temp2 = Integer.parseInt(b.getClsBrdNo());   
         //compareTo : 두개의 값을 비교하여 int로 반환(크다(1), 같다(0), 작다(-1))
         return temp2.compareTo(temp1);
-    }
+    } 
 }
 
