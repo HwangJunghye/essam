@@ -206,7 +206,8 @@ public class CMM {
 			mav.addObject("curriInfo", curriInfo);
 			// class_curriculum_read.jsp로 이동하기 위해 viewname 지정
 			mav.setViewName("curriculum/curriculum_list"); // 커리큘럼보기 페이지로
-			mav.addObject("navtext", "커리큘럼");
+			mav.addObject("navtext", "마이클래스> 커리큘럼");
+			mav.addObject("clsName", cDao.getClassName(clsNo));
 			return mav;
 		} else { // 등록된 커리큘럼 정보가 없다면
 			String msg = "등록된 커리큘럼 정보가 없습니다.";
@@ -215,7 +216,7 @@ public class CMM {
 			mav.addObject("clsName", cDao.getClassName(clsNo));
 			mav.addObject("clsNo", clsNo);
 			mav.addObject("msg", msg);
-			mav.addObject("navtext", "커리큘럼");
+			mav.addObject("navtext", "마이클래스> 커리큘럼");			
 			return mav;
 		}
 		
@@ -239,9 +240,13 @@ public class CMM {
 			mav.addObject("curriInfo", curriInfo);
 			// curriculum_detail.jsp로 이동하기 위해 viewname 지정
 			mav.setViewName("curriculum/curriculum_detail"); // 커리큘럼 상세정보 보기 페이지로
+			mav.addObject("clsName", cDao.getClassName(clsNo));
+			mav.addObject("navtext", "마이클래스> 커리큘럼> 상세정보");	
 		} else { // 등록된 커리큘럼 상세정보가 없다면
-			mav.setViewName("curriculum/curriculum_detail"); // 커리큘럼 상세정보 보기 페이지로
+			mav.setViewName("curriculum/curriculum_detail"); // 커리큘럼 상세정보 보기 페이지로(curriculum_list.jsp에서 상세정보 required라 없을 수 없음)
 			mav.addObject("msg", "등록된 커리큘럼 상세정보가 없습니다");
+			mav.addObject("clsName", cDao.getClassName(clsNo));
+			mav.addObject("navtext", "마이클래스> 커리큘럼> 상세정보");	
 		}
 		return mav;
 	}
@@ -249,11 +254,13 @@ public class CMM {
 	//커리큘럼 등록 이동
 	public ModelAndView goClassCurriculumWrite(String clsNo) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("navtext", "마이클래스> 커리큘럼 등록");
+		mav.addObject("navtext", "마이클래스> 커리큘럼> 등록");
 		mav.addObject("clsNo", clsNo);
 		//mav에 클래스명 추가
 		mav.addObject("clsName", cDao.getClassName(clsNo));
 		mav.setViewName("curriculum/curriculum_write");
+		mav.addObject("clsName", cDao.getClassName(clsNo));
+		mav.addObject("navtext", "마이클래스> 커리큘럼> 등록");	
 		return mav;
 	}
 	
@@ -265,76 +272,155 @@ public class CMM {
 		String curNo = null;	 //커리큘럼번호
 		//int pageNum = Integer.parseInt(mReq.getParameter("pageNum"));
 		
-		//커리큘럼 등록 성공하면
-		if(mDao.classCurriculumAdd(cb)) {
-			result = true;
-			curNo = cb.getCurNo();
-		}
-		log.info("커리큘럼등록 성공여부 : " + result);	
-		
-		//커리큘럼 등록 성공하고, 첨부한 동영상파일이 있다면
-		if(result && mReq.getFiles("file").get(0).getSize() != 0) {
-			//파일 가져오기
-			MultipartFile file = mReq.getFile("file");
-			
-			//여러개일 경우 한개씩 서버에 저장 for each
-			
-			log.info("file name= "+ file.getOriginalFilename());
-			//파일 저장 => fileNo 반환
-			String fileNo = fm.saveFile(mReq, file, fileTypeNo);
-			
-			if(fileNo != null) {
-				//DB에 파일정보 저장
-				if(mDao.curFileInsert(curNo, fileNo)) {
-					log.info("file 저장 후 curri 테이블에 fileNo 저장 완료.");
-				}
-			}else {
-				log.info("file 저장 후 curri 테이블에 fileNo 저장 실패.");
+		if(cb.getCurTypeNo() == 1) { //커리큘럼타입이 동영상 이면
+			//커리큘럼 등록 성공하면
+			if(mDao.classCurriculumAdd(cb)) {
+				result = true;
+				curNo = cb.getCurNo();
 			}
+			log.info("커리큘럼등록 성공여부 : " + result);	
 			
+			//커리큘럼 등록 성공하고, 첨부한 동영상파일이 있다면
+			if(result && mReq.getFiles("file").get(0).getSize() != 0) {
+				//파일 가져오기
+				MultipartFile file = mReq.getFile("file");
+				
+				//여러개일 경우 한개씩 서버에 저장 for each
+				
+				log.info("file name= "+ file.getOriginalFilename());
+				//파일 저장 => fileNo 반환
+				String fileNo = fm.saveFile(mReq, file, fileTypeNo);
+				
+				if(fileNo != null) {
+					//DB에 파일정보 저장
+					if(mDao.curFileInsert(curNo, fileNo)) {
+						log.info("file 저장 후 curri 테이블에 fileNo 저장 완료.");
+					}
+				}else {
+					log.info("file 저장 후 curri 테이블에 fileNo 저장 실패.");
+				}
+				
+			}
+			if(result) {
+				rattr.addFlashAttribute("fMsg", "커리큘럼을 등록하였습니다.");
+				mav.setViewName("redirect:/class/curriculum?clsNo=" + cb.getClsNo());
+			}else {
+				rattr.addFlashAttribute("fMsg", "커리큘럼 등록을 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
+				//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
+				String referer = request.getHeader("Referer");
+				//view 페이지 ㅣ설정
+				mav.setViewName("redirect:" + referer);
+			}
+			//rattr에 커리큘럼번호 추가
+			//rattr.addFlashAttribute("curNo", curNo);
+			//rattr에 페이지 넘버 추가
+			//rattr.addFlashAttribute("pageNum", pageNum);
+		}else if(cb.getCurTypeNo() == 2) { //커리큘럼타입이 실시간 이면
+			String sDate = cb.getCurStartDate().replace('T', ' ');
+			cb.setCurStartDate(sDate);
+			String eDate = cb.getCurEndDate().replace('T', ' ');
+			cb.setCurEndDate(eDate);
+			
+			if(mDao.classCurriculumAdd(cb)) {
+				result = true;
+				curNo = cb.getCurNo();
+			}
+			log.info("커리큘럼등록 성공여부 : " + result);	
+			
+			if(result) { //커리큘럼 등록 성공하면
+				rattr.addFlashAttribute("fMsg", "커리큘럼을 등록하였습니다.");
+				mav.setViewName("redirect:/class/curriculum?clsNo=" + cb.getClsNo());
+			}else { //커리큘럼 등록 실패하면
+				rattr.addFlashAttribute("fMsg", "커리큘럼 등록을 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
+				//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
+				String referer = request.getHeader("Referer");
+				//view 페이지 ㅣ설정
+				mav.setViewName("redirect:" + referer);
+			}
+		}else { //커리큘럼타입 예외처리
+			throw new CommonException("커리큘럼타입 예외발생");
 		}
-		if(result) {
-			rattr.addFlashAttribute("fMsg", "커리큘럼을 등록하였습니다.");
-			mav.setViewName("redirect:/class/curriculum?clsNo=" + cb.getClsNo());
-		}else {
-			rattr.addFlashAttribute("fMsg", "커리큘럼 등록을 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
-			//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
-			String referer = request.getHeader("Referer");
-			//view 페이지 ㅣ설정
-			mav.setViewName("redirect:" + referer);
-		}
-		//rattr에 커리큘럼번호 추가
-		//rattr.addFlashAttribute("curNo", curNo);
-		//rattr에 페이지 넘버 추가
-		//rattr.addFlashAttribute("pageNum", pageNum);
-		
-		
 		return mav;
 	}
 
-	//동영상 페이지 이동
-	public ModelAndView goClassVideoPlay(String clsNo, String curNo) {
+	//동영상 페이지 이동 + 동영상 제목,시작일,종료일 가져오기
+	public ModelAndView goClassVideoPlay(String clsNo, String curNo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		CurriculumBean curriInfo = null;
 		
-		curriInfo = mDao.getCurriculumRead(clsNo, curNo);
+		if(mDao.isCurriTime(curNo)) { //동영상 시청기간 이라면
+			curriInfo = mDao.getCurriculumRead(clsNo, curNo);
+			String curTitle = curriInfo.getCurTitle();
+			
+			mav.addObject("clsNo", clsNo);
+			mav.addObject("curriInfo", curriInfo);
+			mav.addObject("msg", curTitle);
+		}else { //동영상 시청기간이 아니라면
+			mav.addObject("msg", "동영상 시청 기간이 아닙니다.");
+		}
 		
-		mav.addObject("navtext", "마이클래스> 커리큘럼> 동영상");
-		mav.addObject("clsNo", clsNo);
-		mav.addObject("curriInfo", curriInfo);
+		// 세션에서 로그인 데이터를 MemberBean에 담기
+		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+		// MemberBean으로 부터 mbType을 가져옴
+		int mbType = loginData.getMbType();
+		String mbId = loginData.getMbId();
+		String regiNo = mDao.getRegiNo(clsNo, mbId);
+		//출석테이블에 출석기록하기
+		if(mbType==1) { //학생이면
+			//수업시간인지 확인(수업시간에만 허용)
+			if(mDao.isCurriTime(curNo)) { //true면 수업시간, false면 수업시간 아님
+				//이미 출석여부 확인
+				if(!mDao.isAttendAlready(curNo, regiNo)) { //출석한적 없다면
+					//attend 테이블에 curNo, regiNo 보내어 DB 저장(이미 저장되어 있으면 패스)
+					mDao.addAttend(curNo, regiNo);  //attend 테이블에 insert(출석등록)
+				}
+			}	
+		}
+		
 		//mav에 클래스명 추가
 		mav.addObject("clsName", cDao.getClassName(clsNo));
+		mav.addObject("navtext", "마이클래스> 커리큘럼> 동영상");	
 		mav.setViewName("curriculum/curriculum_videoplay");
 		return mav;
 	}
 
+	//줌링크 이동
+	public ModelAndView goClassZoomLink(String clsNo, String curNo, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		//mbType 확인(학생만 허용)
+		//CurriculumBean curriInfo = null;
+		
+		// 세션에서 로그인 데이터를 MemberBean에 담기
+		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+		// MemberBean으로 부터 mbType을 가져옴
+		int mbType = loginData.getMbType();
+		String mbId = loginData.getMbId();
+		String regiNo = mDao.getRegiNo(clsNo, mbId);
+		//출석테이블에 출석기록하기
+		if(mbType==1) { //학생이면
+			//수업시간인지 확인(수업시간에만 허용)
+			if(mDao.isCurriTime(curNo)) { //true면 수업시간, false면 수업시간 아님
+				//이미 출석여부 확인
+				if(!mDao.isAttendAlready(curNo, regiNo)) { //출석한적 없다면
+					//attend 테이블에 curNo, regiNo 보내어 DB 저장(이미 저장되어 있으면 패스)
+					mDao.addAttend(curNo, regiNo);  //attend 테이블에 insert(출석등록)
+				}
+			}	
+		}
+		//줌링크 가져오기
+		String zoomLink = mDao.getZoomLink(clsNo);
+		//줌링크로 redirect
+		mav.setViewName("redirect:"+ zoomLink);
+		return mav;
+	}
 
 
 
-//동영상 제목,시작일,종료일 가져오기
 
-//커리큘럼 등록
+
+
 //커리큘럼 수정
+//커리큘럼 삭제
 
 }
 

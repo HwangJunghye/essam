@@ -36,16 +36,40 @@
 		INSERT INTO CURRI 
 			(CURNO, CLSNO, CURTYPENO, FILENO, CURTITLE, CURSTARTDATE, CURENDDATE, CURDISC) 
 		VALUES
-			(#{curNo}, #{clsNo}, #{curTypeNo}, #{fileNo}, #{curTitle}, TO_DATE(#{curStartDate} || ' 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(#{curEndDate} || ' 23:59:59', 'YYYY-MM-DD HH24:MI:SS'), #{curDisc})
+			(#{curNo}, #{clsNo}, #{curTypeNo}, #{fileNo}, #{curTitle}, 
+			<if test="curTypeNo==1">
+			TO_DATE(#{curStartDate} || ' 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(#{curEndDate} || ' 23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+			</if>
+			<if test="curTypeNo==2">
+			TO_DATE(#{curStartDate}, 'YYYY-MM-DD HH24:MI'), TO_DATE(#{curEndDate}, 'YYYY-MM-DD HH24:MI')
+			</if>
+			, #{curDisc})
 	</insert>
+	
 	<update id="curFileInsert">
 		UPDATE CURRI
 		SET FILENO = #{fileNo}
 		WHERE CURNO = #{curNo}
 	</update>
 	
+	<select id="getRegiNo" resultType="String">
+		SELECT REGINO FROM STUDENT WHERE MBID=#{mbId} AND CLSNO=#{clsNo}
+	</select>
 	
+	<select id="isCurriTime" resultType="boolean">
+		SELECT COUNT(*) FROM CURRI WHERE CURNO=#{curNo} AND SYSDATE BETWEEN CURSTARTDATE AND CURENDDATE
+	</select>
 	
+	<select id="isAttendAlready" resultType="boolean">
+		SELECT COUNT(*) FROM ATTEND WHERE CURNO=#{curNo} AND REGINO=#{regiNo}
+	</select>
 	
+	<insert id="addAttend">
+		INSERT INTO ATTEND (CURNO, REGINO) VALUES (#{curNo}, #{regiNo})
+	</insert>
+	
+	<select id="getZoomLink" resultType="String">
+		SELECT ZOOMLINK FROM CLASS WHERE CLSNO=#{clsNo}
+	</select>
 	
 </mapper>

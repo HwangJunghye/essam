@@ -28,12 +28,12 @@
 		<table class="container">
 		<tr>
 			<td align="left" style="padding:20px 0;">
-				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${curriInfo.clsName}</span></h6>
+				<h6><i class="fab fa-edge-legacy"></i> 클래스 <i class="fas fa-angle-right"></i> <span style="font-weight: bold;background-color:#f4edd8;">${clsName}</span></h6>
 				<hr class="hr_${mbColor}"></td>
 		</tr>
 		</table>
 
-		<table class="contents">
+		<table class="contents" border="1">
 			<tr>
 				<td class="item">회&emsp;차:</td>
 				<td class="item_contents">&emsp;</td>
@@ -67,8 +67,8 @@
 		
 		
 		
-	<c:if test="${empty curInfo}">
-		<h3>등록된 상세커리큘럼이 없습니다.</h3>
+	<c:if test="${empty curriInfo}">
+		<h3>${msg}</h3>
 		<br/>
 		<br/>
 		<br/>

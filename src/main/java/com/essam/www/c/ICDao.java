@@ -23,4 +23,14 @@ public interface ICDao {
 
 	boolean curFileInsert(@Param("curNo") String curNo,@Param("fileNo") String fileNo);
 
+	String getRegiNo(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
+
+	boolean isCurriTime(String curNo);
+
+	boolean isAttendAlready(@Param("curNo") String curNo, @Param("regiNo") String regiNo);
+
+	void addAttend(@Param("curNo") String curNo, @Param("regiNo") String regiNo);
+
+	String getZoomLink(String clsNo);
+
 }

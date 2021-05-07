@@ -88,7 +88,6 @@ public class CController {
 	@RequestMapping(value = "/class/curriculum/read")
 	ModelAndView goClassCurriculumRead(HttpSession session, String clsNo, String curNo) {
 		ModelAndView mav = mm.getClassCurriculumRead(session, clsNo, curNo);
-		mav.addObject("navtext", "커리큘럼 상세정보");
 		return mav; 
 	}
 	
@@ -101,22 +100,28 @@ public class CController {
 	
 	//커리큘럼 등록
 	@RequestMapping(value = "/class/curriculum/add")
-	ModelAndView classCurriculumAdd(MultipartHttpServletRequest mReq, CurriculumBean cb, HttpServletRequest request, RedirectAttributes rattr) {
+	ModelAndView classCurriculumAdd(MultipartHttpServletRequest mReq, CurriculumBean cb, HttpServletRequest request, RedirectAttributes rattr) throws CommonException {
 		ModelAndView mav = mm.ClassCurriculumAdd(mReq, cb, request, rattr);
 		return mav; //.jsp
 	}
 	
-	//동영상 페이지 이동
+	//동영상 페이지 이동/참여 + 동영상 제목,시작일,종료일 가져오기
 	@RequestMapping(value = "/class/videoplay")
-	ModelAndView goClassVideoPlay(String clsNo, String curNo) {
-		ModelAndView mav = mm.goClassVideoPlay(clsNo, curNo);
+	ModelAndView goClassVideoPlay(String clsNo, String curNo, HttpSession session) {
+		ModelAndView mav = mm.goClassVideoPlay(clsNo, curNo, session);
+		return mav; //.jsp
+	}
+	
+	@RequestMapping(value = "/class/zoomlink")
+	ModelAndView goClassZoomLink(String clsNo, String curNo, HttpSession session) {
+		ModelAndView mav = mm.goClassZoomLink(clsNo, curNo, session);
 		return mav; //.jsp
 	}
 	
 	
 	
 	
-	//동영상 제목,시작일,종료일 가져오기
+	
 	
 	
 	

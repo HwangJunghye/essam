@@ -47,14 +47,14 @@
 					<c:forEach var="cInfo" items="${curriInfo}">
 						<tr class="listArea" onclick="location.href='${ctxPath}/class/curriculum/read?curNo=${cInfo.curNo}&clsNo=${cInfo.clsNo}'">
 							<td></td>
-							<td>${cInfo.curTitle}</td>
+							<td><a href="${ctxPath}/class/curriculum/read?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}">${cInfo.curTitle}</a></td>
 							<td>${cInfo.curStartDate}</td>
 							<td>${cInfo.curEndDate}</td>
 							<c:if test="${cInfo.curTypeNo==1}">
-								<td><a href="${ctxPath}/class/videoplay?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}">참여아이콘</a></td>
+								<td><a href="${ctxPath}/class/videoplay?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}">동영상</a></td>
 							</c:if>
 							<c:if test="${cInfo.curTypeNo==2}">
-								<td><a href="${ctxPath}/curriculum/zoomlink">참여아이콘</a></td>
+								<td><a href="${ctxPath}/class/zoomlink?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}" target="_blank">실시간</a></td>
 							</c:if>
 							
 						</tr>

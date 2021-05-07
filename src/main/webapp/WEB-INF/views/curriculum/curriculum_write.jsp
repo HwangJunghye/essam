@@ -109,14 +109,6 @@
 						<td><textarea name="curDisc"></textarea></td>
 					</tr>
 					<tr>
-						<th>줌링크</th>
-						<td><textarea name="zoomLink"></textarea></td>
-					</tr>
-					<tr>
-						<th>줌비밀번호</th>
-						<td><textarea name="zoomPwd"></textarea></td>
-					</tr>
-					<tr>
 						<td colspan=2><input type="submit" class="btn_normal_t" value="등록" /></td>
 					</tr>
 				</table>

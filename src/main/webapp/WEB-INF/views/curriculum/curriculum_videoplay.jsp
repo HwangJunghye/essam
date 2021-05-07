@@ -33,7 +33,7 @@
 	</table>
 	
 	<div>
-		${curriInfo.curTitle}
+		<h3>${msg}</h3>
 		${curriInfo.curStartDate}
 		${curriInfo.curEndDate}<br/>
 		<video src="${ctxPath}/getvideo?fileNo=${curriInfo.fileNo}" controls="controls"></video>
