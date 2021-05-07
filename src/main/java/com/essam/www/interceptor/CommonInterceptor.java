@@ -104,7 +104,8 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 			// class 권한 확인
 			if (servletPath.matches("/class/.*")) {
 				String clsNo = request.getParameter("clsNo");
-				if (clsNo == null || clsNo.equals("")) { // clsNo가 없는 경우(잘못된 파라미터)
+				// 클래스 등록 페이지가 아니면서 clsNo가 null이나 공백인 경우
+				if (!servletPath.equals("/class/classinfo/write") && clsNo == null || clsNo.equals("")) { // clsNo가 없는 경우(잘못된 파라미터)
 					return -4;
 				}
 				if (!iDao.hasClassAuth(mb.getMbId(), clsNo, mbType)) { // 클래스의 권한이 없는 경우
