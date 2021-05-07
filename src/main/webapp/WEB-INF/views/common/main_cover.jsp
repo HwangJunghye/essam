@@ -22,7 +22,7 @@
 				<li data-target="#myCarousel" data-slide-to="3"></li>
 			</ul>
 			<div class="carousel-inner">
-				<!-- 슬라이드 쇼 -->
+			<!-- 슬라이드 쇼 -->
 				<div class="carousel-item active">
 					<!--가로--> 
 					<img id="btn1" class="d-block w-100" src="${ctxPath}/resources/images/main_img7.jpg?auto=compress&cs=tinysrgb&h=280&w=1400" alt="First slide">
