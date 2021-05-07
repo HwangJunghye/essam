@@ -2,6 +2,7 @@ package com.essam.www.eclass;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -14,6 +15,7 @@ import com.essam.www.bean.StudentBean;
 
 public interface IClassDao {
 	// class-mapper.xml 사용
+	
 	//@Author 황정혜	
 	ClassBean getMyClassList(String clsNo);
 	
@@ -33,6 +35,7 @@ public interface IClassDao {
 	
 	void classViewDelete(String clsNo);
 		
+	
 	//@Author 고연미
 	ClassBean getClassInfo(String clsNo);
 	
@@ -65,7 +68,12 @@ public interface IClassDao {
 	void addBrdView(@Param("clsBrdNo") String clsBrdNo, @Param("mbId") String mbId);
 
 	boolean delBrdView(String clsBrdNo);
+	
+	int isCharge(@Param("clsNo") String clsNo, @Param("mbId") String mbId);
+	
+	List<StudentBean> getOnStudents(String clsNo);
 		
+	
 	//@Author 임다영
 	List<ReplyBean> getReplyList(String clsBrdNo);
 
@@ -77,7 +85,5 @@ public interface IClassDao {
 
 	void deleteReply(@Param("clsBrdRepNo") String clsBrdRepNo, @Param("mbId") String mbId);
 
-	
 
-	
 }

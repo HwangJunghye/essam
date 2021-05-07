@@ -153,6 +153,12 @@
 		DELETE FROM CLS_BRD_VIEW
 		WHERE CLSBRDNO=#{clsBrdNo}	
 	</delete>
+	<select id="isCharge" resultType="int">
+		SELECT COUNT(*) FROM CLS_BRD WHERE CLSNO=#{clsNo} AND MBID=#{mbId} AND ROWNUM=1
+	</select>
+	<select id="getOnStudents" resultType="studentbean">
+		SELECT MBID FROM STUDENT WHERE CLSNO=#{clsNo} AND MBID IN (SELECT MBID FROM LOGIN_MB)
+	</select>
 	
 	<!-- @Author 임다영 -->
 	<select id="getReplyList" resultType="replybean">

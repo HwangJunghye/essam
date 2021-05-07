@@ -1,6 +1,7 @@
 package com.essam.www.eclass;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -141,4 +142,13 @@ public class ClassController {
 		ModelAndView mav = cm.classDelete(clsNo, request, rattr);
 		return mav;
 		}
+	
+	// @author 고연미 on 2021.05.07
+	// Ajax 해당클래스 로그인한 학생목록(mbId) 가져오기(담당 강사가 맞는지 체크 후)
+	@RequestMapping(value = "/class/getonstudents")
+	@ResponseBody Map<String, String> getOnStudents(String clsNo, String mbId){
+		Map<String,String> sMap = cm.getOnStudents(clsNo,mbId);
+		return sMap;
+	}
+	
 }

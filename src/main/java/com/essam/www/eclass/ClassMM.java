@@ -3,6 +3,7 @@ package com.essam.www.eclass;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -736,6 +737,21 @@ public class ClassMM {
 		}
 		return mav;
 	} //classDelete End
+	public Map<String, String> getOnStudents(String clsNo, String mbId) {
+		Map<String, String> sMap = new HashMap<>();
+		List<StudentBean> sList = null;
+		//해당 클래스의 담당 강사가 맞는지 체크
+		if(cDao.isCharge(clsNo, mbId) == 1) {
+			//맞으면 로그인한 학생리스트 가져오기
+			sList = cDao.getOnStudents(clsNo);
+			int n = 1;
+			for(StudentBean sb : sList) {
+				sMap.put(n+"", sb.getMbId());
+				n++;
+			}
+		}
+		return sMap;
+	}
 }//Class End
 
 /**
