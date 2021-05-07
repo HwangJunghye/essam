@@ -65,7 +65,9 @@
 			}).done((result)=>{
 				//$('#add').text('댓글등록 성공');
 				//console.log(result);
-						
+				// 댓글 폼 reset
+				$('#frmReply')[0].reset();
+				
 				displayRList(result);//댓글리스트 출력
 
 				$('#clsBrdRepContent').val('');
