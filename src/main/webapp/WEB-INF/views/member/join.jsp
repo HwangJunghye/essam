@@ -47,62 +47,61 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 <!-- post : 크기제한 없음. url에 정보 표시 X, 
             form이나 ajax만으로 전송 가능 -->  
 <form action="memberjoin" method="post">
+<br/><br/>
 <table class="center">
-	<caption>회원가입</caption>
-	<div class="modal-table">
 	<tr>
 		<th>회원타입</th>
 		<td>
-			<input type="radio" name="mbType" value="1" checked /> 학생
-			<input type="radio" name="mbType" value="2" /> 강사
+			<label><input type="radio" name="mbType" value="1" checked /> 학생</label>
+			<label><input type="radio" name="mbType" value="2" /> 강사</label>
 		</td>
 	</tr>
 	<tr>
-		<th>아이디</th>
+		<th><label for="mbId">아이디</label></th>
 		<td>
-			<input type="text" name="mbId" id="mbId" required/>
-			<div id="result"><!-- 중복체크 결과 출력 --></div>
+			<input type="text" name="mbId" id="mbId" required />
+			<div id="result"></div>
 		</td>
 	</tr>
 	<tr>
-		<th>비밀번호</th>
-		<td><input type="text" name="mbPwd" required /></td>
+		<th><label for="mbPwd">비밀번호</label></th>
+		<td><input type="text" name="mbPwd" id="mbPwd" required /></td>
 	</tr>
 	<tr>
-		<th>비밀번호 확인</th>
-		<td><input type="text" name="mbPwdcheck" required /></td>
+		<th><label for="mbPwdcheck" >비밀번호 확인</label></th>
+		<td><input type="text" name="mbPwdcheck" id="mbPwdcheck" required /></td>
 	</tr>
 	<tr>
-		<th>성명</th>
-		<td><input type="text" name="mbName" required /></td>
+		<th><label for="mbName" >성명</label></th>
+		<td><input type="text" name="mbName" id="mbName" required /></td>
 	</tr>
 	<tr>
-		<th>닉네임</th>
-		<td><input	type="text" name="mbNickName" required /></td>
+		<th><label for="mbNickName">닉네임</label></th>
+		<td><input	type="text" name="mbNickName" id="mbNickName" required /></td>
 	</tr>
 	<tr>
 		<th>성별</th>
 		<td>
-			<input type="radio" name="mbGender" value="m" checked /> 남 
-			<input type="radio" name="mbGender" value="w" /> 여 
+			<label><input type="radio" name="mbGender" value="m" checked /> 남</label> 
+			<label><input type="radio" name="mbGender" value="w" /> 여</label> 
 		</td>
 	</tr>
 	<tr>
-		<th>생년월일</th>
+		<th><label for="mbBirth">생년월일</label></th>
 		<td>
-			<input type="date" name="mbBirth" min="1900-01-01" max="2100-12-31" required /> 
+			<input type="date" name="mbBirth" id="mbBirth" min="1900-01-01" max="2100-12-31" required /> 
 		</td>
 	</tr>
 	<tr>
-		<th>연락처</th>
+		<th><label for="mbTel">연락처</label></th>
 		<td>
-			<input type="text" name="mbTel" required />
+			<input type="text" name="mbTel" id="mbTel" required />
 		</td>
 	</tr>
 	<tr>
-		<th>주소</th>
+		<th><label for="mbAddr">주소</label></th>
 		<td>
-			<input type="text" name="mbAddr" required />
+			<input type="text" name="mbAddr" id="mbAddr" required />
 		</td>
 	</tr>
 	<tr>
@@ -110,12 +109,12 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input type="checkbox" name="cate1No" value="1"/>유아
-			<input type="checkbox" name="cate1No" value="2"/>초등
-			<input type="checkbox" name="cate1No" value="3"/>중등
-			<input type="checkbox" name="cate1No" value="4"/>고등
-			<input type="checkbox" name="cate1No" value="5"/>특목
-			<input type="checkbox" name="cate1No" value="6"/>기타
+			<label><input type="checkbox" name="cate1No" value="1"/>유아</label>
+			<label><input type="checkbox" name="cate1No" value="2"/>초등</label>
+			<label><input type="checkbox" name="cate1No" value="3"/>중등</label>
+			<label><input type="checkbox" name="cate1No" value="4"/>고등</label>
+			<label><input type="checkbox" name="cate1No" value="5"/>특목</label>
+			<label><input type="checkbox" name="cate1No" value="6"/>기타</label>
 		</td>
 	</tr>
 	<tr>
@@ -123,14 +122,14 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input type="checkbox" name="cate2No" value="1"/>국어
-			<input type="checkbox" name="cate2No" value="2"/>영어
-			<input type="checkbox" name="cate2No" value="3"/>수학
-			<input type="checkbox" name="cate2No" value="4"/>과학
-			<input type="checkbox" name="cate2No" value="5"/>논술
-			<input type="checkbox" name="cate2No" value="6"/>독서
-			<input type="checkbox" name="cate2No" value="7"/>입시컨설팅
-			<input type="checkbox" name="cate2No" value="8"/>기타
+			<label><input type="checkbox" name="cate2No" value="1"/>국어</label>
+			<label><input type="checkbox" name="cate2No" value="2"/>영어</label>
+			<label><input type="checkbox" name="cate2No" value="3"/>수학</label>
+			<label><input type="checkbox" name="cate2No" value="4"/>과학</label>
+			<label><input type="checkbox" name="cate2No" value="5"/>논술</label>
+			<label><input type="checkbox" name="cate2No" value="6"/>독서</label>
+			<label><input type="checkbox" name="cate2No" value="7"/>입시컨설팅</label>
+			<label><input type="checkbox" name="cate2No" value="8"/>기타</label>
 		</td>
 	</tr>
 	<tr>
