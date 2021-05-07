@@ -204,6 +204,7 @@ public class CMM {
 		if (!ObjectUtils.isEmpty(curriInfo)) { // 커리큘럼 정보가 있다면
 			// 가져온 정보를 mav에 넣기
 			mav.addObject("curriInfo", curriInfo);
+			mav.addObject("clsNo", clsNo);
 			// class_curriculum_read.jsp로 이동하기 위해 viewname 지정
 			mav.setViewName("curriculum/curriculum_list"); // 커리큘럼보기 페이지로
 			mav.addObject("navtext", "마이클래스> 커리큘럼");
@@ -223,16 +224,16 @@ public class CMM {
 	}
 
 	//커리큘럼 상세정보 보기 이동 + 커리큘럼 상세정보 가져오기
-	public ModelAndView getClassCurriculumRead(HttpSession session, String clsNo, String curNo) {
+	public ModelAndView getClassCurriculumRead(String clsNo, String curNo) {
 		ModelAndView mav = new ModelAndView();
 		CurriculumBean curriInfo = null;
 		
-		// 세션에서 로그인 데이터를 MemberBean에 담기
-		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
-		// MemberBean으로 부터 mbType을 가져옴
-		String mbType = loginData.getMbType() + "";
-		// 가져온 정보를 mav에 넣기
-		mav.addObject("mbType", mbType);
+//		// 세션에서 로그인 데이터를 MemberBean에 담기
+//		MemberBean loginData = (MemberBean) session.getAttribute("loginData");
+//		// MemberBean으로 부터 mbType을 가져옴
+//		String mbType = loginData.getMbType() + "";
+//		// 가져온 정보를 mav에 넣기
+//		mav.addObject("mbType", mbType);
 		
 		curriInfo = mDao.getCurriculumRead(clsNo, curNo);
 		if (curriInfo != null) { // 커리큘럼 상세정보가 있다면
@@ -254,13 +255,12 @@ public class CMM {
 	//커리큘럼 등록 이동
 	public ModelAndView goClassCurriculumWrite(String clsNo) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("navtext", "마이클래스> 커리큘럼> 등록");
+		
 		mav.addObject("clsNo", clsNo);
 		//mav에 클래스명 추가
 		mav.addObject("clsName", cDao.getClassName(clsNo));
+		mav.addObject("navtext", "마이클래스> 커리큘럼> 등록");
 		mav.setViewName("curriculum/curriculum_write");
-		mav.addObject("clsName", cDao.getClassName(clsNo));
-		mav.addObject("navtext", "마이클래스> 커리큘럼> 등록");	
 		return mav;
 	}
 	
@@ -342,6 +342,53 @@ public class CMM {
 		}
 		return mav;
 	}
+	
+	//커리큘럼 수정 이동
+	public ModelAndView goClassCurriculumUpdate(String clsNo, String curNo) {
+		ModelAndView mav = new ModelAndView();
+		CurriculumBean curriInfo = null;
+		
+		curriInfo = mDao.getCurriculumRead(clsNo, curNo);
+		
+		
+		if(curriInfo != null && curriInfo.getCurTypeNo()==1) { //등록된 커리큘럼이 있고 동영상수업 이라면
+			String curStartDate = curriInfo.getCurStartDate().substring(0,10);
+			String curEndDate = curriInfo.getCurEndDate().substring(0,10);
+			
+			mav.addObject("curStartDate", curStartDate);
+			mav.addObject("curEndDate", curEndDate);
+			mav.addObject("curriInfo", curriInfo);
+			mav.setViewName("curriculum/curriculum_update");
+			mav.addObject("clsNo", clsNo);
+			//mav에 클래스명 추가
+			mav.addObject("clsName", cDao.getClassName(clsNo));
+			mav.addObject("navtext", "마이클래스> 커리큘럼> 수정");
+		}else if(curriInfo != null && curriInfo.getCurTypeNo()==2) { //등록된 커리큘럼이 있고 실시간수업 이라면
+			String curStartDate = curriInfo.getCurStartDate().substring(0,16).replace(" ", "T");
+			String curEndDate = curriInfo.getCurEndDate().substring(0,16).replace(" ", "T");
+			
+			mav.addObject("curStartDate", curStartDate);
+			mav.addObject("curEndDate", curEndDate);
+			mav.addObject("curriInfo", curriInfo);
+			mav.setViewName("curriculum/curriculum_update");
+			mav.addObject("clsNo", clsNo);
+			//mav에 클래스명 추가
+			mav.addObject("clsName", cDao.getClassName(clsNo));
+			mav.addObject("navtext", "마이클래스> 커리큘럼> 수정");
+		}else { //등록된 커리큘럼이 없으면
+			mav.setViewName("curriculum/curriculum_write");
+			mav.addObject("clsNo", clsNo);
+			//mav에 클래스명 추가
+			mav.addObject("clsName", cDao.getClassName(clsNo));
+			mav.addObject("navtext", "마이클래스> 커리큘럼> 등록");
+		}
+		return mav;
+	}
+		
+	//커리큘럼 수정
+	
+	
+		
 
 	//동영상 페이지 이동 + 동영상 제목,시작일,종료일 가져오기
 	public ModelAndView goClassVideoPlay(String clsNo, String curNo, HttpSession session) {
@@ -413,13 +460,14 @@ public class CMM {
 		mav.setViewName("redirect:"+ zoomLink);
 		return mav;
 	}
+	
 
 
 
 
 
 
-//커리큘럼 수정
+
 //커리큘럼 삭제
 
 }

@@ -37,9 +37,15 @@
 		${curriInfo.curStartDate}
 		${curriInfo.curEndDate}<br/>
 		<video src="${ctxPath}/getvideo?fileNo=${curriInfo.fileNo}" controls="controls"></video>
-	
-	
 	</div>
+	<br/>
+	<br/>
+	<br/>
+		<button type="button" class="btn_normal_t" onclick="history.back(-1);">목록</button>
+	<c:if test="${sessionScope.loginData.mbType==2}">
+		<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/update?clsNo=${curriInfo.clsNo}&curNo=${curriInfo.curNo}'">수정</button>
+		<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/delete'">삭제</button>
+	</c:if>
 
 <!--------- 본문 끝 -------------->
 	</div>

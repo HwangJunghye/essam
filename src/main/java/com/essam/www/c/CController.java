@@ -86,8 +86,8 @@ public class CController {
 
 	//커리큘럼 상세정보 보기 이동 + 커리큘럼 상세정보 가져오기
 	@RequestMapping(value = "/class/curriculum/read")
-	ModelAndView goClassCurriculumRead(HttpSession session, String clsNo, String curNo) {
-		ModelAndView mav = mm.getClassCurriculumRead(session, clsNo, curNo);
+	ModelAndView goClassCurriculumRead(String clsNo, String curNo) {
+		ModelAndView mav = mm.getClassCurriculumRead(clsNo, curNo);
 		return mav; 
 	}
 	
@@ -118,7 +118,12 @@ public class CController {
 		return mav; //.jsp
 	}
 	
-	
+	//커리큘럼 수정 이동하기 
+	@RequestMapping(value = "/class/curriculum/update")
+	ModelAndView goClassCurriculumUpdate(String clsNo, String curNo) {
+		ModelAndView mav = mm.goClassCurriculumUpdate(clsNo, curNo);
+		return mav; //.jsp
+	}
 	
 	
 	
