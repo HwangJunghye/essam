@@ -65,8 +65,6 @@ text-align:left;
 			</table>
 	
 			<!-- 웹소켓을 사용해서 강사가 클래스 학생들에게 메세지 보내기 -->
-			
-			<div id="messageArea"></div>
 			<table class="container" style="background:#efefef;border:2px solid #ddd;">
 			<tr>
 				<td style="padding:10px;"><h5>로그인한 학생들에게 푸쉬알림 메세지 보내기</h5>
@@ -79,7 +77,7 @@ text-align:left;
 			<!-- 학생 목록 출력 -->			
 			<table class="tbl_stu">
 				<tr>
-					<th>상태</th>
+					<th>로그인</th>
 					<th>닉네임</th>
 					<th>이메일</th>
 					<th>등록일</th>

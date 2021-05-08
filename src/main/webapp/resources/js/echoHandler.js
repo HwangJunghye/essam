@@ -62,11 +62,14 @@
 					},
 					dataType : 'json'
 				}).done(function(result) {
+					//로그인한 학생 수
 					let rCnt = Object.keys(result).length;
+					//로그인한 학생이 존재할 경우
 					if(rCnt > 0) {
 						$.each(result, function(index, item) {
 							let sendData = item + "," + "[from "+ mbNickName +"] " + msg;
 							console.log("sendData  => ", sendData);
+							//메세지 전송
 							websocket.send(sendData);
 						});
 						alert("푸쉬알림 메세지를 전송하였습니다.");
@@ -81,7 +84,7 @@
 
 		function onMessage(evt) {
 			$('#messageArea').append(evt.data + "\n");
-			var data = evt.data;
+			let data = evt.data;
 
 			// 토스트 알림
 			// closeButton 생성여부
