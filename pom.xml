@@ -204,8 +204,21 @@
 			<artifactId>thumbnailator</artifactId>
 			<version>0.4.8</version>
 		</dependency>
-
-
+		
+		<!-- Spring 내에서 웹 소켓을 사용할 수 있게 해주는 library -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>5.2.12.RELEASE</version>
+		</dependency>
+		
+		<!-- 웹 소켓에서 JSON형식으로 데이터를 주고 받기 위해 사용하는 library -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.3</version>
+		</dependency>
+		
 		<!-- 추가 끝 -->
 	</dependencies>
 	<build>

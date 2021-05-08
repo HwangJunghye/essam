@@ -24,11 +24,11 @@ public class StudentBean {
 	private String regiEndDate;	
 
 	//추가된 필드(출결현황 관리용)
-	private String mbNickName; //닉네임
-	private String clsName; //클래스이름
-	private int totalDay; //총수업일수
-	private int attendDay; //출석일수
-	private int absenceDay; //결석일수
-	 
+	private String mbNickName;	//닉네임
+	private String clsName;		//클래스이름
+	private int totalDay;		//총수업일수
+	private int attendDay;		//출석일수
+	private int absenceDay;		//결석일수
+	private String socketId;	//웹소켓아이디
 	
 }

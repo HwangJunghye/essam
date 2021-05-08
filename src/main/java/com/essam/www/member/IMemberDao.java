@@ -40,5 +40,15 @@ public interface IMemberDao {
 	void deleteInterCate(@Param("mbId") String mbId, @Param ("tablenm")String tablenm);
 
 	int[] getinterCate(@Param("mbId") String mbId, @Param("tablenm")String tablenm);
+
+	int getLoginMb(String mbId);
+
+	int getLoginMbS(String socketId);
+
+	boolean updateLoginMb(@Param("mbId") String mbId, @Param("socketId") String socketId);
+	
+	boolean setLoginMb(@Param("mbId") String mbId, @Param("socketId") String socketId);
+
+	boolean delLoginMb(String socketId);
 	
 }

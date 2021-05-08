@@ -129,4 +129,21 @@
 		</if>
 		FROM ${tablenm} WHERE MBID=#{mbId}
 	</select>
+	
+	<!-- @author 고연미 on 2021.05.07 -->
+	<select id="getLoginMb" resultType="int">
+		SELECT COUNT(*) FROM LOGIN_MB WHERE MBID=#{mbId}
+	</select>
+	<update id="updateLoginMb">
+		UPDATE LOGIN_MB SET SOCKETID=#{socketId} WHERE MBID=#{mbId}
+	</update>
+	<insert id="setLoginMb">
+		INSERT INTO LOGIN_MB (MBID, SOCKETID) VALUES (#{mbId}, #{socketId})
+	</insert>
+	<select id="getLoginMbS" resultType="int">
+		SELECT COUNT(*) FROM LOGIN_MB WHERE SOCKETID=#{socketId}
+	</select>
+	<delete id="delLoginMb">
+		DELETE FROM LOGIN_MB WHERE SOCKETID=#{socketId}
+	</delete>
 </mapper>

@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 </head>
 <style>
-table {
+.tbl_stu {
 	float: center;
 	margin: auto;
 	items-align: center;
@@ -55,7 +55,7 @@ text-align:left;
 
 		<!-- sList가 있으면 -->
 		<c:if test="${!empty sList}">
-	
+			<!-- 클래스명 출력 -->	
 			<table class="container">
 				<tr>
 					<td align="left" style="padding:20px 0;">
@@ -63,9 +63,23 @@ text-align:left;
 						<hr class="hr_${mbColor}"></td>
 				</tr>
 			</table>
+	
+			<!-- 웹소켓을 사용해서 강사가 클래스 학생들에게 메세지 보내기 -->
 			
-			<table>
+			<div id="messageArea"></div>
+			<table class="container" style="background:#efefef;border:2px solid #ddd;">
+			<tr>
+				<td style="padding:10px;"><h5>로그인한 학생들에게 푸쉬알림 메세지 보내기</h5>
+					<form>
+						<input type="text" size="100" id="sendMsg">
+						<button type="button" id="btnSendMsg" class='btn_normal_t'>전송 <i class="far fa-paper-plane"></i></button>
+					</form></td>
+			</tr></table><br>
+			
+			<!-- 학생 목록 출력 -->			
+			<table class="tbl_stu">
 				<tr>
+					<th>상태</th>
 					<th>닉네임</th>
 					<th>이메일</th>
 					<th>등록일</th>
@@ -74,6 +88,7 @@ text-align:left;
 			
 				<c:forEach var="sInfo" items="${sList}">
 					<tr class="listArea" onclick="location.href='${ctxPath}/class/studentinfo?mbId=${sInfo.mbId}&clsNo=${sInfo.clsNo}'">
+						<td><c:if test="${sInfo.socketId != null}"><i class="fas fa-wifi" style="color:#007BFF"></i></c:if></td>
 						<td>${sInfo.mbNickName}</td>
 						<td>${sInfo.mbId}</td>
 						<td>${sInfo.regiStartDate}</td>
@@ -89,7 +104,7 @@ text-align:left;
 		<c:if test="${empty sList}">
 			<h3>수강생이 없습니다.</h3>
 		</c:if>
-		
+
 <!--------- 본문 끝 -------------->
 	</div>
 </div>

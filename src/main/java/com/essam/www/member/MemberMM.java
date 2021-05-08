@@ -423,5 +423,31 @@ public class MemberMM {
 		mav.setViewName("member/myclass_s"); // .jsp
 		return mav;
 	}
+	/**
+	 * 웹소켓 정보 업데이트 : 페이지 이동시
+	 * @author 고연미  on 2021.05.08
+	 */
+	public boolean setLoginMb(String mbId, String socketId) {
+		//소켓정보가 있으면
+		if(mDao.getLoginMb(mbId) > 0) {
+			//소켓아이디 업데이트
+			if(!mDao.updateLoginMb(mbId, socketId))
+				return false;
+		} else {
+			//소켓정보 등록
+			if(!mDao.setLoginMb(mbId, socketId))
+				return false;
+		}
+		return true;
+	}
+	public boolean delLoginMb(String socketId) {
+		//소켓정보가 있으면
+		if(mDao.getLoginMbS(socketId) > 0) {
+			//소켓정보 삭제
+			if(!mDao.delLoginMb(socketId))
+				return false;
+		}
+		return true;
+	}
 
 }

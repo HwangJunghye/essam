@@ -30,11 +30,16 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/header.css">
 <script src="${ctxPath}/resources/js/header.js"></script>
+<script src="${ctxPath}/resources/js/echoHandler.js"></script>
 <script>
 	$(function(){
-		headerReady({fMsg:'${fMsg}', ctxPath:'${ctxPath}',modal:"${modal}"});
+		headerReady({fMsg:'${fMsg}', ctxPath:'${ctxPath}', modal:"${modal}"});
+		websocketReady({mbId:'${sessionScope.loginData.mbId}', mbNickName:'${sessionScope.loginData.mbNickName}', mbType:'${sessionScope.loginData.mbType}', ctxPath:'${ctxPath}', clsNo:"${param.clsNo}"});
 	}); // ready End
 </script>
 </head>

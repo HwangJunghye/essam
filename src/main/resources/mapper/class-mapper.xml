@@ -9,9 +9,10 @@
 	<select id="getMyClassList" resultType="classbean">
 		SELECT * FROM CLASS WHERE CLSNO=#{clsNo}
 	</select>
-	
+
 	<select id="getStudentList" resultType="studentbean">
-		SELECT * FROM V_STUDENTBEAN WHERE CLSNO=#{clsNo}
+		<!-- SELECT * FROM V_STUDENTBEAN WHERE CLSNO=#{clsNo} -->
+		SELECT V.*, SOCKETID FROM V_STUDENTBEAN V LEFT OUTER JOIN LOGIN_MB L ON V.MBID=L.MBID WHERE V.CLSNO=#{clsNo}
 	</select>
 	
 	<select id="getStudentInfo" resultType="studentbean">
