@@ -112,6 +112,7 @@ public class CController {
 		return mav; //.jsp
 	}
 	
+	//줌링크 페이지 이동
 	@RequestMapping(value = "/class/zoomlink")
 	ModelAndView goClassZoomLink(String clsNo, String curNo, HttpSession session) {
 		ModelAndView mav = mm.goClassZoomLink(clsNo, curNo, session);
@@ -125,7 +126,12 @@ public class CController {
 		return mav; //.jsp
 	}
 	
-	
+	//커리큘럼 수정
+	@RequestMapping(value = "/class/curriculum/update_server")
+	ModelAndView classCurriculumUpdateServer(MultipartHttpServletRequest mReq, CurriculumBean cb, HttpServletRequest request, RedirectAttributes rattr) throws CommonException {
+		ModelAndView mav = mm.ClassCurriculumUpdateServer(mReq, cb, request, rattr);
+		return mav; //.jsp
+	}
 	
 	
 	

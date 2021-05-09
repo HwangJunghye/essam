@@ -117,7 +117,7 @@ public class CMM {
 		// MemberDao에 mbId 가져가서 강사정보 요청
 		TeacherBean teacherInfo = mDao.getTeacherProfile(mbId);
 		
-		if (mFile != null) { // 서버에 저장된 프로필이미지파일이 있으면
+		if (mFile != null) { // 입력된 프로필이미지파일이 있으면
 			// FileMM.saveFile()에 파라미터(mReq,mFile,1) 넘겨 fileNo 가져옴
 			String fileNo = fm.saveFile(mReq, mFile, 1);
 			// teacherBean에 가져온 fileNo 저장
@@ -364,8 +364,8 @@ public class CMM {
 			mav.addObject("clsName", cDao.getClassName(clsNo));
 			mav.addObject("navtext", "마이클래스> 커리큘럼> 수정");
 		}else if(curriInfo != null && curriInfo.getCurTypeNo()==2) { //등록된 커리큘럼이 있고 실시간수업 이라면
-			String curStartDate = curriInfo.getCurStartDate().substring(0,16).replace(" ", "T");
-			String curEndDate = curriInfo.getCurEndDate().substring(0,16).replace(" ", "T");
+			String curStartDate = curriInfo.getCurStartDate().replace(" ", "T");
+			String curEndDate = curriInfo.getCurEndDate().replace(" ", "T");
 			
 			mav.addObject("curStartDate", curStartDate);
 			mav.addObject("curEndDate", curEndDate);
@@ -386,7 +386,89 @@ public class CMM {
 	}
 		
 	//커리큘럼 수정
-	
+	public ModelAndView ClassCurriculumUpdateServer(MultipartHttpServletRequest mReq, CurriculumBean cb, HttpServletRequest request, RedirectAttributes rattr) throws CommonException {
+		ModelAndView mav = new ModelAndView();
+		boolean result = false;  //게시판 수정 결과
+		boolean isDeleteVideo = false; //이전 동영상 삭제 결과
+		String clsNo = cb.getClsNo();
+		String curNo = mReq.getParameter("curNo");
+		//int pageNum = Integer.parseInt(mReq.getParameter("pageNum"));
+		
+		MultipartFile mFile = mReq.getFile("file");
+		CurriculumBean curriInfo = mDao.getCurriculumRead(clsNo, curNo);
+		
+		if(cb.getCurTypeNo() == 1) { //커리큘럼타입이 동영상 이면
+			if(mReq.getFile("file").getSize() != 0) { //입력값에 동영상 파일이 있으면
+				String fileNo = fm.saveFile(mReq, mFile, 2); //2: 동영상
+				// curriculumBean cb에 가져온 fileNo 저장
+				cb.setFileNo(fileNo);
+				
+				if(mDao.classCurriculumUpdateServer(cb)) { //커리큘럼 수정 성공하면
+					result = true;
+					// 서버에 저장된 이전 동영상파일 삭제요청
+					isDeleteVideo = fm.deleteFile(curriInfo.getFileNo(), request);
+					log.info("이전 동영상 삭제여부 : " + isDeleteVideo);
+				}else { //커리큘럼 수정 실패하면
+					rattr.addFlashAttribute("fMsg", "커리큘럼 수정이 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
+					//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
+					String referer = request.getHeader("Referer");
+					//view 페이지 ㅣ설정
+					mav.setViewName("redirect:" + referer);
+				}
+			}else if(mReq.getFile("file").getSize() == 0) { //입력값에 동영상 파일이 없으면
+				result = mDao.classCurriculumUpdateServer(cb);
+			}else {
+				throw new CommonException("커리큘럼 수정 동영상파일 예외발생");
+			}
+			log.info("커리큘럼수정 성공여부 : " + result);				
+			
+			if(result) {
+				rattr.addFlashAttribute("fMsg", "커리큘럼을 수정하였습니다.");
+				mav.setViewName("redirect:/class/curriculum?clsNo=" + cb.getClsNo());
+				//mav에 클래스명 추가
+				mav.addObject("clsName", cDao.getClassName(clsNo));
+				mav.addObject("navtext", "마이클래스> 커리큘럼");
+			}else {
+				rattr.addFlashAttribute("fMsg", "커리큘럼 수정이 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
+				//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
+				String referer = request.getHeader("Referer");
+				//view 페이지 ㅣ설정
+				mav.setViewName("redirect:" + referer);
+			}
+			//rattr에 커리큘럼번호 추가
+			//rattr.addFlashAttribute("curNo", curNo);
+			//rattr에 페이지 넘버 추가
+			//rattr.addFlashAttribute("pageNum", pageNum);
+			
+		}else if(cb.getCurTypeNo() == 2) { //커리큘럼타입이 실시간 이면
+			String sDate = cb.getCurStartDate().replace('T', ' ');
+			cb.setCurStartDate(sDate);
+			String eDate = cb.getCurEndDate().replace('T', ' ');
+			cb.setCurEndDate(eDate);
+			
+			if(mDao.classCurriculumUpdateServerSil(cb)) {
+				result = true;
+			}
+			log.info("커리큘럼 수정 성공여부 : " + result);	
+			
+			if(result) { //커리큘럼 수정 성공하면
+				rattr.addFlashAttribute("fMsg", "커리큘럼을 수정하였습니다.");
+				mav.setViewName("redirect:/class/curriculum?clsNo=" + cb.getClsNo());
+				//mav에 클래스명 추가
+				mav.addObject("clsName", cDao.getClassName(clsNo));
+				mav.addObject("navtext", "마이클래스> 커리큘럼");
+			}else { //커리큘럼 수정 실패하면
+				rattr.addFlashAttribute("fMsg", "커리큘럼 수정이 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
+				//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
+				String referer = request.getHeader("Referer");
+				//view 페이지 ㅣ설정
+				mav.setViewName("redirect:" + referer);
+			}
+		}else { //커리큘럼타입 예외처리
+			throw new CommonException("커리큘럼타입 예외발생");
+		}
+		return mav;
+	}
 	
 		
 

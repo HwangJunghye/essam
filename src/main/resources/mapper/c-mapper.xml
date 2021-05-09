@@ -72,4 +72,16 @@
 		SELECT ZOOMLINK FROM CLASS WHERE CLSNO=#{clsNo}
 	</select>
 	
+	<update id="classCurriculumUpdateServer" parameterType="curriculumbean">
+		UPDATE CURRI 
+		SET <if test="fileNo!=null">FILENO=#{fileNo},</if> CURTITLE=#{curTitle}, CURSTARTDATE=#{curStartDate}, CURENDDATE=#{curEndDate}, CURDISC=#{curDisc} 
+		WHERE CURNO=#{curNo}
+	</update>
+	
+	<update id="classCurriculumUpdateServerSil" parameterType="curriculumbean">
+		UPDATE CURRI 
+		SET CURTITLE=#{curTitle}, CURSTARTDATE=#{curStartDate}, CURENDDATE=#{curEndDate}, CURDISC=#{curDisc} 
+		WHERE CURNO=#{curNo}
+	</update>
+	
 </mapper>

@@ -36,7 +36,9 @@
 		<h3>${msg}</h3>
 		${curriInfo.curStartDate}
 		${curriInfo.curEndDate}<br/>
-		<video src="${ctxPath}/getvideo?fileNo=${curriInfo.fileNo}" controls="controls"></video>
+		<video width="700" height="350" controls="controls">
+			<source src="${ctxPath}/getvideo?fileNo=${curriInfo.fileNo}" type="video/mp4">
+		</video>
 	</div>
 	<br/>
 	<br/>

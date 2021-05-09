@@ -33,4 +33,8 @@ public interface ICDao {
 
 	String getZoomLink(String clsNo);
 
+	boolean classCurriculumUpdateServer(CurriculumBean cb);
+
+	boolean classCurriculumUpdateServerSil(CurriculumBean cb);
+
 }
