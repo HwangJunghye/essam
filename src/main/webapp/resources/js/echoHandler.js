@@ -19,7 +19,7 @@
 
 		function send_message() {
 			//웹소켓 핸들러 path
-			const wsUri = "http://localhost/www/echo/";
+			const wsUri = ctxPath + "/echo/";
 			//웹소켓 연결
 			websocket = new SockJS(wsUri);
 			socket = websocket;
@@ -54,7 +54,7 @@
 			if (mbType == 2 && clsNo != "") {
 				//로그인한 학생목록(mbId) 가져오기
 				$.ajax({
-					url : ctxPath+"/class/getonstudents",
+					url : ctxPath + "/class/getonstudents",
 					method : "get",
 					data : {
 						clsNo : clsNo,
