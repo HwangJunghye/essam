@@ -38,7 +38,7 @@
 
 			//받은 메세지가 있으면
 			websocket.onmessage = function(evt) {
-				var data = evt.data;
+				let data = evt.data;
 				console.log("ReceivMessage : " + data + "\n");
 				//푸쉬 알림(toastr)
 				onMessage(evt);

@@ -53,8 +53,7 @@ public class EchoHandler extends TextWebSocketHandler {
 		String socketId = session.getId();
 
 		//httpSession 로그인정보 가져오기
-		Map<String, Object> httpSession = session.getAttributes();
-		MemberBean loginData = (MemberBean)httpSession.get("loginData");
+		MemberBean loginData = getLoginData(session);
 
 		//로그인정보가 있으면
 		if (!ObjectUtils.isEmpty(loginData)) {
@@ -70,24 +69,38 @@ public class EchoHandler extends TextWebSocketHandler {
 	// 소켓에 메세지 전송시
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		// String senderEmail = getEmail(session); //메세지를 보내온 세션(sender) email 가져오기
 
 		// message.getPayload() : 브라우저에서 소켓으로 보낸 메세지 내용
 		String msg = message.getPayload();
-		this.logger.info(msg);
+		logger.info(msg);
 
-		// 메세지를 보내온 세션에게 메세지 전송
-		// session.sendMessage(new TextMessage(senderEmail+ "님 반갑습니다."));
+		MemberBean loginData = getLoginData(session); 
+		/*  메세지를 보내온 세션에게 메세지 전송
+		if(!ObjectUtils.isEmpty(loginData)) { 
+			String mbNickName = loginData.getMbNickName();
+			session.sendMessage(new TextMessage(mbNickName + "님 반갑습니다.")); 
+		}	 */
 
 		// 학생Id와 메세지를 분리해 배열에 담기
 		String[] msgArray = msg.split(","); // 학생Id,메세지
 
-		// 현재 접속중인 receiver에게 메세지 전송
+		// 현재 접속중인 학생에게 메세지 전송
 		if (!ObjectUtils.isEmpty(userSessionsMap.get(msgArray[0]))) {
 			WebSocketSession receiverSession = userSessionsMap.get(msgArray[0]);
 			TextMessage tmpMsg = new TextMessage(msgArray[1]);
 			receiverSession.sendMessage(tmpMsg);
+			// DB에 메세지 전송정보 저장
+			if(!ObjectUtils.isEmpty(loginData)) { 
+				if(!mm.setLoginMsg(loginData.getMbId(), msgArray[0], msgArray[1]))
+					logger.warn("웹소켓 메세지 전송정보 DB 등록 실패");
+			}
 		}
 	}
 
+	//httpSession 로그인정보 가져오기
+	protected MemberBean getLoginData(WebSocketSession session) {
+		Map<String, Object> httpSession = session.getAttributes();
+		MemberBean loginData = (MemberBean)httpSession.get("loginData");
+		return loginData;		
+	}
 }

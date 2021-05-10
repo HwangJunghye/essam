@@ -146,4 +146,7 @@
 	<delete id="delLoginMb">
 		DELETE FROM LOGIN_MB WHERE SOCKETID=#{socketId}
 	</delete>
+	<insert id="setLoginMsg">
+		INSERT INTO LOGIN_MSG (MBID, MBID_R, MSG) VALUES (#{mbId}, #{mbIdR}, #{msg})
+	</insert>
 </mapper>

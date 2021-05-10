@@ -449,5 +449,10 @@ public class MemberMM {
 		}
 		return true;
 	}
+	public boolean setLoginMsg(String mbId, String mbIdR, String msg) {
+		if(!mDao.setLoginMsg(mbId, mbIdR, msg))
+			return false;
+		return true;
+	}
 
 }

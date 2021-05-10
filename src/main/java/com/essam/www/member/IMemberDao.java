@@ -50,5 +50,7 @@ public interface IMemberDao {
 	boolean setLoginMb(@Param("mbId") String mbId, @Param("socketId") String socketId);
 
 	boolean delLoginMb(String socketId);
+
+	boolean setLoginMsg(@Param("mbId") String mbId, @Param("mbIdR") String mbIdR, @Param("msg") String msg);
 	
 }
