@@ -52,11 +52,19 @@
 			<mapping path="/**"/>
 			<!-- 예외 설정(exclude-mapping) -->
 			<!-- <exclude-mapping path="/"/> -->
-			<exclude-mapping path="/"/>
 			<exclude-mapping path="/resources/**"/>
+			<exclude-mapping path="/"/>
 			<exclude-mapping path="/login"/>
 			<exclude-mapping path="/join"/>
+			<exclude-mapping path="/access"/>
+			<exclude-mapping path="/memberjoin"/>
+			<exclude-mapping path="/logout"/>
 			<exclude-mapping path="/search"/>
+			<exclude-mapping path="/classinfo"/>
+			<exclude-mapping path="/download"/>
+			<exclude-mapping path="/getvideo"/>
+			<exclude-mapping path="/getimage"/>
+			<exclude-mapping path="/getthumbnail"/>
 			<!-- 인터셉터 클래스 -->
 			<beans:bean class="com.essam.www.interceptor.CommonInterceptor"/>
 		</interceptor>
