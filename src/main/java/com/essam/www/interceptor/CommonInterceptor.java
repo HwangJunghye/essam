@@ -149,6 +149,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 				// 권한이 없는 경우 return -3
 			} else {
 				// 존재할 수 없는 권한
+				log.error("mbType is " + mbType + ". Impossible type");
 				return -999;
 			}
 
@@ -175,13 +176,13 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 	 */
 	private boolean sendAuthMessage(int authFlag, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		FlashMap fMap = new FlashMap();
+		FlashMap fMap = new FlashMap(); // flashMap 생성(flashAttribute 사용을 위해)
 		switch (authFlag) {
 		case 0:// 로그인이 필요한 경우
 			fMap.put("modal", "modal open"); // 로그인 모달창 열기
 			fMap.put("fMsg", "로그인이 필요합니다");
 			break;
-		case -1:// 권한이 존재하지 않는 경우(rdFlag : 1(학생) or 2(강사) or 3(관리자)
+		case -1:// 권한이 존재하지 않는 경우(authFlag : -1(학생) or -2(강사) or -3(관리자)
 			fMap.put("fMsg", "권한이 존재하지 않습니다(현재 권한 : 학생회원)");
 			break;
 		case -2:
@@ -200,7 +201,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 			fMap.put("fMsg", "올바르지 않은 권한입니다"); // 예상치 못한 에러
 			break;
 		}
-		// fMsg 넣기
+		// FlashAttribute에 fMap 넣기
 		FlashMapManager fMapManager = RequestContextUtils.getFlashMapManager(request);
 		fMapManager.saveOutputFlashMap(fMap, request, response);
 
