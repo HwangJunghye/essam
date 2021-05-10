@@ -7,40 +7,87 @@
 	
 	<!-- 필터를 "신규"로 선택했을 때 -->
 	<select id="getNewStatistic" resultType="Map">
-		SELECT COUNT(*) FROM 
+		SELECT COUNT(*) AS CNT, 
+
 		<!--searchTarget이 클래스인 경우 -->
 		<if test="searchTarget.equals('class')">
-		CLASS WHERE CLSOPENDATE BETWEEN {startDate} AND {endDate} GROUP BY CLSOPENDATE ORDER BY CLSOPENDATE
+		CLSOPENDATE FROM CLASS WHERE CLSOPENDATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') AND TO_DATE(#{endDate}, 'YYYY-MM-DD') GROUP BY CLSOPENDATE ORDER BY CLSOPENDATE
 		</if>
+
 		
 		<!-- searchTarget이 강사인 경우 -->
 		<if test="searchTarget.equals('teacher')">
-		MEMBER WHERE (MBTYPE=2) AND (MBJOINDATE BETWEEN {startDate} AND {endDate}) GROUP BY MBJOINDATE ORDER BY MBJOINDATE
+		MBJOINDATE FROM MEMBER WHERE (MBTYPE=2) AND (MBJOINDATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') AND TO_DATE(#{endDate}, 'YYYY-MM-DD')) GROUP BY MBJOINDATE ORDER BY MBJOINDATE
 		</if>
 		
 		<!-- searchTarget이 학생인 경우 -->
 		<if test="searchTarget.equals('student')">
-		MEMBER WHERE (MBTYPE=1) AND (MBJOINDATE BETWEEN {startDate} AND {endDate}) GROUP BY MBJOINDATE ORDER BY MBJOINDATE
+		MBJOINDATE FROM MEMBER WHERE (MBTYPE=1) AND (MBJOINDATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') AND TO_DATE(#{endDate}, 'YYYY-MM-DD')) GROUP BY MBJOINDATE ORDER BY MBJOINDATE
 		</if>
 	</select>
 	
 	
-	<!-- 필터를 "전체"로 선택했을 때 -->
+		<!-- 필터를 "전체"로 선택했을 때 
 	<select id="getTotalStatistic" resultType="Map">
-		SELECT COUNT(*) FROM 
-		<!--searchTarget이 클래스인 경우 -->
-		<if test="searchTarget.equals('class')">
-		CLASS WHERE  GROUP BY ORDER BY
+	
+		searchTarget이 클래스인 경우
+		
+		SELECT NVL(SUM(a.cnt), 0) cnt
+		  FROM ( SELECT COUNT(*) cnt
+		         
+		           FROM CLASS
+		          WHERE CLSOPENDATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD')
+		                             AND TO_DATE(#{endDate}, 'YYYY-MM-DD') 
+		          GROUP BY CLSOPENDATE
+		        ) a
+		      , ( SELECT TO_DATE(#{startDate},'YYYY-MM-DD') + LEVEL - 1 AS dt
+		            FROM dual 
+		         CONNECT BY LEVEL <= (TO_DATE(#{endDate},'YYYY-MM-DD') 
+		                            - TO_DATE(#{startDate},'YYYY-MM-DD') + 1)
+		        ) b
+		  WHERE b.dt = a.CLSOPENDATE(+)
+		  GROUP BY b.dt
+		  ORDER BY b.dt 
+		
+		
+		searchTarget이 강사인 경우
+		<if test="searchTarget.equals('teacher')">
+		SELECT NVL(SUM(a.cnt), 0) cnt
+		  FROM ( SELECT COUNT(*) cnt
+		           FROM MEMBER
+		          WHERE (MBTYPE=1) AND (MBJOINDATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD')
+		                             AND TO_DATE(#{endDate}, 'YYYY-MM-DD'))
+		          GROUP BY MBJOINDATE
+		        ) a
+		      , ( SELECT TO_DATE(#{startDate},'YYYY-MM-DD') + LEVEL - 1 AS dt
+		            FROM dual 
+		         CONNECT BY LEVEL <= (TO_DATE(#{endDate},'YYYY-MM-DD') 
+		                            - TO_DATE(#{startDate},'YYYY-MM-DD') + 1)
+		        ) b
+		  WHERE b.dt = a.MBJOINDATE(+)
+		  GROUP BY b.dt
+		  ORDER BY b.dt 
 		</if>
 		
-		<!-- searchTarget이 강사인 경우 -->
-		<if test="searchTarget.equals('teacher')">
-		MEMBER WHERE (MBTYPE=2) AND  GROUP BY ORDER BY
-		</if>
-		<!-- searchTarget이 학생인 경우 -->
+		searchTarget이 학생인 경우
 		<if test="searchTarget.equals('student')">
-		MEMBER WHERE (MBTYPE=1) AND  GROUP BY ORDER BY
+				SELECT NVL(SUM(a.cnt), 0) cnt
+		  FROM ( SELECT COUNT(*) cnt
+		           FROM MEMBER
+		          WHERE (MBTYPE=2) AND (MBJOINDATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD')
+		                             AND TO_DATE(#{endDate}, 'YYYY-MM-DD'))
+		          GROUP BY MBJOINDATE
+		        ) a
+		      , ( SELECT TO_DATE(#{startDate},'YYYY-MM-DD') + LEVEL - 1 AS dt
+		            FROM dual 
+		         CONNECT BY LEVEL <= (TO_DATE(#{endDate},'YYYY-MM-DD') 
+		                            - TO_DATE(#{startDate},'YYYY-MM-DD') + 1)
+		        ) b
+		  WHERE b.dt = a.MBJOINDATE(+)
+		  GROUP BY b.dt
+		  ORDER BY b.dt 
 		</if>
-	</select>
+		
+	</select> -->
 	
 </mapper>
