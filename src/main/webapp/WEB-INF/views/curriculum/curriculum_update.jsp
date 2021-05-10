@@ -42,6 +42,7 @@
 					<input type="hidden" name="curTypeNo" value="1">
 					<input type="hidden" name="clsNo" value="${clsNo}">
 					<input type="hidden" name="curNo" value="${curriInfo.curNo}">
+					<input type="hidden" name="pageNum" value="1">
 					<div class="dong_div" id="dong_div" style="width:900px; height:600px; margin:0 auto;">
 						<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
 							<tr>
@@ -74,7 +75,7 @@
 						</table>
 						<br/>
 						<br/>
-						<button type="button" class="btn_normal_t" onclick="history.back(-1);">취소</button>
+						<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum?pageNum=${pageNum}'">취소</button>
 					</div>
 				</c:if>
 			</form>
@@ -87,6 +88,7 @@
 					<input type="hidden" name="curTypeNo" value="2">
 					<input type="hidden" name="clsNo" value="${clsNo}">
 					<input type="hidden" name="curNo" value="${curriInfo.curNo}">
+					<input type="hidden" name="pageNum" value="1">
 					<div class="sil_div" id="sil_div" style="width:900px; height:300px; margin:0 auto;">
 						<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
 							<tr>
@@ -115,7 +117,7 @@
 						</table>
 						<br/>
 						<br/>
-						<button type="button" class="btn_normal_t" onclick="history.back(-1);">취소</button>
+						<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum?clsNo=${clsNo}&pageNum=${pageNum}'">취소</button>
 					</div>
 				</c:if>
 			</form>

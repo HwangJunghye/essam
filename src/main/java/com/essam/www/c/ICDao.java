@@ -15,7 +15,7 @@ public interface ICDao {
 
 	boolean teacherInfoDelete(String mbId);
 
-	List<CurriculumBean> getCurriculumList(String clsNo);
+	List<CurriculumBean> getCurriculumList(@Param("clsNo") String clsNo, @Param("pageNum") Integer pageNum);
 
 	CurriculumBean getCurriculumRead(@Param("clsNo")String clsNo, @Param("curNo")String curNo);
 
@@ -36,5 +36,7 @@ public interface ICDao {
 	boolean classCurriculumUpdateServer(CurriculumBean cb);
 
 	boolean classCurriculumUpdateServerSil(CurriculumBean cb);
+
+	int getCurriculumCount(String clsNo);
 
 }

@@ -79,36 +79,36 @@ public class CController {
 
 	//클래스 커리큘럼 이동 + 커리큘럼 목록 가져오기
 	@RequestMapping(value = "/class/curriculum")
-	ModelAndView goClassCurriculum(String clsNo) {
-		ModelAndView mav = mm.getClassCurriculumList(clsNo);
+	ModelAndView goClassCurriculum(String clsNo, Integer pageNum, HttpServletRequest request) {
+		ModelAndView mav = mm.getClassCurriculumList(clsNo, pageNum, request);
 		return mav; 
 	}
 
 	//커리큘럼 상세정보 보기 이동 + 커리큘럼 상세정보 가져오기
 	@RequestMapping(value = "/class/curriculum/read")
-	ModelAndView goClassCurriculumRead(String clsNo, String curNo) {
-		ModelAndView mav = mm.getClassCurriculumRead(clsNo, curNo);
+	ModelAndView goClassCurriculumRead(String clsNo, String curNo, Integer pageNum) {
+		ModelAndView mav = mm.getClassCurriculumRead(clsNo, curNo, pageNum);
 		return mav; 
 	}
 	
 	//커리큘럼 등록 이동하기 
 	@RequestMapping(value = "/class/curriculum/write")
-	ModelAndView goClassCurriculumWrite(String clsNo) {
-		ModelAndView mav = mm.goClassCurriculumWrite(clsNo);
+	ModelAndView goClassCurriculumWrite(String clsNo, Integer pageNum) {
+		ModelAndView mav = mm.goClassCurriculumWrite(clsNo, pageNum);
 		return mav; //.jsp
 	}
 	
 	//커리큘럼 등록
 	@RequestMapping(value = "/class/curriculum/add")
-	ModelAndView classCurriculumAdd(MultipartHttpServletRequest mReq, CurriculumBean cb, HttpServletRequest request, RedirectAttributes rattr) throws CommonException {
-		ModelAndView mav = mm.ClassCurriculumAdd(mReq, cb, request, rattr);
+	ModelAndView classCurriculumAdd(MultipartHttpServletRequest mReq, CurriculumBean cb, Integer pageNum, HttpServletRequest request, RedirectAttributes rattr) throws CommonException {
+		ModelAndView mav = mm.ClassCurriculumAdd(mReq, cb, request, rattr, pageNum);
 		return mav; //.jsp
 	}
 	
 	//동영상 페이지 이동/참여 + 동영상 제목,시작일,종료일 가져오기
 	@RequestMapping(value = "/class/videoplay")
-	ModelAndView goClassVideoPlay(String clsNo, String curNo, HttpSession session) {
-		ModelAndView mav = mm.goClassVideoPlay(clsNo, curNo, session);
+	ModelAndView goClassVideoPlay(String clsNo, String curNo, HttpSession session, Integer pageNum) {
+		ModelAndView mav = mm.goClassVideoPlay(clsNo, curNo, session, pageNum);
 		return mav; //.jsp
 	}
 	
@@ -121,8 +121,8 @@ public class CController {
 	
 	//커리큘럼 수정 이동하기 
 	@RequestMapping(value = "/class/curriculum/update")
-	ModelAndView goClassCurriculumUpdate(String clsNo, String curNo) {
-		ModelAndView mav = mm.goClassCurriculumUpdate(clsNo, curNo);
+	ModelAndView goClassCurriculumUpdate(String clsNo, String curNo, Integer pageNum) {
+		ModelAndView mav = mm.goClassCurriculumUpdate(clsNo, curNo, pageNum);
 		return mav; //.jsp
 	}
 	
@@ -134,8 +134,12 @@ public class CController {
 	}
 	
 	
-	
-	
+	//커리큘럼 삭제
+	@RequestMapping(value = "/class/curriculum/delete")
+	ModelAndView classCurriculumDelete(String clsNo, String curNo, HttpServletRequest request) throws CommonException {
+		ModelAndView mav = mm.classCurriculumDelete(clsNo, curNo, request);
+		return mav; 
+	}
 	
 	
 	
@@ -161,7 +165,7 @@ public class CController {
 	
 
 
-//커리큘럼 삭제
+
 
 
 

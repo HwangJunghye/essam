@@ -44,13 +44,14 @@
 	</table>
 	
 	<div id="wrap_dong_div" style="width:100%; height:100%; backbround:lightgray; position:relative;">
-		<label><input type="radio" name="curTypeNo" id="dong" value="1" checked>동영상</label>
-		<label><input type="radio" name="curTypeNo" id="sil" value="2">실시간</label>
+		<input type="radio" name="curTypeNo" id="dong" value="1" checked>동영상
+		<input type="radio" name="curTypeNo" id="sil" value="2">실시간
 		
 		<form action="${ctxPath}/class/curriculum/add" method="post" enctype="multipart/form-data">
 			<c:if test="${empty curriInfo}">
 				<input type="hidden" name="curTypeNo" value="1">
 				<input type="hidden" name="clsNo" value="${clsNo}">
+				<input type="hidden" name="pageNum" value="1">
 				<div class="dong_div" id="dong_div" style="width:900px; height:600px; margin:0 auto;">
 					<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
 						<tr>
@@ -89,6 +90,7 @@
 			<c:if test="${empty curriInfo}">
 				<input type="hidden" name="curTypeNo" value="2">
 				<input type="hidden" name="clsNo" value="${clsNo}">
+				<input type="hidden" name="pageNum" value="1">
 				<div class="sil_div" id="sil_div" style="width:900px; height:300px; margin:0 auto;">
 					<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
 						<tr>

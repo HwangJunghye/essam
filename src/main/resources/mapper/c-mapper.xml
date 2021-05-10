@@ -22,7 +22,13 @@
 	</update>
 	
 	<select id="getCurriculumList" resultType="curriculumbean">
-		SELECT * FROM V_CURRI WHERE CLSNO=#{clsNo}
+		<![CDATA[
+      	 SELECT * FROM (
+         SELECT ROWNUM RN, V_CURRI.*
+         FROM V_CURRI
+         WHERE CLSNO=#{clsNo} AND ROWNUM<=${pageNum}*10 ORDER BY CURSTARTDATE, CURNO )
+         WHERE RN>=${pageNum}*10-9
+        ]]>
 	</select>
 	
 	<select id="getCurriculumRead" resultType="curriculumbean">
@@ -80,8 +86,12 @@
 	
 	<update id="classCurriculumUpdateServerSil" parameterType="curriculumbean">
 		UPDATE CURRI 
-		SET CURTITLE=#{curTitle}, CURSTARTDATE=#{curStartDate}, CURENDDATE=#{curEndDate}, CURDISC=#{curDisc} 
+		SET CURTITLE=#{curTitle}, CURSTARTDATE=TO_DATE(#{curStartDate}, 'YYYY-MM-DD HH24:MI:SS'), CURENDDATE=TO_DATE(#{curEndDate}, 'YYYY-MM-DD HH24:MI:SS'), CURDISC=#{curDisc} 
 		WHERE CURNO=#{curNo}
 	</update>
+	
+	<select id="getCurriculumCount" resultType="int">
+		SELECT COUNT(*) FROM CURRI WHERE CLSNO=#{clsNo}
+	</select>
 	
 </mapper>

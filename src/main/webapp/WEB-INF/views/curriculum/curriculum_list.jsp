@@ -41,27 +41,36 @@
 					<th>종료일시</th>
 					<th>참여</th>
 				</tr>
-			
-				<c:forEach var="cInfo" items="${curriInfo}">
+				
+				<% 
+				int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+				int listNum = 1;
+				if(pageNum > 1)
+				      listNum = pageNum*10 - 9;
+				 %>
+				<c:forEach var="cInfo" items="${curriInfo}" varStatus="status">
 					<tr class="listArea">
-						<td>1</td>
-						<td><a href="${ctxPath}/class/curriculum/read?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}">${cInfo.curTitle}</a></td>
+						<td><%=listNum %></td>
+						<td><a href="${ctxPath}/class/curriculum/read?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}">${cInfo.curTitle}</a></td>
 						<td>${cInfo.curStartDate}</td>
 						<td>${cInfo.curEndDate}</td>
 						<c:if test="${cInfo.curTypeNo==1}">
-							<td><a href="${ctxPath}/class/videoplay?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}">동영상</a></td>
+							<td><a href="${ctxPath}/class/videoplay?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}">동영상</a></td>
 						</c:if>
 						<c:if test="${cInfo.curTypeNo==2}">
-							<td><a href="${ctxPath}/class/zoomlink?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}" target="_blank">실시간</a></td>
+							<td><a href="${ctxPath}/class/zoomlink?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}" target="_blank">실시간</a></td>
 						</c:if>	
 					</tr>
+					<%listNum++; %>
 				</c:forEach>
+				
 			</table>
 			<br/>
 			<br/>
+			${paging}
 			<br/>
 			<c:if test="${sessionScope.loginData.mbType==2}">
-				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${curriInfo[0].clsNo}'">등록</button>
+				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${curriInfo[0].clsNo}&pageNum=${pageNum}'">등록</button>
 			</c:if>
 		</c:if>
 

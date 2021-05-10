@@ -43,9 +43,9 @@
 	<br/>
 	<br/>
 	<br/>
-		<button type="button" class="btn_normal_t" onclick="history.back(-1);">목록</button>
+		<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum?clsNo=${clsNo}&pageNum=${pageNum}'">목록</button>
 	<c:if test="${sessionScope.loginData.mbType==2}">
-		<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/update?clsNo=${curriInfo.clsNo}&curNo=${curriInfo.curNo}'">수정</button>
+		<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/update?clsNo=${curriInfo.clsNo}&curNo=${curriInfo.curNo}&pageNum=${pageNum}'">수정</button>
 		<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/delete'">삭제</button>
 	</c:if>
 
