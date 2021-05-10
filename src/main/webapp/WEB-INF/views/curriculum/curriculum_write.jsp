@@ -44,8 +44,8 @@
 	</table>
 	
 	<div id="wrap_dong_div" style="width:100%; height:100%; backbround:lightgray; position:relative;">
-		<input type="radio" name="curTypeNo" id="dong" value="1" checked>동영상
-		<input type="radio" name="curTypeNo" id="sil" value="2">실시간
+		<label><input type="radio" name="curTypeNo" id="dong" value="1" checked>동영상</label>
+		<label><input type="radio" name="curTypeNo" id="sil" value="2">실시간</label>
 		
 		<form action="${ctxPath}/class/curriculum/add" method="post" enctype="multipart/form-data">
 			<c:if test="${empty curriInfo}">
