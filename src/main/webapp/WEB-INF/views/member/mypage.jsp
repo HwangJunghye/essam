@@ -24,6 +24,11 @@
 #mTable{
 	height: 100px;
 }
+input[type="text"], input[type="date"] {
+  width:200px;
+  height:25px;
+  font-size:15px;
+}
 
 </style>
 </head>

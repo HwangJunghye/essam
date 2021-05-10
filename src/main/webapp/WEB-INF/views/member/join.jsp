@@ -16,6 +16,11 @@
 	margin-left: auto;
     margin-right: auto;
 }
+input[type="text"], input[type="date"] {
+  width:200px;
+  height:25px;
+  font-size:15px;
+}
 td{
 	padding : 5px;
 }
@@ -61,7 +66,7 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 	<tr>
 		<th><label for="mbId">아이디</label></th>
 		<td>
-			<input type="text" name="mbId" id="mbId" required />
+			<input type="text" name="mbId" id="mbId" placeholder="이메일형식으로 입력" required />
 			<div id="result"></div>
 		</td>
 	</tr>
@@ -147,19 +152,22 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 <script>
 //이메일 정규식
 
-/* function checkemail(){
+function checkemail(){
 	let mbId = $('#mbId').val();
 	
-	//영문자로 시작,그다음 영숫자 또는 .이 하나이상온다.그다음 @,그다음에 영문자 또는 .이 하나이상 온다.
-	//.은 정규식에서 임의의 문자라는 뜻을 가지므로, \. escape시켜서 단순 문자로 인식한다.
+	/* 영문자로 시작,그다음 영숫자 또는 .이 하나이상온다.그다음 @,그다음에 영문자 또는 .이 하나이상 온다.
+	.은 정규식에서 임의의 문자라는 뜻을 가지므로, \. escape시켜서 단순 문자로 인식한다. */
+	
 	let patt = /^[A-Za-z][A-Za-z0-9\.]+@[A-Za-z\.]+$/;
+	
 	if(mbId.length==0)
 		return printErrorMessage($("#mbId"), "필수 입력입니다.");
-	if(patt.test(mbId)==false)
+	if(patt.test(mbId.val())==false)
 		return printErrorMessage($("#mbId"), "이메일 형식에서 어긋납니다.");
 	$("#mbId").text("");
 	return true;	
 }
+
 	$(function() {
 		$('#mbId').on('focusout', function() {
 			let mbIdval = $('#mbId').val(); // 입력값 가져오기
@@ -179,7 +187,7 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 					$('#result').text('서버 통신 실패');
 				});
 			}
-		}); // on End */
+		}); // on End
 	//비밀번호 정규식
 	/* 1. 암호:
 
