@@ -22,8 +22,7 @@
 		</div>
 	</div>
 	<div id="contents_area">
-<!--------- 본문 시작 -------------->
-
+		<!--------- 본문 시작 -------------->
 		<table class="container">
 			<tr>
 				<td align="left" style="padding:20px 0;">
@@ -31,60 +30,65 @@
 					<hr class="hr_${mbColor}"></td>
 			</tr>
 		</table>
-		<!-- curriInfo가 있으면 -->
-		<c:if test="${!empty curriInfo}">
-			<table>
-				<tr>
-					<th>회차</th>
-					<th>수업명</th>
-					<th>시작일시</th>
-					<th>종료일시</th>
-					<th>참여</th>
-				</tr>
-				
-				<% 
-				int pageNum = Integer.parseInt(request.getParameter("pageNum"));
-				int listNum = 1;
-				if(pageNum > 1)
-				      listNum = pageNum*10 - 9;
-				 %>
-				<c:forEach var="cInfo" items="${curriInfo}" varStatus="status">
-					<tr class="listArea">
-						<td><%=listNum %></td>
-						<td><a href="${ctxPath}/class/curriculum/read?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}">${cInfo.curTitle}</a></td>
-						<td>${cInfo.curStartDate}</td>
-						<td>${cInfo.curEndDate}</td>
-						<c:if test="${cInfo.curTypeNo==1}">
-							<td><a href="${ctxPath}/class/videoplay?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}">동영상</a></td>
-						</c:if>
-						<c:if test="${cInfo.curTypeNo==2}">
-							<td><a href="${ctxPath}/class/zoomlink?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}" target="_blank">실시간</a></td>
-						</c:if>	
+		<div class="container">
+			<table class='table table-hover' style="background-color:white;">
+			<% 
+			int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			int listNum = 1;
+			if(pageNum > 1)
+			      listNum = pageNum*10 - 9;
+			 %>
+			 <!-- curriInfo가 있으면 -->
+			 <c:if test="${!empty curriInfo}">
+			 	<thead>
+					<tr>
+						<th>회차</th>
+						<th>수업명</th>
+						<th>시작일시</th>
+						<th>종료일시</th>
+						<th>참여</th>
 					</tr>
-					<%listNum++; %>
-				</c:forEach>
+				</thead>
+				<tbody class='tbl'>
+					<c:forEach var="cInfo" items="${curriInfo}" varStatus="status">
+						<tr class="listArea">
+							<td><%=listNum %></td>
+							<td><a href="${ctxPath}/class/curriculum/read?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}">${cInfo.curTitle}</a></td>
+							<td>${cInfo.curStartDate}</td>
+							<td>${cInfo.curEndDate}</td>
+							<c:if test="${cInfo.curTypeNo==1}">
+								<td><a href="${ctxPath}/class/videoplay?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}">동영상</a></td>
+							</c:if>
+							<c:if test="${cInfo.curTypeNo==2}">
+								<td><a href="${ctxPath}/class/zoomlink?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}" target="_blank">실시간</a></td>
+							</c:if>	
+						</tr>
+						<%listNum++; %>
+					</c:forEach>
+				</tbody>
 				
+			</c:if>
+			
+			<!-- curriInfo가 없으면 -->
+			<c:if test="${empty curriInfo}">
+				<thead>
+					<tr class='prod'>
+						${msg}
+					</tr>
+				</thead><br/><br/><br/>
+				<c:if test="${sessionScope.loginData.mbType==2}">
+					<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}'">등록</button>
+				</c:if>
+			</c:if>
 			</table>
-			<br/>
-			<br/>
-			${paging}
-			<br/>
+			<!-- 페이징 -->
+		${paging}
+		</div>
+		<div class="container" style="width:720px; float:right; text-align:right; margin-right:30px;">
 			<c:if test="${sessionScope.loginData.mbType==2}">
 				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${curriInfo[0].clsNo}&pageNum=${pageNum}'">등록</button>
 			</c:if>
-		</c:if>
-
-		<!-- curriInfo가 없으면 -->
-		<c:if test="${empty curriInfo}">
-			<h3>${msg}</h3>
-			<br/>
-			<br/>
-			<br/>
-			<c:if test="${sessionScope.loginData.mbType==2}">
-				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}'">등록</button>
-			</c:if>
-		</c:if>
-		
+		</div>
 <!--------- 본문 끝 -------------->
 	</div>
 </div>
