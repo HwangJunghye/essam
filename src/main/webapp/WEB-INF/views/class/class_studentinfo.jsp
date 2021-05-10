@@ -70,7 +70,7 @@ text-align:left;
 				<td style="padding:10px;"><h5>로그인한 학생들에게 푸쉬알림 메세지 보내기</h5>
 					<form>
 						<input type="text" size="100" id="sendMsg">
-						<button type="button" id="btnSendMsg" class='btn_normal_t'>전송 <i class="far fa-paper-plane"></i></button>
+						<button id="btnSendMsg" class='btn_normal_t'>전송 <i class="far fa-paper-plane"></i></button>
 					</form></td>
 			</tr></table><br>
 			

@@ -27,7 +27,8 @@
 			//소켓 연결시
 			websocket.onopen = function(evt) {
 				console.log('info: websocket connection opened.');
-				$('#btnSendMsg').on("click", function() {
+				$('#btnSendMsg').on("click", function(evt) {
+					evt.preventDefault();
 					let str = $('#sendMsg').val();					
 					//메세지가 있으면 전송
 					if($.trim(str) != "")
