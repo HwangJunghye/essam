@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
+<script src="https://YOUR-SERVER/javascripts/api/tableau-2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">

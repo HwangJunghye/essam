@@ -1,5 +1,6 @@
 package com.essam.www.etc;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -24,7 +25,7 @@ public class EtcController {
 				
 	// (EM02)통계 가져오기(ajax)	
 	@RequestMapping(value = "/getstatistic")
-	@ResponseBody Map<String,Object> getStatistic(AdminBean ab) {
+	@ResponseBody List<Map<String, Object>> getStatistic(AdminBean ab) {
 		return em.getStatistic(ab);	
 	}
 }
