@@ -11,18 +11,20 @@
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <style type="text/css">
-	.center{
-		margin:auto;
-	}
-	td{
+.center{
+	height: 600px;
+	margin-left: auto;
+    margin-right: auto;
+}
+td{
 	padding : 5px;
-	}
-	.modal-table{
-		display:table;
-		position:relative;
-		width:100%;
-		height:100px;
-	}
+}
+.modal-table{
+	display:table;
+	position:relative;
+	width:100%;
+	height:100px;
+}
 input[type="submit"], input[type="button"], input[type="reset"]{
 	width: 70px;
 	height: 36px;

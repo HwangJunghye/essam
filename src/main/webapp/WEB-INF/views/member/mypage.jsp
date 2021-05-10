@@ -99,7 +99,6 @@
 			<th class="object"><label for="mbAddr">주소</label></th>
 			<td class="object_con">
 				&emsp;<input type="text" name="mbAddr" id="mbAddr" value="${myInfo.mbAddr}" required />
-				&nbsp;<input type="button" class="${mbColor}" value="주소검색"> 
 			</td>
 		</tr>
 		<tr>
