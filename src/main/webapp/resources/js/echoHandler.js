@@ -72,7 +72,7 @@
 							//메세지 전송
 							websocket.send(sendData);
 						});
-						alert("푸쉬알림 메세지를 전송하였습니다.");
+						//alert("푸쉬알림 메세지를 전송하였습니다.");
 						$('#sendMsg').val('');
 					} else 
 						alert("현재 로그인한 학생이 존재하지 않습니다.");
@@ -90,9 +90,9 @@
 			// closeButton 생성여부
 			toastr.options.closeButton = true;
 			// 메시지가 표시되는 시간
-			toastr.options.timeOut = 5000;	//5초
+			toastr.options.timeOut = 30000;	//30초
 			// 메시지 위로 커서를 올렸다가 내렸을 때 표시되는 시간
-			toastr.options.extendedTimeOut = 7000;	//7초
+			toastr.options.extendedTimeOut = 30000;	//30초
 			// 만약 메시지 표시되는 시간과 올렸렸다가 내렸을 때 표시되는 시간을 0으로 하면 메시지는 사라지지 않는다.
 			toastr.info(data, "Direct Message"); //하늘색
 			//toastr.success(data,"다이렉트 메세지");	//연두색
