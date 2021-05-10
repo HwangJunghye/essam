@@ -63,6 +63,7 @@
 				data : formData,
 				dataType : 'json'
 			}).done((result)=>{
+				alert("등록되었습니다.")
 				//$('#add').text('댓글등록 성공');
 				//console.log(result);
 				// 댓글 폼 reset
@@ -71,7 +72,6 @@
 				displayRList(result);//댓글리스트 출력
 
 				$('#clsBrdRepContent').val('');
-				$('#clsBrdRepContent').focus();
 			}).fail(function(err) {
 				//$('#add').text('댓글등록 실패');
 			});
@@ -96,7 +96,6 @@
 			displayRList(result);//댓글리스트 출력
 			
 			$('#clsBrdRepContent').val('');
-			$('#clsBrdRepContent').focus();
 		}).fail(function(err) {
 			$('#rTable').text('댓글 리스트를 가져올 수 없습니다');
 		})
@@ -109,7 +108,12 @@
 			console.log("loginData mbId ==", mi);
 			str += "<tr>";
 			str += "<td style='white-space:nowrap'>"+ reply.mbNickName +"</td>";
-			str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
+			if(reply.fileNo != null){
+				str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
+			}else{
+				str += "<td>"+""+"</td>";
+			}
+			//str += "<td><a href='${ctxPath}/download?fileNo="+reply.fileNo+"'><i class='fas fa-save' style='width:24px;color:#666;'></i></a></td>";
 			str += "<td>"+ reply.clsBrdRepContent +"</td>";
 			str += "<td>"+ reply.clsBrdRepDate +"</td>";
 			//str += "<td><a href='#' onclick='javascript:isRDelete("+ reply.clsBrdRepNo +","+ reply.clsBrdNo +");'><i class='fas fa-backspace'></i></a></td>";
