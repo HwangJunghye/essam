@@ -233,11 +233,11 @@ public class ClassMM {
 	private String makeHtmlBtnUpdate(BoardBean board, Integer pageNum, HttpServletRequest request) {
 		String ctxPath = request.getContextPath();
 		StringBuilder sb = new StringBuilder();
-		sb.append("<form action='"+ ctxPath +"/class/goboardwrite' method='post'>\n");
-		sb.append("<input type='hidden' name='clsBrdNo' value='"+ board.getClsBrdNo() +"'>\n");
-		sb.append("<input type='hidden' name='clsBrdType' value='"+ board.getClsBrdType() +"'>\n");
-		sb.append("<input type='hidden' name='clsNo' value='"+ board.getClsNo() +"'>\n");
-		sb.append("<input type='hidden' name='pageNum' value='"+ pageNum +"'>\n");
+		sb.append("<form action='").append(ctxPath).append("/class/goboardwrite' method='post'>\n");
+		sb.append("<input type='hidden' name='clsBrdNo' value='").append(board.getClsBrdNo()).append("'>\n");
+		sb.append("<input type='hidden' name='clsBrdType' value='").append(board.getClsBrdType()).append("'>\n");
+		sb.append("<input type='hidden' name='clsNo' value='").append(board.getClsNo()).append("'>\n");
+		sb.append("<input type='hidden' name='pageNum' value='").append(pageNum).append("'>\n");
 		sb.append("<input type='submit' class='btn_normal_t' value='수정'>&nbsp;&nbsp;&nbsp;");
 		sb.append("<input type='button' class='btn_normal_t' value='삭제' onclick=\"cfmDelBrd()\">\n");
 		sb.append("</form>");
