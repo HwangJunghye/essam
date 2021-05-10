@@ -51,7 +51,12 @@
 			  		<if test="keywords!=null">
 			  			<foreach collection="keywords" item="word">
 			  				<if test='word!=null and !word.equals("")'>
-			  				AND UPPER(CLSKEYWORD) LIKE '%' || UPPER(#{word}) || '%'
+			  				AND (
+			  					UPPER(CLSKEYWORD) LIKE '%' || UPPER(#{word}) || '%' OR
+			  					UPPER(CLSNAME) LIKE '%' || UPPER(#{word}) || '%' OR
+			  					UPPER(CLSINTRO) LIKE '%' || UPPER(#{word}) || '%' OR
+			  					UPPER(CLSDESC) LIKE '%' || UPPER(#{word}) || '%'
+			  				)
 			  				</if>
 			  			</foreach>
 			  		</if>
