@@ -16,7 +16,7 @@
 	margin-left: auto;
     margin-right: auto;
 }
-input[type="text"], input[type="date"] {
+input[type="text"],input[type="password"],input[type="date"] {
   width:200px;
   height:25px;
   font-size:15px;
