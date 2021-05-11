@@ -53,14 +53,14 @@
 					<c:forEach var="cInfo" items="${curriInfo}" varStatus="status">
 						<tr class="listArea">
 							<td><%=listNum %></td>
-							<td><a href="${ctxPath}/class/curriculum/read?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}">${cInfo.curTitle}</a></td>
+							<td style="font-weight:bold;"><a href="${ctxPath}/class/curriculum/read?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}">${cInfo.curTitle}</a></td>
 							<td>${cInfo.curStartDate}</td>
 							<td>${cInfo.curEndDate}</td>
 							<c:if test="${cInfo.curTypeNo==1}">
-								<td><a href="${ctxPath}/class/videoplay?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}">동영상</a></td>
+								<td><a href="${ctxPath}/class/videoplay?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}"><i class="fab fa-youtube" style="font-size:30px;"></i></a></td>
 							</c:if>
 							<c:if test="${cInfo.curTypeNo==2}">
-								<td><a href="${ctxPath}/class/zoomlink?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}" target="_blank">실시간</a></td>
+								<td><a href="${ctxPath}/class/zoomlink?clsNo=${cInfo.clsNo}&curNo=${cInfo.curNo}&pageNum=${pageNum}" target="_blank"><i class="fas fa-chalkboard-teacher" style="color:black; font-size:30px;"></i></a></td>
 							</c:if>	
 						</tr>
 						<%listNum++; %>
