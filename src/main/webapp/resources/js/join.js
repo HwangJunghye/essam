@@ -21,6 +21,13 @@
 			return false;
 		}
 		// 아이디 정규식 검사
+		const regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+		if (!mbId.match(regExp)){
+			$('#idCheckResult').empty().append('아이디는 이메일 형식으로 입력해주세요').css({"color":"red","font-size":"8px"});
+			return false;
+		}		
+		
 		let isOk = false; // 아이디 중복 체크용 변수
 		$.ajax({
 			url:ctxPath + "/checkemail",
