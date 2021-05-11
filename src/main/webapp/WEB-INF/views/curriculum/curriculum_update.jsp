@@ -75,7 +75,7 @@
 						</table>
 						<br/>
 						<br/>
-						<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum?pageNum=${pageNum}'">취소</button>
+						<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum?clsNo=${clsNo}&pageNum=${pageNum}'">취소</button>
 					</div>
 				</c:if>
 			</form>
