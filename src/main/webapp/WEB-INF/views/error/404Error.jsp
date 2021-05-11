@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- 에러페이지 설정 --%>
+<%@ page isErrorPage="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
 <c:set var="errText" value='<%=response.getStatus() + " Error"%>'/>
+<c:set var="ctxPath" value="<%= request.getContextPath() %>"/>
 <%-- IE 작동 위해 --%>
-<%response.setStatus(200);%>
+<%response.setStatus(200);%>  
 <!DOCTYPE html>
 <html>
 <head>
