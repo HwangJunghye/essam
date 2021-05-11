@@ -166,3 +166,9 @@ text-align:center;
 	border: none;
 	cursor: pointer;
 }
+
+/* form의 label 설정*/
+form label{
+	margin: 0px;
+	padding: 0px;
+}
