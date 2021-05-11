@@ -65,6 +65,7 @@
 			<exclude-mapping path="/getvideo"/>
 			<exclude-mapping path="/getimage"/>
 			<exclude-mapping path="/getthumbnail"/>
+			<exclude-mapping path="/echo/**"/>
 			<!-- 인터셉터 클래스 -->
 			<beans:bean class="com.essam.www.interceptor.CommonInterceptor"/>
 		</interceptor>
