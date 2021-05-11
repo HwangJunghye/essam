@@ -60,16 +60,16 @@ input[type="text"], input[type="date"] {
 		</tr>
 		<tr>
 			<th class="object"><label for="mbPwd">기존 비밀번호</label></th>
-			<td class="object_con">&emsp;<input type="text" id="mbPwd" name="mbPwd" /></td>
+			<td class="object_con">&emsp;<input type="password" id="mbPwd" name="mbPwd" /></td>
 		</tr>
 		<tr>
 			<th class="object"><label for="newMbPwd">새로운 비밀번호</label></th>
-			<td class="object_con">&emsp;<input type="text" id="newMbPwd" name="newMbPwd" /></td>
+			<td class="object_con">&emsp;<input type="password" id="newMbPwd" name="newMbPwd" /></td>
 		</tr>
 		<tr>
 			<th class="object"><label for="mbPwdcheck">비밀번호 확인</label></th>
 			<td class="object_con">
-				&emsp;<input type="text" id="mbPwdcheck" name="mbPwdcheck" />
+				&emsp;<input type="password" id="mbPwdcheck" name="mbPwdcheck" />
 				&nbsp;<input type="button" class="${mbColor}" id="pwChange" value="비밀번호 변경">
 			</td>
 		</tr>

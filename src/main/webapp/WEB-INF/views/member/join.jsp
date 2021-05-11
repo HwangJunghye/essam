@@ -72,11 +72,11 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 	</tr>
 	<tr>
 		<th><label for="mbPwd">비밀번호</label></th>
-		<td><input type="text" name="mbPwd" id="mbPwd" required /></td>
+		<td><input type="password" name="mbPwd" id="mbPwd" required /></td>
 	</tr>
 	<tr>
 		<th><label for="mbPwdcheck" >비밀번호 확인</label></th>
-		<td><input type="text" name="mbPwdcheck" id="mbPwdcheck" required /></td>
+		<td><input type="password" name="mbPwdcheck" id="mbPwdcheck" required /></td>
 	</tr>
 	<tr>
 		<th><label for="mbName" >성명</label></th>

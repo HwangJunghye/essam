@@ -17,7 +17,7 @@
 ${fMsg}
 <form action="access" method="post">
 	아이디 <input type="text" name="mbId" id="mbId"/><br>
-	비밀번호 <input type="text" name="mbPwd"/><br>
+	비밀번호 <input type="password" name="mbPwd"/><br>
 	<input type="submit" value="로그인"/>
 </form>
 </section>

@@ -111,7 +111,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 	        <div id="loginModal">
 				아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="mbId" id="mbId" required/><br>
 				<br>
-				비밀번호 <input type="text" name="mbPwd" required/><br>
+				비밀번호 <input type="password" name="mbPwd" required/><br>
 				<br>
 				<input type="submit" value="로그인"/><br><br>
 				<a herf="#">비밀번호를 잊으셨나요?</a><br>
