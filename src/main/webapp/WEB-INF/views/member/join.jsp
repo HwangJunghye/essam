@@ -44,7 +44,6 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 	height: 100px;
 }
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
@@ -53,7 +52,7 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 <!--  get : 크기제한 있음. url?param1=aaa&param2=bbb -->
 <!-- post : 크기제한 없음. url에 정보 표시 X, 
             form이나 ajax만으로 전송 가능 -->  
-<form action="memberjoin" method="post">
+<form action="memberjoin" method="post" onsubmit="return joinFormCheck()">
 <br/><br/>
 <table class="center">
 	<tr>
@@ -64,19 +63,23 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 		</td>
 	</tr>
 	<tr>
-		<th><label for="mbId">아이디</label></th>
+		<th><label for="mbIdInput">아이디</label></th>
 		<td>
-			<input type="text" name="mbId" id="mbId" placeholder="이메일형식으로 입력" required />
-			<div id="result"></div>
+			<input type="text" name="mbId" id="mbIdInput" placeholder="이메일형식으로 입력" required />
+			<div id="idCheckResult"></div>
 		</td>
 	</tr>
 	<tr>
 		<th><label for="mbPwd">비밀번호</label></th>
-		<td><input type="password" name="mbPwd" id="mbPwd" required /></td>
+		<td><input type="password" name="mbPwd" id="mbPwd" required />
+			<div id="pwdCheckResult"></div>
+		</td>
 	</tr>
 	<tr>
 		<th><label for="mbPwdcheck" >비밀번호 확인</label></th>
-		<td><input type="password" name="mbPwdcheck" id="mbPwdcheck" required /></td>
+		<td><input type="password" name="mbPwdcheck" id="mbPwdcheck" required />
+			<div id="pwdMatchResult"></div>
+		</td>
 	</tr>
 	<tr>
 		<th><label for="mbName" >성명</label></th>
@@ -147,60 +150,14 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 	</tr>
 </table> 
 </form>
-
-
-<script>
-//이메일 정규식
-
-function checkemail(){
-	let mbId = $('#mbId').val();
-	
-	/* 영문자로 시작,그다음 영숫자 또는 .이 하나이상온다.그다음 @,그다음에 영문자 또는 .이 하나이상 온다.
-	.은 정규식에서 임의의 문자라는 뜻을 가지므로, \. escape시켜서 단순 문자로 인식한다. */
-	
-	let patt = /^[A-Za-z][A-Za-z0-9\.]+@[A-Za-z\.]+$/;
-	
-	if(mbId.length==0)
-		return printErrorMessage($("#mbId"), "필수 입력입니다.");
-	if(patt.test(mbId.val())==false)
-		return printErrorMessage($("#mbId"), "이메일 형식에서 어긋납니다.");
-	$("#mbId").text("");
-	return true;	
-}
-
-	$(function() {
-		$('#mbId').on('focusout', function() {
-			let mbIdval = $('#mbId').val(); // 입력값 가져오기
-			if (mbIdval == '') {
-				$('#result').text('이메일을 입력하세요');
-			} else {
-				$.ajax({
-					url : 'checkemail',
-					data : {
-						mbId : mbIdval
-					}, // {이름 : 값}
-					dataType : 'json',
-					method : 'get' // get일 경우 생략 가능
-				}).done(function(data) {
-					$('#result').text(data.msg);
-				}).fail(function(err) {
-					$('#result').text('서버 통신 실패');
-				});
-			}
-		}); // on End
-	//비밀번호 정규식
-	/* 1. 암호:
-
-	조건1. 6~20 영문 대소문자
-
-	조건2. 최소 1개의 숫자 혹은 특수 문자를 포함해야 함
-
-	/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/
-
-	}); // ready End */
-	
-</script>
 </section>
 	<%@ include file="../common/footer.jsp" %>
+
+<script src="${ctxPath}/resources/js/join.js"></script>
+<script>
+	$(function(){
+		joinReady({ctxPath:'${ctxPath}'});
+	}); // ready End
+</script>
 </body>
 </html>

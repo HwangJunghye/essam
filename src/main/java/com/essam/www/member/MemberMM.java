@@ -43,8 +43,10 @@ public class MemberMM {
 		boolean isExist = mDao.checkEmail(mbId);
 		if (isExist) {
 			hMap.put("msg", "존재하는 이메일입니다.");
+			hMap.put("isOk", "false");
 		} else {
 			hMap.put("msg", "사용가능한 이메일입니다.");
+			hMap.put("isOk", "true");
 		}
 		return hMap;
 	}
