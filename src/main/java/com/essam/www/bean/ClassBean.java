@@ -23,6 +23,8 @@ public class ClassBean {
 	private String clsKeyword;//키워드 NVARCHAR2
 	private String zoomLink;  //ZOOM링크 NVARCHAR2
 	private String zoomPwd;   //ZOOM비밀번호 NVARCHAR2
+	private String clsOpenDate;//ZOOM비밀번호 NVARCHAR2
+	
 	//추가된 필드
 	private String mbNickName;//닉네임 NVARCHAR2
 	private String cate1Name; //카테고리1명 NVARCHAR2

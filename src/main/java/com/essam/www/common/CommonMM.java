@@ -1,6 +1,5 @@
 package com.essam.www.common;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -17,13 +16,11 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
 import com.essam.www.bean.CurriculumBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.TeacherBean;
 import com.essam.www.constant.Constant;
-import com.essam.www.curriculum.CurriculumMM;
 import com.essam.www.curriculum.ICurriculumDao;
 import com.essam.www.eclass.IClassDao;
 import com.essam.www.member.IMemberDao;
@@ -72,6 +69,10 @@ public class CommonMM {
 
 		// new 클래스 정보 가져오기
 		cList = getClassList("new", "");
+		/* clsOpenDate 기준 내림차순 정렬하기*/
+        NewListDecending newListDecending = new NewListDecending();
+        Collections.sort(cList, newListDecending); 
+        
 		// 가져온 정보를 mav "nList" 에 넣기
 		mav.addObject("nList", cList);
 		// hot 클래스 정보 가져오기
@@ -249,4 +250,18 @@ class CListDecending implements Comparator<ClassBean>{
 		
 		return bClsNo.compareTo(aClsNo);
 	}
+}
+/**
+ * 메인 new클래스 내림차순 정렬
+ * @Author 고연미 on 2021.05.12
+ */
+class NewListDecending implements Comparator<ClassBean> {
+ 
+    @Override
+    public int compare(ClassBean a, ClassBean b) {
+        String temp1 = a.getClsOpenDate();
+        String temp2 = b.getClsOpenDate();   
+        //compareTo : 두개의 값을 비교하여 int로 반환(크다(1), 같다(0), 작다(-1))
+        return temp2.compareTo(temp1);
+    } 
 }
