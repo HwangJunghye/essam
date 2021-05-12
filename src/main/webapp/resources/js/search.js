@@ -77,12 +77,12 @@ function getSearchList() {
             }).attr('src', imgPath).appendTo($imgDiv); // 이미지 삽입
             // 클래스 닉네임 추가
             $('<div>', {
-                class: 'cls-nickname'
+                class: 'cls-nickname text_limit', style: 'width:180px;'
             }).append(item.mbNickName).appendTo($clsItem);
             // 클래스 소개 추가
             $('<div>', {
-                class: 'cls-intro'
-            }).append(item.clsIntro).appendTo($clsItem);
+                class: 'cls-intro text_limit', style: 'width:180px;'
+            }).append(item.clsName).appendTo($clsItem);
             // 클래스 항목을 눌렀을 때 클래스 페이지로 이동
             $clsItem.on('click', function (evt) {
                 location.href = ctxPath + '/classinfo?clsNo=' + item.clsNo;
