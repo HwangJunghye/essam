@@ -8,13 +8,13 @@
 	<!-- 조회대상이 클래스 -->
 	<select id="getClassStatistic" resultType="Map">
 		<![CDATA[SELECT T1.*
-     , SUM(DT_COUNT) OVER(ORDER BY CLSOPENDATE) AS total
-  FROM (SELECT TO_CHAR(CLSOPENDATE, 'yyyymmdd') CLSOPENDATE 
-             , COUNT(*) AS DT_COUNT
-          FROM class
-         WHERE CLSOPENDATE >= TO_DATE('20210501', 'yyyymmdd')
-           AND CLSOPENDATE <  TO_DATE('20210511', 'yyyymmdd') + 1
-         GROUP BY (TO_CHAR(CLSOPENDATE, 'yyyymmdd'))
+     , SUM(NEW) OVER(ORDER BY CLSOPENDATE) AS total
+  FROM (SELECT TO_CHAR(CLSOPENDATE, 'yyyy-mm-dd') CLSOPENDATE 
+             , COUNT(*) AS NEW
+          FROM CLASS
+         WHERE CLSOPENDATE >= TO_DATE(#{startDate}, 'yyyy-mm-dd')
+           AND CLSOPENDATE <  TO_DATE(#{endDate}, 'yyyy-mm-dd') + 1
+         GROUP BY (TO_CHAR(CLSOPENDATE, 'yyyy-mm-dd'))
         ) T1
  ORDER BY T1.CLSOPENDATE ASC]]>
 	</select>
@@ -22,29 +22,32 @@
 	<!-- 조회대상이 강사 -->
 	<select id="getTeacherStatistic" resultType="Map">
 		<![CDATA[SELECT T1.*
-     , SUM(DT_COUNT) OVER(ORDER BY MBJOINDATE) AS total
-  FROM (SELECT TO_CHAR(MBJOINDATE, 'yyyymmdd') MBJOINDATE 
-             , COUNT(*) AS DT_COUNT
+     , SUM(NEW) OVER(ORDER BY MBJOINDATE) AS total
+  FROM (SELECT TO_CHAR(MBJOINDATE, 'yyyy-mm-dd') MBJOINDATE 
+             , COUNT(*) AS NEW
           FROM MEMBER
-         WHERE (MBTYPE=2 AND MBJOINDATE >= TO_DATE('20210501', 'yyyymmdd'))
-           AND (MBTYPE=2 AND MBJOINDATE <  TO_DATE('20210511', 'yyyymmdd') + 1)
-         GROUP BY (TO_CHAR(MBJOINDATE, 'yyyymmdd'))
+         WHERE (MBTYPE=2 AND MBJOINDATE >= TO_DATE(#{startDate}, 'yyyy-mm-dd'))
+           AND (MBTYPE=2 AND MBJOINDATE <  TO_DATE(#{endDate}, 'yyyy-mm-dd') + 1)
+         GROUP BY (TO_CHAR(MBJOINDATE, 'yyyy-mm-dd'))
         ) T1
  ORDER BY T1.MBJOINDATE ASC]]>
 	</select>
 	
+
+	
 	<!-- 조회대상이 학생 -->
 	<select id="getStudentStatistic" resultType="Map">
-				<![CDATA[SELECT T1.*
-     , SUM(DT_COUNT) OVER(ORDER BY MBJOINDATE) AS total
-  FROM (SELECT TO_CHAR(MBJOINDATE, 'yyyymmdd') MBJOINDATE 
-             , COUNT(*) AS DT_COUNT
+		<![CDATA[SELECT T1.*
+     , SUM(NEW) OVER(ORDER BY MBJOINDATE) AS total
+  FROM (SELECT TO_CHAR(MBJOINDATE, 'yyyy-mm-dd') MBJOINDATE 
+             , COUNT(*) AS NEW
           FROM MEMBER
-         WHERE (MBTYPE=1 AND MBJOINDATE >= TO_DATE('20210501', 'yyyymmdd'))
-           AND (MBTYPE=1 AND MBJOINDATE <  TO_DATE('20210511', 'yyyymmdd') + 1)
-         GROUP BY (TO_CHAR(MBJOINDATE, 'yyyymmdd'))
+         WHERE (MBTYPE=1 AND MBJOINDATE >= TO_DATE(#{startDate}, 'yyyy-mm-dd'))
+           AND (MBTYPE=1 AND MBJOINDATE <  TO_DATE(#{endDate}, 'yyyy-mm-dd') + 1)
+         GROUP BY (TO_CHAR(MBJOINDATE, 'yyyy-mm-dd'))
         ) T1
  ORDER BY T1.MBJOINDATE ASC]]>
 	</select>
+	
 	
 </mapper>
