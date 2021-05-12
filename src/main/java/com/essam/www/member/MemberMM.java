@@ -202,7 +202,7 @@ public class MemberMM {
 		mav.addObject("myInfo", mb);
 		mav.addObject("cate1Chk", cate1Chk);
 		mav.addObject("cate2Chk", cate2Chk);
-		mav.addObject("navtext", "마이페이지");
+		mav.addObject("navtext", "계정관리");
 
 		return mav;
 	}
