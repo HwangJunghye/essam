@@ -121,7 +121,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 			</form>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>
