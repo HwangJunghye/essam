@@ -19,9 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.essam.www.bean.BoardBean;
 import com.essam.www.bean.ClassBean;
+import com.essam.www.bean.CurriculumBean;
 import com.essam.www.bean.MemberBean;
 import com.essam.www.bean.TeacherBean;
 import com.essam.www.constant.Constant;
+import com.essam.www.curriculum.CurriculumMM;
+import com.essam.www.curriculum.ICurriculumDao;
 import com.essam.www.eclass.IClassDao;
 import com.essam.www.member.IMemberDao;
 
@@ -35,6 +38,8 @@ public class CommonMM {
 	private IMemberDao mDao;
 	@Autowired
 	private IClassDao cDao;	
+	@Autowired
+	private ICurriculumDao crDao;
 //	검색페이지 이동	
 //	검색 결과 가져오기(ajax)	
 
@@ -226,8 +231,8 @@ public class CommonMM {
 			mav.addObject("teacherInfo", tb);
 			
 			//커리큘럼 리스트 가져와 mav에 담기 (CurriculumMM)
-			//List<CurriculumBean> crList = crDao.getCurriculumLIst(clsNo)
-			//mav.addObject("curriList", crList);
+			List<CurriculumBean> crList = crDao.getCurriculumList(clsNo, 1);
+			mav.addObject("curriList", crList);
 			
 			mav.setViewName("class/classinfo_main");			
 		}

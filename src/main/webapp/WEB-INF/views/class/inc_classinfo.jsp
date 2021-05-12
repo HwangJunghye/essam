@@ -64,8 +64,18 @@
 					<td align="right"><a href="#nav_area"><i class="far fa-arrow-alt-circle-up"></i> Top</a></td>
 				</tr>
 				<tr><td colspan=2><hr class="hr_${mbColor}"></td></tr>
-				</table><br>
-				...<br>
+				</table>
+				<table>
+				<% int listNum = 1; %>
+				<c:forEach var="cInfo" items="${curriList}" varStatus="status">
+					<tr>
+						<td align="left"><li style="list-style-type: circle;"><%=listNum %>회차 :&nbsp;&nbsp;</td>
+						<td align="left" style="font-weight:bold;"> ${cInfo.curTitle}</td>
+					</tr>
+					<% listNum++; %>
+				</c:forEach>
+				</table>
+				<br>
 				<table align="right">
 				<tr><td align="right"><a href="#nav_area"><i class="far fa-arrow-alt-circle-up"></i> Top</a></td></tr>
 				</table><br><br><br><br><br>
