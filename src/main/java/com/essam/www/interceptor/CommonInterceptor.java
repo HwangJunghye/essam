@@ -33,7 +33,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 
 		if (authFlag != 1) { // 서비스 권한이 존재하지 않는 경우
 			// 다른 페이지로 리다이렉트 및 메세지 설정
-			return this.sendAuthMessage(authFlag, request, response);
+			// return this.sendAuthMessage(authFlag, request, response);
 		}
 		return true;
 
