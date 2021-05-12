@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <style>
 .contents{
-	width: 600px;
+	width: 800px;
 	height: 200px;
 	margin-left: auto;
     margin-right: auto;
