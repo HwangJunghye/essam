@@ -128,7 +128,7 @@ width:350px;
 
 <tr>
 <td class="object_name">커버이미지:</td>
-<td class="object_con">&emsp;<input type="file" name="file"></td>
+<td class="object_con">&emsp;<input type="file" name="file" accept="image/*"></td>
 </tr>
 
 <tr>
@@ -204,7 +204,7 @@ width:350px;
 
 <tr>
 <td class="object_name">커버이미지:</td>
-<td class="object_con">&emsp;<input type="file" name="file"></td>
+<td class="object_con">&emsp;<input type="file" name="file" accept="image/*"></td>
 </tr>
 
 <tr>
