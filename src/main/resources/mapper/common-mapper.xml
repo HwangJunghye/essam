@@ -7,9 +7,9 @@
 	<!-- @Author 고연미  -->
 	<select id="getClassListNew" resultType="classbean">
 	<![CDATA[
-		SELECT /*+INDEX_DESC(CLASS PK_CLASS)*/ ROWNUM RN, V.*
-		FROM V_CLASSBEAN V
-		WHERE ROWNUM<=5 ORDER BY CLSOPENDATE DESC
+		SELECT V.*
+		FROM (SELECT * FROM V_CLASSBEAN V ORDER BY CLSOPENDATE DESC) V
+		WHERE ROWNUM<=5 
 	]]>
 	</select>
 	<select id="getClassListHot" resultType="classbean">
