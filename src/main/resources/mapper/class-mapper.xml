@@ -19,7 +19,7 @@
 		SELECT * FROM V_STUDENTBEAN WHERE MBID=#{mbId} AND CLSNO=#{clsNo} 
 	</select>
 	
-	<select id="getFileNo" resultType="classbean">
+	<select id="getFileNo" resultType="String">
 		SELECT FILENO FROM CLASS WHERE CLSNO=#{clsNo} AND ROWNUM=1
 	</select>
 	
