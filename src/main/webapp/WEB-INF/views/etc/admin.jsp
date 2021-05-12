@@ -137,10 +137,14 @@ $(function(){
 				
 				
 				$.each(data, function (index, item) {
-					str +="<tr><td>"+item.CLSOPENDATE+"</td>";						
+					if(searchTarget=="class"){
+					str +="<tr><td>"+item.CLSOPENDATE+"</td>";
+					}else{
+					str +="<tr><td>"+item.MBJOINDATE+"</td>";	
+					}
 					str +="<td>"+item.NEW+"</td>";
 					str +="<td>"+item.TOTAL+"</td></tr>";				
-				 });
+				 });				
 				str += "</table>";
 				$('#resultArea').html(str);	
 			}).fail(function(err){
