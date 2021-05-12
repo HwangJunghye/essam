@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +11,8 @@
 <body>
 
 <nav>
-	<div id="nav_title">
-		<%-- <img src="${ctxPath}/resources/images/main_img1.jpg"> --%>    
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000"><!-- 인터벌: 3초 -->
+	<div id="nav_title">  
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" style="width:100%"><!-- 인터벌: 3초 -->
 			<!-- ul class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li> 
 				<li data-target="#myCarousel" data-slide-to="1"></li> 
