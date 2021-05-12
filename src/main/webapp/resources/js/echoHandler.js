@@ -73,7 +73,7 @@
 							//메세지 전송
 							websocket.send(sendData);
 						});
-						//alert("푸쉬알림 메세지를 전송하였습니다.");
+						alert("푸쉬알림 메세지를 전송하였습니다.");
 						$('#sendMsg').val('');
 					} else 
 						alert("현재 로그인한 학생이 존재하지 않습니다.");

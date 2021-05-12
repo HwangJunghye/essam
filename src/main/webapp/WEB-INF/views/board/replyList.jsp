@@ -119,7 +119,7 @@
 			//str += "<td><a href='#' onclick='javascript:isRDelete("+ reply.clsBrdRepNo +","+ reply.clsBrdNo +");'><i class='fas fa-backspace'></i></a></td>";
 
 			if(reply.mbId == mi){
-				str += "<td><a href='#' onclick='javascript:isRDelete("+ reply.clsBrdRepNo +","+ reply.clsBrdNo +");'><i class='fas fa-backspace'></i></a></td>";
+				str += "<td><a href='javascript:void(0);' onclick='javascript:isRDelete("+ reply.clsBrdRepNo +","+ reply.clsBrdNo +");'><i class='fas fa-backspace'></i></a></td>";
 			}
 			str += "</tr>";
 		});	
