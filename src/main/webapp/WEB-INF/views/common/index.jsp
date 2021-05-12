@@ -14,6 +14,10 @@
 <body>
 <%@ include file="../common/header.jsp" %>
 <%@ include file="../common/main_cover.jsp" %>
+<script>
+let myList = "${myList}";
+let ctxPath = "${ctxPath}";
+</script>
 <section>
 <div id="contents">
 	<div id="classInfo_area2"><br><br>
@@ -23,19 +27,8 @@
 		<tr>
 			<td align="left"><i class="fas fa-user-edit"></i><span style="font-weight: bold;"> 수강중인 클래스</span></td>
 		</tr></table><br>
-		<table style="width:100%"><tr>	
-		<c:forEach var="eclass" items="${myList}">
-			<td align="center">
-			<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:190px;">
-				<table>
-				<tr><td><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="width:170px;height:100px;margin-bottom:10px;"></a></td></tr>
-				<tr><td>${eclass.mbNickName}</td></tr>
-				<tr><td><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></td></tr>
-				</table>
-			</div>
-			</td>
-		</c:forEach>
-		</tr></table>
+		<!-- (iframe) 수강중인 클래스 목록 -->
+		<iframe src="${ctxPath}/getmyclass" width="100%" height="300px" seamless></iframe>
 	</c:if>
 
 	<table style="width:90%" align="center">
