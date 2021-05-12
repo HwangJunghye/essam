@@ -45,10 +45,6 @@
 
 		<table class="contents" border="1">
 			<tr>
-				<td class="item">회&emsp;차:</td>
-				<td class="item_contents">&emsp;</td>
-			</tr>
-			<tr>
 				<td class="item">제&emsp;목:</td>
 				<td class="item_contents">&emsp;${curriInfo.curTitle}</td>
 			</tr>
