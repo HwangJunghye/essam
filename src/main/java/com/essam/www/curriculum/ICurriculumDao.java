@@ -41,5 +41,8 @@ public interface ICurriculumDao {
 	int getCurriculumCount(String clsNo);
 
 	boolean curriculumDelete(String curNo);
+	
+	//@Author 황정혜
+	List<CurriculumBean> getCurriList(String clsNo);
 
 }

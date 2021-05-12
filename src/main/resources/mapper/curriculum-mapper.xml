@@ -82,4 +82,10 @@
 		DELETE FROM CURRI WHERE CURNO=#{curNo}
 	</delete>
 	
+	<!-- @Author 황정혜 -->
+	<select id="getCurriList" resultType="curriculumbean">
+		SELECT * FROM CURRI WHERE CLSNO=#{clsNo}
+	</select>
+	
+	
 </mapper>

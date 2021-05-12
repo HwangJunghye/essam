@@ -714,11 +714,13 @@ public class ClassMM {
 			
 				 //2. 커리큘럼 삭제
 					//2-1. 커리큘럼 목록 가져오기(CR02)
-					//List<CurriculumBean> curriList = crDao.getCurriculumList(clsNo);
+					List<CurriculumBean> curriList = crDao.getCurriList(clsNo);
 					//2-2. 커리큘럼 삭제하기(CR11)
-					//for(CurriculumBean crb : curriList){
-					// 	crDao.classCurriculumDelete(crb.getCurNo());		
-					//	}
+					for(CurriculumBean crb : curriList){
+						if(crDao.curriculumDelete(crb.getCurNo())) {
+							fm.deleteFile(crb.getFileNo(), request);
+							}
+						}
 								
 				 //3.  클래스 삭제
 					//3-1. 클래스 조회수 정보 삭제
