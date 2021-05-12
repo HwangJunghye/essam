@@ -114,7 +114,6 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 				비밀번호 <input type="password" name="mbPwd" required/><br>
 				<br>
 				<input type="submit" value="로그인"/><br><br>
-				<a herf="#">비밀번호를 잊으셨나요?</a><br>
 				<br>
 				<h7>아직 e-쌤 회원이 아니신가요?</h7><br>
 				<a href="${ctxPath}/join"><i class="far fa-arrow-alt-circle-right"></i>회원가입하기</a>
