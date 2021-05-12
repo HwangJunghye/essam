@@ -39,4 +39,6 @@ public interface ICDao {
 
 	int getCurriculumCount(String clsNo);
 
+	boolean curriculumDelete(String curNo);
+
 }

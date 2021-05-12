@@ -73,12 +73,9 @@
 			<c:if test="${empty curriInfo}">
 				<thead>
 					<tr class='prod'>
-						${msg}
+						<h3>${msg}</h3>
 					</tr>
 				</thead><br/><br/><br/>
-				<c:if test="${sessionScope.loginData.mbType==2}">
-					<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}'">등록</button>
-				</c:if>
 			</c:if>
 			</table>
 			<!-- 페이징 -->
@@ -86,7 +83,7 @@
 		</div>
 		<div class="container" style="width:720px; float:right; text-align:right; margin-right:30px;">
 			<c:if test="${sessionScope.loginData.mbType==2}">
-				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${curriInfo[0].clsNo}&pageNum=${pageNum}'">등록</button>
+				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}&pageNum=1'">등록</button>
 			</c:if>
 		</div>
 <!--------- 본문 끝 -------------->

@@ -94,4 +94,8 @@
 		SELECT COUNT(*) FROM CURRI WHERE CLSNO=#{clsNo}
 	</select>
 	
+	<delete id="curriculumDelete">
+		DELETE FROM CURRI WHERE CURNO=#{curNo}
+	</delete>
+	
 </mapper>

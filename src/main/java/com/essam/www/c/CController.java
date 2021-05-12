@@ -136,31 +136,15 @@ public class CController {
 	
 	//커리큘럼 삭제
 	@RequestMapping(value = "/class/curriculum/delete")
-	ModelAndView classCurriculumDelete(String clsNo, String curNo, HttpServletRequest request) throws CommonException {
-		ModelAndView mav = mm.classCurriculumDelete(clsNo, curNo, request);
+	ModelAndView classCurriculumDelete(String clsNo, String curNo, HttpServletRequest request, RedirectAttributes rattr) throws CommonException {
+		ModelAndView mav = mm.classCurriculumDelete(clsNo, curNo, request, rattr);
 		return mav; 
 	}
 	
 	
 	
 	
-//	//커리큘럼 수정 이동
-//	@RequestMapping(value = "/class/curriculum/update")
-//	ModelAndView goClassCurriculumUpdate(String clsNo, String clsName) throws CommonException {
-//		ModelAndView mav = mm.goClassCurriculumUpdate(clsNo);
-//		mav.addObject("navtext", "커리큘럼 등록");
-//		mav.addObject("clsName", clsName);
-//		return mav; //.jsp
-//	}
-//	
-//	//커리큘럼 수정
-//	@RequestMapping(value = "/class/curriculum/update_server")
-//	ModelAndView classCurriculumUpdateServer(String clsNo, String clsName) throws CommonException {
-//		ModelAndView mav = mm.ClassCurriculumUpdateServer(clsNo);
-//		mav.addObject("navtext", "커리큘럼 등록");
-//		mav.addObject("clsName", clsName);
-//		return mav; //.jsp
-//	}
+
 	
 	
 

@@ -543,7 +543,6 @@ public class CMM {
 				}
 			}	
 		}
-		
 		//mav에 클래스명 추가
 		mav.addObject("clsName", cDao.getClassName(clsNo));
 		mav.addObject("navtext", "마이클래스> 커리큘럼> 동영상");	
@@ -582,19 +581,48 @@ public class CMM {
 	}
 
 	//커리큘럼 삭제
-	public ModelAndView classCurriculumDelete(String clsNo, String curNo, HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+	public ModelAndView classCurriculumDelete(String clsNo, String curNo, HttpServletRequest request, RedirectAttributes rattr) throws CommonException {
+		ModelAndView mav = new ModelAndView();
+		boolean result = false;  //커리큘럼 삭제 결과
+		boolean isDeleteVideo = false; //동영상 삭제 결과
+		CurriculumBean curriInfo = null;
+		// getCurriculumRead()에 clsNo, curNo 넘겨 fileNo 가져오기
+		curriInfo = mDao.getCurriculumRead(clsNo, curNo);
+		String fileNo = curriInfo.getFileNo();
+		// DB에 clsNo,curNo 가지고 가서 커리큘럼 삭제
+		boolean isDeletecurriculumInfo = mDao.curriculumDelete(curNo);
+		if (isDeletecurriculumInfo) { // DB 삭제 성공하면
+			if (fileNo != null) { // 커리큘럼에 fileNo가 있다면
+				// 서버에 저장된 동영상파일 삭제
+				isDeleteVideo = fm.deleteFile(fileNo, request);
+				if(isDeleteVideo) { // 서버에 저장된 동영상파일 삭제 성공하면
+					result = true;
+				}else {
+					throw new CommonException("커리큘럼 동영상파일 삭제 예외발생");
+				}
+			}else { // 커리큘럼에 fileNo가 없다면
+				result = true;
+			}
+		}else { // DB에 삭제 실패하면
+			throw new CommonException("커리큘럼정보 DB 삭제 예외발생");
+		}
+		
+		if(result) { //커리큘럼 삭세 성공하면
+			rattr.addFlashAttribute("fMsg", "커리큘럼을 삭제하였습니다.");
+			mav.setViewName("redirect:/class/curriculum?pageNum=1&clsNo=" + clsNo);
+			//mav에 클래스명 추가
+			mav.addObject("clsName", cDao.getClassName(clsNo));
+			mav.addObject("navtext", "마이클래스> 커리큘럼");	
+		}else { //커리큘럼 삭제 실패하면
+			rattr.addFlashAttribute("fMsg", "커리큘럼 삭제를 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
+			//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
+			String referer = request.getHeader("Referer");
+			//view 페이지 ㅣ설정
+			mav.setViewName("redirect:" + referer);
+		}
+		return mav;
 	}
 	
-
-
-
-
-
-
-
-
 
 }
 
