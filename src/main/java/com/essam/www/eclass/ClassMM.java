@@ -154,7 +154,7 @@ public class ClassMM {
 		//전체 글 갯수 가져오기
 		int maxNum = cDao.getBoardCount(clsNo, clsBrdType);
 		int listCount = 10; //페이지당 나타낼 글의 갯수
-		int pageCount = 2;	//페이지그룹당 페이지 갯수
+		int pageCount = 10;	//페이지그룹당 페이지 갯수
 		
 		//Paging 클래스 객체 생성해서 page makeHhml 리턴
 		Paging paging = new Paging(maxNum, pageNum, listCount, pageCount, clsNo, clsBrdType);

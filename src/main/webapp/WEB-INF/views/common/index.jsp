@@ -34,7 +34,7 @@ let ctxPath = "${ctxPath}";
 			<div class="col">
 				<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:190px;">
 					<table>
-					<tr><td><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="width:170px;height:100px;margin-bottom:10px;"></a></td></tr>
+					<tr><td><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}&pageNum=1"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="width:170px;height:100px;margin-bottom:10px;"></a></td></tr>
 					<tr><td><div class="text_limit" style="width:180px;">${eclass.mbNickName}</div></td></tr>
 					<tr><td><div class="text_limit" style="width:180px;"><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></div></td></tr>
 					</table>
