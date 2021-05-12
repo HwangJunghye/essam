@@ -12,11 +12,34 @@
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <style>
-#t_intro{
-	width : 200 px;
-	highth : 50 px;
+input[type="text"],input[type="file"] {
+  width:500px;
+  height:35px;
+  font-size:15px;
 }
-
+input[type="submit"]{
+	width: 70px;
+	height: 36px;
+	box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	color: #FFFFFF;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+}
+.center{
+	height: 300px;
+	margin-left: 300 px;
+    margin-right: auto;
+}
+th, td{
+	text-align: left;	
+}
+.object{
+	width:200px;
+	height:35px;
+	font-size:15px;
+}
 </style>
 
 </head>
@@ -33,12 +56,32 @@
 	<div id="contents_area">
 <!--------- 본문 시작 -------------->
 
-<form action="update" method="post" enctype="multipart/form-data">
-	강사닉네임 ${sessionScope.loginData.mbNickName}<br>
-	한줄소개 <input id="t_intro" type="text" name="teacherIntro" value="${teacherInfo.teacherIntro}"/><br>
-	상세소개 <textarea id="t_detail" name="teacherDetail">${teacherInfo.teacherDetail}</textarea><br>
-	프로필사진 <input id="file" type="file" name="file" accept="image/*" /><br>
-	<input type="submit" value="등록" />
+<form id="t_profile" action="update" method="post" enctype="multipart/form-data">
+	<table class="center">
+	<tr>
+		<th class="object"><label for="mbNickName">강사닉네임</label></th>
+		<td>${sessionScope.loginData.mbNickName}</td>
+	</tr>
+	<tr>
+		<th class="object"><label for="teacherIntro">한줄소개</label></th>
+		<td><input type="text" name="teacherIntro" value="${teacherInfo.teacherIntro}"/></td>
+		<br>
+		<br>
+	</tr>
+	<tr>
+		<th class="object"><label for="teacherDetail">상세소개</label></th>
+		<td colspan=2><textarea rows=5 cols=120 id="t_detail" name="teacherDetail">${teacherInfo.teacherDetail}</textarea></td>
+	</tr>
+	<tr>
+		<th class="object"><label for="file">프로필사진</label></th>
+		<td><input type="file" name="file" accept="image/*" /></td>
+	</tr>
+	<tr>
+		<th>
+			<input type="submit" class="${mbColor}" value="등록" />
+		</th>
+	</tr>
+	</table>
 </form>
 <!--------- 본문 끝 -------------->
 	</div>
