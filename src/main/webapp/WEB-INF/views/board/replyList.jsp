@@ -155,7 +155,7 @@ function isRDelete(clsBrdRepNo, clsBrdNo) {
 		}).fail(function(err) {
 			$('#result').text('서버와 통신할 수 없습니다');
 		});			
-	}
+	} 
 }
 </script>
 
