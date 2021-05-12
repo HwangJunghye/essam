@@ -394,10 +394,6 @@ public class CurriculumMM {
 		return mav;
 	}
 	
-		
-
-	
-	
 	// (CR11)커리큘럼 삭제하기
 		public ModelAndView classCurriculumDelete(String clsNo, String curNo, HttpServletRequest request, RedirectAttributes rattr) throws CommonException {
 			ModelAndView mav = new ModelAndView();
@@ -470,9 +466,6 @@ public class CurriculumMM {
 		mav.setViewName("redirect:"+ zoomLink);
 		return mav;
 	}
-
-	
-	
 
 }
 
