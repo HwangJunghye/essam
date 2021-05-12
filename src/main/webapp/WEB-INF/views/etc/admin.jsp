@@ -49,11 +49,10 @@ text-align: center;
 border: none;
 cursor: pointer;
 }
-#chartArea{
-width:760px;
-height:415px;
-margin-left:150px;
-border:solid 3px black;
+#resultArea td{
+border:solid 1px black;
+width:100px;
+text-align:center;
 }
 .condition{
 text-align:left;
@@ -95,8 +94,7 @@ text-align:left;
 </div>
 <br/>
 
-<div id="chartArea">
-
+<div id="resultArea">
 </div>
 <br>
 <br>
@@ -123,6 +121,10 @@ $(function(){
 		let endDate = $("#endDate").val();
 		let searchTarget = $(":input:radio[name=searchTarget]:checked").val();
 		
+		if(startDate>endDate){
+			alert("시작일이 종료일보다 늦습니다. 다시 설정해주세요");
+		}
+		
 		//차트 조회 ajax요청
 		$.ajax({
 				url:'${ctxPath}/getstatistic',
@@ -130,14 +132,22 @@ $(function(){
 				method: 'post',
 				dataType:'json'
 			}).done(function(data){
-				return true;
+				console.log(data);
+				let str = "<table><tr><th>일자</th><th>신규</th><th>총</th></tr>";
+				
+				
+				$.each(data, function (index, item) {
+					str +="<tr><td>"+item.CLSOPENDATE+"</td>";						
+					str +="<td>"+item.NEW+"</td>";
+					str +="<td>"+item.TOTAL+"</td></tr>";				
+				 });
+				str += "</table>";
+				$('#resultArea').html(str);	
 			}).fail(function(err){
 				alert('자료를 조회할 수 없습니다.');
 				return false;
-			}); // ajax End
-		
+			}); // ajax End	
 	})//showChart onclick End
-	
 })//ready function End
 
 </script>
