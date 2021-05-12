@@ -9,7 +9,11 @@
 <title>관리자 페이지</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
-<link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
+<link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon"><!-- Load D3 -->
+<script src="https://d3js.org/d3.v5.min.js"></script> 
+<!-- Load billboard.js with base style -->
+<link rel="stylesheet" href="${ctxPath}/resources/css/billboard.css">
+<script src="${ctxPath}/resources/js/billboard.js"></script>
 </head>
 <style>
 
@@ -102,18 +106,18 @@ text-align:left;
 </div>
 <br/>
 
-<div id="resultArea">
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
 </form>
+
+<div id="resultArea"></div>
+<br>
+<br>
+<div id="barChart"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <!--------- 본문 끝 -------------->
 	</div>
@@ -123,13 +127,21 @@ text-align:left;
 
 <script type="text/javascript">
 $(function(){	
+
+	/* 차트(그래프) 출력 데이터 */
+	let dataXColum = [];
+	let dataNo1 = [];
+	let dataNo2 = [];
+
+	dataXColum.push("x");
+	dataNo1.push("건수");
+	dataNo2.push("누적수");
+	
 	$("#showChart").on("click", function(){
 		
 		let startDate = $("#startDate").val();
 		let endDate = $("#endDate").val();
 		let searchTarget = $(":input:radio[name=searchTarget]:checked").val();
-		
-		
 		
 		//차트 조회 ajax요청
 		$.ajax({
@@ -145,16 +157,49 @@ $(function(){
 					$('#resultArea').html("<h5>시작일이 종료일보다 늦습니다.<br>조회기간을 다시 설정해주세요</h5>");	
 				}else{
 					$.each(data, function (index, item) {
+						
 						if(searchTarget=="class"){
-						str +="<tr><td>"+item.CLSOPENDATE+"</td>";
+							dataXColum.push(item.CLSOPENDATE);
+							str +="<tr><td>"+item.CLSOPENDATE+"</td>";
 						}else{
-						str +="<tr><td>"+item.MBJOINDATE+"</td>";	
+							dataXColum.push(item.MBJOINDATE);
+							str +="<tr><td>"+item.MBJOINDATE+"</td>";	
 						}
+						dataNo1.push(item.NEW);
+						dataNo2.push(item.TOTAL);
 						str +="<td>"+item.NEW+"</td>";
 						str +="<td>"+item.TOTAL+"</td></tr>";				
 					 });				
 					str += "</table>";
 					$('#resultArea').html(str);	
+					
+					/* 차트(그래프) 출력 */
+					var chart = bb.generate({
+						  data: {
+							  "x": "x",
+						    columns: [
+						        dataXColum,
+						        dataNo1,
+						        dataNo2
+						    ],
+						    type: "bar", // for ESM specify as: bar()
+						  },
+						  	axis: {
+							    x : {
+							      	type  : "timeseries",
+									tick : {
+							        	format : "%Y-%m-%d"
+						        	}
+								},
+							  },
+						  bar: {
+						    width: {
+						      ratio: 0.5
+						    }
+						  },
+						  bindto: "#barChart"
+						});
+
 				}
 			}).fail(function(err){
 				alert('Error:  자료를 조회할 수 없습니다.');

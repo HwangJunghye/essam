@@ -54,7 +54,8 @@
 			<!-- 관리자인 경우 -->
 			<c:if test="${sessionScope.loginData.mbType==3}">
 				<ul class="main_menu">
-					<li class="main_item"><a href="${ctxPath}/admin">통계관리</a></li>
+					<li class="main_item"><a href="${ctxPath}/mypage">계정 관리</a></li>
+					<li class="main_item"><a href="${ctxPath}/admin">통계 관리</a></li>
 				</ul>
 			</c:if>
 		</c:if>
