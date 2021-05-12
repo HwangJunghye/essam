@@ -19,7 +19,15 @@
 	]]>
 	</select>
 	<select id="getClassListMy" resultType="classbean" parameterType="string">
+	<![CDATA[
 		SELECT C.* 
+		FROM V_CLASSBEAN C 
+			JOIN STUDENT S ON C.clsNo=S.clsNo 
+		WHERE S.MBID=#{mbId} AND ROWNUM<=5
+	]]>
+	</select>
+	<select id="getMyClsCnt" resultType="int">
+		SELECT COUNT(*) 
 		FROM V_CLASSBEAN C 
 			JOIN STUDENT S ON C.clsNo=S.clsNo 
 		WHERE S.MBID=#{mbId}

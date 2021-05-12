@@ -22,8 +22,10 @@ public interface ICommonDao {
 
 	int getClsViewCnt(@Param("clsNo") String clsNo, @Param("sessionId") String sessionId);
 
+	int getMyClsCnt(String mbId);
 	
 	//@Author 박호근
 	List<ClassBean> getSearchList(@Param("pageSize") Integer pageSize, @Param("pageNo") Integer pageNo, @Param("cate1No") Integer cate1No,
 			@Param("cate2No") Integer cate2No, @Param("keywords") String[] keywords);
+
 }

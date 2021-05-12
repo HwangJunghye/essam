@@ -25,10 +25,39 @@ let ctxPath = "${ctxPath}";
 	<c:if test="${!empty myList}">
 		<table style="width:90%" align="center">
 		<tr>
-			<td align="left"><i class="fas fa-user-edit"></i><span style="font-weight: bold;"> 수강중인 클래스</span></td>
+			<td align="left"><i class="fas fa-user-edit"></i><span style="font-weight: bold;"> 수강중인 클래스</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${ctxPath}/myclass_s"><c:if test="${myClassCnt>5}"><i class="far fa-arrow-alt-circle-right"></i><span style="font-size:16px;font-weight: bold;"> 더보기(${myClassCnt}건)</span></c:if></a></td>
 		</tr></table><br>
-		<!-- (iframe) 수강중인 클래스 목록 -->
-		<iframe src="${ctxPath}/getmyclass" width="100%" height="300px" seamless></iframe>
+	<!-- <div class="container"> -->
+		<div class="row row-cols-5" style="width:1400px;margin-left:30px;">
+		<c:forEach var="eclass" items="${myList}">
+			<div class="col">
+				<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:190px;">
+					<table>
+					<tr><td><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="width:170px;height:100px;margin-bottom:10px;"></a></td></tr>
+					<tr><td><div class="text_limit" style="width:180px;">${eclass.mbNickName}</div></td></tr>
+					<tr><td><div class="text_limit" style="width:180px;"><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></div></td></tr>
+					</table>
+				</div>
+			</div>
+		</c:forEach>
+		</div>
+	<!-- </div> -->
+		<%-- <table style="width:100%"><tr>	
+		<c:forEach var="eclass" items="${myList}">
+			<td align="center">
+			<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:190px;">
+				<table>
+				<tr><td><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="width:170px;height:100px;margin-bottom:10px;"></a></td></tr>
+				<tr><td>${eclass.mbNickName}</td></tr>
+				<tr><td><a href="${ctxPath}/class/curriculum?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></td></tr>
+				</table>
+			</div>
+			</td>
+		</c:forEach>
+		</tr></table> --%>
+		<!-- (iframe) 수강중인 클래스 목록 -->		
+		<%-- <iframe src="${ctxPath}/getmyclass" scrolling="yes" style="width:1410px; height:230px; margin:0px; padding:0px; border:none;"></iframe> --%>
 	</c:if>
 
 	<table style="width:90%" align="center">
@@ -48,8 +77,8 @@ let ctxPath = "${ctxPath}";
 			<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:190px;">
 				<table>
 				<tr><td><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="width:170px;height:100px;margin-bottom:10px;"></a></td></tr>
-				<tr><td>${eclass.mbNickName}</td></tr>
-				<tr><td><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></td></tr>
+				<tr><td><div class="text_limit" style="width:180px;">${eclass.mbNickName}</div></td></tr>
+				<tr><td><div class="text_limit" style="width:180px;"><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></div></td></tr>
 				</table>
 			</div>
 			</td>
@@ -74,8 +103,8 @@ let ctxPath = "${ctxPath}";
 			<div class="shadow p-3 mb-5 bg-white rounded" style="width:200px;height:190px;">
 				<table>
 				<tr><td><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}"><img src="${ctxPath}/getthumbnail?fileNo=${eclass.fileNo}&width=170&height=100" style="width:170px;height:100px;margin-bottom:10px;"></a></td></tr>
-				<tr><td>${eclass.mbNickName}</td></tr>
-				<tr><td><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></td></tr>
+				<tr><td><div class="text_limit" style="width:180px;">${eclass.mbNickName}</div></td></tr>
+				<tr><td><div class="text_limit" style="width:180px;"><a href="${ctxPath}/classinfo?clsNo=${eclass.clsNo}" style="font-weight: bold;">${eclass.clsName}</a></div></td></tr>
 				</table>
 			</div>
 			</td>

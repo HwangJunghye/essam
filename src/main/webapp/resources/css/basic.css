@@ -58,6 +58,12 @@ section {
 	text-align: center;
 /*	border: 2px solid black;	 div 구분용 */
 }
+/* 가로 사이즈에 맞춰 글자길이 잘리고 ... 표시 */
+.text_limit {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 /* 일반 버튼 - 강사 */
 .btn_normal_t {
 	width: 70px;

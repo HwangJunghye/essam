@@ -48,6 +48,7 @@ public class CommonMM {
 		ModelAndView mav = new ModelAndView();
 		List<ClassBean> cList = null;
 		List<ClassBean> hList = null;
+		int myClassCnt = 0;
 
 		// My 클래스 정보 가져오기 (학생 로그인인 경우)
 		MemberBean loginData = new MemberBean();
@@ -58,6 +59,9 @@ public class CommonMM {
 				cList = getClassList("my", loginData.getMbId());
 				// 가져온 정보를 mav "myList" 에 넣기
 				mav.addObject("myList", cList);
+				// 수강중인 클래스 수 가져와 담기
+				myClassCnt = coDao.getMyClsCnt(loginData.getMbId());
+				mav.addObject("myClassCnt", myClassCnt);
 			}
 		}
 
