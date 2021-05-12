@@ -86,13 +86,7 @@ text-align:left;
 <input type="radio" name="searchTarget" value="student" />수강생
 </td>
 </tr>
-<tr>
-<td>필&ensp;터:</td>
-<td class="condition">&emsp;
-<input type="radio" name="filter" value="total" checked required/>전체&emsp;&emsp;&emsp;
-<input type="radio" name="filter" value="new" />신규
-</td>
-</tr>
+
 </table>
 <br/>
 <div id="btnArea">
@@ -102,7 +96,7 @@ text-align:left;
 <br/>
 
 <div id="chartArea">
-차트 표시 영역
+
 </div>
 <br>
 <br>
@@ -128,13 +122,11 @@ $(function(){
 		let startDate = $("#startDate").val();
 		let endDate = $("#endDate").val();
 		let searchTarget = $(":input:radio[name=searchTarget]:checked").val();
-		let filter = $(":input:radio[name=filter]:checked").val();
-		
 		
 		//차트 조회 ajax요청
 		$.ajax({
 				url:'${ctxPath}/getstatistic',
-				data:{startDate:startDate,endDate:endDate,searchTarget:searchTarget,filter:filter},
+				data:{startDate:startDate,endDate:endDate,searchTarget:searchTarget},
 				method: 'post',
 				dataType:'json'
 			}).done(function(data){
