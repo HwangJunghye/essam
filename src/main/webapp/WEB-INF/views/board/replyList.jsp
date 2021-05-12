@@ -120,6 +120,8 @@
 
 			if(reply.mbId == mi){
 				str += "<td><a href='javascript:void(0);' onclick='javascript:isRDelete("+ reply.clsBrdRepNo +","+ reply.clsBrdNo +");'><i class='fas fa-backspace'></i></a></td>";
+			}else{
+				str += "<td>"+""+"</td>";
 			}
 			str += "</tr>";
 		});	
