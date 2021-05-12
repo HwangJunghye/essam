@@ -349,7 +349,7 @@ public class ClassMM {
 		if(result) {
 			rattr.addFlashAttribute("fMsg","게시글 저장을 완료하였습니다.");
 			//view 페이지 설정
-			mav.setViewName("redirect:/class/boardread");
+			mav.setViewName("redirect:/class/boardread?clsNo=" + board.getClsNo() + "&clsBrdNo=" + clsBrdNo + "&pageNum=" + pageNum);
 		} else {
 			rattr.addFlashAttribute("fMsg","게시글 저장에 실패하였습니다. \\n문제가 지속된다면 관리자에 문의 바랍니다.");
 			//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
