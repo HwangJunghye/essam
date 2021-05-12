@@ -116,7 +116,7 @@ ${ctxPath} + 매핑URL로 경로지정을 권장
 				<input type="submit" value="로그인"/><br><br>
 				<br>
 				<h7>아직 e-쌤 회원이 아니신가요?</h7><br>
-				<a href="${ctxPath}/join"><i class="far fa-arrow-alt-circle-right"></i>회원가입하기</a>
+				<a href="${ctxPath}/join"><i class="far fa-arrow-alt-circle-right"></i>회원가입하기</a> 
 			</div>
 			</form>
         </div>
