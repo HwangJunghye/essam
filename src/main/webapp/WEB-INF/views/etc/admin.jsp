@@ -49,6 +49,14 @@ text-align: center;
 border: none;
 cursor: pointer;
 }
+
+#resultArea{
+text-align:center;
+width:800px;
+}
+#resultArea table{
+margin:auto;
+}
 #resultArea td{
 border:solid 1px black;
 width:100px;
@@ -121,9 +129,7 @@ $(function(){
 		let endDate = $("#endDate").val();
 		let searchTarget = $(":input:radio[name=searchTarget]:checked").val();
 		
-		if(startDate>endDate){
-			alert("시작일이 종료일보다 늦습니다. 다시 설정해주세요");
-		}
+		
 		
 		//차트 조회 ajax요청
 		$.ajax({
@@ -135,20 +141,23 @@ $(function(){
 				console.log(data);
 				let str = "<table><tr><th>일자</th><th>신규</th><th>총</th></tr>";
 				
-				
-				$.each(data, function (index, item) {
-					if(searchTarget=="class"){
-					str +="<tr><td>"+item.CLSOPENDATE+"</td>";
-					}else{
-					str +="<tr><td>"+item.MBJOINDATE+"</td>";	
-					}
-					str +="<td>"+item.NEW+"</td>";
-					str +="<td>"+item.TOTAL+"</td></tr>";				
-				 });				
-				str += "</table>";
-				$('#resultArea').html(str);	
+				if(startDate>endDate){
+					$('#resultArea').html("<h5>시작일이 종료일보다 늦습니다.<br>조회기간을 다시 설정해주세요</h5>");	
+				}else{
+					$.each(data, function (index, item) {
+						if(searchTarget=="class"){
+						str +="<tr><td>"+item.CLSOPENDATE+"</td>";
+						}else{
+						str +="<tr><td>"+item.MBJOINDATE+"</td>";	
+						}
+						str +="<td>"+item.NEW+"</td>";
+						str +="<td>"+item.TOTAL+"</td></tr>";				
+					 });				
+					str += "</table>";
+					$('#resultArea').html(str);	
+				}
 			}).fail(function(err){
-				alert('자료를 조회할 수 없습니다.');
+				alert('Error:  자료를 조회할 수 없습니다.');
 				return false;
 			}); // ajax End	
 	})//showChart onclick End
