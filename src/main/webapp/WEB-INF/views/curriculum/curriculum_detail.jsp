@@ -10,6 +10,16 @@
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
+<style>
+.contents{
+	width: 600px;
+	height: 200px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+
+</style>
 </head>
 <body>
 
