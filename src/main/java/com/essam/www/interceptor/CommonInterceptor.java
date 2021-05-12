@@ -158,7 +158,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 				String clsNo = request.getParameter("clsNo");
 				// 클래스 등록 페이지가 아니면서 clsNo가 null이나 공백인 경우
 				if (clsNo == null || clsNo.equals("")) { // clsNo가 없는 경우
-					if (!servletPath.equals("/class/classinfo/write") || !servletPath.equals("/class/classinfo/update")) { // 클래스 등록이 아닌 경우
+					if (!servletPath.equals("/class/classinfo/write") && !servletPath.equals("/class/classinfo/update")) { // 클래스 등록이 아닌 경우
 						return -4;
 					}
 				} else { // 클래스 번호가 있는 경우
