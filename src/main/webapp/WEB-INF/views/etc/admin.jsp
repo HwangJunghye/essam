@@ -127,15 +127,6 @@ text-align:left;
 
 <script type="text/javascript">
 $(function(){	
-
-	/* 차트(그래프) 출력 데이터 */
-	let dataXColum = [];
-	let dataNo1 = [];
-	let dataNo2 = [];
-
-	dataXColum.push("x");
-	dataNo1.push("건수");
-	dataNo2.push("누적수");
 	
 	$("#showChart").on("click", function(){
 		
@@ -156,6 +147,15 @@ $(function(){
 				if(startDate>endDate){
 					$('#resultArea').html("<h5>시작일이 종료일보다 늦습니다.<br>조회기간을 다시 설정해주세요</h5>");	
 				}else{
+					/* 차트(그래프) 출력 데이터 */
+					let dataXColum = [];
+					let dataNo1 = [];
+					let dataNo2 = [];
+					
+					dataXColum.push("x");
+					dataNo1.push("건수");
+					dataNo2.push("누적수");
+					
 					$.each(data, function (index, item) {
 						
 						if(searchTarget=="class"){
