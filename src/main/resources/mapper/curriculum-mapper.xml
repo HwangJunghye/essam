@@ -87,5 +87,12 @@
 		SELECT * FROM CURRI WHERE CLSNO=#{clsNo}
 	</select>
 	
+	<select id="isCurriAttend" resultType="boolean">
+		SELECT COUNT(*) FROM ATTEND WHERE CURNO = #{curNo}
+	</select>
+	
+	<delete id="attendDelete">
+		DELETE FROM ATTEND WHERE CURNO = #{curNo}
+	</delete>
 	
 </mapper>

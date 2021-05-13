@@ -400,25 +400,55 @@ public class CurriculumMM {
 			boolean result = false;  //커리큘럼 삭제 결과
 			boolean isDeleteVideo = false; //동영상 삭제 결과
 			CurriculumBean curriInfo = null;
+			boolean isCurriAttend = false;
+			boolean isDeletecurriculumInfo = false;
+			
 			// getCurriculumRead()에 clsNo, curNo 넘겨 fileNo 가져오기
 			curriInfo = crDao.getCurriculumRead(clsNo, curNo);
 			String fileNo = curriInfo.getFileNo();
-			// DB에 clsNo,curNo 가지고 가서 커리큘럼 삭제
-			boolean isDeletecurriculumInfo = crDao.curriculumDelete(curNo);
-			if (isDeletecurriculumInfo) { // DB 삭제 성공하면
-				if (fileNo != null) { // 커리큘럼에 fileNo가 있다면
-					// 서버에 저장된 동영상파일 삭제
-					isDeleteVideo = fm.deleteFile(fileNo, request);
-					if(isDeleteVideo) { // 서버에 저장된 동영상파일 삭제 성공하면
-						result = true;
-					}else {
-						throw new CommonException("커리큘럼 동영상파일 삭제 예외발생");
+			
+			isCurriAttend = crDao.isCurriAttend(curNo);
+			// 출석테이블 커리큘럼출석정보가 있으면
+			if(isCurriAttend) {
+				// 출석테이블 커리큘럼출석정보 삭제
+				boolean isDeleteAttend = crDao.attendDelete(curNo);
+				if(isDeleteAttend) { // 출석정보 삭제 성공하면
+					// DB에 curNo 가지고 커리큘럼 삭제
+					if (crDao.curriculumDelete(curNo)) { // DB 삭제 성공하면
+						if (fileNo != null) { // 커리큘럼에 fileNo가 있다면
+							// 서버에 저장된 동영상파일 삭제
+							isDeleteVideo = fm.deleteFile(fileNo, request);
+							if(isDeleteVideo) { // 서버에 저장된 동영상파일 삭제 성공하면
+								result = true;
+							}else {
+								throw new CommonException("커리큘럼 동영상파일 삭제 예외발생");
+							}
+						}else { // 커리큘럼에 fileNo가 없다면
+							result = true;
+						}
+					}else { // DB에 삭제 실패하면
+						throw new CommonException("커리큘럼정보 DB 삭제 예외발생");
 					}
-				}else { // 커리큘럼에 fileNo가 없다면
-					result = true;
+				}else {
+					throw new CommonException("커리큘럼출석정보 삭제 예외발생");
 				}
-			}else { // DB에 삭제 실패하면
-				throw new CommonException("커리큘럼정보 DB 삭제 예외발생");
+			}else { // 커리큘럼미출석 상태이면
+				// DB에 curNo 가지고 커리큘럼 삭제
+				if (crDao.curriculumDelete(curNo)) { // DB 삭제 성공하면
+					if (fileNo != null) { // 커리큘럼에 fileNo가 있다면
+						// 서버에 저장된 동영상파일 삭제
+						isDeleteVideo = fm.deleteFile(fileNo, request);
+						if(isDeleteVideo) { // 서버에 저장된 동영상파일 삭제 성공하면
+							result = true;
+						}else {
+							throw new CommonException("커리큘럼 동영상파일 삭제 예외발생");
+						}
+					}else { // 커리큘럼에 fileNo가 없다면
+						result = true;
+					}
+				}else { // DB에 삭제 실패하면
+					throw new CommonException("커리큘럼정보 DB 삭제 예외발생");
+				}
 			}
 			
 			if(result) { //커리큘럼 삭세 성공하면

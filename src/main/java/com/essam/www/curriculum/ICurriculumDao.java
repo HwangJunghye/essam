@@ -44,5 +44,9 @@ public interface ICurriculumDao {
 	
 	//@Author 황정혜
 	List<CurriculumBean> getCurriList(String clsNo);
+	
+	boolean isCurriAttend(String curNo);
+
+	boolean attendDelete(String curNo);
 
 }
