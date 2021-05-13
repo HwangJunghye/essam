@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <style type="text/css">
 .center{
-	height: 600px;
+	height: 500px;
 	margin-left: auto;
     margin-right: auto;
 }
@@ -41,7 +41,7 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 	cursor: pointer;
 }
 #joinBtn{
-	height: 100px;
+	height: 70px;
 }
 #mbAddr{
 	width:400px;
