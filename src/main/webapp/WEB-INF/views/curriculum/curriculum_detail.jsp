@@ -45,27 +45,27 @@
 
 		<table class="contents" border="1" style="margin-top:100px;">
 			<tr>
-				<td class="item">제&emsp;목:</td>
+				<td class="item">제 목 :</td>
 				<td class="item_contents">&emsp;${curriInfo.curTitle}</td>
 			</tr>
 			<tr>
-				<td class="item">시작일시:</td>
+				<td class="item"><nobr>시작일시 :</nobr></td>
 				<td class="item_contents">&emsp;${curriInfo.curStartDate}</td>
 			</tr>
 			<tr>
-				<td class="item">종료일시:</td>
+				<td class="item">종료일시 :</td>
 				<td class="item_contents">&emsp;${curriInfo.curEndDate}</td>
 			</tr>
 			<tr>
-				<td class="item">설&emsp;명:</td>
+				<td class="item">설 명 :</td>
 				<td class="item_contents">&emsp;${curriInfo.curDisc}</td>
 			</tr>
 		</table>
-		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		<br/><br/><br/><br/><br/><br/>
 		
 			<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum?clsNo=${curriInfo.clsNo}&pageNum=${pageNum}'">목록</button>
 		<c:if test="${sessionScope.loginData.mbType==2}">
-			<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/update?clsNo=${curriInfo.clsNo}&curNo=${curriInfo.curNo}&pageNum=${pageNum}'">수정</button>
+			<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/update?clsNo=${curriInfo.clsNo}&curNo=${curriInfo.curNo}&pageNum=${pageNum}'" style="margin:0px 20px 0px 20px;">수정</button>
 			<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/delete?clsNo=${curriInfo.clsNo}&curNo=${curriInfo.curNo}&pageNum=${pageNum}'">삭제</button>
 		</c:if>
 	</c:if>
@@ -82,7 +82,7 @@
 			<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?pageNum=${pageNum}'">등록</button>
 		</c:if>
 	</c:if>
-
+<br/><br/><br/><br/><br/><br/>
 
 <!--------- 본문 끝 -------------->
 	</div>

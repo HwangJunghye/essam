@@ -28,7 +28,7 @@ input[type="submit"]{
 	cursor: pointer;
 }
 .center{
-	height: 300px;
+	height: 200px;
 	margin-left: 300 px;
     margin-right: auto;
 }
@@ -57,29 +57,27 @@ th, td{
 <!--------- 본문 시작 -------------->
 
 <form id="t_profile" action="update" method="post" enctype="multipart/form-data">
+	<br><br><br>
 	<table class="center">
 	<tr>
-		<th class="object"><label for="mbNickName">강사닉네임</label></th>
+		<th class="object" width=180><nobr><label for="mbNickName">강사닉네임</label></nobr></th>
 		<td>${sessionScope.loginData.mbNickName}</td>
 	</tr>
 	<tr>
 		<th class="object"><label for="teacherIntro">한줄소개</label></th>
 		<td><input type="text" name="teacherIntro" value="${teacherInfo.teacherIntro}"/></td>
-		<br>
-		<br>
 	</tr>
 	<tr>
 		<th class="object"><label for="teacherDetail">상세소개</label></th>
-		<td colspan=2><textarea rows=5 cols=120 id="t_detail" name="teacherDetail">${teacherInfo.teacherDetail}</textarea></td>
+		<td><textarea rows=5 cols=90 id="t_detail" name="teacherDetail">${teacherInfo.teacherDetail}</textarea></td>
 	</tr>
 	<tr>
 		<th class="object"><label for="file">프로필사진</label></th>
 		<td><input type="file" name="file" accept="image/*" /></td>
 	</tr>
-	<tr>
-		<th>
-			<input type="submit" class="${mbColor}" value="등록" />
-		</th>
+	<tr height="100">
+		<td></td>
+		<td><input type="submit" class="${mbColor}" value="등록" /></td>
 	</tr>
 	</table>
 </form>

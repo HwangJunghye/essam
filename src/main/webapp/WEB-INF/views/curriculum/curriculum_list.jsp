@@ -75,7 +75,7 @@
 					<tr class='prod'>
 						<h3>${msg}</h3>
 					</tr>
-				</thead><br/><br/><br/>
+				</thead><br/><br/>
 			</c:if>
 			</table>
 			<!-- 페이징 -->
@@ -85,7 +85,7 @@
 			<c:if test="${sessionScope.loginData.mbType==2}">
 				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}&pageNum=1'">등록</button>
 			</c:if>
-		</div>
+		</div><br/><br/><br/><br/><br/><br/>
 <!--------- 본문 끝 -------------->
 	</div>
 </div>

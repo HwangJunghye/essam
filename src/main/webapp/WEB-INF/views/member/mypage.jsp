@@ -33,6 +33,11 @@ input[type="text"],input[type="password"],input[type="date"] {
 	width:120px;
 }
 
+#mbAddr{
+	width:400px;
+	height:25px;
+	font-size:15px;
+}
 </style>
 </head>
 
@@ -55,7 +60,8 @@ input[type="text"],input[type="password"],input[type="date"] {
 	<table id="center">
 		<tr>
 			<th class="object">회원타입</th>
-			<td class="object_con">&emsp;${myInfo.mbType == 1?"학생":"강사"}</td>
+			<td class="object_con"><c:if test="${myInfo.mbType==1}">학생</c:if>
+				<c:if test="${myInfo.mbType==2}">강사</c:if><c:if test="${myInfo.mbType==3}">관리자</c:if></td>
 		</tr>
 		<tr>
 			<th class="object">아이디</th>
@@ -106,7 +112,7 @@ input[type="text"],input[type="password"],input[type="date"] {
 		<tr>
 			<th class="object"><label for="mbAddr">주소</label></th>
 			<td class="object_con">
-				&emsp;<input type="text" name="mbAddr" id="mbAddr" value="${myInfo.mbAddr}" required />
+				&emsp;<input type="text" name="mbAddr" id="mbAddr" size="60" value="${myInfo.mbAddr}" required />
 			</td>
 		</tr>
 		<tr>
@@ -140,11 +146,11 @@ input[type="text"],input[type="password"],input[type="date"] {
 		<br>
 		<tr>
 			<th colspan="2" id="mTable">
-				<input type="submit" class="${mbColor}" value="정보수정" />
+				<input type="submit" class="${mbColor}" value="정보수정" />&nbsp;&nbsp;
 				<input type="reset" class="${mbColor}" value="취소" />
 			</th>
 		</tr>
-	</table> 		
+	</table><br><br><br>	
 </form>
 <!--------- 본문 끝 -------------->
 	</div>

@@ -26,6 +26,24 @@ input[type="button"]{
 	cursor: pointer;
 }
 
+#msgbox{
+width: 530px;
+height: 120px;
+margin:200px;
+padding:auto;
+float:center;
+border: outset 3px #3566A2;
+}
+
+#msg{
+width:500px;
+height:100px;
+font-style: bold;
+font-weight: normal;
+font-size: 24px;
+margin:20px;
+padding:auto;
+}
 
 </style>
 </head>
@@ -43,8 +61,8 @@ input[type="button"]{
 <!--------- 본문 시작 -------------->
 		<!-- <h1>teacher_profile.jsp</h1> -->
 		<c:if test="${teacherInfo.fileNo==null && teacherInfo.teacherIntro==null && teacherInfo.teacherDetail==null}">
-			등록된 프로필 정보가 없습니다.
-			<a href="${ctxPath}/teacher_profile/write">등록</a>
+			<br><br><div id="msgbox"><div id="msg">등록된 프로필 정보가 없습니다.</div></div><br><br><br><br>
+			<input type="button" class="${mbColor}" onclick="location.href='${ctxPath}/teacher_profile/write'" value="등록">
 		</c:if>
 		<c:if test="${teacherInfo.fileNo!=null || teacherInfo.teacherIntro!=null || teacherInfo.teacherDetail!=null}">
 			<div id="wrap" style="width:960px; height:642px; margin:0 auto; overflow:hidden;">
@@ -53,7 +71,7 @@ input[type="button"]{
 						<img id="profile" style="width:100%; height:100%; object-fit:cover;" src="${ctxPath}/getthumbnail?fileNo=${teacherInfo.fileNo}&width=150&height=150">
 					</div>
 				</div>
-				<div id="right_side_box" style="width:720px; height:642px; float:left; overflow:hidden;">
+				<div id="right_side_box" style="width:720px; height:500px; float:left; overflow:hidden;">
 					<div id="nickname_box1" style="width:720px; height:168px; overflow:auto;">
 						<div id="nickname" style="width:104px; height:50px; text-align:left; float:left; position:relative; left:0px; top:118px;">
 							<h5 style="font-weight: bold; font-size:25px;">${teacherInfo.mbNickName}</h5>
@@ -65,8 +83,8 @@ input[type="button"]{
 					<div id="intro_box2" style="width:720px; height:60px; text-align:left; padding:10px 0px 0px;">
 						<h6 style="font-weight: bold;">${teacherInfo.teacherIntro}</h6>
 					</div>
-					<div id="detail_box3" style="width:720px; height:350px; text-align:left;">
-						${teacherInfo.teacherDetail}
+					<div id="detail_box3" style="width:720px; height:200px; text-align:left;">
+						${teacherInfo.teacherDetail}<br><br><br><br>
 						<!-- <div id="contents" style="min-height:900px;"> -->
 					</div>
 					<div style="width:720px; height:100px;">
@@ -81,7 +99,7 @@ input[type="button"]{
 					</div>
 				</div>
 			</div>
-		</c:if>
+		</c:if><br><br><br><br>
 <!--------- 본문 끝 -------------->
    </div>
 </div>

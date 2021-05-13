@@ -43,11 +43,11 @@
 					<input type="hidden" name="clsNo" value="${clsNo}">
 					<input type="hidden" name="curNo" value="${curriInfo.curNo}">
 					<input type="hidden" name="pageNum" value="1">
-					<div class="dong_div" id="dong_div" style="width:900px; height:600px; margin:0 auto;">
-						<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
+					<div class="dong_div" id="dong_div" style="width:900px; height:500px; margin:0 auto;">
+						<table width=800 height=400 border=2 style="margin-left:auto; margin-right:auto;">
 							<tr>
 								<th>제목</th>
-								<td><input type="text" name="curTitle" value="${curriInfo.curTitle}" required /></td>
+								<td><input type="text" name="curTitle" size="60" value="${curriInfo.curTitle}" required /></td>
 							</tr>
 							<tr>
 								<th>동영상파일</th>
@@ -67,7 +67,7 @@
 							</tr>
 							<tr>
 								<th>설명</th>
-								<td><textarea name="curDisc">${curriInfo.curDisc}</textarea></td>
+								<td><textarea name="curDisc" style="width:600px;height:170px;">${curriInfo.curDisc}</textarea></td>
 							</tr>
 							<tr>
 								<td colspan=2><input type="submit" class="btn_normal_t" value="수정" /></td>
@@ -89,11 +89,11 @@
 					<input type="hidden" name="clsNo" value="${clsNo}">
 					<input type="hidden" name="curNo" value="${curriInfo.curNo}">
 					<input type="hidden" name="pageNum" value="1">
-					<div class="sil_div" id="sil_div" style="width:900px; height:300px; margin:0 auto;">
-						<table width=600 height=400 border=2 style="margin-left:auto; margin-right:auto;">
+					<div class="sil_div" id="sil_div" style="width:900px; height:500px; margin:0 auto;">
+						<table width=800 height=400 border=2 style="margin-left:auto; margin-right:auto;">
 							<tr>
 								<th>제목</th>
-								<td><input type="text" name="curTitle" value="${curriInfo.curTitle}" required /></td>
+								<td><input type="text" name="curTitle" size="60" value="${curriInfo.curTitle}" required /></td>
 							</tr>
 							<tr>
 								<th>시작일시</th>
@@ -109,7 +109,7 @@
 							</tr>
 							<tr>
 								<th>설명</th>
-								<td><textarea name="curDisc">${curriInfo.curDisc}</textarea></td>
+								<td><textarea name="curDisc" style="width:600px;height:170px;">${curriInfo.curDisc}</textarea></td>
 							</tr>
 							<tr>
 								<td colspan=2><input type="submit" class="btn_normal_t" value="수정" /></td>
