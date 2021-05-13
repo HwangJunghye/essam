@@ -65,18 +65,16 @@ input[type="button"]{
 					<div id="intro_box2" style="width:720px; height:60px; text-align:left; padding:10px 0px 0px;">
 						<h6 style="font-weight: bold;">${teacherInfo.teacherIntro}</h6>
 					</div>
-					<div id="detail_box3" style="width:720px; height:304px; text-align:left;">
+					<div id="detail_box3" style="width:720px; height:200px; text-align:left;">
 						${teacherInfo.teacherDetail}
 						<!-- <div id="contents" style="min-height:900px;"> -->
 					</div>
-					<div id="button_box4" style="width:720px; height:304px;">
 					<tr>
 						<td>
-						<input type="button" class="${mbColor}" onclick="location.href='${ctxPath}/teacher_profile/write'" value="수정">
+						<input type="button" class="${mbColor}" onclick="location.href='${ctxPath}/teacher_profile/write'" value="수정">&emsp;
 						<input type="button" class="${mbColor}" onclick="location.href='${ctxPath}/teacher_profile/delete'" value="삭제">
 						</td>
 					</tr>
-					</div>
 				</div>
 			</div>
 		</c:if>
