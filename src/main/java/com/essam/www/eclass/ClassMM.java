@@ -78,8 +78,8 @@ public class ClassMM {
 			mav.addObject("teacherInfo", tb);
 			
 			//커리큘럼 리스트 가져와 mav에 담기 (CurriculumMM)
-			//List<CurriculumBean> crList = crDao.getCurriculumLIst(clsNo)
-			//mav.addObject("curriList", crList);
+			List<CurriculumBean> crList = crDao.getCurriculumList(clsNo, 1);
+			mav.addObject("curriList", crList);
 			
 			//회원타입 별 뷰페이지 분기
 			if(loginData.getMbType() == 2)

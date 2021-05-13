@@ -26,8 +26,8 @@
 					<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=1&pageNum=1">공지사항/자료실</a></li>
 					<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/curriculum?clsNo=${param.clsNo}&pageNum=1">커리큘럼</a></li>
 					<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/boardlist?clsNo=${param.clsNo}&clsBrdType=2&pageNum=1">과제</a></li>
-					<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/attend?clsNo=${param.clsNo}">출석현황</a></li>
-					<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/classinfo?clsNo=${param.clsNo}">클래스소개</a></li>
+					<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/attend?clsNo=${param.clsNo}">출석 현황</a></li>
+					<li class="second_item"><i class="fas fa-angle-right" style="color:#999;"></i> <a href="${ctxPath}/class/classinfo?clsNo=${param.clsNo}">클래스 소개</a></li>
 				</ul>
 				</c:if>
 			</c:if>			
