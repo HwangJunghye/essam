@@ -202,7 +202,7 @@ public class MemberMM {
 		mav.addObject("myInfo", mb);
 		mav.addObject("cate1Chk", cate1Chk);
 		mav.addObject("cate2Chk", cate2Chk);
-		mav.addObject("navtext", "계정관리");
+		mav.addObject("navtext", "계정 관리");
 
 		return mav;
 	}
@@ -399,7 +399,7 @@ public class MemberMM {
 		}
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("clsInfo", clsInfo);
-		mav.addObject("navtext", "클래스 관리> 마이 클래스");
+		mav.addObject("navtext", "마이 클래스");
 		// myclass_t.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("member/myclass_t"); // .jsp
 		return mav;

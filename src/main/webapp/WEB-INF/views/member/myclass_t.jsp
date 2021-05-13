@@ -88,7 +88,7 @@ padding:auto;
 		<tr>
 		<c:forEach items="${clsInfo}" varStatus="state" var="cInfo">
 			<td>	
-			<div class="clsList" onclick="location.href='${ctxPath}/class/curriculum?clsNo=${cInfo.clsNo}&pageNum=1'">
+			<div class="clsList" onclick="location.href='${ctxPath}/class/curriculum?clsNo=${cInfo.clsNo}&pageNum=1'" style="cursor:pointer;">
 				<p class="clsCate">${cInfo.cate1Name}> ${cInfo.cate2Name}</p>
 				<span class="clsTitle">${cInfo.clsName}</span> <span class="clsLimit">(${cInfo.clsRegiCnt}/${cInfo.clsLimit})</span>
 				<p class="clsIntro">${cInfo.clsIntro}</p>
