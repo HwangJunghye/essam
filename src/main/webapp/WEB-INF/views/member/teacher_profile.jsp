@@ -65,11 +65,11 @@ input[type="button"]{
 					<div id="intro_box2" style="width:720px; height:60px; text-align:left; padding:10px 0px 0px;">
 						<h6 style="font-weight: bold;">${teacherInfo.teacherIntro}</h6>
 					</div>
-					<div id="detail_box3" style="width:720px; height:350px; text-align:left; background:pink;">
+					<div id="detail_box3" style="width:720px; height:350px; text-align:left;">
 						${teacherInfo.teacherDetail}
 						<!-- <div id="contents" style="min-height:900px;"> -->
 					</div>
-					<div style="width:720px; height:100px; background:gray;">
+					<div style="width:720px; height:100px;">
 						<table>
 							<tr>
 								<td style="align:right;">
