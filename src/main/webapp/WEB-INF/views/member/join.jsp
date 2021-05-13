@@ -43,6 +43,11 @@ input[type="submit"], input[type="button"], input[type="reset"]{
 #joinBtn{
 	height: 100px;
 }
+#mbAddr{
+	width:400px;
+	height:25px;
+	font-size:15px;
+}
 </style>
 </head>
 <body>

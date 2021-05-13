@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>계정관리</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
@@ -28,6 +28,9 @@ input[type="text"],input[type="password"],input[type="date"] {
   width:200px;
   height:25px;
   font-size:15px;
+}
+#pwChange{
+	width:120px;
 }
 
 </style>
