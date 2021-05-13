@@ -12,9 +12,21 @@
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <style>
-	#t_profile {
-		 margin : 50px 100px
-	}
+#t_profile {
+	 margin : 50px 100px
+}
+input[type="button"]{
+	width: 70px;
+	height: 36px;
+	box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	color: #FFFFFF;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+}
+
+
 </style>
 </head>
 <body>
@@ -58,10 +70,12 @@
 						<!-- <div id="contents" style="min-height:900px;"> -->
 					</div>
 					<div id="button_box4" style="width:720px; height:304px;">
-						<div id="update_button" style="width:149px; height:78px; float:right; position:relative; right:0px; top:0px;">
-							<button type="button" style="margin-right:10px;" onclick="location.href='${ctxPath}/teacher_profile/write'">수정</button>
-							<button type="button" onclick="location.href='${ctxPath}/teacher_profile/delete'">삭제</button>
-						</div>
+					<tr>
+						<td>
+						<input type="button" class="${mbColor}" onclick="location.href='${ctxPath}/teacher_profile/write'" value="수정">
+						<input type="button" class="${mbColor}" onclick="location.href='${ctxPath}/teacher_profile/delete'" value="삭제">
+						</td>
+					</tr>
 					</div>
 				</div>
 			</div>
