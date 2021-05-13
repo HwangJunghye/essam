@@ -23,15 +23,7 @@ public class CommonController {
 	ModelAndView goIndex(HttpServletRequest request) {
 		return comm.goIndex(request); // .jsp
 	}
-	/**
-	 * [CO01] 메인 - 마이클래스(iframe)
-	 * @Author 고연미 on 28/04/2021
-	 */
-	@RequestMapping(value = "/getmyclass")
-	ModelAndView getMyClass(HttpServletRequest request) {
-		return comm.getMyClass(request); // .jsp
-	}
-
+	
 	/**
 	 * 검색 페이지 이동<br>
 	 * "/search?cate1No=카테고리1&cate2No=카테고리2"<br>

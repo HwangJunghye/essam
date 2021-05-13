@@ -44,8 +44,8 @@
 				<c:if test="${teacherInfo.fileNo!=null || teacherInfo.teacherIntro!=null || teacherInfo.teacherDetail!=null}">
 					<table>
 					<tr>
-						<td rowspan=3 valign="top" width="200" style="padding:10px;">
-							<div id="profile_image_box" style="width:154px; height:154px; border-radius:70%; overflow:hidden; background:pink; position:relative; left:30px; ">
+						<td rowspan=3 valign="top" width="220" style="padding:10px;">
+							<div id="profile_image_box" style="width:154px; height:154px; border-radius:70%; overflow:hidden; background:pink; position:relative; left:30px;">
 								<img id="profile" style="width:100%; height:100%; object-fit:cover;" src="${ctxPath}/getthumbnail?fileNo=${teacherInfo.fileNo}&width=150&height=150">
 							</div></td>
 						<td align="left" style="padding:10px;"><h5 style="font-weight: bold; font-size:25px;">${teacherInfo.mbNickName}</h5></td>

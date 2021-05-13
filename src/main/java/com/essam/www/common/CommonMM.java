@@ -85,25 +85,6 @@ public class CommonMM {
 
 		return mav;
 	}
-	public ModelAndView getMyClass(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		List<ClassBean> cList = null;
-
-		// My 클래스 정보 가져오기 (학생 로그인인 경우)
-		MemberBean loginData = new MemberBean();
-		loginData = (MemberBean) request.getSession().getAttribute("loginData");
-
-		if (loginData != null) {
-			if (loginData.getMbType() == 1) {
-				cList = getClassList("my", loginData.getMbId());
-				// 가져온 정보를 mav "myList" 에 넣기
-				mav.addObject("myList", cList);
-			}
-		}
-		mav.setViewName("common/ifr_myClass"); // .jsp
-
-		return mav;
-	}
 	/**
 	 * (CO02) 클래스 리스트 가져오기
 	 * @Author 고연미 on 28/04/2021
