@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>동영상 강의</title>
+<title>e-쌤</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
@@ -36,13 +36,11 @@
 		<h3>${msg}</h3>
 		${curriInfo.curStartDate}
 		${curriInfo.curEndDate}<br/>
-		<video width="700" height="350" controls="controls">
+		<video width=900" height="500" controls="controls">
 			<source src="${ctxPath}/getvideo?fileNo=${curriInfo.fileNo}" type="video/mp4">
 		</video>
-	</div>
-	<br/>
-	<br/>
-	<br/>
+	</div><br/><br/><br/><br/><br/>
+	
 		<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum?clsNo=${clsNo}&pageNum=${pageNum}'">목록</button>
 	<c:if test="${sessionScope.loginData.mbType==2}">
 		<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/update?clsNo=${curriInfo.clsNo}&curNo=${curriInfo.curNo}&pageNum=${pageNum}'">수정</button>

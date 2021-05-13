@@ -81,7 +81,7 @@
 			<!-- 페이징 -->
 		${paging}
 		</div>
-		<div class="container" style="width:720px; float:right; text-align:right; margin-right:30px;">
+		<div class="container" style="width:720px; float:right; text-align:right; margin-right:30px; margin-top:30px;">
 			<c:if test="${sessionScope.loginData.mbType==2}">
 				<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/write?clsNo=${clsNo}&pageNum=1'">등록</button>
 			</c:if>

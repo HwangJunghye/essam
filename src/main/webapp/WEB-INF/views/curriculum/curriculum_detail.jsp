@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>e-쌤</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
@@ -43,7 +43,7 @@
 		</tr>
 		</table>
 
-		<table class="contents" border="1">
+		<table class="contents" border="1" style="margin-top:100px;">
 			<tr>
 				<td class="item">제&emsp;목:</td>
 				<td class="item_contents">&emsp;${curriInfo.curTitle}</td>
@@ -61,9 +61,8 @@
 				<td class="item_contents">&emsp;${curriInfo.curDisc}</td>
 			</tr>
 		</table>
-		<br/>
-		<br/>
-		<br/>
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		
 			<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum?clsNo=${curriInfo.clsNo}&pageNum=${pageNum}'">목록</button>
 		<c:if test="${sessionScope.loginData.mbType==2}">
 			<button type="button" class="btn_normal_t" onclick="location.href='${ctxPath}/class/curriculum/update?clsNo=${curriInfo.clsNo}&curNo=${curriInfo.curNo}&pageNum=${pageNum}'">수정</button>

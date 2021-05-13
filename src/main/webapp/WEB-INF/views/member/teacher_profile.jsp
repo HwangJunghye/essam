@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>e-쌤</title>
 <link rel="stylesheet" type="text/css" href="${ctxPath}/resources/css/basic.css">
 <link rel="icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
 <link rel="shortcut icon" href="${ctxPath}/resources/images/favicon_essam.ico" type="image/x-icon">
@@ -71,8 +71,8 @@ input[type="button"]{
 					</div>
 					<tr>
 						<td>
-						<input type="button" class="${mbColor}" onclick="location.href='${ctxPath}/teacher_profile/write'" value="수정">&emsp;
-						<input type="button" class="${mbColor}" onclick="location.href='${ctxPath}/teacher_profile/delete'" value="삭제">
+							<input type="button" class="${mbColor}" onclick="location.href='${ctxPath}/teacher_profile/write'" value="수정">&emsp;
+							<input type="button" class="${mbColor}" onclick="location.href='${ctxPath}/teacher_profile/delete'" value="삭제">
 						</td>
 					</tr>
 				</div>
