@@ -101,11 +101,11 @@ padding:auto;
 		</table>
 	</c:if>
 	
-	
 	<!-- clsInfo가 없으면 -->
 	<c:if test="${empty clsInfo}">
 		<div id="msgbox"><div id="msg">마이 클래스가 없습니다.</div></div>
 	</c:if>
+	<br><br><br><br>
 <!--------- 본문 끝 -------------->
 	</div>
 </div>
