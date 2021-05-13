@@ -560,7 +560,7 @@ public class ClassMM {
 			}
 		}
 		
-		mav.addObject("navtext", "마이 클래스> 출석현황");
+		mav.addObject("navtext", "마이 클래스 > 출석 현황");
 		//class_attend.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("class/class_attend"); // .jsp
 		return mav;
@@ -575,7 +575,7 @@ public class ClassMM {
 		// 가져온 정보를 mav에 넣기
 		mav.addObject("clsInfo",clsInfo);
 		mav.addObject("sList",sList);
-		mav.addObject("navtext", "클래스 관리> 마이 클래스> 학생");
+		mav.addObject("navtext", "마이 클래스 > 학생");
 		// class_studentinfo.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("class/class_studentinfo"); // .jsp
 		return mav;
@@ -601,7 +601,7 @@ public class ClassMM {
 		}else {
 			mav.addObject("attendPercent",attendPercent);
 		}
-		mav.addObject("navtext", "클래스 관리> 마이 클래스> 학생");
+		mav.addObject("navtext", "마이 클래스 > 학생");
 		// class_studentinfo_read.jsp로 이동하기 위해 viewname 지정
 		mav.setViewName("class/class_studentinfo_read"); // .jsp
 		return mav;
@@ -614,10 +614,10 @@ public class ClassMM {
 		if(clsNo!=null) {
 			clsInfo = cDao.getMyClassList(clsNo);
 			mav.addObject("clsInfo",clsInfo);
-			mav.addObject("navtext", "클래스 관리> 마이 클래스> 클래스 수정");
+			mav.addObject("navtext", "마이 클래스 > 클래스 수정");
 			
 		}else { 
-		mav.addObject("navtext", "클래스 관리> 클래스 개설");
+		mav.addObject("navtext", "클래스 개설");
 		}
 		mav.setViewName("class/class_write"); // .jsp
 		return mav;

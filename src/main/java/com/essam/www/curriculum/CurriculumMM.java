@@ -81,7 +81,7 @@ public class CurriculumMM {
 			mav.addObject("pageNum", pageNum);
 			// class_curriculum_read.jsp로 이동하기 위해 viewname 지정
 			mav.setViewName("curriculum/curriculum_list"); // 커리큘럼보기 페이지로
-			mav.addObject("navtext", "마이클래스> 커리큘럼");
+			mav.addObject("navtext", "마이 클래스 > 커리큘럼");
 			mav.addObject("clsName", cDao.getClassName(clsNo));
 			//mav에 페이징 정보 저장
 		    mav.addObject("paging", getPaging(clsNo, pageNum, totalNum, request));
@@ -93,7 +93,7 @@ public class CurriculumMM {
 			mav.addObject("clsName", cDao.getClassName(clsNo));
 			mav.addObject("clsNo", clsNo);
 			mav.addObject("msg", msg);
-			mav.addObject("navtext", "마이클래스> 커리큘럼");			
+			mav.addObject("navtext", "마이 클래스 > 커리큘럼");			
 			return mav;
 		}
 		
@@ -119,13 +119,13 @@ public class CurriculumMM {
 			// curriculum_detail.jsp로 이동하기 위해 viewname 지정
 			mav.setViewName("curriculum/curriculum_detail"); // 커리큘럼 상세정보 보기 페이지로
 			mav.addObject("clsName", cDao.getClassName(clsNo));
-			mav.addObject("navtext", "마이클래스> 커리큘럼> 상세정보");	
+			mav.addObject("navtext", "마이 클래스 > 커리큘럼 > 상세정보");	
 		} else { // 등록된 커리큘럼 상세정보가 없다면
 			mav.addObject("pageNum", pageNum);
 			mav.setViewName("curriculum/curriculum_detail"); // 커리큘럼 상세정보 보기 페이지로(curriculum_list.jsp에서 상세정보 required라 없을 수 없음)
 			mav.addObject("msg", "등록된 커리큘럼 상세정보가 없습니다");
 			mav.addObject("clsName", cDao.getClassName(clsNo));
-			mav.addObject("navtext", "마이클래스> 커리큘럼> 상세정보");	
+			mav.addObject("navtext", "마이 클래스 > 커리큘럼 > 상세정보");	
 		}
 		return mav;
 	}
@@ -168,7 +168,7 @@ public class CurriculumMM {
 		}
 		//mav에 클래스명 추가
 		mav.addObject("clsName", cDao.getClassName(clsNo));
-		mav.addObject("navtext", "마이클래스> 커리큘럼> 동영상");	
+		mav.addObject("navtext", "마이 클래스 > 커리큘럼 > 동영상");	
 		mav.setViewName("curriculum/curriculum_videoplay");
 		return mav;
 	}
@@ -181,7 +181,7 @@ public class CurriculumMM {
 		mav.addObject("pageNum", pageNum);
 		//mav에 클래스명 추가
 		mav.addObject("clsName", cDao.getClassName(clsNo));
-		mav.addObject("navtext", "마이클래스> 커리큘럼> 등록");
+		mav.addObject("navtext", "마이 클래스 > 커리큘럼 > 등록");
 		mav.setViewName("curriculum/curriculum_write");
 		return mav;
 	}
@@ -285,7 +285,7 @@ public class CurriculumMM {
 			mav.addObject("clsNo", clsNo);
 			//mav에 클래스명 추가
 			mav.addObject("clsName", cDao.getClassName(clsNo));
-			mav.addObject("navtext", "마이클래스> 커리큘럼> 수정");
+			mav.addObject("navtext", "마이 클래스 > 커리큘럼 > 수정");
 		}else if(curriInfo != null && curriInfo.getCurTypeNo()==2) { //등록된 커리큘럼이 있고 실시간수업 이라면
 			String curStartDate = curriInfo.getCurStartDate().replace(" ", "T");
 			String curEndDate = curriInfo.getCurEndDate().replace(" ", "T");
@@ -297,13 +297,13 @@ public class CurriculumMM {
 			mav.addObject("clsNo", clsNo);
 			//mav에 클래스명 추가
 			mav.addObject("clsName", cDao.getClassName(clsNo));
-			mav.addObject("navtext", "마이클래스> 커리큘럼> 수정");
+			mav.addObject("navtext", "마이 클래스 > 커리큘럼 > 수정");
 		}else { //등록된 커리큘럼이 없으면
 			mav.setViewName("curriculum/curriculum_write");
 			mav.addObject("clsNo", clsNo);
 			//mav에 클래스명 추가
 			mav.addObject("clsName", cDao.getClassName(clsNo));
-			mav.addObject("navtext", "마이클래스> 커리큘럼> 등록");
+			mav.addObject("navtext", "마이 클래스 > 커리큘럼 > 등록");
 		}
 		return mav;
 	}
@@ -351,7 +351,7 @@ public class CurriculumMM {
 				mav.setViewName("redirect:/class/curriculum?pageNum=1&clsNo=" + cb.getClsNo());
 				//mav에 클래스명 추가
 				mav.addObject("clsName", cDao.getClassName(clsNo));
-				mav.addObject("navtext", "마이클래스> 커리큘럼");
+				mav.addObject("navtext", "마이 클래스 > 커리큘럼");
 			}else {
 				rattr.addFlashAttribute("fMsg", "커리큘럼 수정이 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
 				//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
@@ -380,7 +380,7 @@ public class CurriculumMM {
 				mav.setViewName("redirect:/class/curriculum?pageNum=1&clsNo=" + cb.getClsNo());
 				//mav에 클래스명 추가
 				mav.addObject("clsName", cDao.getClassName(clsNo));
-				mav.addObject("navtext", "마이클래스> 커리큘럼");
+				mav.addObject("navtext", "마이 클래스 > 커리큘럼");
 			}else { //커리큘럼 수정 실패하면
 				rattr.addFlashAttribute("fMsg", "커리큘럼 수정이 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
 				//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
@@ -456,7 +456,7 @@ public class CurriculumMM {
 				mav.setViewName("redirect:/class/curriculum?pageNum=1&clsNo=" + clsNo);
 				//mav에 클래스명 추가
 				mav.addObject("clsName", cDao.getClassName(clsNo));
-				mav.addObject("navtext", "마이클래스> 커리큘럼");	
+				mav.addObject("navtext", "마이 클래스 > 커리큘럼");	
 			}else { //커리큘럼 삭제 실패하면
 				rattr.addFlashAttribute("fMsg", "커리큘럼 삭제를 실패하였습니다. \\n문제가 지속된다면 관리자에게 문의 바랍니다.");
 				//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
