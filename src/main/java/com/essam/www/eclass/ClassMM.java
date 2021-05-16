@@ -348,8 +348,12 @@ public class ClassMM {
 		}				
 		if(result) {
 			rattr.addFlashAttribute("fMsg","게시글 저장을 완료하였습니다.");
-			//view 페이지 설정
-			mav.setViewName("redirect:/class/boardread?clsNo=" + board.getClsNo() + "&clsBrdNo=" + clsBrdNo + "&pageNum=" + pageNum);
+//			//rattr에 게시글번호 추가
+			rattr.addFlashAttribute("clsBrdNo", clsBrdNo);	
+//			//rattr에 페이지넘버 추가
+			rattr.addFlashAttribute("pageNum", pageNum);
+			//view 페이지 설정 : 게시글 읽기 URL에 파라메터 함께 redirect (쿼리스트링에 clsNo가 없으면 interceptor에서 오류남.)
+			mav.setViewName("redirect:/class/boardread?clsNo=" + board.getClsNo());
 		} else {
 			rattr.addFlashAttribute("fMsg","게시글 저장에 실패하였습니다. \\n문제가 지속된다면 관리자에 문의 바랍니다.");
 			//Referer : 이전 페이지에 대한 정보가 전부 들어있는 헤더
@@ -357,10 +361,6 @@ public class ClassMM {
 			//view 페이지 설정
 			mav.setViewName("redirect:"+ referer);
 		}
-		//rattr에 게시글번호 추가
-		rattr.addFlashAttribute("clsBrdNo", clsBrdNo);	
-		//rattr에 페이지넘버 추가
-		rattr.addFlashAttribute("pageNum", pageNum);
 		return mav;
 	}
 	/**
