@@ -171,35 +171,31 @@ $(function(){
 						str +="<td>"+item.TOTAL+"</td></tr>";				
 					 });				
 					str += "</table>";
+					// 결과표 출력
 					$('#resultArea').html(str);	
 					
 					/* 차트(그래프) 출력 */
 					var chart = bb.generate({
-						  data: {
-							  "x": "x",
+						data: {
+							"x": "x",
 						    columns: [
-						        dataXColum,
+						    	dataXColum,
 						        dataNo1,
 						        dataNo2
 						    ],
 						    type: "bar", // for ESM specify as: bar()
-						  },
-						  	axis: {
-							    x : {
-							      	type  : "timeseries",
-									tick : {
-							        	format : "%Y-%m-%d"
-						        	}
-								},
-							  },
-						  bar: {
-						    width: {
-						      ratio: 0.5
-						    }
-						  },
-						  bindto: "#barChart"
-						});
-
+						},
+						axis: {
+							x : {
+							 	type  : "timeseries",
+								tick : { format : "%Y-%m-%d" }
+							},
+						},
+						bar: {
+						    width: { ratio: 0.5 }
+						},
+						bindto: "#barChart"
+					});
 				}
 			}).fail(function(err){
 				alert('Error:  자료를 조회할 수 없습니다.');
